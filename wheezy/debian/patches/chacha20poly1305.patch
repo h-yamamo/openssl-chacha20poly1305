@@ -1,7 +1,7 @@
 //
 // line 78: rm -f ../../include/openssl/chacha.h
 //	added workaround to avoid error in dpkg-buildpackage.
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/Makefile	2014-05-05 19:01:15.781255194 +0900
 @@ -0,0 +1,81 @@
@@ -86,7 +86,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +
 +# DO NOT DELETE THIS LINE -- make depend depends on it.
 +
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/chacha.h	2014-05-05 19:06:54.492997124 +0900
 @@ -0,0 +1,77 @@
@@ -167,7 +167,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +#endif
 +
 +#endif
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/chacha_enc.c	2014-05-05 19:08:20.130954546 +0900
 @@ -0,0 +1,161 @@
@@ -332,7 +332,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA */
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/chacha_vec.c	2014-05-05 19:09:02.471922339 +0900
 @@ -0,0 +1,345 @@
@@ -681,7 +681,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA */
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/chachatest.c	2014-05-05 19:09:54.005100230 +0900
 @@ -0,0 +1,211 @@
@@ -899,7 +899,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 //
 // line 78: rm -f ../../include/openssl/poly1305.h
 //	added workaround to avoid error in dpkg-buildpackage.
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/Makefile	2014-05-05 19:32:16.703790302 +0900
 @@ -0,0 +1,82 @@
@@ -985,7 +985,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +# DO NOT DELETE THIS LINE -- make depend depends on it.
 +
 +poly1305_vec.o: ../../include/openssl/poly1305.h poly1305_vec.c
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/poly1305.c	2014-05-05 19:33:01.120805540 +0900
 @@ -0,0 +1,320 @@
@@ -1309,7 +1309,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +	}
 +
 +#endif  /* !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/poly1305.h	2014-05-05 19:33:44.333793257 +0900
 @@ -0,0 +1,80 @@
@@ -1393,7 +1393,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +				   unsigned char mac[16]);
 +
 +#endif  /* HEADER_POLY1305_H_ */
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/poly1305_arm.c	2014-05-05 19:34:32.710899020 +0900
 @@ -0,0 +1,335 @@
@@ -1732,7 +1732,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +	}
 +
 +#endif  /* !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/poly1305_arm_asm.s	2014-05-05 19:35:40.040437965 +0900
 @@ -0,0 +1,2009 @@
@@ -3745,7 +3745,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +# qhasm: return
 +add sp,sp,#0
 +bx lr
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/poly1305_vec.c	2014-05-05 19:36:29.001557067 +0900
 @@ -0,0 +1,739 @@
@@ -4488,7 +4488,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +#endif  /* !OPENSSL_NO_POLY1305 */
 +
 +#endif  /* !PEDANTIC */
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/poly1305test.c	2014-05-05 19:37:14.842604856 +0900
 @@ -0,0 +1,169 @@
@@ -4661,7 +4661,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +int main() { return 0; }
 +
 +#endif
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	2014-04-27 20:02:09.793205737 +0900
 +++ b/crypto/evp/e_chacha20poly1305.c	2014-05-05 19:17:47.359919705 +0900
 @@ -0,0 +1,261 @@
@@ -4926,7 +4926,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA && !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
+diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 --- /dev/null	2014-04-27 20:02:09.793205737 +0900
 +++ b/crypto/evp/evp_aead.c	2014-05-05 19:19:30.830284723 +0900
 @@ -0,0 +1,192 @@
@@ -5122,7 +5122,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+cha~1
 +	memset(out, 0, max_out_len);
 +	return -1;
 +	}
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/Configure	2014-05-04 15:44:25.839712024 +0900
 +++ b/Configure	2014-05-05 00:09:08.000000000 +0900
 @@ -128,24 +128,24 @@
@@ -5263,7 +5263,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  
  		if ($fields[$idx_dso_scheme-1] =~ /^(beos|dl|dlfcn|win32|vms)$/)
  			{
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/Makefile.org	2014-05-04 15:44:25.827711748 +0900
 +++ b/Makefile.org	2014-05-05 00:09:08.000000000 +0900
 @@ -94,6 +94,8 @@
@@ -5293,7 +5293,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  		PERLASM_SCHEME='$(PERLASM_SCHEME)'		\
  		FIPSLIBDIR='${FIPSLIBDIR}'			\
  		FIPSDIR='${FIPSDIR}'				\
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/apps/speed.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/apps/speed.c	2014-05-07 19:25:26.342321985 +0900
 @@ -224,7 +224,7 @@
@@ -5482,7 +5482,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  #ifndef OPENSSL_NO_CAMELLIA
  	if (doit[D_CBC_128_CML])
  		{
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/crypto/evp/Makefile	2013-02-12 00:26:04.000000000 +0900
 +++ b/crypto/evp/Makefile	2014-05-07 00:29:02.470520888 +0900
 @@ -29,7 +29,8 @@
@@ -5542,7 +5542,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  evp_cnf.o: ../../e_os.h ../../include/openssl/asn1.h
  evp_cnf.o: ../../include/openssl/bio.h ../../include/openssl/buffer.h
  evp_cnf.o: ../../include/openssl/conf.h ../../include/openssl/crypto.h
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/crypto/evp/e_aes.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/crypto/evp/e_aes.c	2014-05-07 13:18:15.478762481 +0900
 @@ -62,7 +62,7 @@
@@ -6011,7 +6011,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
 +
  #endif
  #endif
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/crypto/evp/evp.h	2013-02-12 00:26:04.000000000 +0900
 +++ b/crypto/evp/evp.h	2014-05-07 00:20:16.718503782 +0900
 @@ -1242,6 +1242,123 @@
@@ -6185,7 +6185,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  #define EVP_R_TOO_LARGE					 164
  #define EVP_R_UNKNOWN_CIPHER				 160
  #define EVP_R_UNKNOWN_DIGEST				 161
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/crypto/evp/evp_err.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/crypto/evp/evp_err.c	2014-05-07 00:42:27.208914803 +0900
 @@ -1,6 +1,6 @@
@@ -6243,7 +6243,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  {ERR_REASON(EVP_R_TOO_LARGE)             ,"too large"},
  {ERR_REASON(EVP_R_UNKNOWN_CIPHER)        ,"unknown cipher"},
  {ERR_REASON(EVP_R_UNKNOWN_DIGEST)        ,"unknown digest"},
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/crypto/evp/evp_locl.h	2013-02-12 00:26:04 +0900
 +++ b/crypto/evp/evp_locl.h	2014-05-07 00:43:55.554934121 +0900
 @@ -348,6 +348,30 @@
@@ -6277,7 +6277,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  #ifdef OPENSSL_FIPS
  
  #ifdef OPENSSL_DOING_MAKEDEPEND
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/s2_clnt.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/s2_clnt.c	2014-05-05 00:09:08.000000000 +0900
 @@ -623,7 +623,7 @@
@@ -6289,7 +6289,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  			{
  			ssl2_return_error(s,SSL2_PE_NO_CIPHER);
  			SSLerr(SSL_F_CLIENT_MASTER_KEY,SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/s2_enc.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/s2_enc.c	2014-05-05 00:09:08.000000000 +0900
 @@ -68,7 +68,7 @@
@@ -6301,7 +6301,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  		{
  		ssl2_return_error(s,SSL2_PE_NO_CIPHER);
  		SSLerr(SSL_F_SSL2_ENC_INIT,SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/s2_srvr.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/s2_srvr.c	2014-05-05 00:09:08.000000000 +0900
 @@ -452,7 +452,7 @@
@@ -6313,7 +6313,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  		{
  		ssl2_return_error(s,SSL2_PE_NO_CIPHER);
  		SSLerr(SSL_F_GET_CLIENT_MASTER_KEY,SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/s3_enc.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/s3_enc.c	2014-05-05 00:09:08.000000000 +0900
 @@ -397,7 +397,13 @@
@@ -6331,7 +6331,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  		{
  		SSLerr(SSL_F_SSL3_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
  		return(0);
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/s3_lib.c	2014-05-04 15:44:25.871712755 +0900
 +++ b/ssl/s3_lib.c	2014-05-07 17:42:51.597642971 +0900
 @@ -166,6 +166,11 @@
@@ -6620,7 +6620,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  /* end of list */
  	};
  
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/s3_pkt.c	2014-05-04 15:44:25.883713028 +0900
 +++ b/ssl/s3_pkt.c	2014-05-20 21:18:05.000000000 +0900
 @@ -774,7 +774,12 @@
@@ -6637,7 +6637,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  		eivlen = 0;
  
  	/* lets setup the record stuff. */
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/ssl.h	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/ssl.h	2014-05-07 14:46:07.391262593 +0900
 @@ -291,6 +291,7 @@
@@ -6701,7 +6701,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  #define SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT		 274
  #define SSL_F_TLS1_ENC					 210
  #define SSL_F_TLS1_EXPORT_KEYING_MATERIAL		 314
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/ssl3.h	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/ssl3.h	2014-05-07 14:29:21.340267277 +0900
 @@ -517,6 +517,7 @@
@@ -6712,7 +6712,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  		const EVP_MD *new_hash;
  		int new_mac_pkey_type;
  		int new_mac_secret_size;
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/ssl_ciph.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/ssl_ciph.c	2014-05-07 18:17:00.512475015 +0900
 @@ -298,6 +298,7 @@
@@ -6829,7 +6829,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  	default:
  		enc="unknown";
  		break;
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/ssl_err.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/ssl_err.c	2014-05-07 18:34:48.144877904 +0900
 @@ -277,8 +277,11 @@
@@ -6845,7 +6845,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  {ERR_FUNC(SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT),	"TLS1_CHECK_SERVERHELLO_TLSEXT"},
  {ERR_FUNC(SSL_F_TLS1_ENC),	"TLS1_ENC"},
  {ERR_FUNC(SSL_F_TLS1_EXPORT_KEYING_MATERIAL),	"TLS1_EXPORT_KEYING_MATERIAL"},
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/ssl_lib.c	2014-05-04 15:44:25.867712658 +0900
 +++ b/ssl/ssl_lib.c	2014-05-07 18:42:12.091025172 +0900
 @@ -2775,6 +2775,18 @@
@@ -6867,7 +6867,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  #ifndef OPENSSL_NO_COMP
  	if (s->expand != NULL)
  		{
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/ssl_locl.h	2014-05-04 15:44:25.871712755 +0900
 +++ b/ssl/ssl_locl.h	2014-05-07 14:22:48.851296157 +0900
 @@ -328,6 +328,7 @@
@@ -6933,7 +6933,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  int ssl_get_handshake_digest(int i,long *mask,const EVP_MD **md);			   
  int ssl_verify_cert_chain(SSL *s,STACK_OF(X509) *sk);
  int ssl_undefined_function(SSL *s);
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/ssl_txt.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/ssl_txt.c	2014-05-05 00:09:08.000000000 +0900
 @@ -216,7 +216,7 @@
@@ -6945,7 +6945,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  		if (comp == NULL)
  			{
  			if (BIO_printf(bp,"\n    Compression: %d",x->compress_meth) <= 0) goto err;
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/t1_enc.c	2014-05-04 15:44:25.871712755 +0900
 +++ b/ssl/t1_enc.c	2014-05-07 19:11:20.810995679 +0900
 @@ -316,56 +316,92 @@
@@ -7743,7 +7743,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
  				}
  			}
  		}
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+cha~1
+diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 --- a/ssl/tls1.h	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/tls1.h	2014-05-07 14:05:44.755888405 +0900
 @@ -519,6 +519,10 @@
