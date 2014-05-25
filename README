@@ -1,3 +1,15 @@
-ChaCha20+Poly1305 cipher suites support patch
+OpenSSL
 
-For Debian / Ubuntu packages
+Support ChaCha20+Poly1305 cipher suites.
+For Debian/Ubuntu packages.
+
+How to make packages:
+
+  (in some directory)
+  apt-get -d source openssl
+  tar xzf openssl_1.0.1e.orig.tar.gz
+  cd openssl-1.0.1e
+  tar xzf ../openssl_1.0.1e-2+deb7u9.debian.tar.gz
+  cp -a (this repository)/wheezy/debian/* debian/
+  debuild -uc -us
+
