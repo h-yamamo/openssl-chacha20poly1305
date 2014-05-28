@@ -1,0 +1,254 @@
+Description: Work around TLS 1.2 failures as suggested by upstream
+ *) Don't allow TLS 1.2 SHA-256 ciphersuites in TLS 1.0, 1.1 connections.
+    [Adam Langley]
+ .
+ *) Workarounds for some broken servers that "hang" if a client hello
+    record length exceeds 255 bytes.
+ .
+    1. Do not use record version number > TLS 1.0 in initial client
+       hello: some (but not all) hanging servers will now work.
+    2. If we set OPENSSL_MAX_TLS1_2_CIPHER_LENGTH this will truncate
+       the number of ciphers sent in the client hello. This should be
+       set to an even number, such as 50, for example by passing:
+       -DOPENSSL_MAX_TLS1_2_CIPHER_LENGTH=50 to config or Configure.
+       Most broken servers should now work.
+    3. If all else fails setting OPENSSL_NO_TLS1_2_CLIENT will disable
+       TLS 1.2 client support entirely.
+Origin: upstream, http://cvs.openssl.org/chngview?cn=22286
+Origin: upstream, http://cvs.openssl.org/chngview?cn=22306
+Origin: upstream, http://cvs.openssl.org/chngview?cn=22405
+Origin: upstream, http://cvs.openssl.org/chngview?cn=22408
+Origin: upstream, http://cvs.openssl.org/chngview?cn=22411
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/965371
+Bug-Debian: http://bugs.debian.org/665452
+Bug: http://rt.openssl.org/Ticket/Display.html?id=2771
+Forwarded: not-needed
+Last-Update: 2012-03-30
+
+Index: b/ssl/s23_clnt.c
+===================================================================
+--- a/ssl/s23_clnt.c
++++ b/ssl/s23_clnt.c
+@@ -287,12 +287,14 @@
+ 
+ 	if (ssl2_compat && ssl23_no_ssl2_ciphers(s))
+ 		ssl2_compat = 0;
+-
++#ifndef OPENSSL_NO_TLS1_2_CLIENT
+ 	if (!(s->options & SSL_OP_NO_TLSv1_2))
+ 		{
+ 		version = TLS1_2_VERSION;
+ 		}
+-	else if (!(s->options & SSL_OP_NO_TLSv1_1))
++	else
++#endif
++	if (!(s->options & SSL_OP_NO_TLSv1_1))
+ 		{
+ 		version = TLS1_1_VERSION;
+ 		}
+@@ -467,6 +469,15 @@
+ 				SSLerr(SSL_F_SSL23_CLIENT_HELLO,SSL_R_NO_CIPHERS_AVAILABLE);
+ 				return -1;
+ 				}
++#ifdef OPENSSL_MAX_TLS1_2_CIPHER_LENGTH
++			/* Some servers hang if client hello > 256 bytes
++			 * as hack workaround chop number of supported ciphers
++			 * to keep it well below this if we use TLS v1.2
++			 */
++			if (TLS1_get_client_version(s) >= TLS1_2_VERSION
++				&& i > OPENSSL_MAX_TLS1_2_CIPHER_LENGTH)
++				i = OPENSSL_MAX_TLS1_2_CIPHER_LENGTH & ~1;
++#endif
+ 			s2n(i,p);
+ 			p+=i;
+ 
+@@ -521,8 +532,13 @@
+ 			d=buf;
+ 			*(d++) = SSL3_RT_HANDSHAKE;
+ 			*(d++) = version_major;
+-			*(d++) = version_minor; /* arguably we should send the *lowest* suported version here
+-			                         * (indicating, e.g., TLS 1.0 in "SSL 3.0 format") */
++			/* Some servers hang if we use long client hellos
++			 * and a record number > TLS 1.0.
++			 */
++			if (TLS1_get_client_version(s) > TLS1_VERSION)
++				*(d++) = 1;
++			else
++				*(d++) = version_minor;
+ 			s2n((int)l,d);
+ 
+ 			/* number of bytes to write */
+Index: b/Configure
+===================================================================
+--- a/Configure
++++ b/Configure
+@@ -106,7 +106,7 @@
+ my $gcc_devteam_warn = "-Wall -pedantic -DPEDANTIC -Wno-long-long -Wsign-compare -Wmissing-prototypes -Wshadow -Wformat -Werror -DCRYPTO_MDEBUG_ALL -DCRYPTO_MDEBUG_ABORT -DREF_CHECK -DOPENSSL_NO_DEPRECATED";
+ 
+ # There are no separate CFLAGS/CPPFLAGS/LDFLAGS, set everything in CFLAGS
+-my $debian_cflags = `dpkg-buildflags --get CFLAGS` . `dpkg-buildflags --get CPPFLAGS` . `dpkg-buildflags --get LDFLAGS` . "-Wa,--noexecstack -Wall";
++my $debian_cflags = `dpkg-buildflags --get CFLAGS` . `dpkg-buildflags --get CPPFLAGS` . `dpkg-buildflags --get LDFLAGS` . "-Wa,--noexecstack -Wall -DOPENSSL_MAX_TLS1_2_CIPHER_LENGTH=80";
+ $debian_cflags =~ s/\n/ /g;
+ 
+ my $strict_warnings = 0;
+Index: b/ssl/s3_pkt.c
+===================================================================
+--- a/ssl/s3_pkt.c
++++ b/ssl/s3_pkt.c
+@@ -736,7 +736,14 @@
+ 	wr->type=type;
+ 
+ 	*(p++)=(s->version>>8);
+-	*(p++)=s->version&0xff;
++	/* Some servers hang if iniatial client hello is larger than 256
++	 * bytes and record version number > TLS 1.0
++	 */
++	if (s->state == SSL3_ST_CW_CLNT_HELLO_B
++				&& TLS1_get_version(s) > TLS1_VERSION)
++		*(p++) = 0x1;
++	else
++		*(p++)=s->version&0xff;
+ 
+ 	/* field where we are to write out packet length */
+ 	plen=p; 
+Index: b/ssl/s3_clnt.c
+===================================================================
+--- a/ssl/s3_clnt.c
++++ b/ssl/s3_clnt.c
+@@ -755,6 +755,15 @@
+ 			SSLerr(SSL_F_SSL3_CLIENT_HELLO,SSL_R_NO_CIPHERS_AVAILABLE);
+ 			goto err;
+ 			}
++#ifdef OPENSSL_MAX_TLS1_2_CIPHER_LENGTH
++			/* Some servers hang if client hello > 256 bytes
++			 * as hack workaround chop number of supported ciphers
++			 * to keep it well below this if we use TLS v1.2
++			 */
++			if (TLS1_get_version(s) >= TLS1_2_VERSION
++				&& i > OPENSSL_MAX_TLS1_2_CIPHER_LENGTH)
++				i = OPENSSL_MAX_TLS1_2_CIPHER_LENGTH & ~1;
++#endif
+ 		s2n(i,p);
+ 		p+=i;
+ 
+Index: b/ssl/s3_lib.c
+===================================================================
+--- a/ssl/s3_lib.c
++++ b/ssl/s3_lib.c
+@@ -1081,7 +1081,7 @@
+ 	SSL_aRSA,
+ 	SSL_eNULL,
+ 	SSL_SHA256,
+-	SSL_SSLV3,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_STRONG_NONE|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	0,
+@@ -1097,7 +1097,7 @@
+ 	SSL_aRSA,
+ 	SSL_AES128,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	128,
+@@ -1113,7 +1113,7 @@
+ 	SSL_aRSA,
+ 	SSL_AES256,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	256,
+@@ -1129,7 +1129,7 @@
+ 	SSL_aDH,
+ 	SSL_AES128,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	128,
+@@ -1145,7 +1145,7 @@
+ 	SSL_aDH,
+ 	SSL_AES128,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	128,
+@@ -1161,7 +1161,7 @@
+ 	SSL_aDSS,
+ 	SSL_AES128,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	128,
+@@ -1395,7 +1395,7 @@
+ 	SSL_aRSA,
+ 	SSL_AES128,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	128,
+@@ -1411,7 +1411,7 @@
+ 	SSL_aDH,
+ 	SSL_AES256,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	256,
+@@ -1427,7 +1427,7 @@
+ 	SSL_aDH,
+ 	SSL_AES256,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	256,
+@@ -1443,7 +1443,7 @@
+ 	SSL_aDSS,
+ 	SSL_AES256,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	256,
+@@ -1459,7 +1459,7 @@
+ 	SSL_aRSA,
+ 	SSL_AES256,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	256,
+@@ -1475,7 +1475,7 @@
+ 	SSL_aNULL,
+ 	SSL_AES128,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	128,
+@@ -1491,7 +1491,7 @@
+ 	SSL_aNULL,
+ 	SSL_AES256,
+ 	SSL_SHA256,
+-	SSL_TLSV1,
++	SSL_TLSV1_2,
+ 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
+ 	SSL_HANDSHAKE_MAC_DEFAULT|TLS1_PRF,
+ 	256,

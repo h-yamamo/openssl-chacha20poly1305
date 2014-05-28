@@ -5,11 +5,21 @@ For Debian/Ubuntu packages.
 
 How to make packages:
 
+*Debian 7.5 (wheezy)
   (in some directory)
   apt-get -d source openssl
   tar xzf openssl_1.0.1e.orig.tar.gz
   cd openssl-1.0.1e
   tar xzf ../openssl_1.0.1e-2+deb7u9.debian.tar.gz
   cp -a (this repository)/wheezy/debian/* debian/
+  debuild -uc -us
+
+*Ubuntu 12.04 LTS (Precise Pangolin)
+  (in some directory)
+  apt-get -d source openssl
+  tar xzf openssl_1.0.1.orig.tar.gz
+  cd openssl-1.0.1
+  tar xzf ../openssl_1.0.1-4ubuntu5.13.debian.tar.gz
+  cp -a (this repository)/precise/debian/* debian/
   debuild -uc -us
 
