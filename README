@@ -23,3 +23,12 @@ How to make packages:
   cp -a (this repository)/precise/debian/* debian/
   debuild -uc -us
 
+*Ubuntu 14.04 LTS (Trusty Tahr)
+  (in some directory)
+  apt-get -d source openssl
+  tar xzf openssl_1.0.1f.orig.tar.gz
+  cd openssl-1.0.1f
+  tar xzf ../openssl_1.0.1f-1ubuntu2.1.debian.tar.gz
+  cp -a (this repository)/trusty/debian/* debian/
+  debuild -uc -us
+
