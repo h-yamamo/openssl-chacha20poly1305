@@ -48,4 +48,8 @@ CVE-2014-XXXX-Extension-checking-fixes.patch
 CVE-2014-0076.patch
 ECDHE-ECDSA_Safari.patch
 CVE-2014-0198.patch
+CVE-2014-0224.patch
+CVE-2014-3470.patch
+CVE-2014-0195.patch
+CVE-2014-0221.patch
 chacha20poly1305.patch

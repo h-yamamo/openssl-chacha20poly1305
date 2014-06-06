@@ -1,9 +1,35 @@
-openssl (1.0.1-4ubuntu5.13+ore1) precise; urgency=low
+openssl (1.0.1-4ubuntu5.14+ore1) precise; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
 
- -- Ore sama <oresama@hoge.japan>  Wed, 28 May 2014 20:45:03 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 06 Jun 2014 20:21:15 +0900
+
+openssl (1.0.1-4ubuntu5.14) precise-security; urgency=medium
+
+  * SECURITY UPDATE: arbitrary code execution via DTLS invalid fragment
+    - debian/patches/CVE-2014-0195.patch: add consistency check for DTLS
+      fragments in ssl/d1_both.c.
+    - CVE-2014-0195
+  * SECURITY UPDATE: denial of service via DTLS recursion flaw
+    - debian/patches/CVE-2014-0221.patch: handle DTLS hello request without
+      recursion in ssl/d1_both.c.
+    - CVE-2014-0221
+  * SECURITY UPDATE: MITM via change cipher spec
+    - debian/patches/CVE-2014-0224-1.patch: only accept change cipher spec
+      when it is expected in ssl/s3_clnt.c, ssl/s3_pkt.c, ssl/s3_srvr.c,
+      ssl/ssl3.h.
+    - debian/patches/CVE-2014-0224-2.patch: don't accept zero length master
+      secrets in ssl/s3_pkt.c.
+    - debian/patches/CVE-2014-0224-3.patch: allow CCS after resumption in
+      ssl/s3_clnt.c.
+    - CVE-2014-0224
+  * SECURITY UPDATE: denial of service via ECDH null session cert
+    - debian/patches/CVE-2014-3470.patch: check session_cert is not NULL
+      before dereferencing it in ssl/s3_clnt.c.
+    - CVE-2014-3470
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Mon, 02 Jun 2014 14:05:34 -0400
 
 openssl (1.0.1-4ubuntu5.13) precise-security; urgency=medium
 

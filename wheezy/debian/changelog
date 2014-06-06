@@ -1,9 +1,18 @@
-openssl (1.0.1e-2+deb7u9+ore1) wheezy; urgency=low
+openssl (1.0.1e-2+deb7u10+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
 
- -- Ore sama <oresama@hoge.japan>  Tue, 20 May 2014 21:38:02 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 06 Jun 2014 18:55:30 +0900
+
+openssl (1.0.1e-2+deb7u10) wheezy-security; urgency=medium
+
+  * Fix CVE-2014-0224
+  * Fix CVE-2014-0221
+  * Fix CVE-2014-0195
+  * Fix CVE-2014-3470
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Wed, 04 Jun 2014 20:04:27 +0200
 
 openssl (1.0.1e-2+deb7u9) wheezy-security; urgency=medium
 

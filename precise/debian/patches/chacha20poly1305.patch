@@ -6700,10 +6700,10 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  #define SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT		 274
  #define SSL_F_TLS1_ENC					 210
  #define SSL_F_TLS1_EXPORT_KEYING_MATERIAL		 314
-diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
+diff -ur openssl-1.0.1-4ubuntu5.14 1.0.1-4ubuntu5.14+ore1
 --- a/ssl/ssl3.h	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/ssl3.h	2014-05-07 14:29:21.340267277 +0900
-@@ -517,6 +517,7 @@
++++ b/ssl/ssl3.h	2014-06-06 20:21:15.000000000 +0900
+@@ -518,6 +518,7 @@
  		unsigned char *key_block;
  
  		const EVP_CIPHER *new_sym_enc;

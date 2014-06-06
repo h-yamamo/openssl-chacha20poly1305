@@ -1,4 +1,4 @@
-OpenSSL
+OpenSSL additional feature
 
 Support ChaCha20+Poly1305 cipher suites.
 For Debian/Ubuntu packages.
@@ -10,7 +10,7 @@ How to make packages:
   apt-get -d source openssl
   tar xzf openssl_1.0.1e.orig.tar.gz
   cd openssl-1.0.1e
-  tar xzf ../openssl_1.0.1e-2+deb7u9.debian.tar.gz
+  tar xzf ../openssl_1.0.1e-2+deb7u10.debian.tar.gz
   cp -a (this repository)/wheezy/debian/* debian/
   debuild -uc -us
 
@@ -19,7 +19,7 @@ How to make packages:
   apt-get -d source openssl
   tar xzf openssl_1.0.1.orig.tar.gz
   cd openssl-1.0.1
-  tar xzf ../openssl_1.0.1-4ubuntu5.13.debian.tar.gz
+  tar xzf ../openssl_1.0.1-4ubuntu5.14.debian.tar.gz
   cp -a (this repository)/precise/debian/* debian/
   debuild -uc -us
 
@@ -28,7 +28,7 @@ How to make packages:
   apt-get -d source openssl
   tar xzf openssl_1.0.1f.orig.tar.gz
   cd openssl-1.0.1f
-  tar xzf ../openssl_1.0.1f-1ubuntu2.1.debian.tar.gz
+  tar xzf ../openssl_1.0.1f-1ubuntu2.2.debian.tar.gz
   cp -a (this repository)/trusty/debian/* debian/
   debuild -uc -us
 

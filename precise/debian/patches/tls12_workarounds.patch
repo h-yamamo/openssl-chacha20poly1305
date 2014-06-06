@@ -113,9 +113,10 @@ Index: b/ssl/s3_pkt.c
  	plen=p; 
 Index: b/ssl/s3_clnt.c
 ===================================================================
+# correspond to 1.0.1-4ubuntu5.14
 --- a/ssl/s3_clnt.c
 +++ b/ssl/s3_clnt.c
-@@ -755,6 +755,15 @@
+@@ -756,6 +756,15 @@
  			SSLerr(SSL_F_SSL3_CLIENT_HELLO,SSL_R_NO_CIPHERS_AVAILABLE);
  			goto err;
  			}
