@@ -3,7 +3,7 @@ openssl (1.0.1e-2+deb7u10+ore1) wheezy; urgency=low
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
 
- -- Ore sama <oresama@hoge.japan>  Fri, 06 Jun 2014 18:55:30 +0900
+ -- Ore sama <oresama@hoge.japan>  Thu, 12 Jun 2014 21:05:23 +0900
 
 openssl (1.0.1e-2+deb7u10) wheezy-security; urgency=medium
 
