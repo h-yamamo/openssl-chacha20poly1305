@@ -1,9 +1,17 @@
-openssl (1.0.1-4ubuntu5.14+ore1) precise; urgency=low
+openssl (1.0.1-4ubuntu5.15+ore1) precise; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
 
- -- Ore sama <oresama@hoge.japan>  Fri, 06 Jun 2014 20:21:15 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 13 Jun 2014 19:56:22 +0900
+
+openssl (1.0.1-4ubuntu5.15) precise-security; urgency=medium
+
+  * SECURITY UPDATE: regression with tls_session_secret_cb (LP: #1329297)
+    - debian/patches/CVE-2014-0224.patch: set the CCS_OK flag when using
+      tls_session_secret_cb for session resumption in ssl/s3_clnt.c.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 12 Jun 2014 08:30:56 -0400
 
 openssl (1.0.1-4ubuntu5.14) precise-security; urgency=medium
 
