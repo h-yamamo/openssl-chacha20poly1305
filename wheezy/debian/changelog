@@ -1,9 +1,21 @@
-openssl (1.0.1e-2+deb7u10+ore1) wheezy; urgency=low
+openssl (1.0.1e-2+deb7u11+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
 
- -- Ore sama <oresama@hoge.japan>  Thu, 12 Jun 2014 21:05:23 +0900
+ -- Ore sama <oresama@hoge.japan>  Tue, 24 Jun 2014 19:40:15 +0900
+
+openssl (1.0.1e-2+deb7u11) wheezy-security; urgency=medium
+
+  * Update fix for CVE-2014-0224 to work with more renegiotation and
+    resumption cases. (Closes: #751093)
+  * Fix CVE-2012-4929 (CRiME) by disabling zlib compression by default.
+    It can be enabled again by setting the environment variable
+    OPENSSL_NO_DEFAULT_ZLIB.  (Closes: #728055)
+  * Update ECDHE-ECDSA_Safari.patch to define SSL_OP_MSIE_SSLV2_RSA_PADDING
+    again but to 0 so things keep building.  (Closes: #751457)
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Sun, 15 Jun 2014 12:31:21 +0200
 
 openssl (1.0.1e-2+deb7u10) wheezy-security; urgency=medium
 
