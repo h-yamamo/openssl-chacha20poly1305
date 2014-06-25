@@ -1,9 +1,17 @@
-openssl (1.0.1f-1ubuntu2.3+ore1) trusty; urgency=low
+openssl (1.0.1f-1ubuntu2.4+ore1) trusty; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
 
- -- Ore sama <oresama@hoge.japan>  Fri, 13 Jun 2014 20:04:01 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 25 Jun 2014 19:46:08 +0900
+
+openssl (1.0.1f-1ubuntu2.4) trusty-security; urgency=medium
+
+  * SECURITY UPDATE: regression with certain renegotiations (LP: #1332643)
+    - debian/patches/CVE-2014-0224-regression2.patch: accept CCS after
+      sending finished ssl/s3_clnt.c.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 20 Jun 2014 13:55:11 -0400
 
 openssl (1.0.1f-1ubuntu2.3) trusty-security; urgency=medium
 
