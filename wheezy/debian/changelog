@@ -1,3 +1,10 @@
+openssl (1.0.1e-2+deb7u11+ore2) wheezy; urgency=low
+
+  * Improve Poly1305 in armhf architecture with refer to the BoringSSL.
+    It require NEON.
+
+ -- Ore sama <oresama@hoge.japan>  Thu, 31 Jul 2014 00:27:03 +0900
+
 openssl (1.0.1e-2+deb7u11+ore1) wheezy; urgency=low
 
   * Non-maintainer release.

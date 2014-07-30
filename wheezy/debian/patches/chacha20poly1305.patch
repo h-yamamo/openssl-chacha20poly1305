@@ -1309,10 +1309,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +	}
 +
 +#endif  /* !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
+diff -urN /dev/null 1.0.1e-2+deb7u11+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/poly1305.h	2014-05-05 19:33:44.333793257 +0900
-@@ -0,0 +1,80 @@
++++ b/crypto/poly1305/poly1305.h	2014-07-30 23:36:11.000000000 +0900
+@@ -0,0 +1,82 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -1366,6 +1366,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +#define HEADER_POLY1305_H_
 +
 +#include <stdint.h>
++#include <stdlib.h>
++#include <string.h>
 +#include <openssl/opensslconf.h>
 +
 +#if defined(OPENSSL_NO_POLY1305)
@@ -1393,10 +1395,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +				   unsigned char mac[16]);
 +
 +#endif  /* HEADER_POLY1305_H_ */
-diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
+diff -urN /dev/null 1.0.1e-2+deb7u11+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/poly1305_arm.c	2014-05-05 19:34:32.710899020 +0900
-@@ -0,0 +1,335 @@
++++ b/crypto/poly1305/poly1305_arm.c	2014-07-31 00:15:23.141681594 +0900
+@@ -0,0 +1,338 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -1445,11 +1447,22 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 + * OF THE POSSIBILITY OF SUCH DAMAGE.
 + * ====================================================================
 + */
++/* Copyright (c) 2014, Google Inc.
++ *
++ * Permission to use, copy, modify, and/or distribute this software for any
++ * purpose with or without fee is hereby granted, provided that the above
++ * copyright notice and this permission notice appear in all copies.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
++ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
++ * SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
++ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
++ * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
++ * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
 +
 +/* This implementation was taken from the public domain, neon2 version in
 + * SUPERCOP by D. J. Bernstein and Peter Schwabe. */
-+
-+#include <stdint.h>
 +
 +#include <openssl/poly1305.h>
 +
@@ -1464,7 +1477,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +
 +extern void addmulmod(fe1305x2 *r, const fe1305x2 *x, const fe1305x2 *y, const fe1305x2 *c);
 +
-+extern int blocks(fe1305x2 *h, const fe1305x2 *precomp, const unsigned char *in, unsigned int inlen);
++extern int blocks(fe1305x2 *h, const fe1305x2 *precomp, const uint8_t *in, unsigned int inlen);
 +
 +static void freeze(fe1305x2 *r)
 +	{
@@ -1523,7 +1536,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +	r->v[8] = y4;
 +	}
 +
-+static void fe1305x2_tobytearray(unsigned char *r, fe1305x2 *x)
++static void fe1305x2_tobytearray(uint8_t *r, fe1305x2 *x)
 +	{
 +	uint32_t x0 = x->v[0];
 +	uint32_t x1 = x->v[2];
@@ -1548,17 +1561,17 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +
 +/* load32 exists to avoid breaking strict aliasing rules in
 + * fe1305x2_frombytearray. */
-+static uint32_t load32(unsigned char *t)
++static uint32_t load32(uint8_t *t)
 +	{
 +	uint32_t tmp;
 +	memcpy(&tmp, t, sizeof(tmp));
 +	return tmp;
 +	}
 +
-+static void fe1305x2_frombytearray(fe1305x2 *r, const unsigned char *x, unsigned long long xlen)
++static void fe1305x2_frombytearray(fe1305x2 *r, const uint8_t *x, unsigned long long xlen)
 +	{
 +	int i;
-+	unsigned char t[17];
++	uint8_t t[17];
 +
 +	for (i = 0; (i < 16) && (i < xlen); i++)
 +		t[i] = x[i];
@@ -1595,13 +1608,13 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +static const fe1305x2 zero __attribute__ ((aligned (16)));
 +
 +struct poly1305_state_st {
-+	unsigned char data[sizeof(fe1305x2[5]) + 128];
-+	unsigned char buf[32];
++	uint8_t data[sizeof(fe1305x2[5]) + 128];
++	uint8_t buf[32];
 +	unsigned int buf_used;
-+	unsigned char key[16];
++	uint8_t key[16];
 +};
 +
-+void CRYPTO_poly1305_init(poly1305_state *state, const unsigned char key[32])
++void CRYPTO_poly1305_init(poly1305_state *state, const uint8_t key[32])
 +	{
 +	struct poly1305_state_st *st = (struct poly1305_state_st*) (state);
 +	fe1305x2 *const r = (fe1305x2 *) (st->data + (15 & (-(int) st->data)));
@@ -1626,7 +1639,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +	st->buf_used = 0;
 +	}
 +
-+void CRYPTO_poly1305_update(poly1305_state *state, const unsigned char *in, size_t in_len)
++void CRYPTO_poly1305_update(poly1305_state *state, const uint8_t *in, size_t in_len)
 +	{
 +	struct poly1305_state_st *st = (struct poly1305_state_st*) (state);
 +	fe1305x2 *const r = (fe1305x2 *) (st->data + (15 & (-(int) st->data)));
@@ -1634,8 +1647,6 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +	fe1305x2 *const c = h + 1;
 +	fe1305x2 *const precomp = c + 1;
 +	unsigned int i;
-+	unsigned char data[sizeof(fe1305x2) + 16];
-+	fe1305x2 *const r2r = (fe1305x2 *) (data + (15 & (-(int) data)));
 +
 +	if (st->buf_used)
 +		{
@@ -1648,20 +1659,12 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +		in_len -= todo;
 +		in += todo;
 +
-+		if (st->buf_used == sizeof(st->buf))
++		if (st->buf_used == sizeof(st->buf) && in_len)
 +			{
++			addmulmod(h,h,precomp,&zero);
 +			fe1305x2_frombytearray(c, st->buf, sizeof(st->buf));
-+			r2r->v[0] = precomp->v[0];
-+			r2r->v[2] = precomp->v[2];
-+			r2r->v[4] = precomp->v[4];
-+			r2r->v[6] = precomp->v[6];
-+			r2r->v[8] = precomp->v[8];
-+			r2r->v[1] = r->v[1];
-+			r2r->v[3] = r->v[3];
-+			r2r->v[5] = r->v[5];
-+			r2r->v[7] = r->v[7];
-+			r2r->v[9] = r->v[9];
-+			addmulmod(h,h,r2r,c);
++			for (i = 0; i < 10; i++)
++				h->v[i] += c->v[i];
 +			st->buf_used = 0;
 +			}
 +		}
@@ -1669,7 +1672,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +	while (in_len > 32)
 +		{
 +		unsigned int tlen = 1048576;
-+		if (in_len < 1048576)
++		if (in_len < tlen)
 +			tlen = in_len;
 +		tlen -= blocks(h, precomp, in, tlen);
 +		in_len -= tlen;
@@ -1684,13 +1687,15 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +		}
 +	}
 +
-+void CRYPTO_poly1305_finish(poly1305_state* state, unsigned char mac[16])
++void CRYPTO_poly1305_finish(poly1305_state* state, uint8_t mac[16])
 +	{
 +	struct poly1305_state_st *st = (struct poly1305_state_st*) (state);
 +	fe1305x2 *const r = (fe1305x2 *) (st->data + (15 & (-(int) st->data)));
 +	fe1305x2 *const h = r + 1;
 +	fe1305x2 *const c = h + 1;
 +	fe1305x2 *const precomp = c + 1;
++
++	addmulmod(h,h,precomp,&zero);
 +
 +	if (st->buf_used > 16)
 +		{
@@ -1732,9 +1737,9 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +	}
 +
 +#endif  /* !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
+diff -urN /dev/null 1.0.1e-2+deb7u11+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/poly1305_arm_asm.s	2014-05-05 19:35:40.040437965 +0900
++++ b/crypto/poly1305/poly1305_arm_asm.S	2014-05-05 19:35:40.040437965 +0900
 @@ -0,0 +1,2009 @@
 +# This implementation was taken from the public domain, neon2 version in
 +# SUPERCOP by D. J. Bernstein and Peter Schwabe.
@@ -5122,9 +5127,9 @@ diff -urN /dev/null 1.0.1e-2+deb7u9+ore1
 +	memset(out, 0, max_out_len);
 +	return -1;
 +	}
-diff -ur openssl-1.0.1e-2+deb7u10 1.0.1e-2+deb7u10+ore1
+diff -ur openssl-1.0.1e-2+deb7u11 1.0.1e-2+deb7u11+ore2
 --- a/Configure	2014-05-04 15:44:25.839712024 +0900
-+++ b/Configure	2014-06-12 21:05:23.000000000 +0900
++++ b/Configure	2014-07-30 23:12:57.000000000 +0900
 @@ -128,24 +128,24 @@
  my $bits1="THIRTY_TWO_BIT ";
  my $bits2="SIXTY_FOUR_BIT ";
@@ -5155,7 +5160,7 @@ diff -ur openssl-1.0.1e-2+deb7u10 1.0.1e-2+deb7u10+ore1
 -my $no_asm=":::::::::::::::void";
 +my $mips64_asm=":bn-mips.o mips-mont.o::aes_cbc.o aes-mips.o:::sha1-mips.o sha256-mips.o sha512-mips.o::::::::::";
 +my $s390x_asm="s390xcap.o s390xcpuid.o:bn-s390x.o s390x-mont.o s390x-gf2m.o::aes-s390x.o aes-ctr.o aes-xts.o:::sha1-s390x.o sha256-s390x.o sha512-s390x.o::rc4-s390x.o:::::ghash-s390x.o:::";
-+my $armv4_asm="armcap.o armv4cpuid.o:bn_asm.o armv4-mont.o armv4-gf2m.o::aes_cbc.o aes-armv4.o:::sha1-armv4-large.o sha256-armv4.o sha512-armv4.o:::::::ghash-armv4.o::chacha_vec.o::void";
++my $armv4_asm="armcap.o armv4cpuid.o:bn_asm.o armv4-mont.o armv4-gf2m.o::aes_cbc.o aes-armv4.o:::sha1-armv4-large.o sha256-armv4.o sha512-armv4.o:::::::ghash-armv4.o::chacha_vec.o:poly1305_arm.o poly1305_arm_asm.o:void";
 +my $parisc11_asm="pariscid.o:bn_asm.o parisc-mont.o::aes_core.o aes_cbc.o aes-parisc.o:::sha1-parisc.o sha256-parisc.o sha512-parisc.o::rc4-parisc.o:::::ghash-parisc.o::::32";
 +my $parisc20_asm="pariscid.o:pa-risc2W.o parisc-mont.o::aes_core.o aes_cbc.o aes-parisc.o:::sha1-parisc.o sha256-parisc.o sha512-parisc.o::rc4-parisc.o:::::ghash-parisc.o::::64";
 +my $ppc32_asm="ppccpuid.o ppccap.o:bn-ppc.o ppc-mont.o ppc64-mont.o::aes_core.o aes_cbc.o aes-ppc.o:::sha1-ppc.o sha256-ppc.o::::::::::";
