@@ -5307,9 +5307,9 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  		PERLASM_SCHEME='$(PERLASM_SCHEME)'		\
  		FIPSLIBDIR='${FIPSLIBDIR}'			\
  		FIPSDIR='${FIPSDIR}'				\
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
+diff -ur openssl-1.0.1e-2+deb7u11 1.0.1e-2+deb7u11+ore2
 --- a/apps/speed.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/apps/speed.c	2014-05-07 19:25:26.342321985 +0900
++++ b/apps/speed.c	2014-08-02 23:31:20.273964439 +0900
 @@ -224,7 +224,7 @@
  #endif
  
@@ -5398,16 +5398,27 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  			BIO_printf(bio_err,"\n");
  
  #ifndef OPENSSL_NO_RSA
-@@ -1298,6 +1322,8 @@
+@@ -1298,6 +1322,9 @@
  	c[D_IGE_192_AES][0]=count;
  	c[D_IGE_256_AES][0]=count;
  	c[D_GHASH][0]=count;
 +	c[D_AES_128_GCM][0]=count;
++	c[D_AES_256_GCM][0]=count;
 +	c[D_CHACHA20_POLY1305][0]=count;
  
  	for (i=1; i<SIZE_NUM; i++)
  		{
-@@ -1805,7 +1831,88 @@
+@@ -1336,6 +1363,9 @@
+ 		c[D_IGE_128_AES][i]=c[D_IGE_128_AES][i-1]*l0/l1;
+ 		c[D_IGE_192_AES][i]=c[D_IGE_192_AES][i-1]*l0/l1;
+ 		c[D_IGE_256_AES][i]=c[D_IGE_256_AES][i-1]*l0/l1;
++		c[D_AES_128_GCM][i]=c[D_AES_128_GCM][i-1]*l0/l1;
++		c[D_AES_256_GCM][i]=c[D_AES_256_GCM][i-1]*l0/l1;
++		c[D_CHACHA20_POLY1305][i]=c[D_CHACHA20_POLY1305][i-1]*l0/l1;
+ 		}
+ #ifndef OPENSSL_NO_RSA
+ 	rsa_c[R_RSA_512][0]=count/2000;
+@@ -1805,7 +1835,88 @@
  		CRYPTO_gcm128_release(ctx);
  		}
  
