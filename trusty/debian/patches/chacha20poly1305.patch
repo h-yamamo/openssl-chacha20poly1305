@@ -1309,10 +1309,10 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
 +	}
 +
 +#endif  /* !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
+diff -urN /dev/null 1.0.1f-1ubuntu2.4+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/poly1305.h	2014-05-05 19:33:44.333793257 +0900
-@@ -0,0 +1,80 @@
++++ b/crypto/poly1305/poly1305.h	2014-08-03 20:09:20.000000000 +0900
+@@ -0,0 +1,89 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -1365,11 +1365,16 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
 +#ifndef HEADER_POLY1305_H_
 +#define HEADER_POLY1305_H_
 +
-+#include <stdint.h>
 +#include <openssl/opensslconf.h>
 +
 +#if defined(OPENSSL_NO_POLY1305)
 +#error Poly1305 support is disabled.
++#endif
++
++#include <stddef.h>
++
++#ifdef  __cplusplus
++extern "C" {
 +#endif
 +
 +typedef unsigned char poly1305_state[512];
@@ -1392,10 +1397,14 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
 +extern void CRYPTO_poly1305_finish(poly1305_state* state,
 +				   unsigned char mac[16]);
 +
++#ifdef  __cplusplus
++}
++#endif
++
 +#endif  /* HEADER_POLY1305_H_ */
-diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
+diff -urN /dev/null 1.0.1f-1ubuntu2.4+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/poly1305_arm.c	2014-05-05 19:34:32.710899020 +0900
++++ b/crypto/poly1305/poly1305_arm.c	2014-08-03 20:40:08.000000000 +0900
 @@ -0,0 +1,335 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
@@ -1450,7 +1459,7 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
 + * SUPERCOP by D. J. Bernstein and Peter Schwabe. */
 +
 +#include <stdint.h>
-+
++#include <string.h>
 +#include <openssl/poly1305.h>
 +
 +#if !defined(OPENSSL_NO_POLY1305)
