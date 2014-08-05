@@ -4670,10 +4670,10 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
 +int main() { return 0; }
 +
 +#endif
-diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
+diff -urN /dev/null 1.0.1f-1ubuntu2.4+ore1
 --- /dev/null	2014-04-27 20:02:09.793205737 +0900
-+++ b/crypto/evp/e_chacha20poly1305.c	2014-05-05 19:17:47.359919705 +0900
-@@ -0,0 +1,261 @@
++++ b/crypto/evp/e_chacha20poly1305.c	2014-08-05 20:33:57.000000000 +0900
+@@ -0,0 +1,267 @@
 +/* ====================================================================
 + * Copyright (c) 2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -4796,6 +4796,12 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
 +	CRYPTO_poly1305_update(poly1305, length_bytes, sizeof(length_bytes));
 +}
 +
++#ifdef __ARM_NEON__
++#define ALIGNED __attribute__((aligned(16)))
++#else
++#define ALIGNED
++#endif
++
 +static ssize_t aead_chacha20_poly1305_seal(const EVP_AEAD_CTX *ctx,
 +	unsigned char *out, size_t max_out_len,
 +	const unsigned char *nonce, size_t nonce_len,
@@ -4803,7 +4809,7 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
 +	const unsigned char *ad, size_t ad_len)
 +	{
 +	const struct aead_chacha20_poly1305_ctx *c20_ctx = ctx->aead_state;
-+	unsigned char poly1305_key[32];
++	unsigned char poly1305_key[32] ALIGNED;
 +	poly1305_state poly1305;
 +	const uint64_t in_len_64 = in_len;
 +
@@ -4860,7 +4866,7 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.1+ore1
 +	{
 +	const struct aead_chacha20_poly1305_ctx *c20_ctx = ctx->aead_state;
 +	unsigned char mac[POLY1305_TAG_LEN];
-+	unsigned char poly1305_key[32];
++	unsigned char poly1305_key[32] ALIGNED;
 +	size_t out_len;
 +	poly1305_state poly1305;
 +	const uint64_t in_len_64 = in_len;
