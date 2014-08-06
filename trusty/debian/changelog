@@ -1,3 +1,9 @@
+openssl (1.0.1f-1ubuntu2.4+ore2) trusty; urgency=low
+
+  * Enable armhf architecture. It require NEON. (Reference: BoringSSL)
+
+ -- Ore sama <oresama@hoge.japan>  Wed, 06 Aug 2014 20:58:11 +0900
+
 openssl (1.0.1f-1ubuntu2.4+ore1) trusty; urgency=low
 
   * Non-maintainer release.
