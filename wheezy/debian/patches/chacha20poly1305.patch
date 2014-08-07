@@ -6677,10 +6677,10 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  		eivlen = 0;
  
  	/* lets setup the record stuff. */
-diff -ur openssl-1.0.1e-2+deb7u11 1.0.1e-2+deb7u11+ore2
+diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
 --- a/ssl/ssl.h	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/ssl.h	2014-08-05 23:02:06.000000000 +0900
-@@ -291,6 +291,7 @@
++++ b/ssl/ssl.h	2014-08-07 20:52:28.000000000 +0900
+@@ -292,6 +292,7 @@
  #define SSL_TXT_CAMELLIA128	"CAMELLIA128"
  #define SSL_TXT_CAMELLIA256	"CAMELLIA256"
  #define SSL_TXT_CAMELLIA	"CAMELLIA"
@@ -6688,7 +6688,7 @@ diff -ur openssl-1.0.1e-2+deb7u11 1.0.1e-2+deb7u11+ore2
  
  #define SSL_TXT_MD5		"MD5"
  #define SSL_TXT_SHA1		"SHA1"
-@@ -399,7 +400,9 @@
+@@ -400,7 +401,9 @@
  	unsigned long algorithm_ssl;	/* (major) protocol version */
  
  	unsigned long algo_strength;	/* strength and export flags */
@@ -6699,7 +6699,7 @@ diff -ur openssl-1.0.1e-2+deb7u11 1.0.1e-2+deb7u11+ore2
  	int strength_bits;		/* Number of bits really used */
  	int alg_bits;			/* Number of bits for algorithm */
  	};
-@@ -727,6 +730,9 @@
+@@ -728,6 +731,9 @@
  
  #endif
  
@@ -6709,7 +6709,7 @@ diff -ur openssl-1.0.1e-2+deb7u11 1.0.1e-2+deb7u11+ore2
  #if defined(OPENSSL_SYS_MSDOS) && !defined(OPENSSL_SYS_WIN32)
  #define SSL_MAX_CERT_LIST_DEFAULT 1024*30 /* 30k max cert list :-) */
  #else
-@@ -1195,6 +1201,9 @@
+@@ -1196,6 +1202,9 @@
  	/* These are the ones being used, the ones in SSL_SESSION are
  	 * the ones to be 'copied' into these ones */
  	int mac_flags; 
@@ -6719,7 +6719,7 @@ diff -ur openssl-1.0.1e-2+deb7u11 1.0.1e-2+deb7u11+ore2
  	EVP_CIPHER_CTX *enc_read_ctx;		/* cryptographic state */
  	EVP_MD_CTX *read_hash;		/* used for mac generation */
  #ifndef OPENSSL_NO_COMP
-@@ -1203,6 +1212,9 @@
+@@ -1204,6 +1213,9 @@
  	char *expand;
  #endif
  
@@ -6729,7 +6729,7 @@ diff -ur openssl-1.0.1e-2+deb7u11 1.0.1e-2+deb7u11+ore2
  	EVP_CIPHER_CTX *enc_write_ctx;		/* cryptographic state */
  	EVP_MD_CTX *write_hash;		/* used for mac generation */
  #ifndef OPENSSL_NO_COMP
-@@ -2263,8 +2275,11 @@
+@@ -2264,8 +2276,11 @@
  #define SSL_F_SSL_USE_RSAPRIVATEKEY_FILE		 206
  #define SSL_F_SSL_VERIFY_CERT_CHAIN			 207
  #define SSL_F_SSL_WRITE					 208
@@ -6752,10 +6752,10 @@ diff -ur openssl-1.0.1e-2+deb7u10 1.0.1e-2+deb7u10+ore1
  		const EVP_MD *new_hash;
  		int new_mac_pkey_type;
  		int new_mac_secret_size;
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
+diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
 --- a/ssl/ssl_ciph.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/ssl_ciph.c	2014-05-07 18:17:00.512475015 +0900
-@@ -298,6 +298,7 @@
++++ b/ssl/ssl_ciph.c	2014-08-07 20:55:42.000000000 +0900
+@@ -299,6 +299,7 @@
  	{0,SSL_TXT_CAMELLIA128,0,0,0,SSL_CAMELLIA128,0,0,0,0,0,0},
  	{0,SSL_TXT_CAMELLIA256,0,0,0,SSL_CAMELLIA256,0,0,0,0,0,0},
  	{0,SSL_TXT_CAMELLIA   ,0,0,0,SSL_CAMELLIA128|SSL_CAMELLIA256,0,0,0,0,0,0},
@@ -6763,7 +6763,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  
  	/* MAC aliases */	
  	{0,SSL_TXT_MD5,0,     0,0,0,SSL_MD5,   0,0,0,0,0},
-@@ -484,32 +485,77 @@
+@@ -485,32 +486,77 @@
  	}
  #endif
  
@@ -6859,7 +6859,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  
  	if ((enc == NULL) || (md == NULL)) return(0);
  
-@@ -1675,6 +1721,9 @@
+@@ -1679,6 +1725,9 @@
  	case SSL_SEED:
  		enc="SEED(128)";
  		break;
@@ -6885,10 +6885,10 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  {ERR_FUNC(SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT),	"TLS1_CHECK_SERVERHELLO_TLSEXT"},
  {ERR_FUNC(SSL_F_TLS1_ENC),	"TLS1_ENC"},
  {ERR_FUNC(SSL_F_TLS1_EXPORT_KEYING_MATERIAL),	"TLS1_EXPORT_KEYING_MATERIAL"},
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
+diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
 --- a/ssl/ssl_lib.c	2014-05-04 15:44:25.867712658 +0900
-+++ b/ssl/ssl_lib.c	2014-05-07 18:42:12.091025172 +0900
-@@ -2775,6 +2775,18 @@
++++ b/ssl/ssl_lib.c	2014-08-07 20:58:16.000000000 +0900
+@@ -2780,6 +2780,18 @@
  		OPENSSL_free(s->enc_write_ctx);
  		s->enc_write_ctx=NULL;
  		}
@@ -6907,10 +6907,10 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  #ifndef OPENSSL_NO_COMP
  	if (s->expand != NULL)
  		{
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
+diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
 --- a/ssl/ssl_locl.h	2014-05-04 15:44:25.871712755 +0900
-+++ b/ssl/ssl_locl.h	2014-05-07 14:22:48.851296157 +0900
-@@ -328,6 +328,7 @@
++++ b/ssl/ssl_locl.h	2014-08-07 21:01:23.000000000 +0900
+@@ -329,6 +329,7 @@
  #define SSL_SEED		0x00000800L
  #define SSL_AES128GCM		0x00001000L
  #define SSL_AES256GCM		0x00002000L
@@ -6918,7 +6918,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  
  #define SSL_AES        		(SSL_AES128|SSL_AES256|SSL_AES128GCM|SSL_AES256GCM)
  #define SSL_CAMELLIA		(SSL_CAMELLIA128|SSL_CAMELLIA256)
-@@ -378,7 +379,20 @@
+@@ -379,7 +380,20 @@
   * (currently this also goes into algorithm2) */
  #define TLS1_STREAM_MAC 0x04
  
@@ -6940,7 +6940,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  
  /*
   * Export and cipher strength information. For each cipher we have to decide
-@@ -586,6 +600,20 @@
+@@ -587,6 +601,20 @@
  				      int use_context);
  	} SSL3_ENC_METHOD;
  
@@ -6961,7 +6961,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  #ifndef OPENSSL_NO_COMP
  /* Used for holding the relevant compression methods loaded into SSL_CTX */
  typedef struct ssl3_comp_st
-@@ -834,8 +862,10 @@
+@@ -835,8 +863,10 @@
  					     STACK_OF(SSL_CIPHER) **sorted,
  					     const char *rule_str);
  void ssl_update_cache(SSL *s, int mode);
