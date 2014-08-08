@@ -62,4 +62,13 @@ CVE-2014-3470.patch
 CVE-2014-0224-3.patch
 CVE-2014-0224-regression.patch
 CVE-2014-0224-regression2.patch
+CVE-2014-3505.patch
+CVE-2014-3506.patch
+CVE-2014-3507.patch
+CVE-2014-3508.patch
+CVE-2014-3509.patch
+CVE-2014-3510.patch
+CVE-2014-3511.patch
+CVE-2014-3512.patch
+CVE-2014-5139.patch
 chacha20poly1305.patch

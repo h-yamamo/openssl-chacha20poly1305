@@ -1,15 +1,50 @@
-openssl (1.0.1f-1ubuntu2.4+ore2) trusty; urgency=low
-
-  * Enable armhf architecture. It require NEON. (Reference: BoringSSL)
-
- -- Ore sama <oresama@hoge.japan>  Wed, 06 Aug 2014 20:58:11 +0900
-
-openssl (1.0.1f-1ubuntu2.4+ore1) trusty; urgency=low
+openssl (1.0.1f-1ubuntu2.5+ore1) trusty; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
+    Available armhf arch. It require NEON. (Reference: BoringSSL)
 
- -- Ore sama <oresama@hoge.japan>  Wed, 25 Jun 2014 19:46:08 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 08 Aug 2014 20:34:20 +0900
+
+openssl (1.0.1f-1ubuntu2.5) trusty-security; urgency=medium
+
+  * SECURITY UPDATE: double free when processing DTLS packets
+    - debian/patches/CVE-2014-3505.patch: fix double free in ssl/d1_both.c.
+    - CVE-2014-3505
+  * SECURITY UPDATE: DTLS memory exhaustion
+    - debian/patches/CVE-2014-3506.patch: fix DTLS handshake message size
+      checks in ssl/d1_both.c.
+    - CVE-2014-3506
+  * SECURITY UPDATE: DTLS memory leak from zero-length fragments
+    - debian/patches/CVE-2014-3507.patch: fix memory leak and return codes
+      in ssl/d1_both.c.
+    - CVE-2014-3507
+  * SECURITY UPDATE: information leak in pretty printing functions
+    - debian/patches/CVE-2014-3508.patch: fix OID handling in
+      crypto/asn1/a_object.c, crypto/objects/obj_dat.c.
+    - CVE-2014-3508
+  * SECURITY UPDATE: race condition in ssl_parse_serverhello_tlsext
+    - debian/patches/CVE-2014-3509.patch: fix race in ssl/t1_lib.c.
+    - CVE-2014-3509
+  * SECURITY UPDATE: DTLS anonymous EC(DH) denial of service
+    - debian/patches/CVE-2014-3510.patch: check for server certs in
+      ssl/d1_clnt.c, ssl/s3_clnt.c.
+    - CVE-2014-3510
+  * SECURITY UPDATE: TLS protocol downgrade attack
+    - debian/patches/CVE-2014-3511.patch: properly handle fragments in
+      ssl/s23_srvr.c.
+    - CVE-2014-3511
+  * SECURITY UPDATE: SRP buffer overrun
+    - debian/patches/CVE-2014-3512.patch: check parameters in
+      crypto/srp/srp_lib.c.
+    - CVE-2014-3512
+  * SECURITY UPDATE: crash with SRP ciphersuite in Server Hello message
+    - debian/patches/CVE-2014-5139.patch: fix SRP authentication and make
+      sure ciphersuite is set up correctly in ssl/s3_clnt.c, ssl/ssl_lib.c,
+      ssl/s3_lib.c, ssl/ssl.h, ssl/ssl_ciph.c, ssl/ssl_locl.h.
+    - CVE-2014-5139
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 07 Aug 2014 08:03:21 -0400
 
 openssl (1.0.1f-1ubuntu2.4) trusty-security; urgency=medium
 
