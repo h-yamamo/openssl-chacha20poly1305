@@ -1,3 +1,9 @@
+openssl (1.0.1e-2+deb7u12+ore2) wheezy; urgency=low
+
+  * Change AEAD APIs equal BoringSSL and LibreSSL.
+
+ -- Ore sama <oresama@hoge.japan>  Sat, 16 Aug 2014 22:28:03 +0900
+
 openssl (1.0.1e-2+deb7u12+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
