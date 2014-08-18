@@ -4676,10 +4676,10 @@ diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
 +int main() { return 0; }
 +
 +#endif
-diff -urN /dev/null 1.0.1-4ubuntu5.16+ore1
---- /dev/null	2014-04-27 20:02:09.793205737 +0900
-+++ b/crypto/evp/e_chacha20poly1305.c	2014-08-05 20:33:57.000000000 +0900
-@@ -0,0 +1,267 @@
+diff -urN /dev/null 1.0.1-4ubuntu5.17+ore2
+--- /dev/null	1970-01-01 09:00:00.000000000 +0900
++++ b/crypto/evp/e_chacha20poly1305.c 2014-08-13 21:33:34.000000000 +0900
+@@ -0,0 +1,270 @@
 +/* ====================================================================
 + * Copyright (c) 2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -4748,7 +4748,7 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore1
 +struct aead_chacha20_poly1305_ctx
 +	{
 +	unsigned char key[32];
-+	unsigned char tag_len;
++	unsigned tag_len;
 +	};
 +
 +static int aead_chacha20_poly1305_init(EVP_AEAD_CTX *ctx, const unsigned char *key, size_t key_len, size_t tag_len)
@@ -4808,8 +4808,8 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore1
 +#define ALIGNED
 +#endif
 +
-+static ssize_t aead_chacha20_poly1305_seal(const EVP_AEAD_CTX *ctx,
-+	unsigned char *out, size_t max_out_len,
++static int aead_chacha20_poly1305_seal(const EVP_AEAD_CTX *ctx,
++	unsigned char *out, size_t *out_len, size_t max_out_len,
 +	const unsigned char *nonce, size_t nonce_len,
 +	const unsigned char *in, size_t in_len,
 +	const unsigned char *ad, size_t ad_len)
@@ -4829,19 +4829,19 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore1
 +	if (in_len_64 >= (1ull << 32)*64-64)
 +		{
 +		EVPerr(EVP_F_AEAD_CHACHA20_POLY1305_SEAL, EVP_R_TOO_LARGE);
-+		return -1;
++		return 0;
 +		}
 +
 +	if (max_out_len < in_len + c20_ctx->tag_len)
 +		{
 +		EVPerr(EVP_F_AEAD_CHACHA20_POLY1305_SEAL, EVP_R_BUFFER_TOO_SMALL);
-+		return -1;
++		return 0;
 +		}
 +
 +	if (nonce_len != CHACHA20_NONCE_LEN)
 +		{
 +		EVPerr(EVP_F_AEAD_CHACHA20_POLY1305_SEAL, EVP_R_IV_TOO_LARGE);
-+		return -1;
++		return 0;
 +		}
 +
 +	memset(poly1305_key, 0, sizeof(poly1305_key));
@@ -4857,15 +4857,17 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore1
 +		unsigned char tag[POLY1305_TAG_LEN];
 +		CRYPTO_poly1305_finish(&poly1305, tag);
 +		memcpy(out + in_len, tag, c20_ctx->tag_len);
-+		return in_len + c20_ctx->tag_len;
++		*out_len = in_len + c20_ctx->tag_len;
++		return 1;
 +		}
 +
 +	CRYPTO_poly1305_finish(&poly1305, out + in_len);
-+	return in_len + POLY1305_TAG_LEN;
++	*out_len = in_len + POLY1305_TAG_LEN;
++	return 1;
 +	}
 +
-+static ssize_t aead_chacha20_poly1305_open(const EVP_AEAD_CTX *ctx,
-+	unsigned char *out, size_t max_out_len,
++static int aead_chacha20_poly1305_open(const EVP_AEAD_CTX *ctx,
++	unsigned char *out, size_t *out_len, size_t max_out_len,
 +	const unsigned char *nonce, size_t nonce_len,
 +	const unsigned char *in, size_t in_len,
 +	const unsigned char *ad, size_t ad_len)
@@ -4873,14 +4875,14 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore1
 +	const struct aead_chacha20_poly1305_ctx *c20_ctx = ctx->aead_state;
 +	unsigned char mac[POLY1305_TAG_LEN];
 +	unsigned char poly1305_key[32] ALIGNED;
-+	size_t out_len;
 +	poly1305_state poly1305;
 +	const uint64_t in_len_64 = in_len;
++	size_t plaintext_len;
 +
 +	if (in_len < c20_ctx->tag_len)
 +		{
 +		EVPerr(EVP_F_AEAD_CHACHA20_POLY1305_OPEN, EVP_R_BAD_DECRYPT);
-+		return -1;
++		return 0;
 +		}
 +
 +	/* The underlying ChaCha implementation may not overflow the block
@@ -4893,21 +4895,21 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore1
 +	if (in_len_64 >= (1ull << 32)*64-64)
 +		{
 +		EVPerr(EVP_F_AEAD_CHACHA20_POLY1305_OPEN, EVP_R_TOO_LARGE);
-+		return -1;
++		return 0;
 +		}
 +
 +	if (nonce_len != CHACHA20_NONCE_LEN)
 +		{
 +		EVPerr(EVP_F_AEAD_CHACHA20_POLY1305_OPEN, EVP_R_IV_TOO_LARGE);
-+		return -1;
++		return 0;
 +		}
 +
-+	out_len = in_len - c20_ctx->tag_len;
++	plaintext_len = in_len - c20_ctx->tag_len;
 +
-+	if (max_out_len < out_len)
++	if (max_out_len < plaintext_len)
 +		{
 +		EVPerr(EVP_F_AEAD_CHACHA20_POLY1305_OPEN, EVP_R_BUFFER_TOO_SMALL);
-+		return -1;
++		return 0;
 +		}
 +
 +	memset(poly1305_key, 0, sizeof(poly1305_key));
@@ -4915,17 +4917,18 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore1
 +
 +	CRYPTO_poly1305_init(&poly1305, poly1305_key);
 +	poly1305_update_with_length(&poly1305, ad, ad_len);
-+	poly1305_update_with_length(&poly1305, in, out_len);
++	poly1305_update_with_length(&poly1305, in, plaintext_len);
 +	CRYPTO_poly1305_finish(&poly1305, mac);
 +
-+	if (CRYPTO_memcmp(mac, in + out_len, c20_ctx->tag_len) != 0)
++	if (CRYPTO_memcmp(mac, in + plaintext_len, c20_ctx->tag_len) != 0)
 +		{
 +		EVPerr(EVP_F_AEAD_CHACHA20_POLY1305_OPEN, EVP_R_BAD_DECRYPT);
-+		return -1;
++		return 0;
 +		}
 +
-+	CRYPTO_chacha_20(out, in, out_len, c20_ctx->key, nonce, 1);
-+	return out_len;
++	CRYPTO_chacha_20(out, in, plaintext_len, c20_ctx->key, nonce, 1);
++	*out_len = plaintext_len;
++	return 1;
 +	}
 +
 +static const EVP_AEAD aead_chacha20_poly1305 =
@@ -4947,10 +4950,10 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore1
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA && !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
---- /dev/null	2014-04-27 20:02:09.793205737 +0900
-+++ b/crypto/evp/evp_aead.c	2014-05-05 19:19:30.830284723 +0900
-@@ -0,0 +1,192 @@
+diff -urN /dev/null 1.0.1-4ubuntu5.17+ore2
+--- /dev/null	1970-01-01 09:00:00.000000000 +0900
++++ b/crypto/evp/evp_aead.c	2014-08-13 01:06:38.000000000 +0900
+@@ -0,0 +1,180 @@
 +/* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
 + * All rights reserved.
 + *
@@ -5043,7 +5046,7 @@ diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
 +	ctx->aead = aead;
 +	if (key_len != aead->key_len)
 +		{
-+		EVPerr(EVP_F_EVP_AEAD_CTX_INIT,EVP_R_UNSUPPORTED_KEY_SIZE);
++		EVPerr(EVP_F_EVP_AEAD_CTX_INIT, EVP_R_UNSUPPORTED_KEY_SIZE);
 +		return 0;
 +		}
 +	return aead->init(ctx, key, key_len, tag_len);
@@ -5070,23 +5073,20 @@ diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
 +	{
 +	if (out <= in)
 +		return 1;
-+	if (in + in_len < out)
++	if (in + in_len <= out)
 +		return 1;
 +	return 0;
 +	}
 +
-+ssize_t EVP_AEAD_CTX_seal(const EVP_AEAD_CTX *ctx,
-+			  unsigned char *out, size_t max_out_len,
-+			  const unsigned char *nonce, size_t nonce_len,
-+			  const unsigned char *in, size_t in_len,
-+			  const unsigned char *ad, size_t ad_len)
++int EVP_AEAD_CTX_seal(const EVP_AEAD_CTX *ctx, unsigned char *out,
++		      size_t *out_len, size_t max_out_len,
++		      const unsigned char *nonce, size_t nonce_len,
++		      const unsigned char *in, size_t in_len,
++		      const unsigned char *ad, size_t ad_len)
 +	{
 +	size_t possible_out_len = in_len + ctx->aead->overhead;
-+	ssize_t r;
 +
-+	if (possible_out_len < in_len /* overflow */ ||
-+	    possible_out_len > SSIZE_MAX /* return value cannot be
-+					    represented */)
++	if (possible_out_len < in_len /* overflow */)
 +		{
 +		EVPerr(EVP_F_EVP_AEAD_CTX_SEAL, EVP_R_TOO_LARGE);
 +		goto error;
@@ -5098,50 +5098,41 @@ diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
 +		goto error;
 +		}
 +
-+	r = ctx->aead->seal(ctx, out, max_out_len, nonce, nonce_len,
-+			    in, in_len, ad, ad_len);
-+	if (r >= 0)
-+		return r;
++	if (ctx->aead->seal(ctx, out, out_len, max_out_len, nonce, nonce_len,
++			    in, in_len, ad, ad_len))
++		return 1;
 +
 +error:
 +	/* In the event of an error, clear the output buffer so that a caller
 +	 * that doesn't check the return value doesn't send raw data. */
 +	memset(out, 0, max_out_len);
-+	return -1;
++	*out_len = 0;
++	return 0;
 +	}
 +
-+ssize_t EVP_AEAD_CTX_open(const EVP_AEAD_CTX *ctx,
-+			 unsigned char *out, size_t max_out_len,
-+			 const unsigned char *nonce, size_t nonce_len,
-+			 const unsigned char *in, size_t in_len,
-+			 const unsigned char *ad, size_t ad_len)
++int EVP_AEAD_CTX_open(const EVP_AEAD_CTX *ctx, unsigned char *out,
++		      size_t *out_len, size_t max_out_len,
++		      const unsigned char *nonce, size_t nonce_len,
++		      const unsigned char *in, size_t in_len,
++		      const unsigned char *ad, size_t ad_len)
 +	{
-+	ssize_t r;
-+
-+	if (in_len > SSIZE_MAX)
-+		{
-+		EVPerr(EVP_F_EVP_AEAD_CTX_OPEN, EVP_R_TOO_LARGE);
-+		goto error;  /* may not be able to represent return value. */
-+		}
-+
 +	if (!check_alias(in, in_len, out))
 +		{
 +		EVPerr(EVP_F_EVP_AEAD_CTX_OPEN, EVP_R_OUTPUT_ALIASES_INPUT);
 +		goto error;
 +		}
 +
-+	r = ctx->aead->open(ctx, out, max_out_len, nonce, nonce_len,
-+			    in, in_len, ad, ad_len);
-+
-+	if (r >= 0)
-+		return r;
++	if (ctx->aead->open(ctx, out, out_len, max_out_len, nonce, nonce_len,
++			    in, in_len, ad, ad_len))
++		return 1;
 +
 +error:
 +	/* In the event of an error, clear the output buffer so that a caller
 +	 * that doesn't check the return value doesn't try and process bad
 +	 * data. */
 +	memset(out, 0, max_out_len);
-+	return -1;
++	*out_len = 0;
++	return 0;
 +	}
 diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore1
 --- a/Configure	2014-05-04 15:44:25.839712024 +0900
@@ -5323,9 +5314,9 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  		PERLASM_SCHEME='$(PERLASM_SCHEME)'		\
  		FIPSLIBDIR='${FIPSLIBDIR}'			\
  		FIPSDIR='${FIPSDIR}'				\
-diff -ur openssl-1.0.1-4ubuntu5.16 1.0.1-4ubuntu5.16+ore1
+diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore2
 --- a/apps/speed.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/apps/speed.c	2014-08-02 23:54:23.015241012 +0900
++++ b/apps/speed.c	2014-08-17 23:25:26.000000000 +0900
 @@ -224,7 +224,7 @@
  #endif
  
@@ -5434,7 +5425,7 @@ diff -ur openssl-1.0.1-4ubuntu5.16 1.0.1-4ubuntu5.16+ore1
  		}
  #ifndef OPENSSL_NO_RSA
  	rsa_c[R_RSA_512][0]=count/2000;
-@@ -1805,7 +1835,88 @@
+@@ -1805,7 +1835,90 @@
  		CRYPTO_gcm128_release(ctx);
  		}
  
@@ -5442,7 +5433,7 @@ diff -ur openssl-1.0.1-4ubuntu5.16 1.0.1-4ubuntu5.16+ore1
 +		{
 +		const EVP_AEAD *aead = EVP_aead_aes_128_gcm();
 +		static const unsigned char nonce[32] = {0};
-+		size_t nonce_len;
++		size_t out_len, nonce_len;
 +		EVP_AEAD_CTX ctx;
 +
 +		EVP_AEAD_CTX_init(&ctx, aead, key32, EVP_AEAD_key_length(aead),
@@ -5455,9 +5446,10 @@ diff -ur openssl-1.0.1-4ubuntu5.16 1.0.1-4ubuntu5.16+ore1
 +				      lengths[j]);
 +			Time_F(START);
 +			for (count=0,run=1; COND(c[D_AES_128_GCM][j]); count++)
-+				EVP_AEAD_CTX_seal(&ctx, buf, BUFSIZE, nonce,
-+						  nonce_len, buf, lengths[j],
-+						  NULL, 0);
++				if (!EVP_AEAD_CTX_seal(&ctx, buf, &out_len, BUFSIZE,
++						nonce, nonce_len, buf, lengths[j],
++						NULL, 0))
++					exit(1);
 +			d=Time_F(STOP);
 +			print_result(D_AES_128_GCM,j,count,d);
 +			}
@@ -5468,7 +5460,7 @@ diff -ur openssl-1.0.1-4ubuntu5.16 1.0.1-4ubuntu5.16+ore1
 +		{
 +		const EVP_AEAD *aead = EVP_aead_aes_256_gcm();
 +		static const unsigned char nonce[32] = {0};
-+		size_t nonce_len;
++		size_t out_len, nonce_len;
 +		EVP_AEAD_CTX ctx;
 +
 +		EVP_AEAD_CTX_init(&ctx, aead, key32, EVP_AEAD_key_length(aead),
@@ -5481,9 +5473,10 @@ diff -ur openssl-1.0.1-4ubuntu5.16 1.0.1-4ubuntu5.16+ore1
 +				      lengths[j]);
 +			Time_F(START);
 +			for (count=0,run=1; COND(c[D_AES_256_GCM][j]); count++)
-+				EVP_AEAD_CTX_seal(&ctx, buf, BUFSIZE, nonce,
-+						  nonce_len, buf, lengths[j],
-+						  NULL, 0);
++				if (!EVP_AEAD_CTX_seal(&ctx, buf, &out_len, BUFSIZE,
++						nonce, nonce_len, buf, lengths[j],
++						NULL, 0))
++					exit(1);
 +			d=Time_F(STOP);
 +			print_result(D_AES_256_GCM,j,count,d);
 +			}
@@ -5496,7 +5489,7 @@ diff -ur openssl-1.0.1-4ubuntu5.16 1.0.1-4ubuntu5.16+ore1
 +		{
 +		const EVP_AEAD *aead = EVP_aead_chacha20_poly1305();
 +		static const unsigned char nonce[32] = {0};
-+		size_t nonce_len;
++		size_t out_len, nonce_len;
 +		EVP_AEAD_CTX ctx;
 +
 +		EVP_AEAD_CTX_init(&ctx, aead, key32, EVP_AEAD_key_length(aead),
@@ -5508,11 +5501,11 @@ diff -ur openssl-1.0.1-4ubuntu5.16 1.0.1-4ubuntu5.16+ore1
 +			print_message(names[D_CHACHA20_POLY1305],
 +				      c[D_CHACHA20_POLY1305][j], lengths[j]);
 +			Time_F(START);
-+			for (count=0,run=1; COND(c[D_CHACHA20_POLY1305][j]);
-+			     count++)
-+				EVP_AEAD_CTX_seal(&ctx, buf, BUFSIZE, nonce,
-+						  nonce_len, buf, lengths[j],
-+						  NULL, 0);
++			for (count=0,run=1; COND(c[D_CHACHA20_POLY1305][j]); count++)
++				if (!EVP_AEAD_CTX_seal(&ctx, buf, &out_len, BUFSIZE,
++						nonce, nonce_len, buf, lengths[j],
++						NULL, 0))
++					exit(1);
 +			d=Time_F(STOP);
 +			print_result(D_CHACHA20_POLY1305,j,count,d);
 +			}
@@ -5583,9 +5576,9 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  evp_enc.o: ../../e_os.h ../../include/openssl/asn1.h
  evp_enc.o: ../../include/openssl/bio.h ../../include/openssl/buffer.h
  evp_enc.o: ../../include/openssl/crypto.h ../../include/openssl/e_os2.h
-diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
+diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore2
 --- a/crypto/evp/e_aes.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/crypto/evp/e_aes.c	2014-05-27 21:52:04.000000000 +0900
++++ b/crypto/evp/e_aes.c	2014-08-17 23:39:55.000000000 +0900
 @@ -62,7 +62,7 @@
  
  typedef struct
@@ -5857,7 +5850,7 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  		CRYPTO_ccm128_init(&cctx->ccm, cctx->M, cctx->L,
  					&cctx->ks, (block128_f)AES_encrypt);
  		cctx->str = NULL;
-@@ -1309,5 +1317,194 @@
+@@ -1309,5 +1317,197 @@
  BLOCK_CIPHER_custom(NID_aes,192,1,12,ccm,CCM,EVP_CIPH_FLAG_FIPS|CUSTOM_FLAGS)
  BLOCK_CIPHER_custom(NID_aes,256,1,12,ccm,CCM,EVP_CIPH_FLAG_FIPS|CUSTOM_FLAGS)
  
@@ -5867,7 +5860,7 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +	union { double align; AES_KEY ks; } ks;
 +	GCM128_CONTEXT gcm;
 +	ctr128_f ctr;
-+	unsigned char tag_len;
++	unsigned tag_len;
 +};
 +
 +static int aead_aes_gcm_init(EVP_AEAD_CTX *ctx,
@@ -5918,11 +5911,12 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +static void aead_aes_gcm_cleanup(EVP_AEAD_CTX *ctx)
 +	{
 +	struct aead_aes_gcm_ctx *gcm_ctx = ctx->aead_state;
++	OPENSSL_cleanse(gcm_ctx, sizeof(*gcm_ctx));
 +	OPENSSL_free(gcm_ctx);
 +	}
 +
-+static ssize_t aead_aes_gcm_seal(const EVP_AEAD_CTX *ctx,
-+	unsigned char *out, size_t max_out_len,
++static int aead_aes_gcm_seal(const EVP_AEAD_CTX *ctx,
++	unsigned char *out, size_t *out_len, size_t max_out_len,
 +	const unsigned char *nonce, size_t nonce_len,
 +	const unsigned char *in, size_t in_len,
 +	const unsigned char *ad, size_t ad_len)
@@ -5934,34 +5928,35 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +	if (max_out_len < in_len + gcm_ctx->tag_len)
 +		{
 +		EVPerr(EVP_F_AEAD_AES_GCM_SEAL, EVP_R_BUFFER_TOO_SMALL);
-+		return -1;
++		return 0;
 +		}
 +
 +	memcpy(&gcm, &gcm_ctx->gcm, sizeof(gcm));
 +	CRYPTO_gcm128_setiv(&gcm, nonce, nonce_len);
 +
 +	if (ad_len > 0 && CRYPTO_gcm128_aad(&gcm, ad, ad_len))
-+		return -1;
++		return 0;
 +
 +	if (gcm_ctx->ctr)
 +		{
 +		if (CRYPTO_gcm128_encrypt_ctr32(&gcm, in + bulk, out + bulk,
 +						in_len - bulk, gcm_ctx->ctr))
-+			return -1;
++			return 0;
 +		}
 +	else
 +		{
 +		if (CRYPTO_gcm128_encrypt(&gcm, in + bulk, out + bulk,
 +					  in_len - bulk))
-+			return -1;
++			return 0;
 +		}
 +
 +	CRYPTO_gcm128_tag(&gcm, out + in_len, gcm_ctx->tag_len);
-+	return in_len + gcm_ctx->tag_len;
++	*out_len = in_len + gcm_ctx->tag_len;
++	return 1;
 +	}
 +
-+static ssize_t aead_aes_gcm_open(const EVP_AEAD_CTX *ctx,
-+	unsigned char *out, size_t max_out_len,
++static int aead_aes_gcm_open(const EVP_AEAD_CTX *ctx,
++	unsigned char *out, size_t *out_len, size_t max_out_len,
 +	const unsigned char *nonce, size_t nonce_len,
 +	const unsigned char *in, size_t in_len,
 +	const unsigned char *ad, size_t ad_len)
@@ -5969,51 +5964,52 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +	size_t bulk = 0;
 +	const struct aead_aes_gcm_ctx *gcm_ctx = ctx->aead_state;
 +	unsigned char tag[EVP_AEAD_AES_GCM_TAG_LEN];
-+	size_t out_len;
++	size_t plaintext_len;
 +	GCM128_CONTEXT gcm;
 +
 +	if (in_len < gcm_ctx->tag_len)
 +		{
 +		EVPerr(EVP_F_AEAD_AES_GCM_OPEN, EVP_R_BAD_DECRYPT);
-+		return -1;
++		return 0;
 +		}
 +
-+	out_len = in_len - gcm_ctx->tag_len;
++	plaintext_len = in_len - gcm_ctx->tag_len;
 +
-+	if (max_out_len < out_len)
++	if (max_out_len < plaintext_len)
 +		{
 +		EVPerr(EVP_F_AEAD_AES_GCM_OPEN, EVP_R_BUFFER_TOO_SMALL);
-+		return -1;
++		return 0;
 +		}
 +
 +	memcpy(&gcm, &gcm_ctx->gcm, sizeof(gcm));
 +	CRYPTO_gcm128_setiv(&gcm, nonce, nonce_len);
 +
 +	if (CRYPTO_gcm128_aad(&gcm, ad, ad_len))
-+		return -1;
++		return 0;
 +
 +	if (gcm_ctx->ctr)
 +		{
 +		if (CRYPTO_gcm128_decrypt_ctr32(&gcm, in + bulk, out + bulk,
 +						in_len-bulk-gcm_ctx->tag_len,
 +						gcm_ctx->ctr))
-+			return -1;
++			return 0;
 +		}
 +	else
 +		{
 +		if (CRYPTO_gcm128_decrypt(&gcm, in + bulk, out + bulk,
 +					  in_len - bulk - gcm_ctx->tag_len))
-+			return -1;
++			return 0;
 +		}
 +
 +	CRYPTO_gcm128_tag(&gcm, tag, gcm_ctx->tag_len);
-+	if (CRYPTO_memcmp(tag, in + out_len, gcm_ctx->tag_len) != 0)
++	if (CRYPTO_memcmp(tag, in + plaintext_len, gcm_ctx->tag_len) != 0)
 +		{
 +		EVPerr(EVP_F_AEAD_AES_GCM_OPEN, EVP_R_BAD_DECRYPT);
-+		return -1;
++		return 0;
 +		}
 +
-+	return out_len;
++	*out_len = plaintext_len;
++	return 1;
 +	}
 +
 +static const EVP_AEAD aead_aes_128_gcm = {
@@ -6052,10 +6048,10 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +
  #endif
  #endif
-diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
---- a/crypto/evp/evp.h	2013-02-12 00:26:04.000000000 +0900
-+++ b/crypto/evp/evp.h	2014-05-27 21:55:05.000000000 +0900
-@@ -1243,6 +1243,123 @@
+diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore2
+--- a/crypto/evp/evp.h	2011-10-13 22:42:28.000000000 +0900
++++ b/crypto/evp/evp.h	2014-08-18 00:22:18.000000000 +0900
+@@ -1243,6 +1243,127 @@
  	int (*ctrl_str)(EVP_PKEY_CTX *ctx,
  					const char *type, const char *value));
  
@@ -6130,56 +6126,60 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +void EVP_AEAD_CTX_cleanup(EVP_AEAD_CTX *ctx);
 +
 +/* EVP_AEAD_CTX_seal encrypts and authenticates |in_len| bytes from |in| and
-+ * authenticates |ad_len| bytes from |ad| and writes the result to |out|,
-+ * returning the number of bytes written, or -1 on error.
++ * authenticates |ad_len| bytes from |ad| and writes the result to |out|. It
++ * returns one on success and zero otherwise.
 + *
-+ * This function may be called (with the same EVP_AEAD_CTX) concurrently with
-+ * itself or EVP_AEAD_CTX_open.
++ * This function may be called (with the same |EVP_AEAD_CTX|) concurrently with
++ * itself or |EVP_AEAD_CTX_open|.
 + *
 + * At most |max_out_len| bytes are written to |out| and, in order to ensure
 + * success, |max_out_len| should be |in_len| plus the result of
-+ * EVP_AEAD_overhead.
++ * |EVP_AEAD_overhead|. On successful return, |*out_len| is set to the actual
++ * number of bytes written.
 + *
 + * The length of |nonce|, |nonce_len|, must be equal to the result of
-+ * EVP_AEAD_nonce_length for this AEAD.
++ * |EVP_AEAD_nonce_length| for this AEAD.
 + *
-+ * EVP_AEAD_CTX_seal never results in a partial output. If |max_out_len| is
-+ * insufficient, -1 will be returned.
++ * |EVP_AEAD_CTX_seal| never results in a partial output. If |max_out_len| is
++ * insufficient, zero will be returned. (In this case, |*out_len| is set to
++ * zero.)
 + *
 + * If |in| and |out| alias then |out| must be <= |in|. */
-+ssize_t EVP_AEAD_CTX_seal(const EVP_AEAD_CTX *ctx,
-+			  unsigned char *out, size_t max_out_len,
-+			  const unsigned char *nonce, size_t nonce_len,
-+			  const unsigned char *in, size_t in_len,
-+			  const unsigned char *ad, size_t ad_len);
++int EVP_AEAD_CTX_seal(const EVP_AEAD_CTX *ctx, unsigned char *out,
++		      size_t *out_len, size_t max_out_len,
++		      const unsigned char *nonce, size_t nonce_len,
++		      const unsigned char *in, size_t in_len,
++		      const unsigned char *ad, size_t ad_len);
 +
 +/* EVP_AEAD_CTX_open authenticates |in_len| bytes from |in| and |ad_len| bytes
-+ * from |ad| and decrypts at most |in_len| bytes into |out|. It returns the
-+ * number of bytes written, or -1 on error.
++ * from |ad| and decrypts at most |in_len| bytes into |out|. It returns one on
++ * success and zero otherwise.
 + *
-+ * This function may be called (with the same EVP_AEAD_CTX) concurrently with
-+ * itself or EVP_AEAD_CTX_seal.
++ * This function may be called (with the same |EVP_AEAD_CTX|) concurrently with
++ * itself or |EVP_AEAD_CTX_seal|.
 + *
 + * At most |in_len| bytes are written to |out|. In order to ensure success,
-+ * |max_out_len| should be at least |in_len|.
++ * |max_out_len| should be at least |in_len|. On successful return, |*out_len|
++ * is set to the the actual number of bytes written.
 + *
 + * The length of |nonce|, |nonce_len|, must be equal to the result of
-+ * EVP_AEAD_nonce_length for this AEAD.
++ * |EVP_AEAD_nonce_length| for this AEAD.
 + *
-+ * EVP_AEAD_CTX_open never results in a partial output. If |max_out_len| is
-+ * insufficient, -1 will be returned.
++ * |EVP_AEAD_CTX_open| never results in a partial output. If |max_out_len| is
++ * insufficient, zero will be returned. (In this case, |*out_len| is set to
++ * zero.)
 + *
 + * If |in| and |out| alias then |out| must be <= |in|. */
-+ssize_t EVP_AEAD_CTX_open(const EVP_AEAD_CTX *ctx,
-+			  unsigned char *out, size_t max_out_len,
-+			  const unsigned char *nonce, size_t nonce_len,
-+			  const unsigned char *in, size_t in_len,
-+			  const unsigned char *ad, size_t ad_len);
++int EVP_AEAD_CTX_open(const EVP_AEAD_CTX *ctx, unsigned char *out,
++		      size_t *out_len, size_t max_out_len,
++		      const unsigned char *nonce, size_t nonce_len,
++		      const unsigned char *in, size_t in_len,
++		      const unsigned char *ad, size_t ad_len);
 +
  /* BEGIN ERROR CODES */
  /* The following lines are auto generated by the script mkerr.pl. Any changes
   * made after this point may be overwritten when the script is next run.
-@@ -1252,19 +1369,32 @@
+@@ -1252,19 +1373,32 @@
  /* Error codes for the EVP functions. */
  
  /* Function codes. */
@@ -6212,7 +6212,7 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  #define EVP_F_EVP_CIPHERINIT_EX				 123
  #define EVP_F_EVP_CIPHER_CTX_COPY			 163
  #define EVP_F_EVP_CIPHER_CTX_CTRL			 124
-@@ -1376,10 +1506,12 @@
+@@ -1376,10 +1510,12 @@
  #define EVP_R_NO_VERIFY_FUNCTION_CONFIGURED		 105
  #define EVP_R_OPERATION_NOT_SUPPORTED_FOR_THIS_KEYTYPE	 150
  #define EVP_R_OPERATON_NOT_INITIALIZED			 151
@@ -6282,9 +6282,9 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  {ERR_REASON(EVP_R_TOO_LARGE)             ,"too large"},
  {ERR_REASON(EVP_R_UNKNOWN_CIPHER)        ,"unknown cipher"},
  {ERR_REASON(EVP_R_UNKNOWN_DIGEST)        ,"unknown digest"},
-diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
---- a/crypto/evp/evp_locl.h	2013-02-12 00:26:04.000000000 +0900
-+++ b/crypto/evp/evp_locl.h	2014-05-07 00:43:55.554934121 +0900
+diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore2
+--- a/crypto/evp/evp_locl.h	2012-01-18 10:40:36.000000000 +0900
++++ b/crypto/evp/evp_locl.h	2014-08-18 00:37:32.000000000 +0900
 @@ -348,6 +348,30 @@
  			     ASN1_TYPE *param,
  			     const EVP_CIPHER *c, const EVP_MD *md, int en_de);
@@ -6300,17 +6300,17 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +		     size_t key_len, size_t tag_len);
 +	void (*cleanup) (struct evp_aead_ctx_st*);
 +
-+	ssize_t (*seal) (const struct evp_aead_ctx_st *ctx,
-+			 unsigned char *out, size_t max_out_len,
-+			 const unsigned char *nonce, size_t nonce_len,
-+			 const unsigned char *in, size_t in_len,
-+			 const unsigned char *ad, size_t ad_len);
++	int (*seal) (const struct evp_aead_ctx_st *ctx,
++		     unsigned char *out, size_t *out_len, size_t max_out_len,
++		     const unsigned char *nonce, size_t nonce_len,
++		     const unsigned char *in, size_t in_len,
++		     const unsigned char *ad, size_t ad_len);
 +
-+	ssize_t (*open) (const struct evp_aead_ctx_st *ctx,
-+			 unsigned char *out, size_t max_out_len,
-+			 const unsigned char *nonce, size_t nonce_len,
-+			 const unsigned char *in, size_t in_len,
-+			 const unsigned char *ad, size_t ad_len);
++	int (*open) (const struct evp_aead_ctx_st *ctx,
++		     unsigned char *out, size_t *out_len, size_t max_out_len,
++		     const unsigned char *nonce, size_t nonce_len,
++		     const unsigned char *in, size_t in_len,
++		     const unsigned char *ad, size_t ad_len);
 +};
 +
  #ifdef OPENSSL_FIPS
@@ -7004,9 +7004,9 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  		if (comp == NULL)
  			{
  			if (BIO_printf(bp,"\n    Compression: %d",x->compress_meth) <= 0) goto err;
-diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
---- a/ssl/t1_enc.c	2014-05-04 15:44:25.871712755 +0900
-+++ b/ssl/t1_enc.c	2014-05-27 22:16:12.000000000 +0900
+diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore2
+--- a/ssl/t1_enc.c	2014-08-07 22:13:14.000000000 +0900
++++ b/ssl/t1_enc.c	2014-08-18 20:50:28.000000000 +0900
 @@ -316,56 +316,92 @@
  	return ret;
  	}
@@ -7114,13 +7114,12 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +		return 0;
 +		}
 +	aead_ctx->tag_len = EVP_AEAD_max_overhead(aead);
- 
--	if (which & SSL3_CC_READ)
++
 +	return 1;
 +	}
 +
 +/* tls1_change_cipher_state_cipher performs the work needed to switch cipher
-+ * states when using EVP_CIPHER. The argument |is_read| is true iff this
++ * states when using EVP_CIPHER. The argument |is_read| is true if this
 + * function is being called due to reading, as opposed to writing, a
 + * ChangeCipherSpec message. In order to support export ciphersuites,
 + * use_client_keys indicates whether the key material provided is in the
@@ -7141,12 +7140,13 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +	unsigned char export_tmp2[EVP_MAX_KEY_LENGTH];
 +	unsigned char export_iv1[EVP_MAX_IV_LENGTH * 2];
 +	unsigned char export_iv2[EVP_MAX_IV_LENGTH * 2];
-+
+ 
+-	if (which & SSL3_CC_READ)
 +	if (is_read)
  		{
  		if (s->s3->tmp.new_cipher->algorithm2 & TLS1_STREAM_MAC)
  			s->mac_flags |= SSL_MAC_FLAG_READ_MAC_STREAM;
-@@ -373,19 +409,168 @@
+@@ -373,15 +409,164 @@
  			s->mac_flags &= ~SSL_MAC_FLAG_READ_MAC_STREAM;
  
  		if (s->enc_read_ctx != NULL)
@@ -7314,12 +7314,7 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  		if (s->expand != NULL)
  			{
  			COMP_CTX_free(s->expand);
--			s->expand=NULL;
-+			s->expand = NULL;
- 			}
- 		if (comp != NULL)
- 			{
-@@ -393,202 +578,118 @@
+@@ -393,42 +578,17 @@
  			if (s->expand == NULL)
  				{
  				SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE,SSL_R_COMPRESSION_LIBRARY_ERROR);
@@ -7365,13 +7360,7 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  		if (s->compress != NULL)
  			{
  			COMP_CTX_free(s->compress);
--			s->compress=NULL;
-+			s->compress = NULL;
- 			}
- 		if (comp != NULL)
- 			{
--			s->compress=COMP_CTX_new(comp->method);
-+			s->compress = COMP_CTX_new(comp->method);
+@@ -440,155 +600,96 @@
  			if (s->compress == NULL)
  				{
  				SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE,SSL_R_COMPRESSION_LIBRARY_ERROR);
@@ -7431,14 +7420,14 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 -		}
 +	/* Reset sequence number to zero. */
 +	memset(is_read ? s->s3->read_sequence : s->s3->write_sequence, 0, 8);
- 
--	memcpy(mac_secret,ms,i);
++
 +	/* key_arg is used for SSLv2. We don't need it for TLS. */
 +	s->session->key_arg_length = 0;
  
--	if (!(EVP_CIPHER_flags(c)&EVP_CIPH_FLAG_AEAD_CIPHER))
+-	memcpy(mac_secret,ms,i);
 +	mac_secret_len = s->s3->tmp.new_mac_secret_size;
-+
+ 
+-	if (!(EVP_CIPHER_flags(c)&EVP_CIPH_FLAG_AEAD_CIPHER))
 +	if (aead != NULL)
  		{
 -		mac_key = EVP_PKEY_new_mac_key(mac_type, NULL,
@@ -7564,14 +7553,11 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 -	OPENSSL_cleanse(tmp2,sizeof(tmp1));
 -	OPENSSL_cleanse(iv1,sizeof(iv1));
 -	OPENSSL_cleanse(iv2,sizeof(iv2));
--	return(1);
-+	return 1;
+ 	return(1);
  err:
--	SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE,ERR_R_MALLOC_FAILURE);
+ 	SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE,ERR_R_MALLOC_FAILURE);
 -err2:
--	return(0);
-+	SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE, ERR_R_MALLOC_FAILURE);
-+	return 0;
+ 	return(0);
  	}
  
  int tls1_setup_key_block(SSL *s)
@@ -7600,26 +7586,26 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +
 +	if (s->session->cipher &&
 +	    (s->session->cipher->algorithm2 & SSL_CIPHER_ALGORITHM2_AEAD))
- 		{
--		SSLerr(SSL_F_TLS1_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
--		return(0);
++		{
 +		if (!ssl_cipher_get_evp_aead(s->session, &aead))
 +			goto cipher_unavailable_err;
 +		key_len = EVP_AEAD_key_length(aead);
 +		iv_len = SSL_CIPHER_AEAD_FIXED_NONCE_LEN(s->session->cipher);
- 		}
++		}
 +	else
-+		{
+ 		{
+-		SSLerr(SSL_F_TLS1_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
+-		return(0);
 +		if (!ssl_cipher_get_evp(s->session,&c,&hash,&mac_type,&mac_secret_size))
 +			goto cipher_unavailable_err;
 +		key_len = EVP_CIPHER_key_length(c);
- 
++
 +		if (EVP_CIPHER_mode(c) == EVP_CIPH_GCM_MODE)
 +			iv_len = EVP_GCM_TLS_FIXED_IV_LEN;
 +		else
 +			iv_len = EVP_CIPHER_iv_length(c);
-+		}
-+
+ 		}
+ 
 +	s->s3->tmp.new_aead=aead;
  	s->s3->tmp.new_sym_enc=c;
  	s->s3->tmp.new_hash=hash;
@@ -7642,7 +7628,7 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  	}
  
  /* tls1_enc encrypts/decrypts the record in |s->wrec| / |s->rrec|, respectively.
-@@ -688,6 +812,134 @@
+@@ -688,6 +812,135 @@
  	unsigned long l;
  	int bs,i,j,k,pad=0,ret,mac_size=0;
  	const EVP_CIPHER *enc;
@@ -7662,7 +7648,7 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +		{
 +		unsigned char ad[13], *seq, *in, *out, nonce[16];
 +		unsigned nonce_used;
-+		ssize_t n;
++		size_t n;
 +
 +		seq = send ? s->s3->write_sequence : s->s3->read_sequence;
 +
@@ -7725,12 +7711,13 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +			ad[11] = len >> 8;
 +			ad[12] = len & 0xff;
 +
-+			n = EVP_AEAD_CTX_seal(&aead->ctx,
-+					      out + eivlen, len + aead->tag_len,
-+					      nonce, nonce_used,
-+					      in + eivlen, len,
-+					      ad, sizeof(ad));
-+			if (n >= 0 && aead->variable_nonce_included_in_record)
++			if (!EVP_AEAD_CTX_seal(&aead->ctx,
++					out + eivlen, &n, len + aead->tag_len,
++					nonce, nonce_used,
++					in + eivlen, len,
++					ad, sizeof(ad)))
++				return -1;
++			if (aead->variable_nonce_included_in_record)
 +				n += aead->variable_nonce_len;
 +			}
 +		else
@@ -7763,45 +7750,20 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 +			ad[11] = len >> 8;
 +			ad[12] = len & 0xff;
 +
-+			n = EVP_AEAD_CTX_open(&aead->ctx, out, len, nonce, nonce_used,
-+					      in, len + aead->tag_len, ad, sizeof(ad));
++			if (!EVP_AEAD_CTX_open(&aead->ctx, out, &n, len,
++					nonce, nonce_used,
++					in, len + aead->tag_len, ad, sizeof(ad)))
++				return -1;
 +
 +			rec->data = rec->input = out;
 +			}
 +
-+		if (n == -1)
-+			return -1;
 +		rec->length = n;
 +		return 1;
 +		}
  
  	if (send)
  		{
-@@ -920,19 +1172,18 @@
- 		if (mask & ssl_get_algorithm2(s))
- 			{
- 			int hashsize = EVP_MD_size(md);
--			EVP_MD_CTX *hdgst = s->s3->handshake_dgst[idx];
--			if (!hdgst || hashsize < 0 || hashsize > (int)(sizeof buf - (size_t)(q-buf)))
-+			if (hashsize < 0 || hashsize > (int)(sizeof buf - (size_t)(q-buf)))
- 				{
- 				/* internal error: 'buf' is too small for this cipersuite! */
- 				err = 1;
- 				}
- 			else
- 				{
--				if (!EVP_MD_CTX_copy_ex(&ctx, hdgst) ||
--					!EVP_DigestFinal_ex(&ctx,q,&i) ||
--					(i != (unsigned int)hashsize))
-+				EVP_MD_CTX_copy_ex(&ctx,s->s3->handshake_dgst[idx]);
-+				EVP_DigestFinal_ex(&ctx,q,&i);
-+				if (i != (unsigned int)hashsize) /* can't really happen */
- 					err = 1;
--				q+=hashsize;
-+				q+=i;
- 				}
- 			}
- 		}
 diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
 --- a/ssl/tls1.h	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/tls1.h	2014-05-07 14:05:44.755888405 +0900

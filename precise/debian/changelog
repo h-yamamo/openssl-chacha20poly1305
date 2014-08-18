@@ -1,3 +1,9 @@
+openssl (1.0.1-4ubuntu5.17+ore2) precise; urgency=low
+
+  * Change AEAD APIs equal BoringSSL and LibreSSL.
+
+ -- Ore sama <oresama@hoge.japan>  Mon, 18 Aug 2014 20:51:08 +0900
+
 openssl (1.0.1-4ubuntu5.17+ore1) precise; urgency=low
 
   * Non-maintainer release.
