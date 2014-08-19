@@ -7101,7 +7101,7 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore2
 +	}
 +
 +/* tls1_change_cipher_state_cipher performs the work needed to switch cipher
-+ * states when using EVP_CIPHER. The argument |is_read| is true iff this
++ * states when using EVP_CIPHER. The argument |is_read| is true if this
 + * function is being called due to reading, as opposed to writing, a
 + * ChangeCipherSpec message. In order to support export ciphersuites,
 + * use_client_keys indicates whether the key material provided is in the
