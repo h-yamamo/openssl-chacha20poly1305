@@ -1,3 +1,10 @@
+openssl (1.0.1-4ubuntu5.17+ore3) precise; urgency=low
+
+  * Improve ChaCha20+Poly1305 performance in armhf arch.
+    - Copied an assembler source from BoringSSL.
+
+ -- Ore sama <oresama@hoge.japan>  Sat, 23 Aug 2014 20:05:47 +0900
+
 openssl (1.0.1-4ubuntu5.17+ore2) precise; urgency=low
 
   * Change AEAD APIs equal BoringSSL and LibreSSL.

@@ -1,3 +1,10 @@
+openssl (1.0.1e-2+deb7u12+ore3) wheezy; urgency=low
+
+  * Improve ChaCha20+Poly1305 performance in armhf arch.
+    - Copied an assembler source from BoringSSL.
+
+ -- Ore sama <oresama@hoge.japan>  Sun, 24 Aug 2014 00:14:32 +0900
+
 openssl (1.0.1e-2+deb7u12+ore2) wheezy; urgency=low
 
   * Change AEAD APIs equal BoringSSL and LibreSSL.
