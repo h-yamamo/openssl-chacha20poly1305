@@ -5314,9 +5314,9 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  		PERLASM_SCHEME='$(PERLASM_SCHEME)'		\
  		FIPSLIBDIR='${FIPSLIBDIR}'			\
  		FIPSDIR='${FIPSDIR}'				\
-diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore2
+diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore3
 --- a/apps/speed.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/apps/speed.c	2014-08-17 23:25:26.000000000 +0900
++++ b/apps/speed.c	2014-08-23 19:52:27.000000000 +0900
 @@ -224,7 +224,7 @@
  #endif
  
@@ -5432,7 +5432,7 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore2
 +	if (doit[D_AES_128_GCM])
 +		{
 +		const EVP_AEAD *aead = EVP_aead_aes_128_gcm();
-+		static const unsigned char nonce[32] = {0};
++		const unsigned char *nonce = iv;
 +		size_t out_len, nonce_len;
 +		EVP_AEAD_CTX ctx;
 +
@@ -5459,7 +5459,7 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore2
 +	if (doit[D_AES_256_GCM])
 +		{
 +		const EVP_AEAD *aead = EVP_aead_aes_256_gcm();
-+		static const unsigned char nonce[32] = {0};
++		const unsigned char *nonce = iv;
 +		size_t out_len, nonce_len;
 +		EVP_AEAD_CTX ctx;
 +
@@ -5488,7 +5488,7 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore2
 +	if (doit[D_CHACHA20_POLY1305])
 +		{
 +		const EVP_AEAD *aead = EVP_aead_chacha20_poly1305();
-+		static const unsigned char nonce[32] = {0};
++		const unsigned char *nonce = iv;
 +		size_t out_len, nonce_len;
 +		EVP_AEAD_CTX ctx;
 +
