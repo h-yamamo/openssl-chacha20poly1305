@@ -1,10 +1,10 @@
 //
 // line 78: rm -f ../../include/openssl/chacha.h
 //	added workaround to avoid error in dpkg-buildpackage.
-diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
+diff -urN /dev/null 1.0.1-4ubuntu5.17+ore4
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/chacha/Makefile	2014-05-05 19:01:15.781255194 +0900
-@@ -0,0 +1,81 @@
++++ b/crypto/chacha/Makefile	2014-08-26 22:01:15.000000000 +0900
+@@ -0,0 +1,84 @@
 +#
 +# OpenSSL/crypto/chacha/Makefile
 +#
@@ -47,6 +47,9 @@ diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
 +	$(AR) $(LIB) $(LIBOBJ)
 +	$(RANLIB) $(LIB) || echo Never mind.
 +	@touch lib
++
++chacha_vec.o: chacha_vec.c $(HEADER)
++	$(CC) $(CFLAGS) $(SSE2_FLAG) -c -o chacha_vec.o chacha_vec.c
 +
 +files:
 +	$(PERL) $(TOP)/util/files.pl Makefile >> $(TOP)/MINFO
@@ -167,10 +170,10 @@ diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
 +#endif
 +
 +#endif
-diff -urN /dev/null 1.0.1-4ubuntu5.17+ore3
+diff -urN /dev/null 1.0.1-4ubuntu5.17+ore4
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/chacha/chacha_enc.c	2014-08-23 00:46:53.000000000 +0900
-@@ -0,0 +1,192 @@
++++ b/crypto/chacha/chacha_enc.c	2014-08-26 22:19:14.000000000 +0900
+@@ -0,0 +1,205 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -232,6 +235,12 @@ diff -urN /dev/null 1.0.1-4ubuntu5.17+ore3
 +#ifdef __arm__
 +#include "arm_arch.h"
 +void CRYPTO_chacha_20_neon(unsigned char *out, const unsigned char *in,
++			   size_t in_len, const unsigned char key[32],
++			   const unsigned char nonce[8], size_t counter);
++#endif
++#if defined(__i386__) && defined(OPENSSL_IA32_SSE2)
++extern unsigned int OPENSSL_ia32cap_P[];
++void CRYPTO_chacha_20_sse2(unsigned char *out, const unsigned char *in,
 +			   size_t in_len, const unsigned char key[32],
 +			   const unsigned char nonce[8], size_t counter);
 +#endif
@@ -322,6 +331,13 @@ diff -urN /dev/null 1.0.1-4ubuntu5.17+ore3
 +		return;
 +		}
 +#endif
++#if defined(__i386__) && defined(OPENSSL_IA32_SSE2)
++	if (OPENSSL_ia32cap_P[0] & (1<<26))
++		{
++		CRYPTO_chacha_20_sse2(out, in, in_len, key, nonce, counter);
++		return;
++		}
++#endif
 +	input[0] = U8TO32_LITTLE(sigma + 0);
 +	input[1] = U8TO32_LITTLE(sigma + 4);
 +	input[2] = U8TO32_LITTLE(sigma + 8);
@@ -363,10 +379,10 @@ diff -urN /dev/null 1.0.1-4ubuntu5.17+ore3
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA */
-diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
+diff -urN /dev/null 1.0.1-4ubuntu5.17+ore4
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/chacha/chacha_vec.c	2014-05-05 19:09:02.471922339 +0900
-@@ -0,0 +1,345 @@
++++ b/crypto/chacha/chacha_vec.c	2014-08-26 22:16:06.000000000 +0900
+@@ -0,0 +1,349 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -523,7 +539,11 @@ diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
 +	STORE(op + d + 8, LOAD(in + d + 8) ^ REVV_BE(v2));      \
 +	STORE(op + d +12, LOAD(in + d +12) ^ REVV_BE(v3));
 +
++#if defined(__i386__) && defined(__SSE2__)
++void CRYPTO_chacha_20_sse2(
++#else
 +void CRYPTO_chacha_20(
++#endif
 +	unsigned char *out,
 +	const unsigned char *in,
 +	size_t inlen,
@@ -561,7 +581,7 @@ diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
 +	s2 = LOAD(&((vec*)kp)[1]);
 +	s3 = (vec){
 +		counter & 0xffffffff,
-+#if __ARM_NEON__
++#if defined(__ARM_NEON__) || defined(__i386__)
 +		0,  /* can't right-shift 32 bits on a 32-bit system. */
 +#else
 +		counter >> 32,
@@ -6088,15 +6108,15 @@ diff -urN /dev/null 1.0.1-4ubuntu5.17+ore2
 +	*out_len = 0;
 +	return 0;
 +	}
-diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore3
+diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore4
 --- a/Configure	2014-05-04 15:44:25.839712024 +0900
-+++ b/Configure	2014-08-22 23:52:45.000000000 +0900
++++ b/Configure	2014-08-26 23:44:19.000000000 +0900
 @@ -128,24 +128,24 @@
  my $bits1="THIRTY_TWO_BIT ";
  my $bits2="SIXTY_FOUR_BIT ";
  
 -my $x86_asm="x86cpuid.o:bn-586.o co-586.o x86-mont.o x86-gf2m.o:des-586.o crypt586.o:aes-586.o vpaes-x86.o aesni-x86.o:bf-586.o:md5-586.o:sha1-586.o sha256-586.o sha512-586.o:cast-586.o:rc4-586.o:rmd-586.o:rc5-586.o:wp_block.o wp-mmx.o:cmll-x86.o:ghash-x86.o:";
-+my $x86_asm="x86cpuid.o:bn-586.o co-586.o x86-mont.o x86-gf2m.o:des-586.o crypt586.o:aes-586.o vpaes-x86.o aesni-x86.o:bf-586.o:md5-586.o:sha1-586.o sha256-586.o sha512-586.o:cast-586.o:rc4-586.o:rmd-586.o:rc5-586.o:wp_block.o wp-mmx.o:cmll-x86.o:ghash-x86.o:::";
++my $x86_asm="x86cpuid.o:bn-586.o co-586.o x86-mont.o x86-gf2m.o:des-586.o crypt586.o:aes-586.o vpaes-x86.o aesni-x86.o:bf-586.o:md5-586.o:sha1-586.o sha256-586.o sha512-586.o:cast-586.o:rc4-586.o:rmd-586.o:rc5-586.o:wp_block.o wp-mmx.o:cmll-x86.o:ghash-x86.o::chacha_enc.o chacha_vec.o:";
  
  my $x86_elf_asm="$x86_asm:elf";
  
@@ -6166,25 +6186,28 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore3
  
  # if $prefix/lib$multilib is not an existing directory, then
  # assume that it's not searched by linker automatically, in
-@@ -1520,6 +1526,8 @@
+@@ -1520,6 +1526,10 @@
  $bf_obj=$bf_enc		unless ($bf_obj =~ /\.o$/);
  $cast_obj=$cast_enc	unless ($cast_obj =~ /\.o$/);
  $rc4_obj=$rc4_enc	unless ($rc4_obj =~ /\.o$/);
 +$chacha_obj=$chacha_enc	unless ($chacha_obj =~ /\.o$/);
++my $sse2_flag = "";
++$sse2_flag = "-msse2" if ($cpuid_obj =~ /^x86cpuid/ && !$no_sse2);
 +$poly1305_obj=$poly1305	unless ($poly1305_obj =~ /\.o$/);
  $rc5_obj=$rc5_enc	unless ($rc5_obj =~ /\.o$/);
  if ($sha1_obj =~ /\.o$/)
  	{
-@@ -1682,6 +1690,8 @@
+@@ -1682,6 +1692,9 @@
  	s/^BF_ENC=.*$/BF_ENC= $bf_obj/;
  	s/^CAST_ENC=.*$/CAST_ENC= $cast_obj/;
  	s/^RC4_ENC=.*$/RC4_ENC= $rc4_obj/;
 +	s/^CHACHA_ENC=.*$/CHACHA_ENC= $chacha_obj/;
 +	s/^POLY1305=.*$/POLY1305= $poly1305_obj/;
++	s/^SSE2_FLAG=.*$/SSE2_FLAG= $sse2_flag/;
  	s/^RC5_ENC=.*$/RC5_ENC= $rc5_obj/;
  	s/^MD5_ASM_OBJ=.*$/MD5_ASM_OBJ= $md5_obj/;
  	s/^SHA1_ASM_OBJ=.*$/SHA1_ASM_OBJ= $sha1_obj/;
-@@ -1744,6 +1754,8 @@
+@@ -1744,6 +1757,8 @@
  print "BF_ENC        =$bf_obj\n";
  print "CAST_ENC      =$cast_obj\n";
  print "RC4_ENC       =$rc4_obj\n";
@@ -6193,7 +6216,7 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore3
  print "RC5_ENC       =$rc5_obj\n";
  print "MD5_OBJ_ASM   =$md5_obj\n";
  print "SHA1_OBJ_ASM  =$sha1_obj\n";
-@@ -2142,11 +2154,12 @@
+@@ -2142,11 +2157,12 @@
  
  	(my $cc,my $cflags,my $unistd,my $thread_cflag,my $sys_id,my $lflags,
  	my $bn_ops,my $cpuid_obj,my $bn_obj,my $des_obj,my $aes_obj, my $bf_obj,
@@ -6211,7 +6234,7 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore3
  			
  	print <<EOF
  
-@@ -2167,6 +2180,8 @@
+@@ -2167,6 +2183,8 @@
  \$sha1_obj     = $sha1_obj
  \$cast_obj     = $cast_obj
  \$rc4_obj      = $rc4_obj
@@ -6220,7 +6243,7 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore3
  \$rmd160_obj   = $rmd160_obj
  \$rc5_obj      = $rc5_obj
  \$wp_obj       = $wp_obj
-@@ -2196,7 +2211,7 @@
+@@ -2196,7 +2214,7 @@
  
  	foreach $target (sort keys %table)
  		{
@@ -6229,10 +6252,19 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore3
  
  		if ($fields[$idx_dso_scheme-1] =~ /^(beos|dl|dlfcn|win32|vms)$/)
  			{
-diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
+diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore4
 --- a/Makefile.org	2014-05-04 15:44:25.827711748 +0900
-+++ b/Makefile.org	2014-05-05 00:09:08.000000000 +0900
-@@ -94,6 +94,8 @@
++++ b/Makefile.org	2014-08-27 00:48:35.000000000 +0900
+@@ -85,6 +85,8 @@
+ # the 80386.
+ PROCESSOR=
+ 
++SSE2_FLAG=
++
+ # CPUID module collects small commonly used assembler snippets
+ CPUID_OBJ= 
+ BN_ASM= bn_asm.o
+@@ -94,6 +96,8 @@
  CAST_ENC= c_enc.o
  RC4_ENC= rc4_enc.o
  RC5_ENC= rc5_enc.o
@@ -6250,12 +6282,13 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  # keep in mind that the above list is adjusted by ./Configure
  # according to no-xxx arguments...
  
-@@ -233,6 +235,8 @@
+@@ -233,6 +237,9 @@
  		WP_ASM_OBJ='$(WP_ASM_OBJ)'			\
  		MODES_ASM_OBJ='$(MODES_ASM_OBJ)'		\
  		ENGINES_ASM_OBJ='$(ENGINES_ASM_OBJ)'		\
 +		CHACHA_ENC='$(CHACHA_ENC)'			\
 +		POLY1305='$(POLY1305)'				\
++		SSE2_FLAG='$(SSE2_FLAG)'			\
  		PERLASM_SCHEME='$(PERLASM_SCHEME)'		\
  		FIPSLIBDIR='${FIPSLIBDIR}'			\
  		FIPSDIR='${FIPSDIR}'				\

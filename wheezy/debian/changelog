@@ -1,3 +1,9 @@
+openssl (1.0.1e-2+deb7u12+ore4) wheezy; urgency=low
+
+  * Improve ChaCha20+Poly1305 performance using SSE2 in i386 arch.
+
+ -- Ore sama <oresama@hoge.japan>  Wed, 27 Aug 2014 22:45:08 +0900
+
 openssl (1.0.1e-2+deb7u12+ore3) wheezy; urgency=low
 
   * Improve ChaCha20+Poly1305 performance in armhf arch.
