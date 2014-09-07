@@ -1,3 +1,9 @@
+openssl (1.0.1f-1ubuntu2.5+ore5) trusty; urgency=low
+
+  * Add tests of ChaCha20, Poly1305 CRYPTO APIs and EVP_AEAD APIs.
+
+ -- Ore sama <oresama@hoge.japan>  Sun, 07 Sep 2014 19:44:08 +0900
+
 openssl (1.0.1f-1ubuntu2.5+ore4) trusty; urgency=low
 
   * Improve ChaCha20+Poly1305 performance using SSE2 in i386 arch.
