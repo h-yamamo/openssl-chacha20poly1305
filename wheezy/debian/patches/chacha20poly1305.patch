@@ -8939,7 +8939,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u12+ore5
 +		fprintf(stderr, "Failed to init AEAD on line %u\n", line_no);
 +		return 0;
 +		}
-+	
++
 +	if(!EVP_AEAD_CTX_open(&ctx, out2, &plaintext_len, lengths[IN],
 +		      bufs[NONCE], lengths[NONCE],
 +		      out, ciphertext_len,
