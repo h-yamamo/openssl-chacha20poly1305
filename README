@@ -14,6 +14,15 @@ How to make packages:
   cp -a (this repository)/wheezy/debian/* debian/
   debuild -uc -us
 
+*Debian 8 (jessie)
+  (in some directory)
+  apt-get -d source openssl
+  tar xf openssl_1.0.1i.orig.tar.gz
+  cd openssl-1.0.1i
+  tar xvf ../openssl_1.0.1i-2.debian.tar.xz
+  cp -a (this repository)/jessie/debian/* debian/
+  debuild -uc -us
+
 *Ubuntu 12.04.5 LTS (Precise Pangolin)
   (in some directory)
   apt-get -d source openssl
