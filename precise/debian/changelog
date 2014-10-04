@@ -1,35 +1,31 @@
-openssl (1.0.1-4ubuntu5.17+ore5) precise; urgency=low
-
-  * Add tests of ChaCha20, Poly1305 CRYPTO APIs and EVP_AEAD APIs.
-
- -- Ore sama <oresama@hoge.japan>  Sun, 07 Sep 2014 19:44:08 +0900
-
-openssl (1.0.1-4ubuntu5.17+ore4) precise; urgency=low
-
-  * Improve ChaCha20+Poly1305 performance using SSE2 in i386 arch.
-
- -- Ore sama <oresama@hoge.japan>  Wed, 27 Aug 2014 22:45:08 +0900
-
-openssl (1.0.1-4ubuntu5.17+ore3) precise; urgency=low
-
-  * Improve ChaCha20+Poly1305 performance in armhf arch.
-    - Copied an assembler source from BoringSSL.
-
- -- Ore sama <oresama@hoge.japan>  Sat, 23 Aug 2014 20:05:47 +0900
-
-openssl (1.0.1-4ubuntu5.17+ore2) precise; urgency=low
-
-  * Change AEAD APIs equal BoringSSL and LibreSSL.
-
- -- Ore sama <oresama@hoge.japan>  Mon, 18 Aug 2014 20:51:08 +0900
-
-openssl (1.0.1-4ubuntu5.17+ore1) precise; urgency=low
+openssl (1.0.1-4ubuntu5.18+ore1) precise; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
-    Available armhf arch. It require NEON. (Reference: BoringSSL)
+    - Origin:
+        git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
+    - References:
+        BoringSSL and LibreSSL
+    - Copied the following from BoringSSL.
+        crypto/chacha/chacha_vec_arm.S
+        test/chacha20_poly1305_tests.txt
+    - Improve performance using NEON in armhf arch or SSE2 in i386 arch
+      if there are available.
 
- -- Ore sama <oresama@hoge.japan>  Fri, 08 Aug 2014 20:19:35 +0900
+ -- Ore sama <oresama@hoge.japan>  Sat, 04 Oct 2014 16:52:16 +0900
+
+openssl (1.0.1-4ubuntu5.18) precise-security; urgency=medium
+
+  * SECURITY IMPROVEMENT: remove cipher length limitation that was set to
+    work around problematic servers when using TLSv1.2 back in 2012.
+    (LP: #1376447)
+    - Although TLSv1.2 is disabled for clients by default, forcing it
+      enabled would truncate the cipher list, possibly removing important
+      ciphers, and was also breaking secure renegotiations.
+    - debian/patches/tls12_workarounds.patch: remove
+      OPENSSL_MAX_TLS1_2_CIPHER_LENGTH=50 from Configure.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 01 Oct 2014 16:15:14 -0400
 
 openssl (1.0.1-4ubuntu5.17) precise-security; urgency=medium
 

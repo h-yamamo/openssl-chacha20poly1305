@@ -23,12 +23,12 @@ Bug-Ubuntu: https://bugs.launchpad.net/bugs/965371
 Bug-Debian: http://bugs.debian.org/665452
 Bug: http://rt.openssl.org/Ticket/Display.html?id=2771
 Forwarded: not-needed
-Last-Update: 2012-03-30
+Last-Update: 2014-10-01
 
-Index: b/ssl/s23_clnt.c
+Index: openssl-1.0.1/ssl/s23_clnt.c
 ===================================================================
---- a/ssl/s23_clnt.c
-+++ b/ssl/s23_clnt.c
+--- openssl-1.0.1.orig/ssl/s23_clnt.c	2014-10-01 16:13:46.595953215 -0400
++++ openssl-1.0.1/ssl/s23_clnt.c	2014-10-01 16:13:46.583953216 -0400
 @@ -287,12 +287,14 @@
  
  	if (ssl2_compat && ssl23_no_ssl2_ciphers(s))
@@ -78,10 +78,10 @@ Index: b/ssl/s23_clnt.c
  			s2n((int)l,d);
  
  			/* number of bytes to write */
-Index: b/Configure
+Index: openssl-1.0.1/Configure
 ===================================================================
---- a/Configure
-+++ b/Configure
+--- openssl-1.0.1.orig/Configure	2014-10-01 16:13:46.595953215 -0400
++++ openssl-1.0.1/Configure	2014-10-04 16:34:07.000000000 +0900
 @@ -106,7 +106,7 @@
  my $gcc_devteam_warn = "-Wall -pedantic -DPEDANTIC -Wno-long-long -Wsign-compare -Wmissing-prototypes -Wshadow -Wformat -Werror -DCRYPTO_MDEBUG_ALL -DCRYPTO_MDEBUG_ABORT -DREF_CHECK -DOPENSSL_NO_DEPRECATED";
  
@@ -91,10 +91,10 @@ Index: b/Configure
  $debian_cflags =~ s/\n/ /g;
  
  my $strict_warnings = 0;
-Index: b/ssl/s3_pkt.c
+Index: openssl-1.0.1/ssl/s3_pkt.c
 ===================================================================
---- a/ssl/s3_pkt.c
-+++ b/ssl/s3_pkt.c
+--- openssl-1.0.1.orig/ssl/s3_pkt.c	2014-10-01 16:13:46.595953215 -0400
++++ openssl-1.0.1/ssl/s3_pkt.c	2014-10-01 16:13:46.587953215 -0400
 @@ -736,7 +736,14 @@
  	wr->type=type;
  
@@ -111,12 +111,11 @@ Index: b/ssl/s3_pkt.c
  
  	/* field where we are to write out packet length */
  	plen=p; 
-Index: b/ssl/s3_clnt.c
+Index: openssl-1.0.1/ssl/s3_clnt.c
 ===================================================================
-# correspond to 1.0.1-4ubuntu5.14
---- a/ssl/s3_clnt.c
-+++ b/ssl/s3_clnt.c
-@@ -756,6 +756,15 @@
+--- openssl-1.0.1.orig/ssl/s3_clnt.c	2014-10-01 16:13:46.595953215 -0400
++++ openssl-1.0.1/ssl/s3_clnt.c	2014-10-01 16:13:46.587953215 -0400
+@@ -755,6 +755,15 @@
  			SSLerr(SSL_F_SSL3_CLIENT_HELLO,SSL_R_NO_CIPHERS_AVAILABLE);
  			goto err;
  			}
@@ -132,10 +131,10 @@ Index: b/ssl/s3_clnt.c
  		s2n(i,p);
  		p+=i;
  
-Index: b/ssl/s3_lib.c
+Index: openssl-1.0.1/ssl/s3_lib.c
 ===================================================================
---- a/ssl/s3_lib.c
-+++ b/ssl/s3_lib.c
+--- openssl-1.0.1.orig/ssl/s3_lib.c	2014-10-01 16:13:46.595953215 -0400
++++ openssl-1.0.1/ssl/s3_lib.c	2014-10-01 16:13:46.591953215 -0400
 @@ -1081,7 +1081,7 @@
  	SSL_aRSA,
  	SSL_eNULL,

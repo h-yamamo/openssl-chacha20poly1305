@@ -28,7 +28,7 @@ How to make packages:
   apt-get -d source openssl
   tar xf openssl_1.0.1.orig.tar.gz
   cd openssl-1.0.1
-  tar xvf ../openssl_1.0.1-4ubuntu5.17.debian.tar.gz
+  tar xvf ../openssl_1.0.1-4ubuntu5.18.debian.tar.gz
   cp -a (this repository)/precise/debian/* debian/
   debuild -uc -us
 
