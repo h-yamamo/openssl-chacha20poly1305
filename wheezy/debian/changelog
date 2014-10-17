@@ -1,35 +1,27 @@
-openssl (1.0.1e-2+deb7u12+ore5) wheezy; urgency=low
-
-  * Add tests of ChaCha20, Poly1305 CRYPTO APIs and EVP_AEAD APIs.
-
- -- Ore sama <oresama@hoge.japan>  Sun, 07 Sep 2014 19:44:08 +0900
-
-openssl (1.0.1e-2+deb7u12+ore4) wheezy; urgency=low
-
-  * Improve ChaCha20+Poly1305 performance using SSE2 in i386 arch.
-
- -- Ore sama <oresama@hoge.japan>  Wed, 27 Aug 2014 22:45:08 +0900
-
-openssl (1.0.1e-2+deb7u12+ore3) wheezy; urgency=low
-
-  * Improve ChaCha20+Poly1305 performance in armhf arch.
-    - Copied an assembler source from BoringSSL.
-
- -- Ore sama <oresama@hoge.japan>  Sun, 24 Aug 2014 00:14:32 +0900
-
-openssl (1.0.1e-2+deb7u12+ore2) wheezy; urgency=low
-
-  * Change AEAD APIs equal BoringSSL and LibreSSL.
-
- -- Ore sama <oresama@hoge.japan>  Sat, 16 Aug 2014 22:28:03 +0900
-
-openssl (1.0.1e-2+deb7u12+ore1) wheezy; urgency=low
+openssl (1.0.1e-2+deb7u13+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
-    Available armhf arch. It require NEON. (Reference: BoringSSL)
+    - Origin:
+        git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
+    - References:
+        BoringSSL and LibreSSL
+    - Copied the following from BoringSSL.
+        crypto/chacha/chacha_vec_arm.S
+        test/chacha20_poly1305_tests.txt
+    - Improve performance using NEON in armhf arch or SSE2 in i386 arch
+      if there are available.
 
- -- Ore sama <oresama@hoge.japan>  Thu, 07 Aug 2014 21:01:54 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 17 Oct 2014 20:28:01 +0900
+
+openssl (1.0.1e-2+deb7u13) wheezy-security; urgency=medium
+
+  * Fixes CVE-2014-3513
+  * Fixes CVE-2014-3567
+  * Add Fallback SCSV support to mitigate CVE-2014-3566
+  * Fixes CVE-2014-3568
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Wed, 15 Oct 2014 19:45:25 +0200
 
 openssl (1.0.1e-2+deb7u12) wheezy-security; urgency=medium
 

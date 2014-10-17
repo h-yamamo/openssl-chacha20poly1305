@@ -68,4 +68,8 @@ SRP-ciphersuite-correction.patch
 Fix-SRP-ciphersuite-DoS-vulnerability.patch
 Fix-SRP-buffer-overrun-vulnerability.patch
 Check-SRP-parameters-early.patch
+Support-TLS_FALLBACK_SCSV.patch
+Fix-for-SRTP-Memory-Leak.patch
+Fix-for-session-tickets-memory-leak.patch
+Fix-no-ssl3-configuration-option.patch
 chacha20poly1305.patch

@@ -1,4 +1,4 @@
-openssl (1.0.1i-2+ore1) unstable; urgency=low
+openssl (1.0.1j-1+ore1) unstable; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -12,7 +12,21 @@ openssl (1.0.1i-2+ore1) unstable; urgency=low
     - Improve performance using NEON in armhf arch or SSE2 in i386 arch
       if there are available.
 
- -- Ore sama <oresama@hoge.japan>  Tue, 09 Sep 2014 01:28:50 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 17 Oct 2014 22:51:30 +0900
+
+openssl (1.0.1j-1) unstable; urgency=high
+
+  * New upstream release
+    - Fixes CVE-2014-3513
+    - Fixes CVE-2014-3567
+    - Add Fallback SCSV support to mitigate CVE-2014-3566
+    - Fixes CVE-2014-3568
+  * Disables SSLv3 because of CVE-2014-3566
+  * Update dgst_hmac.patch to apply to new upstream version
+  * Drop rehash_pod.patch, applied upstream
+  * Fix openssl_fix_for_x32.patch to apply to new upstream version
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Wed, 15 Oct 2014 19:06:38 +0200
 
 openssl (1.0.1i-2) unstable; urgency=medium
 

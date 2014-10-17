@@ -10,16 +10,16 @@ How to make packages:
   apt-get -d source openssl
   tar xf openssl_1.0.1e.orig.tar.gz
   cd openssl-1.0.1e
-  tar xvf ../openssl_1.0.1e-2+deb7u12.debian.tar.gz
+  tar xvf ../openssl_1.0.1e-2+deb7u13.debian.tar.gz
   cp -a (this repository)/wheezy/debian/* debian/
   debuild -uc -us
 
 *Debian 8 (jessie)
   (in some directory)
   apt-get -d source openssl
-  tar xf openssl_1.0.1i.orig.tar.gz
-  cd openssl-1.0.1i
-  tar xvf ../openssl_1.0.1i-2.debian.tar.xz
+  tar xf openssl_1.0.1j.orig.tar.gz
+  cd openssl-1.0.1j
+  tar xvf ../openssl_1.0.1j-1.debian.tar.xz
   cp -a (this repository)/jessie/debian/* debian/
   debuild -uc -us
 
@@ -28,7 +28,7 @@ How to make packages:
   apt-get -d source openssl
   tar xf openssl_1.0.1.orig.tar.gz
   cd openssl-1.0.1
-  tar xvf ../openssl_1.0.1-4ubuntu5.18.debian.tar.gz
+  tar xvf ../openssl_1.0.1-4ubuntu5.20.debian.tar.gz
   cp -a (this repository)/precise/debian/* debian/
   debuild -uc -us
 
@@ -37,7 +37,7 @@ How to make packages:
   apt-get -d source openssl
   tar xf openssl_1.0.1f.orig.tar.gz
   cd openssl-1.0.1f
-  tar xvf ../openssl_1.0.1f-1ubuntu2.5.debian.tar.gz
+  tar xvf ../openssl_1.0.1f-1ubuntu2.7.debian.tar.gz
   cp -a (this repository)/trusty/debian/* debian/
   debuild -uc -us
 

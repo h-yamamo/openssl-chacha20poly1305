@@ -1,35 +1,44 @@
-openssl (1.0.1f-1ubuntu2.5+ore5) trusty; urgency=low
-
-  * Add tests of ChaCha20, Poly1305 CRYPTO APIs and EVP_AEAD APIs.
-
- -- Ore sama <oresama@hoge.japan>  Sun, 07 Sep 2014 19:44:08 +0900
-
-openssl (1.0.1f-1ubuntu2.5+ore4) trusty; urgency=low
-
-  * Improve ChaCha20+Poly1305 performance using SSE2 in i386 arch.
-
- -- Ore sama <oresama@hoge.japan>  Wed, 27 Aug 2014 22:45:08 +0900
-
-openssl (1.0.1f-1ubuntu2.5+ore3) trusty; urgency=low
-
-  * Improve ChaCha20+Poly1305 performance in armhf arch.
-    - Copied an assembler source from BoringSSL.
-
- -- Ore sama <oresama@hoge.japan>  Sun, 24 Aug 2014 00:16:04 +0900
-
-openssl (1.0.1f-1ubuntu2.5+ore2) trusty; urgency=low
-
-  * Change AEAD APIs equal BoringSSL and LibreSSL.
-
- -- Ore sama <oresama@hoge.japan>  Mon, 18 Aug 2014 21:21:15 +0900
-
-openssl (1.0.1f-1ubuntu2.5+ore1) trusty; urgency=low
+openssl (1.0.1f-1ubuntu2.7+ore1) trusty; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
-    Available armhf arch. It require NEON. (Reference: BoringSSL)
+    - Origin:
+        git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
+    - References:
+        BoringSSL and LibreSSL
+    - Copied the following from BoringSSL.
+        crypto/chacha/chacha_vec_arm.S
+        test/chacha20_poly1305_tests.txt
+    - Improve performance using NEON in armhf arch or SSE2 in i386 arch
+      if there are available.
 
- -- Ore sama <oresama@hoge.japan>  Fri, 08 Aug 2014 20:34:20 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 17 Oct 2014 22:07:35 +0900
+
+openssl (1.0.1f-1ubuntu2.7) trusty-security; urgency=medium
+
+  * SECURITY UPDATE: denial of service via DTLS SRTP memory leak
+    - debian/patches/CVE-2014-3513.patch: fix logic in ssl/d1_srtp.c,
+      ssl/srtp.h, ssl/t1_lib.c, util/mk1mf.pl, util/mkdef.pl,
+      util/ssleay.num.
+    - CVE-2014-3513
+  * SECURITY UPDATE: denial of service via session ticket integrity check
+    memory leak
+    - debian/patches/CVE-2014-3567.patch: perform cleanup in ssl/t1_lib.c.
+    - CVE-2014-3567
+  * SECURITY UPDATE: fix the no-ssl3 build option
+    - debian/patches/CVE-2014-3568.patch: fix conditional code in
+      ssl/s23_clnt.c, ssl/s23_srvr.c.
+    - CVE-2014-3568
+  * SECURITY IMPROVEMENT: Added TLS_FALLBACK_SCSV support to mitigate a
+    protocol downgrade attack to SSLv3 that exposes the POODLE attack.
+    - debian/patches/tls_fallback_scsv_support.patch: added support for
+      TLS_FALLBACK_SCSV in apps/s_client.c, crypto/err/openssl.ec,
+      ssl/d1_lib.c, ssl/dtls1.h, ssl/s23_clnt.c, ssl/s23_srvr.c,
+      ssl/s2_lib.c, ssl/s3_enc.c, ssl/s3_lib.c, ssl/ssl.h, ssl/ssl3.h,
+      ssl/ssl_err.c, ssl/ssl_lib.c, ssl/t1_enc.c, ssl/tls1.h, 
+      doc/apps/s_client.pod, doc/ssl/SSL_CTX_set_mode.pod.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 15 Oct 2014 12:56:03 -0400
 
 openssl (1.0.1f-1ubuntu2.5) trusty-security; urgency=medium
 

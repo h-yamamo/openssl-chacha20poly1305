@@ -55,4 +55,8 @@ CVE-2014-3510.patch
 CVE-2014-3511.patch
 CVE-2014-3512.patch
 CVE-2014-5139.patch
+tls_fallback_scsv_support.patch
+CVE-2014-3513.patch
+CVE-2014-3567.patch
+CVE-2014-3568.patch
 chacha20poly1305.patch

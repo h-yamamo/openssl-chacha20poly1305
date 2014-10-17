@@ -7675,9 +7675,9 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  		eivlen = 0;
  
  	/* lets setup the record stuff. */
-diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
---- a/ssl/ssl.h	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/ssl.h	2014-08-07 20:52:28.000000000 +0900
+diff -ur openssl-1.0.1e-2+deb7u13 1.0.1e-2+deb7u13+ore1
+--- a/ssl/ssl.h	2014-10-16 02:51:58.000000000 +0900
++++ b/ssl/ssl.h	2014-10-17 20:20:36.000000000 +0900
 @@ -292,6 +292,7 @@
  #define SSL_TXT_CAMELLIA128	"CAMELLIA128"
  #define SSL_TXT_CAMELLIA256	"CAMELLIA256"
@@ -7697,7 +7697,7 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
  	int strength_bits;		/* Number of bits really used */
  	int alg_bits;			/* Number of bits for algorithm */
  	};
-@@ -728,6 +731,9 @@
+@@ -732,6 +735,9 @@
  
  #endif
  
@@ -7707,7 +7707,7 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
  #if defined(OPENSSL_SYS_MSDOS) && !defined(OPENSSL_SYS_WIN32)
  #define SSL_MAX_CERT_LIST_DEFAULT 1024*30 /* 30k max cert list :-) */
  #else
-@@ -1196,6 +1202,9 @@
+@@ -1200,6 +1206,9 @@
  	/* These are the ones being used, the ones in SSL_SESSION are
  	 * the ones to be 'copied' into these ones */
  	int mac_flags; 
@@ -7717,7 +7717,7 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
  	EVP_CIPHER_CTX *enc_read_ctx;		/* cryptographic state */
  	EVP_MD_CTX *read_hash;		/* used for mac generation */
  #ifndef OPENSSL_NO_COMP
-@@ -1204,6 +1213,9 @@
+@@ -1208,6 +1217,9 @@
  	char *expand;
  #endif
  
@@ -7727,7 +7727,7 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
  	EVP_CIPHER_CTX *enc_write_ctx;		/* cryptographic state */
  	EVP_MD_CTX *write_hash;		/* used for mac generation */
  #ifndef OPENSSL_NO_COMP
-@@ -2264,8 +2276,11 @@
+@@ -2271,8 +2283,11 @@
  #define SSL_F_SSL_USE_RSAPRIVATEKEY_FILE		 206
  #define SSL_F_SSL_VERIFY_CERT_CHAIN			 207
  #define SSL_F_SSL_WRITE					 208
@@ -7739,10 +7739,10 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
  #define SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT		 274
  #define SSL_F_TLS1_ENC					 210
  #define SSL_F_TLS1_EXPORT_KEYING_MATERIAL		 314
-diff -ur openssl-1.0.1e-2+deb7u10 1.0.1e-2+deb7u10+ore1
---- a/ssl/ssl3.h	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/ssl3.h	2014-06-06 18:55:30.000000000 +0900
-@@ -518,6 +518,7 @@
+diff -ur openssl-1.0.1e-2+deb7u13 1.0.1e-2+deb7u13+ore1
+--- a/ssl/ssl3.h	2014-10-16 02:51:58.000000000 +0900
++++ b/ssl/ssl3.h	2014-10-17 20:22:41.000000000 +0900
+@@ -523,6 +523,7 @@
  		unsigned char *key_block;
  
  		const EVP_CIPHER *new_sym_enc;
@@ -7883,10 +7883,10 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  {ERR_FUNC(SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT),	"TLS1_CHECK_SERVERHELLO_TLSEXT"},
  {ERR_FUNC(SSL_F_TLS1_ENC),	"TLS1_ENC"},
  {ERR_FUNC(SSL_F_TLS1_EXPORT_KEYING_MATERIAL),	"TLS1_EXPORT_KEYING_MATERIAL"},
-diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
---- a/ssl/ssl_lib.c	2014-05-04 15:44:25.867712658 +0900
-+++ b/ssl/ssl_lib.c	2014-08-07 20:58:16.000000000 +0900
-@@ -2780,6 +2780,18 @@
+diff -ur openssl-1.0.1e-2+deb7u13 1.0.1e-2+deb7u13+ore1
+--- a/ssl/ssl_lib.c	2014-10-16 02:51:58.000000000 +0900
++++ b/ssl/ssl_lib.c	2014-10-17 20:27:03.000000000 +0900
+@@ -2812,6 +2812,18 @@
  		OPENSSL_free(s->enc_write_ctx);
  		s->enc_write_ctx=NULL;
  		}
@@ -8743,10 +8743,10 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore2
  
  	if (send)
  		{
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
---- a/ssl/tls1.h	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/tls1.h	2014-05-07 14:05:44.755888405 +0900
-@@ -519,6 +519,10 @@
+diff -ur openssl-1.0.1e-2+deb7u13 1.0.1e-2+deb7u13+ore1
+--- a/ssl/tls1.h	2014-10-16 02:51:58.000000000 +0900
++++ b/ssl/tls1.h	2014-10-17 20:24:25.000000000 +0900
+@@ -522,6 +522,10 @@
  #define TLS1_CK_ECDH_RSA_WITH_AES_128_GCM_SHA256        0x0300C031
  #define TLS1_CK_ECDH_RSA_WITH_AES_256_GCM_SHA384        0x0300C032
  
@@ -8757,7 +8757,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  /* XXX
   * Inconsistency alert:
   * The OpenSSL names of ciphers with ephemeral DH here include the string
-@@ -670,6 +674,10 @@
+@@ -673,6 +677,10 @@
  #define TLS1_TXT_ECDH_RSA_WITH_AES_128_GCM_SHA256       "ECDH-RSA-AES128-GCM-SHA256"
  #define TLS1_TXT_ECDH_RSA_WITH_AES_256_GCM_SHA384       "ECDH-RSA-AES256-GCM-SHA384"
  

@@ -9,7 +9,6 @@ no-symbolic.patch
 pic.patch
 valgrind.patch
 rehash-crt.patch
-rehash_pod.patch
 shared-lib-ext.patch
 stddef.patch
 version-script.patch
