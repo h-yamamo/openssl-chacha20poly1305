@@ -1,3 +1,9 @@
+openssl (1.0.1-4ubuntu5.20+ore2) precise; urgency=low
+
+  * Fix: not send TLS_FALLBACK_SCSV at TLSv1.2
+
+ -- Ore sama <oresama@hoge.japan>  Fri, 24 Oct 2014 20:44:35 +0900
+
 openssl (1.0.1-4ubuntu5.20+ore1) precise; urgency=low
 
   * Non-maintainer release.

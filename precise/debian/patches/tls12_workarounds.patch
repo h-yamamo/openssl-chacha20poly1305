@@ -81,13 +81,13 @@ Index: openssl-1.0.1/ssl/s23_clnt.c
 Index: openssl-1.0.1/Configure
 ===================================================================
 --- openssl-1.0.1.orig/Configure	2014-10-01 16:13:46.595953215 -0400
-+++ openssl-1.0.1/Configure	2014-10-04 16:34:07.000000000 +0900
++++ openssl-1.0.1/Configure	2014-10-24 20:43:11.000000000 +0900
 @@ -106,7 +106,7 @@
  my $gcc_devteam_warn = "-Wall -pedantic -DPEDANTIC -Wno-long-long -Wsign-compare -Wmissing-prototypes -Wshadow -Wformat -Werror -DCRYPTO_MDEBUG_ALL -DCRYPTO_MDEBUG_ABORT -DREF_CHECK -DOPENSSL_NO_DEPRECATED";
  
  # There are no separate CFLAGS/CPPFLAGS/LDFLAGS, set everything in CFLAGS
 -my $debian_cflags = `dpkg-buildflags --get CFLAGS` . `dpkg-buildflags --get CPPFLAGS` . `dpkg-buildflags --get LDFLAGS` . "-Wa,--noexecstack -Wall";
-+my $debian_cflags = `dpkg-buildflags --get CFLAGS` . `dpkg-buildflags --get CPPFLAGS` . `dpkg-buildflags --get LDFLAGS` . "-Wa,--noexecstack -Wall -DOPENSSL_MAX_TLS1_2_CIPHER_LENGTH=80";
++my $debian_cflags = `dpkg-buildflags --get CFLAGS` . `dpkg-buildflags --get CPPFLAGS` . `dpkg-buildflags --get LDFLAGS` . "-Wa,--noexecstack -Wall"; # -DOPENSSL_NO_TLS1_2_CLIENT
  $debian_cflags =~ s/\n/ /g;
  
  my $strict_warnings = 0;
