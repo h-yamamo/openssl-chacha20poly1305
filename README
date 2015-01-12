@@ -5,12 +5,12 @@ For Debian/Ubuntu packages.
 
 How to make packages:
 
-*Debian 7.6 (wheezy)
+*Debian 7.8 (wheezy)
   (in some directory)
   apt-get -d source openssl
   tar xf openssl_1.0.1e.orig.tar.gz
   cd openssl-1.0.1e
-  tar xvf ../openssl_1.0.1e-2+deb7u13.debian.tar.gz
+  tar xvf ../openssl_1.0.1e-2+deb7u14.debian.tar.gz
   cp -a (this repository)/wheezy/debian/* debian/
   debuild -uc -us
 

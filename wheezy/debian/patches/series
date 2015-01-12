@@ -72,4 +72,16 @@ Support-TLS_FALLBACK_SCSV.patch
 Fix-for-SRTP-Memory-Leak.patch
 Fix-for-session-tickets-memory-leak.patch
 Fix-no-ssl3-configuration-option.patch
+#disable_sslv3.patch
+Keep-old-method-in-case-of-an-unsupported-protocol.patch
+0082-Return-error-when-a-bit-string-indicates-an-invalid-.patch
+0094-Fix-various-certificate-fingerprint-issues.patch
+0095-Constify-ASN1_TYPE_cmp-add-X509_ALGOR_cmp.patch
+0098-ECDH-downgrade-bug-fix.patch
+0099-Only-allow-ephemeral-RSA-keys-in-export-ciphersuites.patch
+0108-Fix-for-CVE-2014-3570.patch
+0109-Fix-crash-in-dtls1_get_record-whilst-in-the-listen-s.patch
+0110-Follow-on-from-CVE-2014-3571.-This-fixes-the-code-th.patch
+0111-Unauthenticated-DH-client-certificate-fix.patch
+0112-A-memory-leak-can-occur-in-dtls1_buffer_record-if-ei.patch
 chacha20poly1305.patch
