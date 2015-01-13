@@ -7657,10 +7657,10 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  /* end of list */
  	};
  
-diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
---- a/ssl/s3_pkt.c	2014-05-04 15:44:25.883713028 +0900
-+++ b/ssl/s3_pkt.c	2014-05-27 22:04:08.000000000 +0900
-@@ -777,7 +777,12 @@
+diff -ur openssl-1.0.1-4ubuntu5.21 1.0.1-4ubuntu5.21+ore1
+--- a/ssl/s3_pkt.c	2015-01-09 21:55:51.000000000 +0900
++++ b/ssl/s3_pkt.c	2015-01-10 19:32:30.000000000 +0900
+@@ -779,7 +779,12 @@
  		else
  			eivlen = 0;
  		}
@@ -7674,9 +7674,9 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  		eivlen = 0;
  
  	/* lets setup the record stuff. */
-diff -ur openssl-1.0.1-4ubuntu5.20 1.0.1-4ubuntu5.20+ore1
---- a/ssl/ssl.h	2014-10-16 02:12:05.000000000 +0900
-+++ b/ssl/ssl.h	2014-10-17 21:32:29.000000000 +0900
+diff -ur openssl-1.0.1-4ubuntu5.21 1.0.1-4ubuntu5.21+ore1
+--- a/ssl/ssl.h	2015-01-09 22:02:16.000000000 +0900
++++ b/ssl/ssl.h	2015-01-10 19:35:40.000000000 +0900
 @@ -292,6 +292,7 @@
  #define SSL_TXT_CAMELLIA128	"CAMELLIA128"
  #define SSL_TXT_CAMELLIA256	"CAMELLIA256"
@@ -7696,7 +7696,7 @@ diff -ur openssl-1.0.1-4ubuntu5.20 1.0.1-4ubuntu5.20+ore1
  	int strength_bits;		/* Number of bits really used */
  	int alg_bits;			/* Number of bits for algorithm */
  	};
-@@ -727,6 +730,9 @@
+@@ -726,6 +729,9 @@
  
  #endif
  
@@ -7706,7 +7706,7 @@ diff -ur openssl-1.0.1-4ubuntu5.20 1.0.1-4ubuntu5.20+ore1
  #if defined(OPENSSL_SYS_MSDOS) && !defined(OPENSSL_SYS_WIN32)
  #define SSL_MAX_CERT_LIST_DEFAULT 1024*30 /* 30k max cert list :-) */
  #else
-@@ -1193,6 +1199,9 @@
+@@ -1192,6 +1198,9 @@
  	/* These are the ones being used, the ones in SSL_SESSION are
  	 * the ones to be 'copied' into these ones */
  	int mac_flags; 
@@ -7716,7 +7716,7 @@ diff -ur openssl-1.0.1-4ubuntu5.20 1.0.1-4ubuntu5.20+ore1
  	EVP_CIPHER_CTX *enc_read_ctx;		/* cryptographic state */
  	EVP_MD_CTX *read_hash;		/* used for mac generation */
  #ifndef OPENSSL_NO_COMP
-@@ -1201,6 +1210,9 @@
+@@ -1200,6 +1209,9 @@
  	char *expand;
  #endif
  
@@ -7726,7 +7726,7 @@ diff -ur openssl-1.0.1-4ubuntu5.20 1.0.1-4ubuntu5.20+ore1
  	EVP_CIPHER_CTX *enc_write_ctx;		/* cryptographic state */
  	EVP_MD_CTX *write_hash;		/* used for mac generation */
  #ifndef OPENSSL_NO_COMP
-@@ -2263,8 +2275,11 @@
+@@ -2262,8 +2274,11 @@
  #define SSL_F_SSL_USE_RSAPRIVATEKEY_FILE		 206
  #define SSL_F_SSL_VERIFY_CERT_CHAIN			 207
  #define SSL_F_SSL_WRITE					 208

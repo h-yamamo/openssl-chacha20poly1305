@@ -75,4 +75,13 @@ tls_fallback_scsv_support.patch
 CVE-2014-3513.patch
 CVE-2014-3567.patch
 CVE-2014-3568.patch
+CVE-2014-3569.patch
+CVE-2014-3570.patch
+CVE-2014-3571-1.patch
+CVE-2014-3571-2.patch
+CVE-2014-3572.patch
+CVE-2014-8275.patch
+CVE-2015-0204.patch
+CVE-2015-0205.patch
+CVE-2015-0206.patch
 chacha20poly1305.patch

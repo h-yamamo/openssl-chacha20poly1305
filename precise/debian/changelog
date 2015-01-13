@@ -1,10 +1,4 @@
-openssl (1.0.1-4ubuntu5.20+ore2) precise; urgency=low
-
-  * Fix: not send TLS_FALLBACK_SCSV at TLSv1.2
-
- -- Ore sama <oresama@hoge.japan>  Fri, 24 Oct 2014 20:44:35 +0900
-
-openssl (1.0.1-4ubuntu5.20+ore1) precise; urgency=low
+openssl (1.0.1-4ubuntu5.21+ore1) precise; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -18,7 +12,52 @@ openssl (1.0.1-4ubuntu5.20+ore1) precise; urgency=low
     - Improve performance using NEON in armhf arch or SSE2 in i386 arch
       if there are available.
 
- -- Ore sama <oresama@hoge.japan>  Fri, 17 Oct 2014 21:47:03 +0900
+ -- Ore sama <oresama@hoge.japan>  Tue, 13 Jan 2015 19:48:16 +0900
+
+openssl (1.0.1-4ubuntu5.21) precise-security; urgency=medium
+
+  * SECURITY UPDATE: denial of service via unexpected handshake when
+    no-ssl3 build option is used (not the default)
+    - debian/patches/CVE-2014-3569.patch: keep the old method for now in
+      ssl/s23_srvr.c.
+    - CVE-2014-3569
+  * SECURITY UPDATE: bignum squaring may produce incorrect results
+    - debian/patches/CVE-2014-3570.patch: fix bignum logic in
+      crypto/bn/asm/mips.pl, crypto/bn/asm/x86_64-gcc.c,
+      crypto/bn/bn_asm.c, removed crypto/bn/asm/mips3.s, added test to
+      crypto/bn/bntest.c.
+    - CVE-2014-3570
+  * SECURITY UPDATE: DTLS segmentation fault in dtls1_get_record
+    - debian/patches/CVE-2014-3571-1.patch: fix crash in ssl/d1_pkt.c,
+      ssl/s3_pkt.c.
+    - debian/patches/CVE-2014-3571-2.patch: make code more obvious in
+      ssl/d1_pkt.c.
+    - CVE-2014-3571
+  * SECURITY UPDATE: ECDHE silently downgrades to ECDH [Client]
+    - debian/patches/CVE-2014-3572.patch: don't skip server key exchange in
+      ssl/s3_clnt.c.
+    - CVE-2014-3572
+  * SECURITY UPDATE: certificate fingerprints can be modified
+    - debian/patches/CVE-2014-8275.patch: fix various fingerprint issues in
+      crypto/asn1/a_bitstr.c, crypto/asn1/a_type.c, crypto/asn1/a_verify.c,
+      crypto/asn1/asn1.h, crypto/asn1/asn1_err.c, crypto/asn1/x_algor.c,
+      crypto/dsa/dsa_asn1.c, crypto/ecdsa/ecs_vrf.c, crypto/x509/x509.h,
+      crypto/x509/x_all.c.
+    - CVE-2014-8275
+  * SECURITY UPDATE: RSA silently downgrades to EXPORT_RSA [Client]
+    - debian/patches/CVE-2015-0204.patch: only allow ephemeral RSA keys in
+      export ciphersuites in ssl/d1_srvr.c, ssl/s3_clnt.c, ssl/s3_srvr.c,
+      ssl/ssl.h, adjust documentation in doc/ssl/SSL_CTX_set_options.pod,
+      doc/ssl/SSL_CTX_set_tmp_rsa_callback.pod.
+    - CVE-2015-0204
+  * SECURITY UPDATE: DTLS memory leak in dtls1_buffer_record
+    - debian/patches/CVE-2015-0206.patch: properly handle failures in
+      ssl/d1_pkt.c.
+    - CVE-2015-0206
+  * debian/patches/CVE-2015-0205.patch: fix code to prevent confusion in
+      ssl/s3_srvr.c.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 09 Jan 2015 10:24:21 -0500
 
 openssl (1.0.1-4ubuntu5.20) precise-security; urgency=medium
 
