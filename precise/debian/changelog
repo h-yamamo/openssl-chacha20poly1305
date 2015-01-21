@@ -1,3 +1,10 @@
+openssl (1.0.1-4ubuntu5.21+ore2) precise; urgency=low
+
+  * Modify SSL headers to be better compatibility with released official
+    packages.
+
+ -- Ore sama <oresama@hoge.japan>  Tue, 20 Jan 2015 23:28:40 +0900
+
 openssl (1.0.1-4ubuntu5.21+ore1) precise; urgency=low
 
   * Non-maintainer release.

@@ -1,3 +1,10 @@
+openssl (1.0.1e-2+deb7u14+ore2) wheezy; urgency=low
+
+  * Modify SSL headers to be better compatibility with released official
+    packages.
+
+ -- Ore sama <oresama@hoge.japan>  Tue, 20 Jan 2015 21:23:10 +0900
+
 openssl (1.0.1e-2+deb7u14+ore1) wheezy; urgency=low
 
   * Non-maintainer release.

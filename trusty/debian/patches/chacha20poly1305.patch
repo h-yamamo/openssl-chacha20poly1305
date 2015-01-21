@@ -7665,9 +7665,9 @@ diff -ur openssl-1.0.1f-1ubuntu2.8 1.0.1f-1ubuntu2.8+ore1
  		eivlen = 0;
  
  	/* lets setup the record stuff. */
-diff -ur openssl-1.0.1f-1ubuntu2.8 1.0.1f-1ubuntu2.8+ore1
+diff -ur openssl-1.0.1f-1ubuntu2.8 1.0.1f-1ubuntu2.8+ore2
 --- a/ssl/ssl.h	2015-01-09 22:02:16.000000000 +0900
-+++ b/ssl/ssl.h	2015-01-10 19:35:40.000000000 +0900
++++ b/ssl/ssl.h	2015-01-21 20:34:10.000000000 +0900
 @@ -292,6 +292,7 @@
  #define SSL_TXT_CAMELLIA128	"CAMELLIA128"
  #define SSL_TXT_CAMELLIA256	"CAMELLIA256"
@@ -7697,27 +7697,42 @@ diff -ur openssl-1.0.1f-1ubuntu2.8 1.0.1f-1ubuntu2.8+ore1
  #if defined(OPENSSL_SYS_MSDOS) && !defined(OPENSSL_SYS_WIN32)
  #define SSL_MAX_CERT_LIST_DEFAULT 1024*30 /* 30k max cert list :-) */
  #else
-@@ -1205,6 +1211,9 @@
+@@ -1205,6 +1211,11 @@
  	/* These are the ones being used, the ones in SSL_SESSION are
  	 * the ones to be 'copied' into these ones */
  	int mac_flags; 
++#if 0 /* move to bottom */
 +	SSL_AEAD_CTX *aead_read_ctx;	/* AEAD context. If non-NULL, then
 +					   |enc_read_ctx| and |read_hash| are
 +					   ignored. */
++#endif
  	EVP_CIPHER_CTX *enc_read_ctx;		/* cryptographic state */
  	EVP_MD_CTX *read_hash;		/* used for mac generation */
  #ifndef OPENSSL_NO_COMP
-@@ -1213,6 +1222,9 @@
+@@ -1213,6 +1224,11 @@
  	char *expand;
  #endif
  
++#if 0 /* move to bottom */
 +	SSL_AEAD_CTX *aead_write_ctx;	/* AEAD context. If non-NULL, then
 +					   |enc_write_ctx| and |write_hash| are
 +					   ignored. */
++#endif
  	EVP_CIPHER_CTX *enc_write_ctx;		/* cryptographic state */
  	EVP_MD_CTX *write_hash;		/* used for mac generation */
  #ifndef OPENSSL_NO_COMP
-@@ -2276,8 +2288,11 @@
+@@ -1365,6 +1381,10 @@
+ #ifndef OPENSSL_NO_SRP
+ 	SRP_CTX srp_ctx; /* ctx for SRP authentication */
+ #endif
++#if 1 /* for compat. */
++	SSL_AEAD_CTX *aead_read_ctx;
++	SSL_AEAD_CTX *aead_write_ctx;
++#endif
+ 	};
+ 
+ #endif
+@@ -2276,8 +2296,11 @@
  #define SSL_F_SSL_USE_RSAPRIVATEKEY_FILE		 206
  #define SSL_F_SSL_VERIFY_CERT_CHAIN			 207
  #define SSL_F_SSL_WRITE					 208
@@ -7729,17 +7744,29 @@ diff -ur openssl-1.0.1f-1ubuntu2.8 1.0.1f-1ubuntu2.8+ore1
  #define SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT		 274
  #define SSL_F_TLS1_ENC					 210
  #define SSL_F_TLS1_EXPORT_KEYING_MATERIAL		 314
-diff -ur openssl-1.0.1f-1ubuntu2.7 1.0.1f-1ubuntu2.7+ore1
+diff -ur openssl-1.0.1f-1ubuntu2.8 1.0.1f-1ubuntu2.8+ore2
 --- a/ssl/ssl3.h	2014-10-16 02:04:16.000000000 +0900
-+++ b/ssl/ssl3.h	2014-10-17 22:04:14.000000000 +0900
-@@ -523,6 +523,7 @@
++++ b/ssl/ssl3.h	2015-01-21 20:40:51.000000000 +0900
+@@ -523,6 +523,9 @@
  		unsigned char *key_block;
  
  		const EVP_CIPHER *new_sym_enc;
++#if 0 /* move to bottom */
 +		const EVP_AEAD *new_aead;
++#endif
  		const EVP_MD *new_hash;
  		int new_mac_pkey_type;
  		int new_mac_secret_size;
+@@ -554,6 +557,9 @@
+ 	char is_probably_safari;
+ #endif /* !OPENSSL_NO_EC */
+ #endif /* !OPENSSL_NO_TLSEXT */
++#if 1 /* for compat. */
++	const EVP_AEAD *new_aead;
++#endif
+ 	} SSL3_STATE;
+ 
+ #endif
 diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore1
 --- a/ssl/ssl_ciph.c	2013-02-12 00:26:04.000000000 +0900
 +++ b/ssl/ssl_ciph.c	2014-08-08 20:32:48.000000000 +0900
@@ -7973,10 +8000,10 @@ diff -ur openssl-1.0.1f-1ubuntu2.1 1.0.1f-1ubuntu2.1+ore1
  		if (comp == NULL)
  			{
  			if (BIO_printf(bp,"\n    Compression: %d",x->compress_meth) <= 0) goto err;
-diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
---- a/ssl/t1_enc.c	2014-01-06 22:47:42.000000000 +0900
-+++ b/ssl/t1_enc.c	2014-08-18 21:20:35.000000000 +0900
-@@ -316,56 +316,92 @@
+diff -ur openssl-1.0.1f-1ubuntu2.8 1.0.1f-1ubuntu2.8+ore2
+--- a/ssl/t1_enc.c	2014-10-16 02:04:16.000000000 +0900
++++ b/ssl/t1_enc.c	2015-01-21 20:34:10.000000000 +0900
+@@ -316,56 +316,96 @@
  	return ret;
  	}
  
@@ -8013,7 +8040,6 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
 -	mac_type = s->s3->tmp.new_mac_pkey_type;
 -#ifndef OPENSSL_NO_COMP
 -	comp=s->s3->tmp.new_compression;
--#endif
 +	if (*aead_ctx != NULL)
 +		EVP_AEAD_CTX_cleanup(&(*aead_ctx)->ctx);
 +	else
@@ -8025,6 +8051,20 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
 +			return 0;
 +			}
 +		}
++
++	return 1;
++	}
++
++static int tls1_change_cipher_state_aead(SSL *s, char is_read,
++	const unsigned char *key, unsigned key_len,
++	const unsigned char *iv, unsigned iv_len)
++	{
++#if 1 /* for compat. */
++	const EVP_AEAD *aead = s->s3->new_aead;
++#else
++	const EVP_AEAD *aead = s->s3->tmp.new_aead;
+ #endif
++	SSL_AEAD_CTX *aead_ctx;
  
 -#ifdef KSSL_DEBUG
 -	printf("tls1_change_cipher_state(which= %d) w/\n", which);
@@ -8036,21 +8076,6 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
 -	printf("\tevp_cipher: nid, blksz= %d, %d, keylen=%d, ivlen=%d\n",
 -                c->nid,c->block_size,c->key_len,c->iv_len);
 -	printf("\tkey_block: len= %d, data= ", s->s3->tmp.key_block_length);
-+	return 1;
-+	}
-+
-+static int tls1_change_cipher_state_aead(SSL *s, char is_read,
-+	const unsigned char *key, unsigned key_len,
-+	const unsigned char *iv, unsigned iv_len)
- 	{
--        int i;
--        for (i=0; i<s->s3->tmp.key_block_length; i++)
--		printf("%02x", s->s3->tmp.key_block[i]);  printf("\n");
--        }
--#endif	/* KSSL_DEBUG */
-+	const EVP_AEAD *aead = s->s3->tmp.new_aead;
-+	SSL_AEAD_CTX *aead_ctx;
-+
 +	if (is_read)
 +		{
 +		if (!tls1_aead_ctx_init(&s->aead_read_ctx))
@@ -8098,24 +8123,29 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
 +	const unsigned char *mac_secret, unsigned mac_secret_len,
 +	const unsigned char *key, unsigned key_len,
 +	const unsigned char *iv, unsigned iv_len)
-+	{
+ 	{
+-        int i;
+-        for (i=0; i<s->s3->tmp.key_block_length; i++)
+-		printf("%02x", s->s3->tmp.key_block[i]);  printf("\n");
+-        }
+-#endif	/* KSSL_DEBUG */
 +	const EVP_CIPHER *cipher = s->s3->tmp.new_sym_enc;
 +	const char is_export = SSL_C_IS_EXPORT(s->s3->tmp.new_cipher) != 0;
 +	EVP_CIPHER_CTX *cipher_ctx;
 +	EVP_MD_CTX *mac_ctx;
 +	char is_aead_cipher;
-+
+ 
+-	if (which & SSL3_CC_READ)
 +	unsigned char export_tmp1[EVP_MAX_KEY_LENGTH];
 +	unsigned char export_tmp2[EVP_MAX_KEY_LENGTH];
 +	unsigned char export_iv1[EVP_MAX_IV_LENGTH * 2];
 +	unsigned char export_iv2[EVP_MAX_IV_LENGTH * 2];
- 
--	if (which & SSL3_CC_READ)
++
 +	if (is_read)
  		{
  		if (s->s3->tmp.new_cipher->algorithm2 & TLS1_STREAM_MAC)
  			s->mac_flags |= SSL_MAC_FLAG_READ_MAC_STREAM;
-@@ -373,15 +409,164 @@
+@@ -373,15 +413,168 @@
  			s->mac_flags &= ~SSL_MAC_FLAG_READ_MAC_STREAM;
  
  		if (s->enc_read_ctx != NULL)
@@ -8269,7 +8299,11 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
 +	const unsigned char *client_write_key, *server_write_key, *key;
 +	const unsigned char *client_write_iv, *server_write_iv, *iv;
 +	const EVP_CIPHER *cipher = s->s3->tmp.new_sym_enc;
++#if 1 /* for compat. */
++	const EVP_AEAD *aead = s->s3->new_aead;
++#else
 +	const EVP_AEAD *aead = s->s3->tmp.new_aead;
++#endif
 +	unsigned key_len, iv_len, mac_secret_len;
 +	const unsigned char *key_data;
 +	const char is_export = SSL_C_IS_EXPORT(s->s3->tmp.new_cipher) != 0;
@@ -8283,7 +8317,7 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
  		if (s->expand != NULL)
  			{
  			COMP_CTX_free(s->expand);
-@@ -393,42 +578,17 @@
+@@ -393,42 +586,17 @@
  			if (s->expand == NULL)
  				{
  				SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE,SSL_R_COMPRESSION_LIBRARY_ERROR);
@@ -8329,7 +8363,7 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
  		if (s->compress != NULL)
  			{
  			COMP_CTX_free(s->compress);
-@@ -440,155 +600,96 @@
+@@ -440,155 +608,96 @@
  			if (s->compress == NULL)
  				{
  				SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE,SSL_R_COMPRESSION_LIBRARY_ERROR);
@@ -8389,14 +8423,14 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
 -		}
 +	/* Reset sequence number to zero. */
 +	memset(is_read ? s->s3->read_sequence : s->s3->write_sequence, 0, 8);
-+
+ 
+-	memcpy(mac_secret,ms,i);
 +	/* key_arg is used for SSLv2. We don't need it for TLS. */
 +	s->session->key_arg_length = 0;
  
--	memcpy(mac_secret,ms,i);
-+	mac_secret_len = s->s3->tmp.new_mac_secret_size;
- 
 -	if (!(EVP_CIPHER_flags(c)&EVP_CIPH_FLAG_AEAD_CIPHER))
++	mac_secret_len = s->s3->tmp.new_mac_secret_size;
++
 +	if (aead != NULL)
  		{
 -		mac_key = EVP_PKEY_new_mac_key(mac_type, NULL,
@@ -8545,7 +8579,7 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
  
  #ifdef KSSL_DEBUG
  	printf ("tls1_setup_key_block()\n");
-@@ -597,17 +698,36 @@
+@@ -597,17 +706,40 @@
  	if (s->s3->tmp.key_block_length != 0)
  		return(1);
  
@@ -8575,7 +8609,11 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
 +			iv_len = EVP_CIPHER_iv_length(c);
  		}
  
++#if 1 /* for compat. */
++	s->s3->new_aead=aead;
++#else
 +	s->s3->tmp.new_aead=aead;
++#endif
  	s->s3->tmp.new_sym_enc=c;
  	s->s3->tmp.new_hash=hash;
  	s->s3->tmp.new_mac_pkey_type = mac_type;
@@ -8586,7 +8624,7 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
  	num*=2;
  
  	ssl3_cleanup_key_block(s);
-@@ -670,6 +790,10 @@
+@@ -670,6 +802,10 @@
  		OPENSSL_free(p2);
  		}
  	return(ret);
@@ -8597,7 +8635,7 @@ diff -ur openssl-1.0.1f-1ubuntu2.5 1.0.1f-1ubuntu2.5+ore2
  	}
  
  /* tls1_enc encrypts/decrypts the record in |s->wrec| / |s->rrec|, respectively.
-@@ -688,6 +812,135 @@
+@@ -688,6 +824,135 @@
  	unsigned long l;
  	int bs,i,j,k,pad=0,ret,mac_size=0;
  	const EVP_CIPHER *enc;

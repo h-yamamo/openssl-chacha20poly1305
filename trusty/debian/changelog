@@ -1,3 +1,10 @@
+openssl (1.0.1f-1ubuntu2.8+ore2) trusty; urgency=low
+
+  * Modify SSL headers to be better compatibility with released official
+    packages.
+
+ -- Ore sama <oresama@hoge.japan>  Wed, 21 Jan 2015 20:41:30 +0900
+
 openssl (1.0.1f-1ubuntu2.8+ore1) trusty; urgency=low
 
   * Non-maintainer release.
