@@ -2377,10 +2377,10 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore1
 +#endif
 +
 +#endif  /* HEADER_POLY1305_H_ */
-diff -urN /dev/null 1.0.1-4ubuntu5.17+ore3
+diff -urN /dev/null 1.0.1-4ubuntu5.21+ore3
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/poly1305_arm.c	2014-08-22 22:02:47.000000000 +0900
-@@ -0,0 +1,340 @@
++++ b/crypto/poly1305/poly1305_arm.c	2015-01-25 17:19:02.000000000 +0900
+@@ -0,0 +1,342 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -2678,6 +2678,7 @@ diff -urN /dev/null 1.0.1-4ubuntu5.17+ore3
 +	fe1305x2 *const h = r + 1;
 +	fe1305x2 *const c = h + 1;
 +	fe1305x2 *const precomp = c + 1;
++	uint32_t work[4];
 +
 +	addmulmod(h,h,precomp,&zero);
 +
@@ -2717,7 +2718,8 @@ diff -urN /dev/null 1.0.1-4ubuntu5.17+ore3
 +	h->v[4] += c->v[4];
 +	h->v[6] += c->v[6];
 +	h->v[8] += c->v[8];
-+	fe1305x2_tobytearray(mac, h);
++	fe1305x2_tobytearray((uint8_t *) work, h);
++	memcpy(mac, work, 16);
 +	}
 +
 +#endif  /* !OPENSSL_NO_POLY1305 */

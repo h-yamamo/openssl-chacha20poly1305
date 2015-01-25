@@ -1,3 +1,9 @@
+openssl (1.0.1-4ubuntu5.21+ore3) precise; urgency=low
+
+  * Use aligned buffer for a mac return area in poly1305_arm.c
+
+ -- Ore sama <oresama@hoge.japan>  Sun, 25 Jan 2015 19:42:22 +0900
+
 openssl (1.0.1-4ubuntu5.21+ore2) precise; urgency=low
 
   * Modify SSL headers to be better compatibility with released official
