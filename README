@@ -17,9 +17,9 @@ How to make packages:
 *Debian 8 (jessie)
   (in some directory)
   apt-get -d source openssl
-  tar xf openssl_1.0.1j.orig.tar.gz
-  cd openssl-1.0.1j
-  tar xvf ../openssl_1.0.1j-1.debian.tar.xz
+  tar xf openssl_1.0.1k.orig.tar.gz
+  cd openssl-1.0.1k
+  tar xvf ../openssl_1.0.1k-1.debian.tar.xz
   cp -a (this repository)/jessie/debian/* debian/
   debuild -uc -us
 

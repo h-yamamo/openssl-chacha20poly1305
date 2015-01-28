@@ -1,4 +1,4 @@
-openssl (1.0.1j-1+ore1) unstable; urgency=low
+openssl (1.0.1k-1+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -11,8 +11,26 @@ openssl (1.0.1j-1+ore1) unstable; urgency=low
         test/chacha20_poly1305_tests.txt
     - Improve performance using NEON in armhf arch or SSE2 in i386 arch
       if there are available.
+    - Modify SSL headers to be better compatibility with released official
+      packages.
+    - Rewrite part of ssl/t1_enc.c to improve maintainability.
 
- -- Ore sama <oresama@hoge.japan>  Fri, 17 Oct 2014 22:51:30 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 28 Jan 2015 23:57:30 +0900
+
+openssl (1.0.1k-1) unstable; urgency=medium
+
+  * New upstream version
+    - Fixes CVE-2014-3571
+    - Fixes CVE-2015-0206
+    - Fixes CVE-2014-3569
+    - Fixes CVE-2014-3572
+    - Fixes CVE-2015-0204
+    - Fixes CVE-2015-0205
+    - Fixes CVE-2014-8275
+    - Fixes CVE-2014-3570
+  * Drop gnu_source.patch, dgst_hmac.patch: applied upstream
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Thu, 08 Jan 2015 20:55:26 +0100
 
 openssl (1.0.1j-1) unstable; urgency=high
 

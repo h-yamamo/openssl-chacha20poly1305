@@ -12,9 +12,7 @@ rehash-crt.patch
 shared-lib-ext.patch
 stddef.patch
 version-script.patch
-gnu_source.patch
 c_rehash-compat.patch
-dgst_hmac.patch
 block_diginotar.patch
 block_digicert_malaysia.patch
 #padlock_conf.patch
