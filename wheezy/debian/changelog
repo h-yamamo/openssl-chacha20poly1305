@@ -1,3 +1,9 @@
+openssl (1.0.1e-2+deb7u14+ore4) wheezy; urgency=low
+
+  * New crypto/chacha/chacha_vec_arm.S from BoringSSL.
+
+ -- Ore sama <oresama@hoge.japan>  Fri, 06 Mar 2015 23:08:40 +0900
+
 openssl (1.0.1e-2+deb7u14+ore3) wheezy; urgency=low
 
   * Use aligned buffer for a mac return area in poly1305_arm.c

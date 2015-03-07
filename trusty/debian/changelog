@@ -1,3 +1,9 @@
+openssl (1.0.1f-1ubuntu2.8+ore4) trusty; urgency=low
+
+  * New crypto/chacha/chacha_vec_arm.S from BoringSSL.
+
+ -- Ore sama <oresama@hoge.japan>  Fri, 06 Mar 2015 23:08:40 +0900
+
 openssl (1.0.1f-1ubuntu2.8+ore3) trusty; urgency=low
 
   * Use aligned buffer for a mac return area in poly1305_arm.c

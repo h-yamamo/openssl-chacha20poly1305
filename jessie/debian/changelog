@@ -1,3 +1,9 @@
+openssl (1.0.1k-1+ore2) jessie; urgency=low
+
+  * New crypto/chacha/chacha_vec_arm.S from BoringSSL.
+
+ -- Ore sama <oresama@hoge.japan>  Fri, 06 Mar 2015 23:08:40 +0900
+
 openssl (1.0.1k-1+ore1) jessie; urgency=low
 
   * Non-maintainer release.
