@@ -7863,10 +7863,10 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  		{
  		ssl2_return_error(s,SSL2_PE_NO_CIPHER);
  		SSLerr(SSL_F_SSL2_ENC_INIT,SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
---- a/ssl/s2_srvr.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/s2_srvr.c	2014-05-05 00:09:08.000000000 +0900
-@@ -452,7 +452,7 @@
+diff -ur openssl-1.0.1e-2+deb7u15 1.0.1e-2+deb7u15+ore1
+--- a/ssl/s2_srvr.c	2015-03-18 03:24:40.000000000 +0900
++++ b/ssl/s2_srvr.c	2015-03-20 20:02:43.000000000 +0900
+@@ -449,7 +449,7 @@
  
  	is_export=SSL_C_IS_EXPORT(s->session->cipher);
  	
@@ -8182,10 +8182,10 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  /* end of list */
  	};
  
-diff -ur openssl-1.0.1e-2+deb7u14 1.0.1e-2+deb7u14+ore1
---- a/ssl/s3_pkt.c	2015-01-09 21:55:51.000000000 +0900
-+++ b/ssl/s3_pkt.c	2015-01-10 19:32:30.000000000 +0900
-@@ -776,7 +776,12 @@
+diff -ur openssl-1.0.1e-2+deb7u15 1.0.1e-2+deb7u15+ore1
+--- a/ssl/s3_pkt.c	2015-03-18 03:24:40.000000000 +0900
++++ b/ssl/s3_pkt.c	2015-03-20 20:04:08.000000000 +0900
+@@ -777,7 +777,12 @@
  		else
  			eivlen = 0;
  		}
@@ -8301,9 +8301,9 @@ diff -ur openssl-1.0.1e-2+deb7u14 1.0.1e-2+deb7u14+ore2
  	} SSL3_STATE;
  
  #endif
-diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
---- a/ssl/ssl_ciph.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/ssl_ciph.c	2014-08-07 20:55:42.000000000 +0900
+diff -ur openssl-1.0.1e-2+deb7u15 1.0.1e-2+deb7u15+ore1
+--- a/ssl/ssl_ciph.c	2015-03-18 03:24:40.000000000 +0900
++++ b/ssl/ssl_ciph.c	2015-03-20 20:05:45.000000000 +0900
 @@ -299,6 +299,7 @@
  	{0,SSL_TXT_CAMELLIA128,0,0,0,SSL_CAMELLIA128,0,0,0,0,0,0},
  	{0,SSL_TXT_CAMELLIA256,0,0,0,SSL_CAMELLIA256,0,0,0,0,0,0},
@@ -8408,7 +8408,7 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore1
  
  	if ((enc == NULL) || (md == NULL)) return(0);
  
-@@ -1679,6 +1725,9 @@
+@@ -1685,6 +1731,9 @@
  	case SSL_SEED:
  		enc="SEED(128)";
  		break;

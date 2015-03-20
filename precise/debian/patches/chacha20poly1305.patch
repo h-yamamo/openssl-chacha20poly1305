@@ -7862,10 +7862,10 @@ diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
  		{
  		ssl2_return_error(s,SSL2_PE_NO_CIPHER);
  		SSLerr(SSL_F_SSL2_ENC_INIT,SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
-diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
---- a/ssl/s2_srvr.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/s2_srvr.c	2014-05-05 00:09:08.000000000 +0900
-@@ -452,7 +452,7 @@
+diff -ur openssl-1.0.1-4ubuntu5.25 1.0.1-4ubuntu5.25+ore1
+--- a/ssl/s2_srvr.c	2015-03-19 23:45:07.000000000 +0900
++++ b/ssl/s2_srvr.c	2015-03-20 20:07:14.000000000 +0900
+@@ -450,7 +450,7 @@
  
  	is_export=SSL_C_IS_EXPORT(s->session->cipher);
  	
@@ -8300,9 +8300,9 @@ diff -ur openssl-1.0.1-4ubuntu5.21 1.0.1-4ubuntu5.21+ore2
  	} SSL3_STATE;
  
  #endif
-diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore1
---- a/ssl/ssl_ciph.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/ssl_ciph.c	2014-08-08 20:17:48.000000000 +0900
+diff -ur openssl-1.0.1-4ubuntu5.25 1.0.1-4ubuntu5.25+ore1
+--- a/ssl/ssl_ciph.c	2015-02-27 03:05:10.000000000 +0900
++++ b/ssl/ssl_ciph.c	2015-03-20 20:08:06.000000000 +0900
 @@ -302,6 +302,7 @@
  	{0,SSL_TXT_CAMELLIA128,0,0,0,SSL_CAMELLIA128,0,0,0,0,0,0},
  	{0,SSL_TXT_CAMELLIA256,0,0,0,SSL_CAMELLIA256,0,0,0,0,0,0},
@@ -8415,7 +8415,7 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore1
  
  	if ((enc == NULL) || (md == NULL)) return(0);
  
-@@ -1148,9 +1195,9 @@
+@@ -1149,9 +1196,9 @@
  			while (	((ch >= 'A') && (ch <= 'Z')) ||
  				((ch >= '0') && (ch <= '9')) ||
  				((ch >= 'a') && (ch <= 'z')) ||
@@ -8427,7 +8427,7 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore1
  #endif
  				 {
  				 ch = *(++l);
-@@ -1675,6 +1722,9 @@
+@@ -1676,6 +1723,9 @@
  	case SSL_SEED:
  		enc="SEED(128)";
  		break;

@@ -1,23 +1,4 @@
-openssl (1.0.1-4ubuntu5.21+ore4) precise; urgency=low
-
-  * New crypto/chacha/chacha_vec_arm.S from BoringSSL.
-
- -- Ore sama <oresama@hoge.japan>  Fri, 06 Mar 2015 23:08:40 +0900
-
-openssl (1.0.1-4ubuntu5.21+ore3) precise; urgency=low
-
-  * Use aligned buffer for a mac return area in poly1305_arm.c
-
- -- Ore sama <oresama@hoge.japan>  Sun, 25 Jan 2015 19:42:22 +0900
-
-openssl (1.0.1-4ubuntu5.21+ore2) precise; urgency=low
-
-  * Modify SSL headers to be better compatibility with released official
-    packages.
-
- -- Ore sama <oresama@hoge.japan>  Tue, 20 Jan 2015 23:28:40 +0900
-
-openssl (1.0.1-4ubuntu5.21+ore1) precise; urgency=low
+openssl (1.0.1-4ubuntu5.25+ore1) precise; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -30,8 +11,59 @@ openssl (1.0.1-4ubuntu5.21+ore1) precise; urgency=low
         test/chacha20_poly1305_tests.txt
     - Improve performance using NEON in armhf arch or SSE2 in i386 arch
       if there are available.
+    - Modify SSL headers to be better compatibility with released official
+      packages.
+    - Use aligned buffer for a mac return area in poly1305_arm.c.
 
- -- Ore sama <oresama@hoge.japan>  Tue, 13 Jan 2015 19:48:16 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 20 Mar 2015 20:08:43 +0900
+
+openssl (1.0.1-4ubuntu5.25) precise-security; urgency=medium
+
+  * SECURITY UPDATE: denial of service and possible memory corruption via
+    malformed EC private key
+    - debian/patches/CVE-2015-0209.patch: fix use after free in
+      crypto/ec/ec_asn1.c.
+    - debian/patches/CVE-2015-0209-2.patch: fix a failure to NULL a pointer
+      freed on error in crypto/asn1/x_x509.c, crypto/ec/ec_asn1.c.
+    - CVE-2015-0209
+  * SECURITY UPDATE: denial of service via cert verification
+    - debian/patches/CVE-2015-0286.patch: handle boolean types in
+      crypto/asn1/a_type.c.
+    - CVE-2015-0286
+  * SECURITY UPDATE: ASN.1 structure reuse memory corruption
+    - debian/patches/CVE-2015-0287.patch: free up structures in
+      crypto/asn1/tasn_dec.c.
+    - CVE-2015-0287
+  * SECURITY UPDATE: denial of service via invalid certificate key
+    - debian/patches/CVE-2015-0288.patch: check public key isn't NULL in
+      crypto/x509/x509_req.c.
+    - CVE-2015-0288
+  * SECURITY UPDATE: denial of service and possible code execution via
+    PKCS#7 parsing
+    - debian/patches/CVE-2015-0289.patch: handle missing content in
+      crypto/pkcs7/pk7_doit.c, crypto/pkcs7/pk7_lib.c.
+    - CVE-2015-0289
+  * SECURITY UPDATE: denial of service or memory corruption via base64
+    decoding
+    - debian/patches/CVE-2015-0292.patch: prevent underflow in
+      crypto/evp/encode.c.
+    - CVE-2015-0292
+  * SECURITY UPDATE: denial of service via assert in SSLv2 servers
+    - debian/patches/CVE-2015-0293.patch: check key lengths in
+      ssl/s2_lib.c, ssl/s2_srvr.c.
+    - debian/patches/CVE-2015-0293-2.patch: fix unsigned/signed warnings in
+      ssl/s2_srvr.c.
+    - CVE-2015-0293
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 19 Mar 2015 10:03:00 -0400
+
+openssl (1.0.1-4ubuntu5.22) precise; urgency=medium
+
+  * Fix DTLS handshake on amd64 (LP: #1425914)
+    - debian/patches/lp1425914.patch: backport upstream patch that fixes
+      alignment issue causing an assert in ssl/ssl_ciph.c.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 26 Feb 2015 13:05:15 -0500
 
 openssl (1.0.1-4ubuntu5.21) precise-security; urgency=medium
 

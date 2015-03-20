@@ -68,4 +68,13 @@ CVE-2014-8275.patch
 CVE-2015-0204.patch
 CVE-2015-0205.patch
 CVE-2015-0206.patch
+CVE-2015-0209.patch
+CVE-2015-0286.patch
+CVE-2015-0287.patch
+CVE-2015-0288.patch
+CVE-2015-0289.patch
+CVE-2015-0292.patch
+CVE-2015-0293.patch
+CVE-2015-0209-2.patch
+CVE-2015-0293-2.patch
 chacha20poly1305.patch

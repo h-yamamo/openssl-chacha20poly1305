@@ -7853,10 +7853,10 @@ diff -ur openssl-1.0.1f-1ubuntu2.1 1.0.1f-1ubuntu2.1+ore1
  		{
  		ssl2_return_error(s,SSL2_PE_NO_CIPHER);
  		SSLerr(SSL_F_SSL2_ENC_INIT,SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
-diff -ur openssl-1.0.1f-1ubuntu2.1 1.0.1f-1ubuntu2.1+ore1
---- a/ssl/s2_srvr.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/s2_srvr.c	2014-05-05 00:09:08.000000000 +0900
-@@ -452,7 +452,7 @@
+diff -ur openssl-1.0.1f-1ubuntu2.11 1.0.1f-1ubuntu2.11+ore1
+--- a/ssl/s2_srvr.c	2015-03-19 23:43:33.000000000 +0900
++++ b/ssl/s2_srvr.c	2015-03-20 20:12:35.000000000 +0900
+@@ -450,7 +450,7 @@
  
  	is_export=SSL_C_IS_EXPORT(s->session->cipher);
  	

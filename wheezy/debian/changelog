@@ -1,23 +1,4 @@
-openssl (1.0.1e-2+deb7u14+ore4) wheezy; urgency=low
-
-  * New crypto/chacha/chacha_vec_arm.S from BoringSSL.
-
- -- Ore sama <oresama@hoge.japan>  Fri, 06 Mar 2015 23:08:40 +0900
-
-openssl (1.0.1e-2+deb7u14+ore3) wheezy; urgency=low
-
-  * Use aligned buffer for a mac return area in poly1305_arm.c
-
- -- Ore sama <oresama@hoge.japan>  Sun, 25 Jan 2015 17:36:22 +0900
-
-openssl (1.0.1e-2+deb7u14+ore2) wheezy; urgency=low
-
-  * Modify SSL headers to be better compatibility with released official
-    packages.
-
- -- Ore sama <oresama@hoge.japan>  Tue, 20 Jan 2015 21:23:10 +0900
-
-openssl (1.0.1e-2+deb7u14+ore1) wheezy; urgency=low
+openssl (1.0.1e-2+deb7u15+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -30,8 +11,27 @@ openssl (1.0.1e-2+deb7u14+ore1) wheezy; urgency=low
         test/chacha20_poly1305_tests.txt
     - Improve performance using NEON in armhf arch or SSE2 in i386 arch
       if there are available.
+    - Modify SSL headers to be better compatibility with released official
+      packages.
+    - Use aligned buffer for a mac return area in poly1305_arm.c.
 
- -- Ore sama <oresama@hoge.japan>  Mon, 12 Jan 2015 13:12:42 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 20 Mar 2015 20:06:05 +0900
+
+openssl (1.0.1e-2+deb7u15) wheezy-security; urgency=medium
+
+  * Fix CVE-2015-0286
+  * Fix CVE-2015-0287
+  * Fix CVE-2015-0289
+  * Fix CVE-2015-0292
+  * Fix CVE-2015-0293 (not affected, SSLv2 disabled)
+  * Fix CVE-2015-0209
+  * Fix CVE-2015-0288
+  * Remove export ciphers from DEFAULT.
+  * Make DTLS always act as if read_ahead is set.  This fixes a regression
+    introduce by the fix for CVE-2014-3571.  (Closes: #775502)
+  * Fix error codes.
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Tue, 17 Mar 2015 19:11:55 +0100
 
 openssl (1.0.1e-2+deb7u14) wheezy-security; urgency=medium
 
@@ -44,7 +44,7 @@ openssl (1.0.1e-2+deb7u14) wheezy-security; urgency=medium
   - Fix for CVE-2014-8275
   - Fix for CVE-2014-3570
 
- -- Kurt Roeckx <kurt@roeckx.be>  Wed, 31 Dec 2014 13:45:07 +0100
+ -- Kurt Roeckx <kurt@roeckx.be>  Thy, 8 Jan 2015 22:10:07 +0100
 
 openssl (1.0.1e-2+deb7u13) wheezy-security; urgency=medium
 

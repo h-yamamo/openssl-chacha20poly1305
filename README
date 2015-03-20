@@ -10,7 +10,7 @@ How to make packages:
   apt-get -d source openssl
   tar xf openssl_1.0.1e.orig.tar.gz
   cd openssl-1.0.1e
-  tar xvf ../openssl_1.0.1e-2+deb7u14.debian.tar.gz
+  tar xvf ../openssl_1.0.1e-2+deb7u15.debian.tar.gz
   cp -a (this repository)/wheezy/debian/* debian/
   debuild -uc -us
 
@@ -28,7 +28,7 @@ How to make packages:
   apt-get -d source openssl
   tar xf openssl_1.0.1.orig.tar.gz
   cd openssl-1.0.1
-  tar xvf ../openssl_1.0.1-4ubuntu5.21.debian.tar.gz
+  tar xvf ../openssl_1.0.1-4ubuntu5.25.debian.tar.gz
   cp -a (this repository)/precise/debian/* debian/
   debuild -uc -us
 
@@ -37,7 +37,7 @@ How to make packages:
   apt-get -d source openssl
   tar xf openssl_1.0.1f.orig.tar.gz
   cd openssl-1.0.1f
-  tar xvf ../openssl_1.0.1f-1ubuntu2.8.debian.tar.gz
+  tar xvf ../openssl_1.0.1f-1ubuntu2.11.debian.tar.gz
   cp -a (this repository)/trusty/debian/* debian/
   debuild -uc -us
 
