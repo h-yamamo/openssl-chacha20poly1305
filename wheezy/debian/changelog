@@ -33,6 +33,22 @@ openssl (1.0.1e-2+deb7u15) wheezy-security; urgency=medium
 
  -- Kurt Roeckx <kurt@roeckx.be>  Tue, 17 Mar 2015 19:11:55 +0100
 
+openssl (1.0.1e-2+deb7u15) wheezy-security; urgency=medium
+
+  * Fix CVE-2015-0286
+  * Fix CVE-2015-0287
+  * Fix CVE-2015-0289
+  * Fix CVE-2015-0292
+  * Fix CVE-2015-0293 (not affected, SSLv2 disabled)
+  * Fix CVE-2015-0209
+  * Fix CVE-2015-0288
+  * Remove export ciphers from DEFAULT.
+  * Make DTLS always act as if read_ahead is set.  This fixes a regression
+    introduce by the fix for CVE-2014-3571.  (Closes: #775502)
+  * Fix error codes.
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Tue, 17 Mar 2015 19:11:55 +0100
+
 openssl (1.0.1e-2+deb7u14) wheezy-security; urgency=medium
 
   - Fix for CVE-2014-3571
