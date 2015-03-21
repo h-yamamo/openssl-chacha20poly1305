@@ -7853,10 +7853,10 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  		{
  		ssl2_return_error(s,SSL2_PE_NO_CIPHER);
  		SSLerr(SSL_F_SSL2_ENC_INIT,SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
-diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
---- a/ssl/s2_srvr.c	2015-01-08 23:03:40.000000000 +0900
-+++ b/ssl/s2_srvr.c	2015-01-14 00:54:56.000000000 +0900
-@@ -460,7 +460,7 @@
+diff -ur openssl-1.0.1k-2 openssl-1.0.1k-2+ore1
+--- a/ssl/s2_srvr.c	2015-03-21 02:27:13.000000000 +0900
++++ b/ssl/s2_srvr.c	2015-03-21 18:32:58.000000000 +0900
+@@ -457,7 +457,7 @@
  
  	is_export=SSL_C_IS_EXPORT(s->session->cipher);
  	
@@ -8172,10 +8172,10 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  /* end of list */
  	};
  
-diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
---- a/ssl/s3_pkt.c	2015-01-09 21:55:51.000000000 +0900
-+++ b/ssl/s3_pkt.c	2015-01-10 19:32:30.000000000 +0900
-@@ -811,7 +811,12 @@
+diff -ur openssl-1.0.1k-2 openssl-1.0.1k-2+ore1
+--- a/ssl/s3_pkt.c	2015-03-21 02:27:58.000000000 +0900
++++ b/ssl/s3_pkt.c	2015-03-21 18:34:06.000000000 +0900
+@@ -812,7 +812,12 @@
  		else
  			eivlen = 0;
  		}
@@ -8291,9 +8291,9 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  	} SSL3_STATE;
  
  #endif
-diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
---- a/ssl/ssl_ciph.c	2013-08-07 06:10:56.000000000 +0900
-+++ b/ssl/ssl_ciph.c	2014-09-03 23:33:40.000000000 +0900
+diff -ur openssl-1.0.1k-2 openssl-1.0.1k-2+ore1
+--- a/ssl/ssl_ciph.c	2015-03-21 02:33:12.000000000 +0900
++++ b/ssl/ssl_ciph.c	2015-03-21 18:35:40.000000000 +0900
 @@ -299,6 +299,7 @@
  	{0,SSL_TXT_CAMELLIA128,0,0,0,SSL_CAMELLIA128,0,0,0,0,0,0},
  	{0,SSL_TXT_CAMELLIA256,0,0,0,SSL_CAMELLIA256,0,0,0,0,0,0},
@@ -8398,7 +8398,7 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  
  	if ((enc == NULL) || (md == NULL)) return(0);
  
-@@ -1695,6 +1741,9 @@
+@@ -1701,6 +1747,9 @@
  	case SSL_eGOST2814789CNT:
  		enc="GOST89(256)";
  		break;

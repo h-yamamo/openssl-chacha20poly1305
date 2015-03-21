@@ -19,7 +19,7 @@ How to make packages:
   apt-get -d source openssl
   tar xf openssl_1.0.1k.orig.tar.gz
   cd openssl-1.0.1k
-  tar xvf ../openssl_1.0.1k-1.debian.tar.xz
+  tar xvf ../openssl_1.0.1k-2.debian.tar.xz
   cp -a (this repository)/jessie/debian/* debian/
   debuild -uc -us
 

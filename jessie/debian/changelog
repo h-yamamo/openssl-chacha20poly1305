@@ -1,10 +1,4 @@
-openssl (1.0.1k-1+ore2) jessie; urgency=low
-
-  * New crypto/chacha/chacha_vec_arm.S from BoringSSL.
-
- -- Ore sama <oresama@hoge.japan>  Fri, 06 Mar 2015 23:08:40 +0900
-
-openssl (1.0.1k-1+ore1) jessie; urgency=low
+openssl (1.0.1k-2+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -19,9 +13,23 @@ openssl (1.0.1k-1+ore1) jessie; urgency=low
       if there are available.
     - Modify SSL headers to be better compatibility with released official
       packages.
-    - Rewrite part of ssl/t1_enc.c to improve maintainability.
+    - Use aligned buffer for a mac return area in poly1305_arm.c.
 
- -- Ore sama <oresama@hoge.japan>  Wed, 28 Jan 2015 23:57:30 +0900
+ -- Ore sama <oresama@hoge.japan>  Sat, 21 Mar 2015 18:40:07 +0900
+
+openssl (1.0.1k-2) unstable; urgency=high
+
+  * Fix CVE-2015-0286
+  * Fix CVE-2015-0287
+  * Fix CVE-2015-0289
+  * Fix CVE-2015-0293 (not affected, SSLv2 disabled)
+  * Fix CVE-2015-0209
+  * Fix CVE-2015-0288
+  * Remove export ciphers from DEFAULT.
+  * Make DTLS always act as if read_ahead is set.  This fixes a regression
+    introduce by the fix for CVE-2014-3571.  (Closes: #775502)
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Fri, 20 Mar 2015 18:24:15 +0100
 
 openssl (1.0.1k-1) unstable; urgency=medium
 
