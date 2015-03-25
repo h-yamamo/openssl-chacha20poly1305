@@ -22,7 +22,6 @@ ppc64el.patch
 0006-Fix-reachable-assert-in-SSLv2-servers.patch
 0005-PKCS-7-avoid-NULL-pointer-dereferences-with-missing-.patch
 0004-Fix-ASN1_TYPE_cmp.patch
-0003-Free-up-passed-ASN.1-structure-if-reused.patch
 0002-Free-up-ADB-and-CHOICE-if-already-initialised.patch
 0001-fix-warning.patch
 0001-Remove-export-ciphers-from-the-DEFAULT-cipher-list.patch
