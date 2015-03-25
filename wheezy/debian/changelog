@@ -28,6 +28,15 @@ openssl (1.0.1e-2+deb7u16) wheezy-security; urgency=medium
 
  -- Kurt Roeckx <kurt@roeckx.be>  Thu, 19 Mar 2015 19:03:58 +0100
 
+openssl (1.0.1e-2+deb7u16) wheezy-security; urgency=medium
+
+  * Revert patch 0003-Free-up-passed-ASN.1-structure-if-reused.patch, it
+    breaks nginx and doesn't have a security issue
+  * Add patch 0008-Fix-a-failure-to-NULL-a-pointer-freed-on-error.patch
+    as follow up to CVE-2015-0209
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Thu, 19 Mar 2015 19:03:58 +0100
+
 openssl (1.0.1e-2+deb7u15) wheezy-security; urgency=medium
 
   * Fix CVE-2015-0286
