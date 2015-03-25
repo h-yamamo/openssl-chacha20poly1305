@@ -1,4 +1,4 @@
-openssl (1.0.1e-2+deb7u15+ore1) wheezy; urgency=low
+openssl (1.0.1e-2+deb7u16+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -16,6 +16,15 @@ openssl (1.0.1e-2+deb7u15+ore1) wheezy; urgency=low
     - Use aligned buffer for a mac return area in poly1305_arm.c.
 
  -- Ore sama <oresama@hoge.japan>  Fri, 20 Mar 2015 20:06:05 +0900
+
+openssl (1.0.1e-2+deb7u16) wheezy-security; urgency=medium
+
+  * Revert patch 0003-Free-up-passed-ASN.1-structure-if-reused.patch, it
+    breaks nginx and doesn't have a security issue
+  * Add patch 0008-Fix-a-failure-to-NULL-a-pointer-freed-on-error.patch
+    as follow up to CVE-2015-0209
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Thu, 19 Mar 2015 19:03:58 +0100
 
 openssl (1.0.1e-2+deb7u15) wheezy-security; urgency=medium
 
