@@ -3245,10 +3245,12 @@ diff -urN /dev/null 1.0.1-4ubuntu5.21+ore3
 +	}
 +
 +#endif  /* !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1-4ubuntu5.16+ore2
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/poly1305_arm_asm.S	2014-05-05 19:35:40.040437965 +0900
-@@ -0,0 +1,2009 @@
+diff -urN /dev/null 1.0.1-4ubuntu5.25+ore1
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/crypto/poly1305/poly1305_arm_asm.S	2014-09-03 19:23:25.000000000 +0900
+@@ -0,0 +1,2015 @@
++#if defined(__arm__) && !defined(OPENSSL_NO_ASM)
++
 +# This implementation was taken from the public domain, neon2 version in
 +# SUPERCOP by D. J. Bernstein and Peter Schwabe.
 +
@@ -3403,6 +3405,7 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore2
 +# qhasm: qpushenter crypto_onetimeauth_poly1305_neon2_blocks
 +.align 4
 +.global openssl_poly1305_neon2_blocks
++.hidden openssl_poly1305_neon2_blocks
 +.type openssl_poly1305_neon2_blocks STT_FUNC
 +openssl_poly1305_neon2_blocks:
 +vpush {q4,q5,q6,q7}
@@ -4861,6 +4864,7 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore2
 +# qhasm: enter crypto_onetimeauth_poly1305_neon2_addmulmod
 +.align 2
 +.global openssl_poly1305_neon2_addmulmod
++.hidden openssl_poly1305_neon2_addmulmod
 +.type openssl_poly1305_neon2_addmulmod STT_FUNC
 +openssl_poly1305_neon2_addmulmod:
 +sub sp,sp,#0
@@ -5258,6 +5262,8 @@ diff -urN /dev/null 1.0.1-4ubuntu5.16+ore2
 +# qhasm: return
 +add sp,sp,#0
 +bx lr
++
++#endif  /* __arm__ && !OPENSSL_NO_ASM */
 diff -urN /dev/null 1.0.1-4ubuntu5.13+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/poly1305_vec.c	2014-05-05 19:36:29.001557067 +0900
