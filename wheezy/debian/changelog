@@ -1,4 +1,4 @@
-openssl (1.0.1e-2+deb7u15+ore1) wheezy; urgency=low
+openssl (1.0.1e-2+deb7u16+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -8,14 +8,25 @@ openssl (1.0.1e-2+deb7u15+ore1) wheezy; urgency=low
         BoringSSL and LibreSSL
     - Copied the following from BoringSSL.
         crypto/chacha/chacha_vec_arm.S
+        crypto/poly1305/poly1305_arm_asm.S
         test/chacha20_poly1305_tests.txt
     - Improve performance using NEON in armhf arch or SSE2 in i386 arch
       if there are available.
     - Modify SSL headers to be better compatibility with released official
       packages.
     - Use aligned buffer for a mac return area in poly1305_arm.c.
+    - Rewrite part of ssl/t1_enc.c to improve maintainability.
 
- -- Ore sama <oresama@hoge.japan>  Fri, 20 Mar 2015 20:06:05 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 25 Mar 2015 20:10:46 +0900
+
+openssl (1.0.1e-2+deb7u16) wheezy-security; urgency=medium
+
+  * Revert patch 0003-Free-up-passed-ASN.1-structure-if-reused.patch, it
+    breaks nginx and doesn't have a security issue
+  * Add patch 0008-Fix-a-failure-to-NULL-a-pointer-freed-on-error.patch
+    as follow up to CVE-2015-0209
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Thu, 19 Mar 2015 19:03:58 +0100
 
 openssl (1.0.1e-2+deb7u15) wheezy-security; urgency=medium
 
