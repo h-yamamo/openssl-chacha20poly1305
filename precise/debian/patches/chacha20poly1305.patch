@@ -8306,10 +8306,10 @@ diff -ur openssl-1.0.1-4ubuntu5.21 1.0.1-4ubuntu5.21+ore2
  	} SSL3_STATE;
  
  #endif
-diff -ur openssl-1.0.1-4ubuntu5.25 1.0.1-4ubuntu5.25+ore1
---- a/ssl/ssl_ciph.c	2015-02-27 03:05:10.000000000 +0900
-+++ b/ssl/ssl_ciph.c	2015-03-20 20:08:06.000000000 +0900
-@@ -302,6 +302,7 @@
+diff -ur openssl-1.0.1-4ubuntu5.28 1.0.1-4ubuntu5.28+ore1
+--- a/ssl/ssl_ciph.c	2015-05-28 21:58:27.000000000 +0900
++++ b/ssl/ssl_ciph.c	2015-06-02 19:57:30.000000000 +0900
+@@ -301,6 +301,7 @@
  	{0,SSL_TXT_CAMELLIA128,0,0,0,SSL_CAMELLIA128,0,0,0,0,0,0},
  	{0,SSL_TXT_CAMELLIA256,0,0,0,SSL_CAMELLIA256,0,0,0,0,0,0},
  	{0,SSL_TXT_CAMELLIA   ,0,0,0,SSL_CAMELLIA128|SSL_CAMELLIA256,0,0,0,0,0,0},
@@ -8317,7 +8317,7 @@ diff -ur openssl-1.0.1-4ubuntu5.25 1.0.1-4ubuntu5.25+ore1
  
  	/* MAC aliases */	
  	{0,SSL_TXT_MD5,0,     0,0,0,SSL_MD5,   0,0,0,0,0},
-@@ -316,6 +317,7 @@
+@@ -315,6 +316,7 @@
  	{0,SSL_TXT_SSLV2,0,   0,0,0,0,SSL_SSLV2, 0,0,0,0},
  	{0,SSL_TXT_SSLV3,0,   0,0,0,0,SSL_SSLV3, 0,0,0,0},
  	{0,SSL_TXT_TLSV1,0,   0,0,0,0,SSL_TLSV1, 0,0,0,0},
@@ -8325,7 +8325,7 @@ diff -ur openssl-1.0.1-4ubuntu5.25 1.0.1-4ubuntu5.25+ore1
  
  	/* export flag */
  	{0,SSL_TXT_EXP,0,     0,0,0,0,0,SSL_EXPORT,0,0,0},
-@@ -487,32 +489,77 @@
+@@ -486,32 +488,77 @@
  	}
  #endif
  
@@ -8421,7 +8421,7 @@ diff -ur openssl-1.0.1-4ubuntu5.25 1.0.1-4ubuntu5.25+ore1
  
  	if ((enc == NULL) || (md == NULL)) return(0);
  
-@@ -1149,9 +1196,9 @@
+@@ -1153,9 +1200,9 @@
  			while (	((ch >= 'A') && (ch <= 'Z')) ||
  				((ch >= '0') && (ch <= '9')) ||
  				((ch >= 'a') && (ch <= 'z')) ||
@@ -8433,7 +8433,7 @@ diff -ur openssl-1.0.1-4ubuntu5.25 1.0.1-4ubuntu5.25+ore1
  #endif
  				 {
  				 ch = *(++l);
-@@ -1676,6 +1723,9 @@
+@@ -1680,6 +1727,9 @@
  	case SSL_SEED:
  		enc="SEED(128)";
  		break;

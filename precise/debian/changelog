@@ -1,4 +1,4 @@
-openssl (1.0.1-4ubuntu5.27+ore1) precise; urgency=low
+openssl (1.0.1-4ubuntu5.28+ore1) precise; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -18,7 +18,16 @@ openssl (1.0.1-4ubuntu5.27+ore1) precise; urgency=low
     - Use aligned buffer for a mac return area in poly1305_arm.c.
     - Rewrite part of ssl/t1_enc.c to improve maintainability.
 
- -- Ore sama <oresama@hoge.japan>  Wed, 13 May 2015 19:46:22 +0900
+ -- Ore sama <oresama@hoge.japan>  Tue, 02 Jun 2015 19:57:44 +0900
+
+openssl (1.0.1-4ubuntu5.28) precise-security; urgency=medium
+
+  * SECURITY IMPROVEMENT: Disable EXPORT ciphers by default
+    - debian/patches/disable_export_ciphers.patch: remove export ciphers
+      from the DEFAULT cipher list in ssl/ssl.h, ssl/ssl_ciph.c,
+      doc/apps/ciphers.pod.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 28 May 2015 08:58:31 -0400
 
 openssl (1.0.1-4ubuntu5.27) precise-security; urgency=medium
 
