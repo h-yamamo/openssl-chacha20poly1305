@@ -78,4 +78,13 @@ CVE-2015-0293.patch
 CVE-2015-0209-2.patch
 CVE-2015-0293-2.patch
 disable_export_ciphers.patch
+reject_small_dh.patch
+CVE-2014-8176.patch
+CVE-2015-1791.patch
+CVE-2015-1788.patch
+CVE-2015-1789.patch
+CVE-2015-1790.patch
+CVE-2015-1792.patch
+CVE-2015-1791-2.patch
+CVE-2015-1791-3.patch
 chacha20poly1305.patch

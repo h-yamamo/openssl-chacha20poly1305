@@ -8204,9 +8204,9 @@ diff -ur openssl-1.0.1-4ubuntu5.21 1.0.1-4ubuntu5.21+ore1
  		eivlen = 0;
  
  	/* lets setup the record stuff. */
-diff -ur openssl-1.0.1-4ubuntu5.21 1.0.1-4ubuntu5.21+ore2
---- a/ssl/ssl.h	2015-01-09 22:02:16.000000000 +0900
-+++ b/ssl/ssl.h	2015-01-20 22:57:29.000000000 +0900
+diff -ur openssl-1.0.1-4ubuntu5.31 1.0.1-4ubuntu5.31+ore1
+--- a/ssl/ssl.h	2015-06-09 01:00:20.000000000 +0900
++++ b/ssl/ssl.h	2015-06-12 20:31:05.000000000 +0900
 @@ -292,6 +292,7 @@
  #define SSL_TXT_CAMELLIA128	"CAMELLIA128"
  #define SSL_TXT_CAMELLIA256	"CAMELLIA256"
@@ -8271,7 +8271,7 @@ diff -ur openssl-1.0.1-4ubuntu5.21 1.0.1-4ubuntu5.21+ore2
  	};
  
  #endif
-@@ -2262,8 +2282,11 @@
+@@ -2263,8 +2283,11 @@
  #define SSL_F_SSL_USE_RSAPRIVATEKEY_FILE		 206
  #define SSL_F_SSL_VERIFY_CERT_CHAIN			 207
  #define SSL_F_SSL_WRITE					 208
@@ -8443,10 +8443,10 @@ diff -ur openssl-1.0.1-4ubuntu5.28 1.0.1-4ubuntu5.28+ore1
  	default:
  		enc="unknown";
  		break;
-diff -ur openssl-1.0.1-4ubuntu5.13 1.0.1-4ubuntu5.13+ore1
---- a/ssl/ssl_err.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/ssl_err.c	2014-05-27 22:10:10.000000000 +0900
-@@ -276,8 +276,11 @@
+diff -ur openssl-1.0.1-4ubuntu5.31 1.0.1-4ubuntu5.31+ore1
+--- a/ssl/ssl_err.c	2015-06-09 01:00:20.000000000 +0900
++++ b/ssl/ssl_err.c	2015-06-12 20:32:37.000000000 +0900
+@@ -277,8 +277,11 @@
  {ERR_FUNC(SSL_F_SSL_USE_RSAPRIVATEKEY_FILE),	"SSL_use_RSAPrivateKey_file"},
  {ERR_FUNC(SSL_F_SSL_VERIFY_CERT_CHAIN),	"SSL_VERIFY_CERT_CHAIN"},
  {ERR_FUNC(SSL_F_SSL_WRITE),	"SSL_write"},
@@ -8481,9 +8481,9 @@ diff -ur openssl-1.0.1-4ubuntu5.20 1.0.1-4ubuntu5.20+ore1
  #ifndef OPENSSL_NO_COMP
  	if (s->expand != NULL)
  		{
-diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore1
---- a/ssl/ssl_locl.h	2014-05-04 15:44:25.871712755 +0900
-+++ b/ssl/ssl_locl.h	2014-08-08 20:19:03.000000000 +0900
+diff -ur openssl-1.0.1-4ubuntu5.31 1.0.1-4ubuntu5.31+ore1
+--- a/ssl/ssl_locl.h	2015-06-09 01:00:20.000000000 +0900
++++ b/ssl/ssl_locl.h	2015-06-12 20:34:05.000000000 +0900
 @@ -329,6 +329,7 @@
  #define SSL_SEED		0x00000800L
  #define SSL_AES128GCM		0x00001000L
@@ -8535,7 +8535,7 @@ diff -ur openssl-1.0.1-4ubuntu5.17 1.0.1-4ubuntu5.17+ore1
  #ifndef OPENSSL_NO_COMP
  /* Used for holding the relevant compression methods loaded into SSL_CTX */
  typedef struct ssl3_comp_st
-@@ -835,8 +863,10 @@
+@@ -836,8 +864,10 @@
  					     STACK_OF(SSL_CIPHER) **sorted,
  					     const char *rule_str);
  void ssl_update_cache(SSL *s, int mode);

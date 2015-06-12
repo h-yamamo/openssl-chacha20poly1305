@@ -1,4 +1,4 @@
-openssl (1.0.1f-1ubuntu2.12+ore1) trusty; urgency=low
+openssl (1.0.1f-1ubuntu2.15+ore1) trusty; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -17,7 +17,47 @@ openssl (1.0.1f-1ubuntu2.12+ore1) trusty; urgency=low
     - Use aligned buffer for a mac return area in poly1305_arm.c.
     - Rewrite part of ssl/t1_enc.c to improve maintainability.
 
- -- Ore sama <oresama@hoge.japan>  Tue, 02 Jun 2015 20:17:50 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 12 Jun 2015 20:53:08 +0900
+
+openssl (1.0.1f-1ubuntu2.15) trusty-security; urgency=medium
+
+  * SECURITY IMPROVEMENT: reject dh keys smaller than 768 bits
+    - debian/patches/reject_small_dh.patch: reject small dh keys in
+      ssl/s3_clnt.c, ssl/ssl.h, ssl/ssl_err.c, update documentation in
+      doc/ssl/SSL_CTX_set_tmp_dh_callback.pod, make s_server use 2048-bit
+      dh in apps/s_server.c, clarify docs in doc/apps/dhparam.pod.
+  * SECURITY UPDATE: denial of service and possible code execution via
+    invalid free in DTLS
+    - debian/patches/CVE-2014-8176.patch: fix invalid free in ssl/d1_lib.c.
+    - CVE-2014-8176
+  * SECURITY UPDATE: denial of service via malformed ECParameters
+    - debian/patches/CVE-2015-1788.patch: improve logic in
+      crypto/bn/bn_gf2m.c.
+    - CVE-2015-1788
+  * SECURITY UPDATE: denial of service via out-of-bounds read in
+    X509_cmp_time
+    - debian/patches/CVE-2015-1789.patch: properly parse time format in
+      crypto/x509/x509_vfy.c.
+    - CVE-2015-1789
+  * SECURITY UPDATE: denial of service via missing EnvelopedContent
+    - debian/patches/CVE-2015-1790.patch: handle NULL data_body in
+      crypto/pkcs7/pk7_doit.c.
+    - CVE-2015-1790
+  * SECURITY UPDATE: race condition in NewSessionTicket
+    - debian/patches/CVE-2015-1791.patch: create a new session in
+      ssl/s3_clnt.c, ssl/ssl.h, ssl/ssl_err.c, ssl/ssl_locl.h,
+      ssl/ssl_sess.c.
+    - debian/patches/CVE-2015-1791-2.patch: fix kerberos issue in
+      ssl/ssl_sess.c.
+    - debian/patches/CVE-2015-1791-3.patch: more ssl_session_dup fixes in
+      ssl/ssl_sess.c.
+    - CVE-2015-1791
+  * SECURITY UPDATE: CMS verify infinite loop with unknown hash function
+    - debian/patches/CVE-2015-1792.patch: fix infinite loop in
+      crypto/cms/cms_smime.c.
+    - CVE-2015-1792
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 11 Jun 2015 07:34:23 -0400
 
 openssl (1.0.1f-1ubuntu2.12) trusty-security; urgency=medium
 
