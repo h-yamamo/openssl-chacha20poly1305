@@ -1,4 +1,4 @@
-openssl (1.0.1e-2+deb7u16+ore1) wheezy; urgency=low
+openssl (1.0.1e-2+deb7u17+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -17,7 +17,19 @@ openssl (1.0.1e-2+deb7u16+ore1) wheezy; urgency=low
     - Use aligned buffer for a mac return area in poly1305_arm.c.
     - Rewrite part of ssl/t1_enc.c to improve maintainability.
 
- -- Ore sama <oresama@hoge.japan>  Wed, 25 Mar 2015 20:10:46 +0900
+ -- Ore sama <oresama@hoge.japan>  Sun, 14 Jun 2015 01:53:40 +0900
+
+openssl (1.0.1e-2+deb7u17) wheezy-security; urgency=medium
+
+  * Fix CVE-2015-1791
+  * Fix CVE-2015-1792
+  * Fix CVE-2015-1789
+  * Fix CVE-2015-1790
+  * Fix CVE-2015-1788
+  * Fix CVE-2015-4000
+  * Fix CVE-2014-8176
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Sat, 13 Jun 2015 12:18:30 +0200
 
 openssl (1.0.1e-2+deb7u16) wheezy-security; urgency=medium
 

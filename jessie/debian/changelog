@@ -1,4 +1,4 @@
-openssl (1.0.1k-3+ore1) jessie; urgency=low
+openssl (1.0.1k-3+deb8u1+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -17,7 +17,18 @@ openssl (1.0.1k-3+ore1) jessie; urgency=low
     - Use aligned buffer for a mac return area in poly1305_arm.c.
     - Rewrite part of ssl/t1_enc.c to improve maintainability.
 
- -- Ore sama <oresama@hoge.japan>  Wed, 25 Mar 2015 20:10:46 +0900
+ -- Ore sama <oresama@hoge.japan>  Sun, 14 Jun 2015 16:09:28 +0900
+
+openssl (1.0.1k-3+deb8u1) jessie-security; urgency=medium
+
+  * Fix CVE-2015-1791
+  * Fix CVE-2015-1792
+  * Fix CVE-2015-1789
+  * Fix CVE-2015-1790
+  * Fix CVE-2015-1788
+  * CVE-2015-4000: Have minimum of 768 bit for DH
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Thu, 11 Jun 2015 20:55:20 +0200
 
 openssl (1.0.1k-3) unstable; urgency=medium
 

@@ -10,16 +10,16 @@ How to make packages:
   apt-get -d source openssl
   tar xf openssl_1.0.1e.orig.tar.gz
   cd openssl-1.0.1e
-  tar xvf ../openssl_1.0.1e-2+deb7u16.debian.tar.gz
+  tar xvf ../openssl_1.0.1e-2+deb7u17.debian.tar.gz
   cp -a (this repository)/wheezy/debian/* debian/
   debuild -uc -us
 
-*Debian 8 (jessie)
+*Debian 8.1 (jessie)
   (in some directory)
   apt-get -d source openssl
   tar xf openssl_1.0.1k.orig.tar.gz
   cd openssl-1.0.1k
-  tar xvf ../openssl_1.0.1k-3.debian.tar.xz
+  tar xvf ../openssl_1.0.1k-3+deb8u1.debian.tar.xz
   cp -a (this repository)/jessie/debian/* debian/
   debuild -uc -us
 
