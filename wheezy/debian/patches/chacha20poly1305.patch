@@ -7899,9 +7899,9 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  		{
  		SSLerr(SSL_F_SSL3_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
  		return(0);
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
---- a/ssl/s3_lib.c	2014-05-04 15:44:25.871712755 +0900
-+++ b/ssl/s3_lib.c	2014-05-07 17:42:51.597642971 +0900
+diff -ur openssl-1.0.1e-2+deb7u17 1.0.1e-2+deb7u17+ore1
+--- a/ssl/s3_lib.c	2014-10-15 17:46:43.000000000 +0000
++++ b/ssl/s3_lib.c	2015-08-25 23:47:38.000000000 +0900
 @@ -166,6 +166,11 @@
  
  #define SSL3_NUM_CIPHERS	(sizeof(ssl3_ciphers)/sizeof(SSL_CIPHER))
@@ -8151,7 +8151,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 +	SSL_NOT_EXP|SSL_HIGH,
 +	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|FIXED_NONCE_LEN(0),
 +	256,
-+	0,
++	256,
 +	},
 +
 +	{
@@ -8166,7 +8166,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 +	SSL_NOT_EXP|SSL_HIGH,
 +	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|FIXED_NONCE_LEN(0),
 +	256,
-+	0,
++	256,
 +	},
 +
 +	{
@@ -8181,7 +8181,7 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
 +	SSL_NOT_EXP|SSL_HIGH,
 +	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|FIXED_NONCE_LEN(0),
 +	256,
-+	0,
++	256,
 +	},
 +#endif
 +
