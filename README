@@ -5,7 +5,7 @@ For Debian/Ubuntu packages.
 
 How to make packages:
 
-*Debian 7.8 (wheezy)
+*Debian 7 (wheezy)
   (in some directory)
   apt-get -d source openssl
   tar xf openssl_1.0.1e.orig.tar.gz
@@ -14,7 +14,7 @@ How to make packages:
   cp -a (this repository)/wheezy/debian/* debian/
   debuild -uc -us
 
-*Debian 8.1 (jessie)
+*Debian 8 (jessie)
   (in some directory)
   apt-get -d source openssl
   tar xf openssl_1.0.1k.orig.tar.gz
@@ -23,7 +23,7 @@ How to make packages:
   cp -a (this repository)/jessie/debian/* debian/
   debuild -uc -us
 
-*Ubuntu 12.04.5 LTS (Precise Pangolin)
+*Ubuntu 12.04 LTS (precise)
   (in some directory)
   apt-get -d source openssl
   tar xf openssl_1.0.1.orig.tar.gz
@@ -32,7 +32,7 @@ How to make packages:
   cp -a (this repository)/precise/debian/* debian/
   debuild -uc -us
 
-*Ubuntu 14.04.2 LTS (Trusty Tahr)
+*Ubuntu 14.04 LTS (trusty)
   (in some directory)
   apt-get -d source openssl
   tar xf openssl_1.0.1f.orig.tar.gz
