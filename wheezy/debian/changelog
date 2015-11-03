@@ -1,3 +1,12 @@
+openssl (1.0.1e-2+deb7u17+ore2) wheezy; urgency=low
+
+  * Add the RFC 7539 ChaCha20+Poly1305 AEAD.
+    - Refactor ChaCha20+Poly1305 AEAD nonce handling.
+    - Add more tests from BoringSSL.
+        test/chacha20_poly1305_rfc7539_tests.txt
+
+ -- Ore sama <oresama@hoge.japan>  Mon, 02 Nov 2015 21:12:40 +0900
+
 openssl (1.0.1e-2+deb7u17+ore1) wheezy; urgency=low
 
   * Non-maintainer release.

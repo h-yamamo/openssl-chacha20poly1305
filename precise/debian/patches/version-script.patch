@@ -14,8 +14,8 @@ Index: openssl-1.0.1/Configure
 Index: openssl-1.0.1/openssl.ld
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ openssl-1.0.1/openssl.ld	2014-05-27 19:56:32.000000000 +0900
-@@ -0,0 +1,4630 @@
++++ openssl-1.0.1/openssl.ld	2015-11-02 22:48:35.000000000 +0900
+@@ -0,0 +1,4632 @@
 +OPENSSL_1.0.0 {
 +	global:
 +		BIO_f_ssl;
@@ -4636,6 +4636,8 @@ Index: openssl-1.0.1/openssl.ld
 +		EVP_aead_aes_128_gcm;
 +		EVP_aead_aes_256_gcm;
 +		EVP_aead_chacha20_poly1305;
++		EVP_aead_chacha20_poly1305_old;
++		EVP_aead_chacha20_poly1305_rfc7539;
 +		EVP_AEAD_key_length;
 +		EVP_AEAD_nonce_length;
 +		EVP_AEAD_max_overhead;

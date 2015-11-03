@@ -1,3 +1,12 @@
+openssl (1.0.1-4ubuntu5.31+ore2) precise; urgency=low
+
+  * Add the RFC 7539 ChaCha20+Poly1305 AEAD.
+    - Refactor ChaCha20+Poly1305 AEAD nonce handling.
+    - Add more tests from BoringSSL.
+        test/chacha20_poly1305_rfc7539_tests.txt
+
+ -- Ore sama <oresama@hoge.japan>  Mon, 02 Nov 2015 22:52:18 +0900
+
 openssl (1.0.1-4ubuntu5.31+ore1) precise; urgency=low
 
   * Non-maintainer release.
