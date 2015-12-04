@@ -35,4 +35,7 @@ CVE-2015-1789.patch
 CVE-2015-1790.patch
 CVE-2015-1788.patch
 CVE-2015-4000.patch
+CVE-2015-3194.patch
+CVE-2015-3195.patch
+CVE-2015-3196.patch
 chacha20poly1305.patch

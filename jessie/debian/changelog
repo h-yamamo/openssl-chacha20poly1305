@@ -1,13 +1,4 @@
-openssl (1.0.1k-3+deb8u1+ore2) jessie; urgency=low
-
-  * Add the RFC 7539 ChaCha20+Poly1305 AEAD.
-    - Refactor ChaCha20+Poly1305 AEAD nonce handling.
-    - Add more tests from BoringSSL.
-        test/chacha20_poly1305_rfc7539_tests.txt
-
- -- Ore sama <oresama@hoge.japan>  Sun, 01 Nov 2015 23:24:10 +0900
-
-openssl (1.0.1k-3+deb8u1+ore1) jessie; urgency=low
+openssl (1.0.1k-3+deb8u2+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -25,8 +16,20 @@ openssl (1.0.1k-3+deb8u1+ore1) jessie; urgency=low
       packages.
     - Use aligned buffer for a mac return area in poly1305_arm.c.
     - Rewrite part of ssl/t1_enc.c to improve maintainability.
+    - Add the RFC 7539 ChaCha20+Poly1305 AEAD applied from BoringSSL.
+        Refactor ChaCha20+Poly1305 AEAD nonce handling.
+        Add more tests:
+          test/chacha20_poly1305_rfc7539_tests.txt
 
- -- Ore sama <oresama@hoge.japan>  Sun, 14 Jun 2015 16:09:28 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 04 Dec 2015 21:00:00 +0900
+
+openssl (1.0.1k-3+deb8u2) jessie-security; urgency=medium
+
+  * Fix CVE-2015-3194
+  * Fix CVE-2015-3195
+  * Fix CVE-2015-3196
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Thu, 03 Dec 2015 18:39:46 +0100
 
 openssl (1.0.1k-3+deb8u1) jessie-security; urgency=medium
 
