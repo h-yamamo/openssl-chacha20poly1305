@@ -1,13 +1,4 @@
-openssl (1.0.1-4ubuntu5.31+ore2) precise; urgency=low
-
-  * Add the RFC 7539 ChaCha20+Poly1305 AEAD.
-    - Refactor ChaCha20+Poly1305 AEAD nonce handling.
-    - Add more tests from BoringSSL.
-        test/chacha20_poly1305_rfc7539_tests.txt
-
- -- Ore sama <oresama@hoge.japan>  Mon, 02 Nov 2015 22:52:18 +0900
-
-openssl (1.0.1-4ubuntu5.31+ore1) precise; urgency=low
+openssl (1.0.1-4ubuntu5.32+ore1) precise; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -26,8 +17,29 @@ openssl (1.0.1-4ubuntu5.31+ore1) precise; urgency=low
       packages.
     - Use aligned buffer for a mac return area in poly1305_arm.c.
     - Rewrite part of ssl/t1_enc.c to improve maintainability.
+    - Add the RFC 7539 ChaCha20+Poly1305 AEAD applied from BoringSSL.
+        Refactor ChaCha20+Poly1305 AEAD nonce handling.
+        Add more tests:
+          test/chacha20_poly1305_rfc7539_tests.txt
 
- -- Ore sama <oresama@hoge.japan>  Fri, 12 Jun 2015 20:51:30 +0900
+ -- Ore sama <oresama@hoge.japan>  Tue, 08 Dec 2015 20:00:00 +0900
+
+openssl (1.0.1-4ubuntu5.32) precise-security; urgency=medium
+
+  * SECURITY UPDATE: Certificate verify crash with missing PSS parameter
+    - debian/patches/CVE-2015-3194.patch: add PSS parameter check to
+      crypto/rsa/rsa_ameth.c.
+    - CVE-2015-3194
+  * SECURITY UPDATE: X509_ATTRIBUTE memory leak
+    - debian/patches/CVE-2015-3195.patch: fix leak in
+      crypto/asn1/tasn_dec.c.
+    - CVE-2015-3195
+  * SECURITY UPDATE: Race condition handling PSK identify hint
+    - debian/patches/CVE-2015-3196.patch: fix PSK handling in
+      ssl/s3_clnt.c, ssl/s3_srvr.c.
+    - CVE-2015-3196
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 04 Dec 2015 08:22:09 -0500
 
 openssl (1.0.1-4ubuntu5.31) precise-security; urgency=medium
 
