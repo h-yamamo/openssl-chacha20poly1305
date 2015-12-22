@@ -1,3 +1,16 @@
+openssl (1.0.1e-2+deb7u18+ore2) wheezy; urgency=low
+
+  * Add support the standardized ChaCha20-Poly1305 Cipher Suites for TLS.
+    Implement draft-ietf-tls-chacha20-poly1305-04 based on the BoringSSL.
+    - Change EVP_aead_chacha20_poly1305() to the RFC 7539 version.
+    - Add cipher suites IDs.
+    - Implement XORing fixed nonce.
+    - Rename tests file names:
+        test/chacha20_poly1305_old_tests.txt
+        test/chacha20_poly1305_tests.txt
+
+ -- Ore sama <oresama@hoge.japan>  Mon, 21 Dec 2015 23:40:00 +0900
+
 openssl (1.0.1e-2+deb7u18+ore1) wheezy; urgency=low
 
   * Non-maintainer release.

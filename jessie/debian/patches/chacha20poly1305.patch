@@ -6266,9 +6266,9 @@ diff -urN /dev/null 1.0.1k-1+ore1
 +int main() { return 0; }
 +
 +#endif
-diff -urN /dev/null 1.0.1k-3+deb8u1+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u2+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/evp/e_chacha20poly1305.c	2015-11-01 19:02:34.000000000 +0900
++++ b/crypto/evp/e_chacha20poly1305.c	2015-12-19 18:55:33.000000000 +0900
 @@ -0,0 +1,449 @@
 +/* ====================================================================
 + * Copyright (c) 2013 The OpenSSL Project.  All rights reserved.
@@ -6715,7 +6715,7 @@ diff -urN /dev/null 1.0.1k-3+deb8u1+ore2
 +
 +const EVP_AEAD *EVP_aead_chacha20_poly1305()
 +	{
-+	return &aead_chacha20_poly1305_old;
++	return &aead_chacha20_poly1305;
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA && !OPENSSL_NO_POLY1305 */
@@ -8157,9 +8157,9 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  		{
  		SSLerr(SSL_F_SSL3_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
  		return(0);
-diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore1
+diff -ur openssl-1.0.1k-3+deb8u2 openssl-1.0.1k-3+deb8u2+ore2
 --- a/ssl/s3_lib.c	2015-01-08 23:00:56.000000000 +0900
-+++ b/ssl/s3_lib.c	2015-08-25 23:47:38.000000000 +0900
++++ b/ssl/s3_lib.c	2015-12-20 15:11:11.000000000 +0900
 @@ -166,6 +166,11 @@
  
  #define SSL3_NUM_CIPHERS	(sizeof(ssl3_ciphers)/sizeof(SSL_CIPHER))
@@ -8167,7 +8167,7 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore1
 +/* FIXED_NONCE_LEN is a macro that results in the correct value to set the
 + * fixed nonce length in SSL_CIPHER.algorithms2. It's the inverse of
 + * SSL_CIPHER_AEAD_FIXED_NONCE_LEN. */
-+#define FIXED_NONCE_LEN(x) ((x/2)<<24)
++#define FIXED_NONCE_LEN(x) ((x & 0xe) << 24)
 +
  /* list of available SSLv3 ciphers (sorted by id) */
  OPENSSL_GLOBAL SSL_CIPHER ssl3_ciphers[]={
@@ -8392,15 +8392,15 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore1
  	256,
  	256,
  	},
-@@ -2889,6 +2934,53 @@
+@@ -2889,6 +2934,101 @@
  	},
  #endif
  
 +#if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
 +	{
 +	1,
-+	TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305,
-+	TLS1_CK_ECDHE_RSA_CHACHA20_POLY1305,
++	TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_OLD,
++	TLS1_CK_ECDHE_RSA_CHACHA20_POLY1305_OLD,
 +	SSL_kEECDH,
 +	SSL_aRSA,
 +	SSL_CHACHA20POLY1305,
@@ -8414,8 +8414,8 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore1
 +
 +	{
 +	1,
-+	TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,
-+	TLS1_CK_ECDHE_ECDSA_CHACHA20_POLY1305,
++	TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_OLD,
++	TLS1_CK_ECDHE_ECDSA_CHACHA20_POLY1305_OLD,
 +	SSL_kEECDH,
 +	SSL_aECDSA,
 +	SSL_CHACHA20POLY1305,
@@ -8429,8 +8429,8 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore1
 +
 +	{
 +	1,
-+	TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305,
-+	TLS1_CK_DHE_RSA_CHACHA20_POLY1305,
++	TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_OLD,
++	TLS1_CK_DHE_RSA_CHACHA20_POLY1305_OLD,
 +	SSL_kEDH,
 +	SSL_aRSA,
 +	SSL_CHACHA20POLY1305,
@@ -8438,6 +8438,54 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore1
 +	SSL_TLSV1_2,
 +	SSL_NOT_EXP|SSL_HIGH,
 +	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|FIXED_NONCE_LEN(0),
++	256,
++	256,
++	},
++
++	{
++	1,
++	TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
++	TLS1_CK_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
++	SSL_kEECDH,
++	SSL_aRSA,
++	SSL_CHACHA20POLY1305,
++	SSL_AEAD,
++	SSL_TLSV1_2,
++	SSL_NOT_EXP|SSL_HIGH,
++	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
++		SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE|FIXED_NONCE_LEN(12),
++	256,
++	256,
++	},
++
++	{
++	1,
++	TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
++	TLS1_CK_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
++	SSL_kEECDH,
++	SSL_aECDSA,
++	SSL_CHACHA20POLY1305,
++	SSL_AEAD,
++	SSL_TLSV1_2,
++	SSL_NOT_EXP|SSL_HIGH,
++	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
++		SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE|FIXED_NONCE_LEN(12),
++	256,
++	256,
++	},
++
++	{
++	1,
++	TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
++	TLS1_CK_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
++	SSL_kEDH,
++	SSL_aRSA,
++	SSL_CHACHA20POLY1305,
++	SSL_AEAD,
++	SSL_TLSV1_2,
++	SSL_NOT_EXP|SSL_HIGH,
++	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
++		SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE|FIXED_NONCE_LEN(12),
 +	256,
 +	256,
 +	},
@@ -8565,9 +8613,9 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  	} SSL3_STATE;
  
  #endif
-diff -ur openssl-1.0.1k-2 openssl-1.0.1k-2+ore1
+diff -ur openssl-1.0.1k-3+deb8u2 openssl-1.0.1k-3+deb8u2+ore2
 --- a/ssl/ssl_ciph.c	2015-03-21 02:33:12.000000000 +0900
-+++ b/ssl/ssl_ciph.c	2015-03-21 18:35:40.000000000 +0900
++++ b/ssl/ssl_ciph.c	2015-12-19 18:51:15.000000000 +0900
 @@ -299,6 +299,7 @@
  	{0,SSL_TXT_CAMELLIA128,0,0,0,SSL_CAMELLIA128,0,0,0,0,0,0},
  	{0,SSL_TXT_CAMELLIA256,0,0,0,SSL_CAMELLIA256,0,0,0,0,0,0},
@@ -8576,7 +8624,7 @@ diff -ur openssl-1.0.1k-2 openssl-1.0.1k-2+ore1
  
  	/* MAC aliases */	
  	{0,SSL_TXT_MD5,0,     0,0,0,SSL_MD5,   0,0,0,0,0},
-@@ -485,32 +486,77 @@
+@@ -485,32 +486,80 @@
  	}
  #endif
  
@@ -8630,7 +8678,10 @@ diff -ur openssl-1.0.1k-2 openssl-1.0.1k-2+ore1
 +#endif
 +#if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
 +	case SSL_CHACHA20POLY1305:
-+		*aead = EVP_aead_chacha20_poly1305();
++		if (c->id & 0x80)
++			*aead = EVP_aead_chacha20_poly1305();
++		else
++			*aead = EVP_aead_chacha20_poly1305_old();
 +		return 1;
 +#endif
 +		}
@@ -8672,7 +8723,7 @@ diff -ur openssl-1.0.1k-2 openssl-1.0.1k-2+ore1
  
  	if ((enc == NULL) || (md == NULL)) return(0);
  
-@@ -1701,6 +1747,9 @@
+@@ -1701,6 +1750,9 @@
  	case SSL_eGOST2814789CNT:
  		enc="GOST89(256)";
  		break;
@@ -8720,9 +8771,9 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  #ifndef OPENSSL_NO_COMP
  	if (s->expand != NULL)
  		{
-diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore1
+diff -ur openssl-1.0.1k-3+deb8u2 openssl-1.0.1k-3+deb8u2+ore2
 --- a/ssl/ssl_locl.h	2015-06-12 06:39:42.000000000 +0900
-+++ b/ssl/ssl_locl.h	2015-06-14 16:07:58.000000000 +0900
++++ b/ssl/ssl_locl.h	2015-12-20 15:05:35.000000000 +0900
 @@ -329,6 +329,7 @@
  #define SSL_SEED		0x00000800L
  #define SSL_AES128GCM		0x00001000L
@@ -8731,7 +8782,7 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore1
  
  #define SSL_AES        		(SSL_AES128|SSL_AES256|SSL_AES128GCM|SSL_AES256GCM)
  #define SSL_CAMELLIA		(SSL_CAMELLIA128|SSL_CAMELLIA256)
-@@ -379,7 +380,20 @@
+@@ -379,7 +380,24 @@
   * (currently this also goes into algorithm2) */
  #define TLS1_STREAM_MAC 0x04
  
@@ -8743,17 +8794,21 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore1
 +/* SSL_CIPHER_AEAD_FIXED_NONCE_LEN returns the number of bytes of fixed nonce
 + * for an SSL_CIPHER* with the SSL_CIPHER_ALGORITHM2_AEAD flag. */
 +#define SSL_CIPHER_AEAD_FIXED_NONCE_LEN(ssl_cipher) \
-+	(((ssl_cipher->algorithm2 >> 24) & 0xf)*2)
++	((ssl_cipher->algorithm2 >> 24) & 0xe)
 +
 +/* SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD is a flag in
 + * SSL_CIPHER.algorithm2 which indicates that the variable part of the nonce is
 + * included as a prefix of the record. (AES-GCM, for example, does with with an
 + * 8-byte variable nonce.) */
 +#define SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD (1<<22)
++
++/* SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE is a flag in SSL_CIPHER.algorithm2
++ * which indicates that XOR the fixed nonce. (CHACHA20-POLY1305, for example) */
++#define SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE (1<<24)
  
  /*
   * Export and cipher strength information. For each cipher we have to decide
-@@ -587,6 +601,20 @@
+@@ -587,6 +605,23 @@
  				      int use_context);
  	} SSL3_ENC_METHOD;
  
@@ -8764,17 +8819,20 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore1
 +	EVP_AEAD_CTX ctx;
 +	/* fixed_nonce contains any bytes of the nonce that are fixed for all
 +	 * records. */
-+	unsigned char fixed_nonce[8];
++	unsigned char fixed_nonce[12];
 +	unsigned char fixed_nonce_len, variable_nonce_len, tag_len;
 +	/* variable_nonce_included_in_record is non-zero if the variable nonce
 +	 * for a record is included as a prefix before the ciphertext. */
 +	char variable_nonce_included_in_record;
++	/* xor_fixed_nonce is non-zero if the fixed nonce should be XOR'd into
++	 * the variable nonce rather than prepended. */
++	char xor_fixed_nonce;
 +	};
 +
  #ifndef OPENSSL_NO_COMP
  /* Used for holding the relevant compression methods loaded into SSL_CTX */
  typedef struct ssl3_comp_st
-@@ -846,8 +874,10 @@
+@@ -846,8 +881,10 @@
  					     STACK_OF(SSL_CIPHER) **sorted,
  					     const char *rule_str);
  void ssl_update_cache(SSL *s, int mode);
@@ -8798,10 +8856,10 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  		if (comp == NULL)
  			{
  			if (BIO_printf(bp,"\n    Compression: %d",x->compress_meth) <= 0) goto err;
-diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
+diff -ur openssl-1.0.1k-3+deb8u2 openssl-1.0.1k-3+deb8u2+ore2
 --- a/ssl/t1_enc.c	2015-01-08 23:03:40.000000000 +0900
-+++ b/ssl/t1_enc.c	2015-01-28 23:54:03.000000000 +0900
-@@ -316,7 +316,142 @@
++++ b/ssl/t1_enc.c	2015-12-20 16:20:02.000000000 +0900
+@@ -316,7 +316,147 @@
  	return ret;
  	}
  
@@ -8861,10 +8919,15 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
 +	aead_ctx->fixed_nonce_len = iv_len;
 +	aead_ctx->variable_nonce_len = 8;  /* always the case, currently. */
 +	aead_ctx->variable_nonce_included_in_record =
-+		(s->s3->tmp.new_cipher->algorithm2 &
-+			SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD) != 0;
-+	if (aead_ctx->variable_nonce_len + aead_ctx->fixed_nonce_len !=
-+		EVP_AEAD_nonce_length(aead))
++		!!(s->s3->tmp.new_cipher->algorithm2 &
++			SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD);
++	aead_ctx->xor_fixed_nonce = !!(s->s3->tmp.new_cipher->algorithm2 &
++					SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE);
++	if ((aead_ctx->xor_fixed_nonce &&
++		aead_ctx->fixed_nonce_len != EVP_AEAD_nonce_length(aead)) ||
++	    (!aead_ctx->xor_fixed_nonce &&
++		aead_ctx->variable_nonce_len + aead_ctx->fixed_nonce_len !=
++			EVP_AEAD_nonce_length(aead)))
 +		{
 +		SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE_AEAD, ERR_R_INTERNAL_ERROR);
 +		return 0;
@@ -8945,7 +9008,7 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  	{
  	static const unsigned char empty[]="";
  	unsigned char *p,*mac_secret;
-@@ -580,11 +715,28 @@
+@@ -580,11 +720,28 @@
  	return(0);
  	}
  
@@ -8976,7 +9039,7 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  	int num;
  	SSL_COMP *comp;
  	int mac_type= NID_undef,mac_secret_size=0;
-@@ -597,17 +749,41 @@
+@@ -597,17 +754,41 @@
  	if (s->s3->tmp.key_block_length != 0)
  		return(1);
  
@@ -8985,28 +9048,28 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
 +		goto cipher_unavailable_err;
 +
 +	if (s->session->cipher->algorithm2 & SSL_CIPHER_ALGORITHM2_AEAD)
-+		{
+ 		{
+-		SSLerr(SSL_F_TLS1_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
+-		return(0);
 +		if (!ssl_cipher_get_evp_aead(s->session, &aead))
 +			goto cipher_unavailable_err;
 +
 +		key_len = EVP_AEAD_key_length(aead);
 +		iv_len = SSL_CIPHER_AEAD_FIXED_NONCE_LEN(s->session->cipher);
-+		}
+ 		}
 +	else
- 		{
--		SSLerr(SSL_F_TLS1_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
--		return(0);
++		{
 +		if (!ssl_cipher_get_evp(s->session,&c,&hash,&mac_type,&mac_secret_size))
 +			goto cipher_unavailable_err;
-+
+ 
 +		key_len = EVP_CIPHER_key_length(c);
 +
 +		if (EVP_CIPHER_mode(c) == EVP_CIPH_GCM_MODE)
 +			iv_len = EVP_GCM_TLS_FIXED_IV_LEN;
 +		else
 +			iv_len = EVP_CIPHER_iv_length(c);
- 		}
- 
++		}
++
 +#if 1 /* for compat. */
 +	s->s3->new_aead = aead;
 +#else
@@ -9022,7 +9085,7 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  	num*=2;
  
  	ssl3_cleanup_key_block(s);
-@@ -670,6 +846,10 @@
+@@ -670,6 +851,10 @@
  		OPENSSL_free(p2);
  		}
  	return(ret);
@@ -9033,7 +9096,7 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  	}
  
  /* tls1_enc encrypts/decrypts the record in |s->wrec| / |s->rrec|, respectively.
-@@ -688,6 +868,127 @@
+@@ -688,6 +873,151 @@
  	unsigned long l;
  	int bs,i,j,k,pad=0,ret,mac_size=0;
  	const EVP_CIPHER *enc;
@@ -9072,12 +9135,26 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
 +		ad[9]  = (unsigned char)(s->version>>8);
 +		ad[10] = (unsigned char)(s->version);
 +
-+		if (aead->fixed_nonce_len + aead->variable_nonce_len > sizeof(nonce) ||
++#if 0	/* off assert because checked in tls1_change_cipher_state_aead2() */
++		if ((!aead->xor_fixed_nonce &&
++		     aead->fixed_nonce_len + aead->variable_nonce_len
++							> sizeof(nonce)) ||
++		    (aead->xor_fixed_nonce &&
++		     aead->fixed_nonce_len > sizeof(nonce)) ||
 +		    aead->variable_nonce_len > 8)
 +			return -1;  /* internal error - should never happen. */
-+
-+		memcpy(nonce, aead->fixed_nonce, aead->fixed_nonce_len);
-+		nonce_used = aead->fixed_nonce_len;
++#endif
++		/* Prepend the fixed nonce, or left-pad with zeros if XORing. */
++		if (aead->xor_fixed_nonce)
++			{
++			nonce_used = aead->fixed_nonce_len - aead->variable_nonce_len;
++			memset(nonce, 0, nonce_used);
++			}
++		else
++			{
++			memcpy(nonce, aead->fixed_nonce, aead->fixed_nonce_len);
++			nonce_used = aead->fixed_nonce_len;
++			}
 +
 +		if (send)
 +			{
@@ -9107,6 +9184,11 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
 +
 +			ad[11] = len >> 8;
 +			ad[12] = len & 0xff;
++
++			/* XOR the fixed nonce, if necessary. */
++			if (aead->xor_fixed_nonce)
++				for (i = 0; i < aead->fixed_nonce_len; i++)
++					nonce[i] ^= aead->fixed_nonce[i];
 +
 +			if (!EVP_AEAD_CTX_seal(&aead->ctx,
 +					out + eivlen, &n, len + aead->tag_len,
@@ -9140,6 +9222,11 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
 +				out += aead->variable_nonce_len;
 +				}
 +
++			/* XOR the fixed nonce, if necessary. */
++			if (aead->xor_fixed_nonce)
++				for (i = 0; i < aead->fixed_nonce_len; i++)
++					nonce[i] ^= aead->fixed_nonce[i];
++
 +			if (len < aead->tag_len)
 +				return 0;
 +			len -= aead->tag_len;
@@ -9161,34 +9248,40 @@ diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
  
  	if (send)
  		{
-diff -ur openssl-1.0.1k-1 openssl-1.0.1k-1+ore1
+diff -ur openssl-1.0.1k-3+deb8u2 openssl-1.0.1k-3+deb8u2+ore2
 --- a/ssl/tls1.h	2014-10-16 02:41:46.000000000 +0900
-+++ b/ssl/tls1.h	2014-10-17 22:43:38.000000000 +0900
-@@ -528,6 +528,10 @@
++++ b/ssl/tls1.h	2015-12-19 18:43:42.000000000 +0900
+@@ -528,6 +528,13 @@
  #define TLS1_CK_ECDH_RSA_WITH_AES_128_GCM_SHA256        0x0300C031
  #define TLS1_CK_ECDH_RSA_WITH_AES_256_GCM_SHA384        0x0300C032
  
-+#define TLS1_CK_ECDHE_RSA_CHACHA20_POLY1305		0x0300CC13
-+#define TLS1_CK_ECDHE_ECDSA_CHACHA20_POLY1305		0x0300CC14
-+#define TLS1_CK_DHE_RSA_CHACHA20_POLY1305		0x0300CC15
++#define TLS1_CK_ECDHE_RSA_CHACHA20_POLY1305_OLD		0x0300CC13
++#define TLS1_CK_ECDHE_ECDSA_CHACHA20_POLY1305_OLD	0x0300CC14
++#define TLS1_CK_DHE_RSA_CHACHA20_POLY1305_OLD		0x0300CC15
++#define TLS1_CK_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256		0x0300CCA8
++#define TLS1_CK_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256	0x0300CCA9
++#define TLS1_CK_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256		0x0300CCAA
 +
  /* XXX
   * Inconsistency alert:
   * The OpenSSL names of ciphers with ephemeral DH here include the string
-@@ -679,6 +683,10 @@
+@@ -679,6 +686,13 @@
  #define TLS1_TXT_ECDH_RSA_WITH_AES_128_GCM_SHA256       "ECDH-RSA-AES128-GCM-SHA256"
  #define TLS1_TXT_ECDH_RSA_WITH_AES_256_GCM_SHA384       "ECDH-RSA-AES256-GCM-SHA384"
  
-+#define TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305	"ECDHE-RSA-CHACHA20-POLY1305"
-+#define TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305	"ECDHE-ECDSA-CHACHA20-POLY1305"
-+#define TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305		"DHE-RSA-CHACHA20-POLY1305"
++#define TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256	"ECDHE-RSA-CHACHA20-POLY1305"
++#define TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256	"ECDHE-ECDSA-CHACHA20-POLY1305"
++#define TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256		"DHE-RSA-CHACHA20-POLY1305"
++#define TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_OLD	TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
++#define TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_OLD	TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
++#define TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_OLD	TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256
 +
  #define TLS_CT_RSA_SIGN			1
  #define TLS_CT_DSS_SIGN			2
  #define TLS_CT_RSA_FIXED_DH		3
-diff -urN /dev/null 1.0.1k-3+deb8u1+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u2+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/evp/aeadtest.c	2015-11-01 17:51:02.000000000 +0900
++++ b/crypto/evp/aeadtest.c	2015-12-19 19:00:07.000000000 +0900
 @@ -0,0 +1,419 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
@@ -9422,10 +9515,10 @@ diff -urN /dev/null 1.0.1k-3+deb8u1+ore2
 +		return 0;
 +#endif
 +		}
-+	else if (strcmp(argv[1], "rfc7539") == 0)
++	else if (strcmp(argv[1], "chacha20-poly1305-old") == 0)
 +		{
 +#if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
-+		aead = EVP_aead_chacha20_poly1305_rfc7539();
++		aead = EVP_aead_chacha20_poly1305_old();
 +#else
 +		return 0;
 +#endif
@@ -9609,9 +9702,9 @@ diff -urN /dev/null 1.0.1k-3+deb8u1+ore2
 +
 +	return 0;
 +	}
-diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore2
+diff -ur openssl-1.0.1k-3+deb8u2 openssl-1.0.1k-3+deb8u2+ore2
 --- a/test/Makefile	2014-10-16 02:41:46.000000000 +0900
-+++ b/test/Makefile	2015-10-31 22:39:22.000000000 +0900
++++ b/test/Makefile	2015-12-19 19:04:41.000000000 +0900
 @@ -65,6 +65,9 @@
  ASN1TEST=	asn1test
  HEARTBEATTEST=  heartbeat_test
@@ -9662,7 +9755,7 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore2
  
  test_evp:
  	../util/shlib_wrap.sh ./$(EVPTEST) evptests.txt
-@@ -330,6 +336,29 @@
+@@ -330,6 +337,29 @@
  	@echo "Test constant time utilites"
  	../util/shlib_wrap.sh ./$(CONSTTIMETEST)
  
@@ -9674,14 +9767,14 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore2
 +	@echo "Test Poly1305"
 +	../util/shlib_wrap.sh ./$(POLY1305TEST)
 +
-+test_aead: $(AEADTEST)$(EXE_EXT) chacha20_poly1305_rfc7539_tests.txt \
++test_aead: $(AEADTEST)$(EXE_EXT) chacha20_poly1305_old_tests.txt \
 +    chacha20_poly1305_tests.txt aes_128_gcm_tests.txt aes_256_gcm_tests.txt
 +	@echo "Test ChaCha20+Poly1305(rfc7539)"
-+	../util/shlib_wrap.sh ./$(AEADTEST) rfc7539 \
-+		chacha20_poly1305_rfc7539_tests.txt
-+	@echo "Test ChaCha20+Poly1305(OLD)"
 +	../util/shlib_wrap.sh ./$(AEADTEST) chacha20-poly1305 \
 +		chacha20_poly1305_tests.txt
++	@echo "Test ChaCha20+Poly1305(OLD)"
++	../util/shlib_wrap.sh ./$(AEADTEST) chacha20-poly1305-old \
++		chacha20_poly1305_old_tests.txt
 +	@echo "Test AES-128-GCM"
 +	../util/shlib_wrap.sh ./$(AEADTEST) aes-128-gcm \
 +		aes_128_gcm_tests.txt
@@ -9692,7 +9785,7 @@ diff -ur openssl-1.0.1k-3+deb8u1 openssl-1.0.1k-3+deb8u1+ore2
  lint:
  	lint -DLINT $(INCLUDES) $(SRC)>fluff
  
-@@ -413,6 +436,15 @@
+@@ -413,6 +443,15 @@
  $(SHA512TEST)$(EXE_EXT): $(SHA512TEST).o $(DLIBCRYPTO)
  	@target=$(SHA512TEST); $(BUILD_CMD)
  
@@ -10558,7 +10651,7 @@ diff -urN /dev/null 1.0.1k-1+ore1
 +
 diff -urN /dev/null 1.0.1k-3+deb8u2+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/test/chacha20_poly1305_tests.txt	2015-12-16 21:20:49.000000000 +0000
++++ b/test/chacha20_poly1305_old_tests.txt	2015-12-16 21:20:49.000000000 +0000
 @@ -0,0 +1,524 @@
 +KEY: 9a97f65b9b4c721b960a672145fca8d4e32e67f9111ea979ce9c4826806aeee6
 +NONCE: 3de9c0da2bd7f91e
@@ -11086,7 +11179,7 @@ diff -urN /dev/null 1.0.1k-3+deb8u2+ore2
 +TAG: a64d0eeb4a01481ec0cee8c1c357e3
 diff -urN /dev/null 1.0.1k-3+deb8u2+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/test/chacha20_poly1305_rfc7539_tests.txt	2015-12-16 21:20:49.000000000 +0000
++++ b/test/chacha20_poly1305_tests.txt	2015-12-16 21:20:49.000000000 +0000
 @@ -0,0 +1,578 @@
 +# Test vector from RFC 7539 Section 2.8.1.
 +
