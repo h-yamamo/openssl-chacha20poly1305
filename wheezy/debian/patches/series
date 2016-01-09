@@ -108,4 +108,5 @@ CVE-2014-8176.patch
 CVE-2015-3194.patch
 CVE-2015-3195.patch
 CVE-2015-3196.patch
+CVE-2015-7575.patch
 chacha20poly1305.patch

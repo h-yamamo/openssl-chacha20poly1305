@@ -1,17 +1,4 @@
-openssl (1.0.1e-2+deb7u18+ore2) wheezy; urgency=low
-
-  * Add support the standardized ChaCha20-Poly1305 Cipher Suites for TLS.
-    Implement draft-ietf-tls-chacha20-poly1305-04 based on the BoringSSL.
-    - Change EVP_aead_chacha20_poly1305() to the RFC 7539 version.
-    - Add cipher suites IDs.
-    - Implement XORing fixed nonce.
-    - Rename tests file names:
-        test/chacha20_poly1305_old_tests.txt
-        test/chacha20_poly1305_tests.txt
-
- -- Ore sama <oresama@hoge.japan>  Mon, 21 Dec 2015 23:40:00 +0900
-
-openssl (1.0.1e-2+deb7u18+ore1) wheezy; urgency=low
+openssl (1.0.1e-2+deb7u19+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -19,9 +6,10 @@ openssl (1.0.1e-2+deb7u18+ore1) wheezy; urgency=low
         git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
     - References:
         BoringSSL and LibreSSL
-    - Copied the following from BoringSSL.
+    - Copied the following as is from the BoringSSL.
         crypto/chacha/chacha_vec_arm.S
         crypto/poly1305/poly1305_arm_asm.S
+        test/chacha20_poly1305_old_tests.txt
         test/chacha20_poly1305_tests.txt
     - Improve performance using NEON in armhf arch or SSE2 in i386 arch
       if there are available.
@@ -29,12 +17,24 @@ openssl (1.0.1e-2+deb7u18+ore1) wheezy; urgency=low
       packages.
     - Use aligned buffer for a mac return area in poly1305_arm.c.
     - Rewrite part of ssl/t1_enc.c to improve maintainability.
-    - Add the RFC 7539 ChaCha20+Poly1305 AEAD applied from BoringSSL.
-        Refactor ChaCha20+Poly1305 AEAD nonce handling.
-        Add more tests:
-          test/chacha20_poly1305_rfc7539_tests.txt
+    - Add the RFC 7539 ChaCha20-Poly1305 AEAD based on the BoringSSL.
+        Refactor ChaCha20-Poly1305 AEAD nonce handling.
+    - Add support the standardized ChaCha20-Poly1305 Cipher Suites for TLS.
+      Implement draft-ietf-tls-chacha20-poly1305-04 based on the BoringSSL.
+        Change EVP_aead_chacha20_poly1305() to the RFC 7539 version.
+        Add cipher suites IDs.
+        Implement XORing fixed nonce.
 
- -- Ore sama <oresama@hoge.japan>  Fri, 04 Dec 2015 21:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sat, 09 Jan 2016 14:40:00 +0900
+
+openssl (1.0.1e-2+deb7u19) wheezy-security; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Add CVE-2015-7575.patch patch.
+    CVE-2015-7575: SLOTH: Security Losses from Obsolete and Truncated
+    Transcript Hashes.
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Thu, 07 Jan 2016 21:10:00 +0100
 
 openssl (1.0.1e-2+deb7u18) wheezy-security; urgency=medium
 
