@@ -3331,9 +3331,9 @@ diff -urN /dev/null 1.0.1k-1+ore1
 +	}
 +
 +#endif  /* !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1k-3+ore1
+diff -urN /dev/null 1.0.1k-3+deb8u2+ore2
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ b/crypto/poly1305/poly1305_arm_asm.S	2014-09-03 19:23:25.000000000 +0900
++++ b/crypto/poly1305/poly1305_arm_asm.S	2015-09-30 22:09:52.000000000 +0000
 @@ -0,0 +1,2015 @@
 +#if defined(__arm__) && !defined(OPENSSL_NO_ASM)
 +
@@ -3497,7 +3497,7 @@ diff -urN /dev/null 1.0.1k-3+ore1
 +vpush {q4,q5,q6,q7}
 +mov r12,sp
 +sub sp,sp,#192
-+and sp,sp,#0xffffffe0
++bic sp,sp,#31
 +
 +# qhasm: len = input_3
 +# asm 1: mov >len=int32#4,<input_3=int32#4
