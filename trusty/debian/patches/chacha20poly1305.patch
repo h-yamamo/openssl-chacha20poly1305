@@ -9281,8 +9281,8 @@ diff -ur openssl-1.0.1f-1ubuntu2.16 1.0.1f-1ubuntu2.16+ore2
  #define TLS_CT_RSA_FIXED_DH		3
 diff -urN /dev/null 1.0.1f-1ubuntu2.16+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/evp/aeadtest.c	2015-12-19 19:00:07.000000000 +0900
-@@ -0,0 +1,419 @@
++++ b/crypto/evp/aeadtest.c	2016-02-04 00:36:42.000000000 +0900
+@@ -0,0 +1,422 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -9494,6 +9494,7 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.16+ore2
 +int main(int argc, char **argv)
 +	{
 +	FILE *f;
++	int is_eof = 0;
 +	const EVP_AEAD *aead = NULL;
 +	unsigned int line_no = 0, num_tests = 0, j;
 +
@@ -9565,14 +9566,16 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.16+ore2
 +		unsigned char *buf = NULL;
 +		unsigned int *buf_len = NULL;
 +
-+		if (!fgets(line, sizeof(line), f))
++		if (is_eof)
 +			break;
++		if (!fgets(line, sizeof(line), f))
++			is_eof = 1;
 +
 +		line_no++;
 +		if (line[0] == '#')
 +			continue;
 +
-+		if (line[0] == '\n' || line[0] == 0)
++		if (line[0] == '\n' || line[0] == 0 || is_eof)
 +			{
 +			/* Run a test, if possible. */
 +			char any_values_set = 0;
