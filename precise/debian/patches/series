@@ -109,4 +109,12 @@ CVE-2015-3194.patch
 CVE-2015-3195.patch
 CVE-2015-3196.patch
 CVE-2015-7575.patch
+alt-cert-chains-1.patch
+alt-cert-chains-2.patch
+alt-cert-chains-3.patch
+alt-cert-chains-4.patch
+alt-cert-chains-5.patch
+alt-cert-chains-6.patch
+alt-cert-chains-7.patch
+alt-cert-chains-8.patch
 chacha20poly1305.patch

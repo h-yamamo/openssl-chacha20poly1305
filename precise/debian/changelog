@@ -1,4 +1,4 @@
-openssl (1.0.1-4ubuntu5.33+ore1) precise; urgency=low
+openssl (1.0.1-4ubuntu5.34+ore1) precise; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -26,7 +26,15 @@ openssl (1.0.1-4ubuntu5.33+ore1) precise; urgency=low
         Add cipher suites IDs.
         Implement XORing fixed nonce.
 
- -- Ore sama <oresama@hoge.japan>  Sat, 09 Jan 2016 14:50:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Thu, 25 Feb 2016 20:30:00 +0900
+
+openssl (1.0.1-4ubuntu5.34) precise-security; urgency=medium
+
+  * debian/patches/alt-cert-chains-*.patch: backport series of upstream
+    commits to add alternate chains support. This will allow the future
+    removal of 1024-bit RSA keys from the ca-certificates package.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Mon, 08 Feb 2016 09:15:37 -0500
 
 openssl (1.0.1-4ubuntu5.33) precise-security; urgency=medium
 
