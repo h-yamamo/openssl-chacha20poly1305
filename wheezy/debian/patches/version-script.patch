@@ -14,8 +14,8 @@ Index: openssl-1.0.1d/Configure
 Index: openssl-1.0.1d/openssl.ld
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ openssl-1.0.1d/openssl.ld	2015-10-31 23:18:57.000000000 +0900
-@@ -0,0 +1,4637 @@
++++ openssl-1.0.1d/openssl.ld	2016-03-02 19:24:52.000000000 +0900
+@@ -0,0 +1,4643 @@
 +OPENSSL_1.0.0 {
 +	global:
 +		BIO_f_ssl;
@@ -4652,6 +4652,12 @@ Index: openssl-1.0.1d/openssl.ld
 +	global:
 +		CRYPTO_memcmp;
 +} OPENSSL_1.0.1;
++
++OPENSSL_1.0.1s {
++       global:
++               SRP_VBASE_get1_by_user;
++               SRP_user_pwd_free;
++} OPENSSL_1.0.1d;
 +
 Index: openssl-1.0.1d/engines/openssl.ld
 ===================================================================

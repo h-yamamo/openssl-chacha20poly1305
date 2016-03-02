@@ -1,4 +1,4 @@
-openssl (1.0.1f-1ubuntu2.17+ore1) trusty; urgency=low
+openssl (1.0.1f-1ubuntu2.18+ore1) trusty; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -25,7 +25,38 @@ openssl (1.0.1f-1ubuntu2.17+ore1) trusty; urgency=low
         Add cipher suites IDs.
         Implement XORing fixed nonce.
 
- -- Ore sama <oresama@hoge.japan>  Thu, 25 Feb 2016 20:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 02 Mar 2016 19:40:00 +0900
+
+openssl (1.0.1f-1ubuntu2.18) trusty-security; urgency=medium
+
+  * SECURITY UPDATE: side channel attack on modular exponentiation
+    - debian/patches/CVE-2016-0702.patch: use constant-time calculations in
+      crypto/bn/asm/x86_64-mont5.pl, crypto/bn/bn_exp.c,
+      crypto/perlasm/x86_64-xlate.pl, crypto/constant_time_locl.h.
+    - CVE-2016-0702
+  * SECURITY UPDATE: double-free in DSA code
+    - debian/patches/CVE-2016-0705.patch: fix double-free in
+      crypto/dsa/dsa_ameth.c.
+    - CVE-2016-0705
+  * SECURITY UPDATE: BN_hex2bn/BN_dec2bn NULL pointer deref/heap corruption
+    - debian/patches/CVE-2016-0797.patch: prevent overflow in
+      crypto/bn/bn_print.c, crypto/bn/bn.h.
+    - CVE-2016-0797
+  * SECURITY UPDATE: memory leak in SRP database lookups
+    - debian/patches/CVE-2016-0798.patch: disable SRP fake user seed and
+      introduce new SRP_VBASE_get1_by_user function that handled seed
+      properly in apps/s_server.c, crypto/srp/srp.h, crypto/srp/srp_vfy.c,
+      util/libeay.num, openssl.ld.
+    - CVE-2016-0798
+  * SECURITY UPDATE: memory issues in BIO_*printf functions
+    - debian/patches/CVE-2016-0799.patch: prevent overflow in
+      crypto/bio/b_print.c.
+    - CVE-2016-0799
+  * debian/patches/preserve_digests_for_sni.patch: preserve negotiated
+    digests for SNI when SSL_set_SSL_CTX is called in ssl/ssl_lib.c.
+    (LP: #1550643)
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Mon, 29 Feb 2016 07:56:15 -0500
 
 openssl (1.0.1f-1ubuntu2.17) trusty-security; urgency=medium
 

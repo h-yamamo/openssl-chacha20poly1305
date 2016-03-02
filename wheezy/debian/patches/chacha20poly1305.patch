@@ -8167,9 +8167,9 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
  		{
  		SSLerr(SSL_F_SSL3_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
  		return(0);
-diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
---- a/ssl/s3_lib.c	2014-10-15 17:46:43.000000000 +0000
-+++ b/ssl/s3_lib.c	2015-12-20 15:11:11.000000000 +0900
+diff -ur openssl-1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore1
+--- a/ssl/s3_lib.c	2016-02-29 08:49:33.000000000 +0900
++++ b/ssl/s3_lib.c	2016-03-02 19:21:50.000000000 +0900
 @@ -166,6 +166,11 @@
  
  #define SSL3_NUM_CIPHERS	(sizeof(ssl3_ciphers)/sizeof(SSL_CIPHER))
@@ -8182,7 +8182,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  /* list of available SSLv3 ciphers (sorted by id) */
  OPENSSL_GLOBAL SSL_CIPHER ssl3_ciphers[]={
  
-@@ -1836,7 +1841,9 @@
+@@ -1369,7 +1374,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8193,7 +8193,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	128,
  	128,
  	},
-@@ -1852,7 +1859,9 @@
+@@ -1385,7 +1392,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8204,7 +8204,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	256,
  	256,
  	},
-@@ -1868,7 +1877,9 @@
+@@ -1401,7 +1410,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8215,7 +8215,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	128,
  	128,
  	},
-@@ -1884,7 +1895,9 @@
+@@ -1417,7 +1428,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8226,7 +8226,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	256,
  	256,
  	},
-@@ -1900,7 +1913,9 @@
+@@ -1433,7 +1446,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8237,7 +8237,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	128,
  	128,
  	},
-@@ -1916,7 +1931,9 @@
+@@ -1449,7 +1464,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8248,7 +8248,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	256,
  	256,
  	},
-@@ -1932,7 +1949,9 @@
+@@ -1465,7 +1482,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8259,7 +8259,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	128,
  	128,
  	},
-@@ -1948,7 +1967,9 @@
+@@ -1481,7 +1500,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8270,7 +8270,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	256,
  	256,
  	},
-@@ -1964,7 +1985,9 @@
+@@ -1497,7 +1518,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8281,7 +8281,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	128,
  	128,
  	},
-@@ -1980,7 +2003,9 @@
+@@ -1513,7 +1536,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8292,7 +8292,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	256,
  	256,
  	},
-@@ -1996,7 +2021,9 @@
+@@ -1529,7 +1554,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8303,7 +8303,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	128,
  	128,
  	},
-@@ -2012,7 +2039,9 @@
+@@ -1545,7 +1572,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8314,7 +8314,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	256,
  	256,
  	},
-@@ -2709,7 +2738,9 @@
+@@ -2242,7 +2271,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8325,7 +8325,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	128,
  	128,
  	},
-@@ -2725,7 +2756,9 @@
+@@ -2258,7 +2289,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8336,7 +8336,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	256,
  	256,
  	},
-@@ -2741,7 +2774,9 @@
+@@ -2274,7 +2307,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8347,7 +8347,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	128,
  	128,
  	},
-@@ -2757,7 +2792,9 @@
+@@ -2290,7 +2325,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8358,7 +8358,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	256,
  	256,
  	},
-@@ -2773,7 +2810,9 @@
+@@ -2306,7 +2343,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8369,7 +8369,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	128,
  	128,
  	},
-@@ -2789,7 +2828,9 @@
+@@ -2322,7 +2361,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8380,7 +8380,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	256,
  	256,
  	},
-@@ -2805,7 +2846,9 @@
+@@ -2338,7 +2379,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8391,7 +8391,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	128,
  	128,
  	},
-@@ -2821,7 +2864,9 @@
+@@ -2354,7 +2397,9 @@
  	SSL_AEAD,
  	SSL_TLSV1_2,
  	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
@@ -8402,7 +8402,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  	256,
  	256,
  	},
-@@ -2889,6 +2934,101 @@
+@@ -2422,6 +2467,101 @@
  	},
  #endif
  

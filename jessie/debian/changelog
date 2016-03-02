@@ -1,17 +1,4 @@
-openssl (1.0.1k-3+deb8u2+ore2) jessie; urgency=low
-
-  * Add support the standardized ChaCha20-Poly1305 Cipher Suites for TLS.
-    Implement draft-ietf-tls-chacha20-poly1305-04 based on the BoringSSL.
-    - Change EVP_aead_chacha20_poly1305() to the RFC 7539 version.
-    - Add cipher suites IDs.
-    - Implement XORing fixed nonce.
-    - Rename tests file names:
-        test/chacha20_poly1305_old_tests.txt
-        test/chacha20_poly1305_tests.txt
-
- -- Ore sama <oresama@hoge.japan>  Sun, 20 Dec 2015 20:40:00 +0900
-
-openssl (1.0.1k-3+deb8u2+ore1) jessie; urgency=low
+openssl (1.0.1k-3+deb8u4+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -19,9 +6,10 @@ openssl (1.0.1k-3+deb8u2+ore1) jessie; urgency=low
         git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
     - References:
         BoringSSL and LibreSSL
-    - Copied the following from BoringSSL.
+    - Copied the following as is from the BoringSSL.
         crypto/chacha/chacha_vec_arm.S
         crypto/poly1305/poly1305_arm_asm.S
+        test/chacha20_poly1305_old_tests.txt
         test/chacha20_poly1305_tests.txt
     - Improve performance using NEON in armhf arch or SSE2 in i386 arch
       if there are available.
@@ -29,12 +17,28 @@ openssl (1.0.1k-3+deb8u2+ore1) jessie; urgency=low
       packages.
     - Use aligned buffer for a mac return area in poly1305_arm.c.
     - Rewrite part of ssl/t1_enc.c to improve maintainability.
-    - Add the RFC 7539 ChaCha20+Poly1305 AEAD applied from BoringSSL.
-        Refactor ChaCha20+Poly1305 AEAD nonce handling.
-        Add more tests:
-          test/chacha20_poly1305_rfc7539_tests.txt
+    - Add the RFC 7539 ChaCha20-Poly1305 AEAD based on the BoringSSL.
+        Refactor ChaCha20-Poly1305 AEAD nonce handling.
+    - Add support the standardized ChaCha20-Poly1305 Cipher Suites for TLS.
+      Implement draft-ietf-tls-chacha20-poly1305-04 based on the BoringSSL.
+        Change EVP_aead_chacha20_poly1305() to the RFC 7539 version.
+        Add cipher suites IDs.
+        Implement XORing fixed nonce.
 
- -- Ore sama <oresama@hoge.japan>  Fri, 04 Dec 2015 21:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 02 Mar 2016 01:40:00 +0900
+
+openssl (1.0.1k-3+deb8u4) jessie-security; urgency=medium
+
+  * Fix CVE-2016-0797
+  * Fix CVE-2016-0798
+  * Fix CVE-2016-0799
+  * Fix CVE-2016-0702
+  * Fix CVE-2016-0705
+  * Disable EXPORT and LOW ciphers: The DROWN attack (CVE-2016-0800)
+    makes use of those, and SLOTH attack (CVE-2015-7575) can make use of them
+    too.
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Sun, 28 Feb 2016 15:29:46 +0100
 
 openssl (1.0.1k-3+deb8u2) jessie-security; urgency=medium
 

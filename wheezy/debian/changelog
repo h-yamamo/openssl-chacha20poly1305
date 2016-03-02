@@ -1,4 +1,4 @@
-openssl (1.0.1e-2+deb7u19+ore1) wheezy; urgency=low
+openssl (1.0.1e-2+deb7u20+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -25,7 +25,20 @@ openssl (1.0.1e-2+deb7u19+ore1) wheezy; urgency=low
         Add cipher suites IDs.
         Implement XORing fixed nonce.
 
- -- Ore sama <oresama@hoge.japan>  Sat, 09 Jan 2016 14:40:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 02 Mar 2016 19:25:30 +0900
+
+openssl (1.0.1e-2+deb7u20) wheezy-security; urgency=medium
+
+  * Fix CVE-2016-0797
+  * Fix CVE-2016-0798
+  * Fix CVE-2016-0799
+  * Fix CVE-2016-0702
+  * Fix CVE-2016-0705
+  * Disable EXPORT and LOW ciphers: The DROWN attack (CVE-2016-0800)
+    makes use of those, and SLOTH attack (CVE-2015-7575) can make use of them
+    too.
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Sun, 28 Feb 2016 23:36:32 +0100
 
 openssl (1.0.1e-2+deb7u19) wheezy-security; urgency=high
 

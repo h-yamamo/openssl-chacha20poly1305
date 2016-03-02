@@ -98,4 +98,10 @@ alt-cert-chains-5.patch
 alt-cert-chains-6.patch
 alt-cert-chains-7.patch
 alt-cert-chains-8.patch
+CVE-2016-0705.patch
+CVE-2016-0798.patch
+CVE-2016-0799.patch
+CVE-2016-0797.patch
+CVE-2016-0702.patch
+preserve_digests_for_sni.patch
 chacha20poly1305.patch
