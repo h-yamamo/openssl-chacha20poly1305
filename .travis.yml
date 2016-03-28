@@ -5,17 +5,17 @@ language: c
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get -o APT::Install-Recommends=1 -y install devscripts
+  - sudo apt-get -o APT::Install-Recommends=1 -y install devscripts debhelper
 
 install:
   - apt-get -d source openssl
   - tar xf openssl_*.orig.tar.gz
   - cd openssl-*
-  - tar xvf ../openssl_*.debian.tar.gz
-  - cp -a ../trusty/debian/* debian/
+  - tar xf ../openssl_*.debian.tar.gz
+  - cp -va ../trusty/debian/* debian/
 
 script:
-  - cd openssl-*; dpkg-buildpackage -uc -us
+  - dpkg-buildpackage -uc -us
 
 after_success:
-  - cd openssl-*; lintian ../*.deb
+  - lintian *.deb
