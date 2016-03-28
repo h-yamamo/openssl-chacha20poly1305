@@ -1,21 +1,32 @@
-dist: trusty
-sudo: required
-
 language: c
 
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get -o APT::Install-Recommends=1 -y install devscripts debhelper
 
-install:
-  - apt-get -d source openssl
-  - tar xf openssl_*.orig.tar.gz
-  - cd openssl-*
-  - tar xf ../openssl_*.debian.tar.gz
-  - cp -va ../trusty/debian/* debian/
+matrix:
+  include:
+  - os: linux
+    dist: precise
+    sudo: required
+    install:
+      - apt-get -d source openssl
+      - tar xf openssl_*.orig.tar.gz
+      - cd openssl-*
+      - tar xf ../openssl_*.debian.tar.gz
+      - cp -va ../precise/debian/* debian/
+  - os: linux
+    dist: trusty
+    sudo: required
+    install:
+      - apt-get -d source openssl
+      - tar xf openssl_*.orig.tar.gz
+      - cd openssl-*
+      - tar xf ../openssl_*.debian.tar.gz
+      - cp -va ../trusty/debian/* debian/
 
 script:
   - dpkg-buildpackage -uc -us
 
 after_success:
-  - lintian *.deb
+  - cd ..; lintian *.deb
