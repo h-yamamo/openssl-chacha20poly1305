@@ -1,3 +1,9 @@
+openssl (1.0.1e-2+deb7u20+ore3) wheezy; urgency=low
+
+  * Workaround about [openssl.org #4439] [openssl.org #4482] poly1305.
+
+ -- Ore sama <oresama@hoge.japan>  Thu, 31 Mar 2016 01:00:00 +0900
+
 openssl (1.0.1e-2+deb7u20+ore2) wheezy; urgency=low
 
   * Improve performance using OpenSSL 1.1.0(beta) assembler codes.  For
