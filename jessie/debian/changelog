@@ -33,6 +33,7 @@ openssl (1.0.1k-3+deb8u4+ore1) jessie; urgency=low
   * Support ChaCha20+Poly1305 cipher suites.
     - Origin:
         git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
+        (Deleted. Got in 2014.)
     - References:
         BoringSSL and LibreSSL
     - Copied the following as is from the BoringSSL.
