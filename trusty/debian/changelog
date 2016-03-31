@@ -1,3 +1,9 @@
+openssl (1.0.1f-1ubuntu2.18+ore3) trusty; urgency=low
+
+  * Workaround about [openssl.org #4439] [openssl.org #4482] poly1305.
+
+ -- Ore sama <oresama@hoge.japan>  Thu, 31 Mar 2016 01:00:00 +0900
+
 openssl (1.0.1f-1ubuntu2.18+ore2) trusty; urgency=low
 
   * Improve performance using OpenSSL 1.1.0(beta) assembler codes.  For
@@ -27,6 +33,7 @@ openssl (1.0.1f-1ubuntu2.18+ore1) trusty; urgency=low
   * Support ChaCha20+Poly1305 cipher suites.
     - Origin:
         git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
+        (Deleted. Got in 2014.)
     - References:
         BoringSSL and LibreSSL
     - Copied the following as is from the BoringSSL.
