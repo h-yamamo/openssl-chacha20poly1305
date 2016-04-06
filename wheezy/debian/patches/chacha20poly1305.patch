@@ -5656,9 +5656,9 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +
 +# DO NOT DELETE THIS LINE -- make depend depends on it.
 +
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/poly1305.c	2016-03-30 23:54:47.000000000 +0900
++++ b/crypto/poly1305/poly1305.c	2016-04-05 23:09:03.000000000 +0900
 @@ -0,0 +1,390 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
@@ -5773,7 +5773,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +/*
 +OPENSSL_COMPILE_ASSERT(POLY1305_BLOCK_STATE_SIZE >= 4 * (5 + 1 + 4 + 2 + 4 * 9),
 +                       poly1305_block_state_too_small); */
-+/*define POLY1305_ASM*/
++#define POLY1305_ASM
 +#elif defined(__x86_64__)
 +/* See comment above |__poly1305_block| in poly1305-x86_64.pl. */
 +/*OPENSSL_COMPILE_ASSERT(POLY1305_BLOCK_STATE_SIZE >=
@@ -5783,11 +5783,11 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +#elif defined(__arm__)
 +/* TODO(davidben): Figure out the layout of the struct. For now,
 + * |POLY1305_BLOCK_STATE_SIZE| is taken from OpenSSL. */
-+/*define POLY1305_ASM*/
++#define POLY1305_ASM
 +#elif defined(__aarch64__)
 +/* TODO(davidben): Figure out the layout of the struct. For now,
 + * |POLY1305_BLOCK_STATE_SIZE| is taken from OpenSSL. */
-+/*define POLY1305_ASM*/
++#define POLY1305_ASM
 +#endif
 +#endif
 +
@@ -6146,10 +6146,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +#endif
 +
 +#endif  /* HEADER_POLY1305_H_ */
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/poly1305test.c	2016-03-30 22:32:05.000000000 +0900
-@@ -0,0 +1,1616 @@
++++ b/crypto/poly1305/poly1305test.c	2016-04-05 22:56:27.000000000 +0900
+@@ -0,0 +1,1619 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -6420,7 +6420,9 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +     "99e5822dd4173c995e3dae0ddefb9774""3fde3b080134b39f76e9bf8d0e88d546",
 +     "2637408fe13086ea73f971e3425e2820"
 +    },
-+    /* test vectors from Hanno Boeck */
++    /*
++     * test vectors from Hanno Böck
++     */
 +    {
 +     "cccccccccccccccccccccccccccccccccccccccccccccccccc80cccccccccccc"
 +     "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccecccccc"
@@ -6429,19 +6431,20 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +     "ccccccccaccccccccccccccccccccce6cccccccccc000000afcccccccccccccc"
 +     "ccccfffffff50000000000000000000000000000000000000000000000000000"
 +     "00ffffffe7000000000000000000000000000000000000000000000000000000"
-+     "0000000000000000000000000000000000000000000000000000719205a8521dfc",
-+     "7f1b02640000000000000000000000000000000000000000cccccccccccccccc",
++     "0000000000000000000000000000000000000000000000000000719205a8521d"
++     "fc",
++     "7f1b0264000000000000000000000000""0000000000000000cccccccccccccccc",
 +     "8559b876eceed66eb37798c0457baff9"
 +    },
 +    {
 +     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa0000000000"
 +     "00000000800264",
-+     "e00016000000000000000000000000000000aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
++     "e0001600000000000000000000000000""0000aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
 +     "00bd1258978e205444c9aaaa82006fed"
 +    },
 +    {
 +     "02fc",
-+     "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c",
++     "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c""0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c",
 +     "06120c0c0c0c0c0c0c0c0c0c0c0c0c0c"
 +    },
 +    {
@@ -6458,15 +6461,15 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +     "b300000000000000000000000000000000000000000000f20000000000000000"
 +     "000000000000000000002000efff00090000000000000000007a000010000000"
 +     "000900000064000000000000000000000000000000000000000000000000fc",
-+     "00ff000000000000000000000000000000000000001e00000000000000007b7b",
-+     "33205bbf9e9f8f7212ab9e2ab9b7e4a5",
++     "00ff0000000000000000000000000000""00000000001e00000000000000007b7b",
++     "33205bbf9e9f8f7212ab9e2ab9b7e4a5"
 +    },
 +    {
 +     "7777777777777777777777777777777777777777777777777777777777777777"
 +     "7777777777777777777777777777777777777777777777777777777777777777"
 +     "777777777777777777777777ffffffe9e9acacacacacacacacacacac0000acac"
 +     "ec0100acacac2caca2acacacacacacacacacacac64f2",
-+     "0000007f0000007f01000020000000000000cf77777777777777777777777777",
++     "0000007f0000007f0100002000000000""0000cf77777777777777777777777777",
 +     "02ee7c8c546ddeb1a467e4c3981158b9"
 +    },
 +    /*
@@ -7766,10 +7769,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +int main() { return 0; }
 +
 +#endif
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-armv4.pl	2016-03-13 00:45:02.000000000 +0900
-@@ -0,0 +1,1216 @@
++++ b/crypto/poly1305/asm/poly1305-armv4.pl	2016-04-05 22:15:46.000000000 +0900
+@@ -0,0 +1,1198 @@
 +#!/usr/bin/env perl
 +#
 +# ====================================================================
@@ -7782,10 +7785,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +#			IALU(*)/gcc-4.4		NEON
 +#
 +# ARM11xx(ARMv6)	7.78/+100%		-
-+# Cortex-A5		6.30/+130%		2.96
++# Cortex-A5		6.35/+130%		2.96
 +# Cortex-A8		6.25/+115%		2.36
 +# Cortex-A9		5.10/+95%		2.55
-+# Cortex-A15		3.79/+85%		1.25(**)
++# Cortex-A15		3.85/+85%		1.25(**)
 +# Snapdragon S4		5.70/+100%		1.48(**)
 +#
 +# (*)	this is for -march=armv6, i.e. with bunch of ldrb loading data;
@@ -8085,7 +8088,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	adds	$h0,$h0,r1
 +	adcs	$h1,$h1,#0
 +	adcs	$h2,$h2,#0
-+	adc	$h3,$h3,#0
++	adcs	$h3,$h3,#0
++	adc	$h4,$h4,#0
 +
 +	cmp	r0,lr			@ done yet?
 +	bhi	.Loop
@@ -8507,9 +8511,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +.align	4
 +.Leven:
 +	subs		$len,$len,#64
-+# ifdef	__thumb2__
 +	it		lo
-+# endif
 +	movlo		$in2,$zeros
 +
 +	vmov.i32	$H4,#1<<24		@ padbit, yes, always
@@ -8517,9 +8519,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	add		$inp,$inp,#64
 +	vld4.32		{$H0#hi,$H1#hi,$H2#hi,$H3#hi},[$in2]	@ inp[2:3] (or 0)
 +	add		$in2,$in2,#64
-+# ifdef	__thumb2__
 +	itt		hi
-+# endif
 +	addhi		$tbl1,$ctx,#(48+1*9*4)
 +	addhi		$tbl0,$ctx,#(48+3*9*4)
 +
@@ -8589,9 +8589,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	vmull.u32	$D4,$H4#hi,${R0}[1]
 +	subs		$len,$len,#64
 +	vmlal.u32	$D0,$H4#hi,${S1}[1]
-+# ifdef	__thumb2__
 +	it		lo
-+# endif
 +	movlo		$in2,$zeros
 +	vmlal.u32	$D3,$H2#hi,${R1}[1]
 +	vld1.32		${S4}[1],[$tbl1,:32]
@@ -8718,9 +8716,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	add		$tbl1,$ctx,#(48+0*9*4)
 +	add		$tbl0,$ctx,#(48+1*9*4)
 +	adds		$len,$len,#32
-+# ifdef	__thumb2__
 +	it		ne
-+# endif
 +	movne		$len,#0
 +	bne		.Long_tail
 +
@@ -8762,14 +8758,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	vmlal.u32	$D2,$H0#hi,$R2
 +
 +	vmlal.u32	$D3,$H0#hi,$R3
-+# ifdef	__thumb2__
-+	it		ne
-+# endif
++	 it		ne
 +	 addne		$tbl1,$ctx,#(48+2*9*4)
 +	vmlal.u32	$D0,$H2#hi,$S3
-+# ifdef	__thumb2__
-+	it		ne
-+# endif
++	 it		ne
 +	 addne		$tbl0,$ctx,#(48+3*9*4)
 +	vmlal.u32	$D4,$H1#hi,$R3
 +	vmlal.u32	$D1,$H3#hi,$S3
@@ -8910,7 +8902,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	adds	$h0,$h0,$g0
 +	adcs	$h1,$h1,#0
 +	adcs	$h2,$h2,#0
-+	adc	$h3,$h3,#0
++	adcs	$h3,$h3,#0
++	adc	$h4,$h4,#0
 +
 +	adds	$g0,$h0,#5		@ compare to modulus
 +	adcs	$g1,$h1,#0
@@ -8919,24 +8912,16 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	adc	$g4,$h4,#0
 +	tst	$g4,#4			@ did it carry/borrow?
 +
-+# ifdef	__thumb2__
 +	it	ne
-+# endif
 +	movne	$h0,$g0
 +	ldr	$g0,[$nonce,#0]
-+# ifdef	__thumb2__
 +	it	ne
-+# endif
 +	movne	$h1,$g1
 +	ldr	$g1,[$nonce,#4]
-+# ifdef	__thumb2__
 +	it	ne
-+# endif
 +	movne	$h2,$g2
 +	ldr	$g2,[$nonce,#8]
-+# ifdef	__thumb2__
 +	it	ne
-+# endif
 +	movne	$h3,$g3
 +	ldr	$g3,[$nonce,#12]
 +
@@ -8986,10 +8971,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	print $_,"\n";
 +}
 +close STDOUT; # enforce flush
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-armv8.pl	2016-03-07 20:27:48.000000000 +0900
-@@ -0,0 +1,925 @@
++++ b/crypto/poly1305/asm/poly1305-armv8.pl	2016-04-05 22:15:46.000000000 +0900
+@@ -0,0 +1,929 @@
 +#!/usr/bin/env perl
 +#
 +# ====================================================================
@@ -9008,10 +8993,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +#		IALU/gcc-4.9	NEON
 +#
 +# Apple A7	1.86/+5%	0.72
-+# Cortex-A53	2.63/+58%	1.47
++# Cortex-A53	2.69/+58%	1.47
 +# Cortex-A57	2.70/+7%	1.14
-+# Denver	1.39/+50%	1.18(*)
-+# X-Gene	2.00/+68%	2.19
++# Denver	1.64/+50%	1.18(*)
++# X-Gene	2.13/+68%	2.19
 +#
 +# (*)	estimate based on resources availability is less than 1.0,
 +#	i.e. measured result is worse than expected, presumably binary
@@ -9143,7 +9128,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	and	$h2,$d2,#3
 +	add	$t0,$t0,$d2,lsr#2
 +	adds	$h0,$d0,$t0
-+	adc	$h1,$d1,xzr
++	adcs	$h1,$d1,xzr
++	adc	$h2,$h2,xzr
 +
 +	cbnz	$len,.Loop
 +
@@ -9227,7 +9213,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	and	$h2,$d2,#3
 +	add	$t0,$t0,$d2,lsr#2
 +	adds	$h0,$d0,$t0
-+	adc	$h1,$d1,xzr
++	adcs	$h1,$d1,xzr
++	adc	$h2,$h2,xzr
 +
 +	ret
 +.size	poly1305_mult,.-poly1305_mult
@@ -9302,7 +9289,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	and	$h2,$d2,#3
 +	add	$t0,$t0,$d2,lsr#2
 +	adds	$h0,$h0,$t0
-+	adc	$h1,$h1,xzr
++	adcs	$h1,$h1,xzr
++	adc	$h2,$h2,xzr
 +
 +#ifdef	__ARMEB__
 +	rev	$d0,$d0
@@ -9862,7 +9850,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	add	$d0,$d0,$h2,lsr#2
 +	and	$h2,$h2,#3
 +	adds	$h0,$h0,$d0
-+	adc	$h1,$h1,xzr
++	adcs	$h1,$h1,xzr
++	adc	$h2,$h2,xzr
 +
 +	adds	$d0,$h0,#5		// compare to modulus
 +	adcs	$d1,$h1,xzr
@@ -9915,10 +9904,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	print $_,"\n";
 +}
 +close STDOUT;
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-x86.pl	2016-03-30 21:48:30.000000000 +0900
-@@ -0,0 +1,1210 @@
++++ b/crypto/poly1305/asm/poly1305-x86.pl	2016-04-05 22:43:21.000000000 +0900
+@@ -0,0 +1,1212 @@
 +#!/usr/bin/env perl
 +#
 +# ====================================================================
@@ -10199,6 +10188,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +	&adc	("ebx",0);
 +	&adc	("ecx",0);
 +	&adc	("esi",0);
++	&adc	("edi",0);
 +
 +	&cmp	("ebp",&wparam(2));		# done yet?
 +	&jne	(&label("loop"));
@@ -11066,11 +11056,12 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +	&shr	("edi",2);
 +	&lea	("ebp",&DWP(0,"edi","edi",4));	# *5
 +	 &mov	("edi",&wparam(1));		# output
-+	add	("eax","ebp");
++	&add	("eax","ebp");
 +	 &mov	("ebp",&wparam(2));		# key
-+	adc	("ebx",0);
-+	adc	("ecx",0);
-+	adc	("edx",0);
++	&adc	("ebx",0);
++	&adc	("ecx",0);
++	&adc	("edx",0);
++	&adc	("esi",0);
 +
 +	&movd	($D0,"eax");			# offload original hash value
 +	&add	("eax",5);			# compare to modulus
@@ -11129,10 +11120,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +&asm_finish();
 +
 +close STDOUT;
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-x86_64.pl	2016-03-30 21:43:11.000000000 +0900
-@@ -0,0 +1,2253 @@
++++ b/crypto/poly1305/asm/poly1305-x86_64.pl	2016-04-05 22:15:46.000000000 +0900
+@@ -0,0 +1,2256 @@
 +#!/usr/bin/env perl
 +#
 +# ====================================================================
@@ -11150,16 +11141,16 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +# measured with rdtsc at fixed clock frequency.
 +#
 +#		IALU/gcc-4.8(*)	AVX(**)		AVX2
-+# P4		4.90/+120%      -
-+# Core 2	2.39/+90%	-
-+# Westmere	1.86/+120%	-
++# P4		4.46/+120%	-
++# Core 2	2.41/+90%	-
++# Westmere	1.88/+120%	-
 +# Sandy Bridge	1.39/+140%	1.10
-+# Haswell	1.10/+175%	1.11		0.65
-+# Skylake	1.12/+120%	0.96		0.51
++# Haswell	1.14/+175%	1.11		0.65
++# Skylake	1.13/+120%	0.96		0.51
 +# Silvermont	2.83/+95%	-
 +# VIA Nano	1.82/+150%	-
 +# Sledgehammer	1.38/+160%	-
-+# Bulldozer	2.21/+130%	0.97
++# Bulldozer	2.30/+130%	0.97
 +#
 +# (*)	improvement coefficients relative to clang are more modest and
 +#	are ~50% on most processors, in both cases we are comparing to
@@ -11320,8 +11311,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +.align	32
 +poly1305_blocks:
 +.Lblocks:
-+	sub	\$16,$len		# too short?
-+	jc	.Lno_data
++	shr	\$4,$len
++	jz	.Lno_data		# too short
 +
 +	push	%rbx
 +	push	%rbp
@@ -11356,8 +11347,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +	&poly1305_iteration();
 +$code.=<<___;
 +	mov	$r1,%rax
-+	sub	\$16,%r15		# len-=16
-+	jnc	.Loop
++	dec	%r15			# len-=16
++	jnz	.Loop
 +
 +	mov	$h0,0($ctx)		# store hash value
 +	mov	$h1,8($ctx)
@@ -11657,6 +11648,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +	add	$d2,$d1			# =*5
 +	add	$d1,$h0
 +	adc	\$0,$h1
++	adc	\$0,$h2
 +
 +	mov	$s1,$r1
 +	mov	$s1,%rax
@@ -12451,6 +12443,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +	add	%rcx,%rax
 +	add	%rax,%r8
 +	adc	\$0,%r9
++	adc	\$0,%r10
 +
 +	mov	%r8,%rax
 +	add	\$5,%r8		# compare to modulus
@@ -12543,6 +12536,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore3
 +	add	$d2,$d1			# =*5
 +	add	$d1,$h0
 +	adc	\$0,$h1
++	adc	\$0,$h2
 +
 +	mov	$s1,$r1
 +	mov	$s1,%rax
@@ -14817,15 +14811,15 @@ diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
 +sub ::hidden {}
 +
  1;
-diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore3
+diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
 --- a/Configure	2014-05-04 15:44:25.000000000 +0900
-+++ b/Configure	2016-03-31 00:42:06.000000000 +0900
++++ b/Configure	2016-04-05 23:04:02.000000000 +0900
 @@ -128,24 +128,25 @@
  my $bits1="THIRTY_TWO_BIT ";
  my $bits2="SIXTY_FOUR_BIT ";
  
 -my $x86_asm="x86cpuid.o:bn-586.o co-586.o x86-mont.o x86-gf2m.o:des-586.o crypt586.o:aes-586.o vpaes-x86.o aesni-x86.o:bf-586.o:md5-586.o:sha1-586.o sha256-586.o sha512-586.o:cast-586.o:rc4-586.o:rmd-586.o:rc5-586.o:wp_block.o wp-mmx.o:cmll-x86.o:ghash-x86.o:";
-+my $x86_asm="x86cpuid.o:bn-586.o co-586.o x86-mont.o x86-gf2m.o:des-586.o crypt586.o:aes-586.o vpaes-x86.o aesni-x86.o:bf-586.o:md5-586.o:sha1-586.o sha256-586.o sha512-586.o:cast-586.o:rc4-586.o:rmd-586.o:rc5-586.o:wp_block.o wp-mmx.o:cmll-x86.o:ghash-x86.o::chacha_enc.o chacha_vec.o:poly1305.o";
++my $x86_asm="x86cpuid.o:bn-586.o co-586.o x86-mont.o x86-gf2m.o:des-586.o crypt586.o:aes-586.o vpaes-x86.o aesni-x86.o:bf-586.o:md5-586.o:sha1-586.o sha256-586.o sha512-586.o:cast-586.o:rc4-586.o:rmd-586.o:rc5-586.o:wp_block.o wp-mmx.o:cmll-x86.o:ghash-x86.o::chacha_enc.o chacha_vec.o:poly1305.o poly1305-x86.o";
  
  my $x86_elf_asm="$x86_asm:elf";
  
@@ -14850,8 +14844,8 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore3
 -my $no_asm=":::::::::::::::void";
 +my $mips64_asm=":bn-mips.o mips-mont.o::aes_cbc.o aes-mips.o:::sha1-mips.o sha256-mips.o sha512-mips.o::::::::::";
 +my $s390x_asm="s390xcap.o s390xcpuid.o:bn-s390x.o s390x-mont.o s390x-gf2m.o::aes-s390x.o aes-ctr.o aes-xts.o:::sha1-s390x.o sha256-s390x.o sha512-s390x.o::rc4-s390x.o:::::ghash-s390x.o:::";
-+my $armv4_asm="armcap.o armv4cpuid.o:bn_asm.o armv4-mont.o armv4-gf2m.o::aes_cbc.o aes-armv4.o:::sha1-armv4-large.o sha256-armv4.o sha512-armv4.o:::::::ghash-armv4.o::chacha_enc.o chacha-armv4.o:poly1305.o:void";
-+my $armv8_asm="armcap.o arm64cpuid.o mem_clr.o:::::::::::::::chacha_enc.o chacha-armv8.o:poly1305.o:linux64";
++my $armv4_asm="armcap.o armv4cpuid.o:bn_asm.o armv4-mont.o armv4-gf2m.o::aes_cbc.o aes-armv4.o:::sha1-armv4-large.o sha256-armv4.o sha512-armv4.o:::::::ghash-armv4.o::chacha_enc.o chacha-armv4.o:poly1305.o poly1305-armv4.o:void";
++my $armv8_asm="armcap.o arm64cpuid.o mem_clr.o:::::::::::::::chacha_enc.o chacha-armv8.o:poly1305.o poly1305-armv8.o:linux64";
 +my $parisc11_asm="pariscid.o:bn_asm.o parisc-mont.o::aes_core.o aes_cbc.o aes-parisc.o:::sha1-parisc.o sha256-parisc.o sha512-parisc.o::rc4-parisc.o:::::ghash-parisc.o::::32";
 +my $parisc20_asm="pariscid.o:pa-risc2W.o parisc-mont.o::aes_core.o aes_cbc.o aes-parisc.o:::sha1-parisc.o sha256-parisc.o sha512-parisc.o::rc4-parisc.o:::::ghash-parisc.o::::64";
 +my $ppc32_asm="ppccpuid.o ppccap.o:bn-ppc.o ppc-mont.o ppc64-mont.o::aes_core.o aes_cbc.o aes-ppc.o:::sha1-ppc.o sha256-ppc.o::::::::::";

@@ -1,3 +1,9 @@
+openssl (1.0.1e-2+deb7u20+ore4) wheezy; urgency=low
+
+  * Fix issue [openssl.org #4439] [openssl.org #4482] poly1305.
+
+ -- Ore sama <oresama@hoge.japan>  Wed, 06 Apr 2016 21:00:00 +0900
+
 openssl (1.0.1e-2+deb7u20+ore3) wheezy; urgency=low
 
   * Workaround about [openssl.org #4439] [openssl.org #4482] poly1305.
