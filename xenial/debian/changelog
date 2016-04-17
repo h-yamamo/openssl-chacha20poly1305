@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu3+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,15 @@ openssl (1.0.2g-1ubuntu3+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Fri, 15 Apr 2016 20:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sun, 17 Apr 2016 15:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4) xenial; urgency=medium
+
+  * Rename Fedora-imported FIPS patches to the names they have in Fedora, add
+    correct "Origin:" tags, and move Ubuntu modifications in them into
+    openssl-1.0.2g-ubuntu-fips-cleanup.patch.
+
+ -- Joy Latten <joy.latten@canonical.com>  Fri, 15 Apr 2016 06:58:01 +0200
 
 openssl (1.0.2g-1ubuntu3) xenial; urgency=medium
 
