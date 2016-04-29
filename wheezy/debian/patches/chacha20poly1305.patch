@@ -2187,10 +2187,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	print $_,"\n";
 +}
 +close STDOUT;
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore5
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/chacha/asm/chacha-armv8.pl	2016-03-07 20:27:48.000000000 +0900
-@@ -0,0 +1,1126 @@
++++ b/crypto/chacha/asm/chacha-armv8.pl	2016-04-27 04:35:05.000000000 +0900
+@@ -0,0 +1,1127 @@
 +#!/usr/bin/env perl
 +#
 +# ====================================================================
@@ -3317,6 +3317,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +
 +	print $_,"\n";
 +}
++close STDOUT;	# flush
 diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/asm/chacha-x86_64.pl	2016-03-07 20:27:48.000000000 +0900
@@ -6146,10 +6147,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +#endif
 +
 +#endif  /* HEADER_POLY1305_H_ */
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore5
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/poly1305test.c	2016-04-05 22:56:27.000000000 +0900
-@@ -0,0 +1,1619 @@
++++ b/crypto/poly1305/poly1305test.c	2016-04-27 22:21:31.000000000 +0900
+@@ -0,0 +1,1635 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -6262,7 +6263,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +     "5154ad0d2cb26e01274fc51148491f1b"
 +    },
 +    /*
-+     * self-generated
++     * self-generated vectors exercise "significant" lengths, such that
++     * are handled by different code paths
 +     */
 +    {
 +     "ab0812724a7f1e342742cbed374d94d136c6b8795d45b3819830f2c04491faf0"
@@ -6343,6 +6345,21 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +     "812059a5da198637cac7c4a631bee4665b88d7f6228b11e2e28579a5c0c1f761",
 +     "12976a08c4426d0ce8a82407c4f48207""80f8c20aa71202d1e29179cbcb555a57",
 +     "b846d44e9bbd53cedffbfbb6b7fa4933"
++    },
++    /*
++     * 4th power of the key spills to 131th bit in SIMD key setup
++     */
++    {
++     "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
++     "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
++     "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
++     "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
++     "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
++     "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
++     "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
++     "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
++     "ad628107e8351d0f2c231a05dc4a4106""00000000000000000000000000000000",
++     "07145a4c02fe5fa32036de68fabe9066"
 +    },
 +    {
 +    /*
@@ -7769,10 +7786,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +int main() { return 0; }
 +
 +#endif
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore5
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-armv4.pl	2016-04-05 22:15:46.000000000 +0900
-@@ -0,0 +1,1198 @@
++++ b/crypto/poly1305/asm/poly1305-armv4.pl	2016-04-27 04:35:05.000000000 +0900
+@@ -0,0 +1,1245 @@
 +#!/usr/bin/env perl
 +#
 +# ====================================================================
@@ -7785,7 +7802,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +#			IALU(*)/gcc-4.4		NEON
 +#
 +# ARM11xx(ARMv6)	7.78/+100%		-
-+# Cortex-A5		6.35/+130%		2.96
++# Cortex-A5		6.35/+130%		3.00
 +# Cortex-A8		6.25/+115%		2.36
 +# Cortex-A9		5.10/+95%		2.55
 +# Cortex-A15		3.85/+85%		1.25(**)
@@ -8298,6 +8315,51 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 +	@ lazy reduction as discussed in "NEON crypto" by D.J. Bernstein
 +	@ and P. Schwabe
++	@
++	@ H0>>+H1>>+H2>>+H3>>+H4
++	@ H3>>+H4>>*5+H0>>+H1
++	@
++	@ Trivia.
++	@
++	@ Result of multiplication of n-bit number by m-bit number is
++	@ n+m bits wide. However! Even though 2^n is a n+1-bit number,
++	@ m-bit number multiplied by 2^n is still n+m bits wide.
++	@
++	@ Sum of two n-bit numbers is n+1 bits wide, sum of three - n+2,
++	@ and so is sum of four. Sum of 2^m n-m-bit numbers and n-bit
++	@ one is n+1 bits wide.
++	@
++	@ >>+ denotes Hnext += Hn>>26, Hn &= 0x3ffffff. This means that
++	@ H0, H2, H3 are guaranteed to be 26 bits wide, while H1 and H4
++	@ can be 27. However! In cases when their width exceeds 26 bits
++	@ they are limited by 2^26+2^6. This in turn means that *sum*
++	@ of the products with these values can still be viewed as sum
++	@ of 52-bit numbers as long as the amount of addends is not a
++	@ power of 2. For example,
++	@
++	@ H4 = H4*R0 + H3*R1 + H2*R2 + H1*R3 + H0 * R4,
++	@
++	@ which can't be larger than 5 * (2^26 + 2^6) * (2^26 + 2^6), or
++	@ 5 * (2^52 + 2*2^32 + 2^12), which in turn is smaller than
++	@ 8 * (2^52) or 2^55. However, the value is then multiplied by
++	@ by 5, so we should be looking at 5 * 5 * (2^52 + 2^33 + 2^12),
++	@ which is less than 32 * (2^52) or 2^57. And when processing
++	@ data we are looking at triple as many addends...
++	@
++	@ In key setup procedure pre-reduced H0 is limited by 5*4+1 and
++	@ 5*H4 - by 5*5 52-bit addends, or 57 bits. But when hashing the
++	@ input H0 is limited by (5*4+1)*3 addends, or 58 bits, while
++	@ 5*H4 by 5*5*3, or 59[!] bits. How is this relevant? vmlal.u32
++	@ instruction accepts 2x32-bit input and writes 2x64-bit result.
++	@ This means that result of reduction have to be compressed upon
++	@ loop wrap-around. This can be done in the process of reduction
++	@ to minimize amount of instructions [as well as amount of
++	@ 128-bit instructions, which benefits low-end processors], but
++	@ one has to watch for H2 (which is narrower than H0) and 5*H4
++	@ not being wider than 58 bits, so that result of right shift
++	@ by 26 bits fits in 32 bits. This is also useful on x86,
++	@ because it allows to use paddd in place for paddq, which
++	@ benefits Atom, where paddq is ridiculously slow.
 +
 +	vshr.u64	$T0,$D3,#26
 +	vmovn.i64	$D3#lo,$D3
@@ -8662,7 +8724,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +# endif
 +
 +	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-+	@ lazy reduction interleaved with base 2^32 -> base 2^26
++	@ lazy reduction interleaved with base 2^32 -> base 2^26 of
++	@ inp[0:3] previously loaded to $H0-$H3 and smashed to $H0-$H4.
 +
 +	vshr.u64	$T0,$D3,#26
 +	vmovn.i64	$D3#lo,$D3
@@ -8690,19 +8753,20 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +	  vbic.i32	$H3,#0xfc000000
 +	 vshrn.u64	$T1#lo,$D2,#26
 +	 vmovn.i64	$D2#lo,$D2
-+	vadd.i32	$D0#lo,$D0#lo,$T0#lo	@ h4 -> h0
++	vaddl.u32	$D0,$D0#lo,$T0#lo	@ h4 -> h0 [widen for a sec]
 +	  vsri.u32	$H2,$H1,#20
 +	 vadd.i32	$D3#lo,$D3#lo,$T1#lo	@ h2 -> h3
 +	  vshl.u32	$H1,$H1,#6
 +	 vbic.i32	$D2#lo,#0xfc000000
 +	  vbic.i32	$H2,#0xfc000000
 +
-+	vshr.u32	$T0#lo,$D0#lo,#26
-+	vbic.i32	$D0#lo,#0xfc000000
++	vshrn.u64	$T0#lo,$D0,#26		@ re-narrow
++	vmovn.i64	$D0#lo,$D0
 +	  vsri.u32	$H1,$H0,#26
 +	  vbic.i32	$H0,#0xfc000000
 +	 vshr.u32	$T1#lo,$D3#lo,#26
 +	 vbic.i32	$D3#lo,#0xfc000000
++	vbic.i32	$D0#lo,#0xfc000000
 +	vadd.i32	$D1#lo,$D1#lo,$T0#lo	@ h0 -> h1
 +	 vadd.i32	$D4#lo,$D4#lo,$T1#lo	@ h3 -> h4
 +	  vbic.i32	$H1,#0xfc000000
@@ -8971,10 +9035,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +	print $_,"\n";
 +}
 +close STDOUT; # enforce flush
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore5
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-armv8.pl	2016-04-05 22:15:46.000000000 +0900
-@@ -0,0 +1,929 @@
++++ b/crypto/poly1305/asm/poly1305-armv8.pl	2016-04-27 04:35:05.000000000 +0900
+@@ -0,0 +1,931 @@
 +#!/usr/bin/env perl
 +#
 +# ====================================================================
@@ -8996,7 +9060,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +# Cortex-A53	2.69/+58%	1.47
 +# Cortex-A57	2.70/+7%	1.14
 +# Denver	1.64/+50%	1.18(*)
-+# X-Gene	2.13/+68%	2.19
++# X-Gene	2.13/+68%	2.27
 +#
 +# (*)	estimate based on resources availability is less than 1.0,
 +#	i.e. measured result is worse than expected, presumably binary
@@ -9484,9 +9548,11 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +	fmov	$IN01_1,x6
 +	add	x10,x10,x11,lsl#32	// bfi	x10,x11,#32,#32
 +	add	x12,x12,x13,lsl#32	// bfi	x12,x13,#32,#32
++	movi	$MASK.2d,#-1
 +	fmov	$IN01_2,x8
 +	fmov	$IN01_3,x10
 +	fmov	$IN01_4,x12
++	ushr	$MASK.2d,$MASK.2d,#38
 +
 +	b.ls	.Lskip_loop
 +
@@ -9637,41 +9703,43 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +	 fmov	$IN01_2,x8
 +	umlal	$ACC2,$IN01_4,${S3}[0]
 +	 fmov	$IN01_3,x10
++	 fmov	$IN01_4,x12
 +
 +	/////////////////////////////////////////////////////////////////
 +	// lazy reduction as discussed in "NEON crypto" by D.J. Bernstein
-+        // and P. Schwabe
++	// and P. Schwabe
++	//
++	// [see discussion in poly1305-armv4 module]
 +
 +	ushr	$T0.2d,$ACC3,#26
-+	 fmov	$IN01_4,x12
 +	xtn	$H3,$ACC3
 +	 ushr	$T1.2d,$ACC0,#26
-+	 xtn	$H0,$ACC0
++	 and	$ACC0,$ACC0,$MASK.2d
 +	add	$ACC4,$ACC4,$T0.2d	// h3 -> h4
 +	bic	$H3,#0xfc,lsl#24	// &=0x03ffffff
 +	 add	$ACC1,$ACC1,$T1.2d	// h0 -> h1
-+	 bic	$H0,#0xfc,lsl#24
 +
-+	shrn	$T0.2s,$ACC4,#26
++	ushr	$T0.2d,$ACC4,#26
 +	xtn	$H4,$ACC4
 +	 ushr	$T1.2d,$ACC1,#26
 +	 xtn	$H1,$ACC1
-+	 add	$ACC2,$ACC2,$T1.2d	// h1 -> h2
 +	bic	$H4,#0xfc,lsl#24
-+	 bic	$H1,#0xfc,lsl#24
++	 add	$ACC2,$ACC2,$T1.2d	// h1 -> h2
 +
-+	add	$H0,$H0,$T0.2s
-+	shl	$T0.2s,$T0.2s,#2
++	add	$ACC0,$ACC0,$T0.2d
++	shl	$T0.2d,$T0.2d,#2
 +	 shrn	$T1.2s,$ACC2,#26
 +	 xtn	$H2,$ACC2
-+	add	$H0,$H0,$T0.2s		// h4 -> h0
++	add	$ACC0,$ACC0,$T0.2d	// h4 -> h0
++	 bic	$H1,#0xfc,lsl#24
 +	 add	$H3,$H3,$T1.2s		// h2 -> h3
 +	 bic	$H2,#0xfc,lsl#24
 +
-+	ushr	$T0.2s,$H0,#26
-+	bic	$H0,#0xfc,lsl#24
++	shrn	$T0.2s,$ACC0,#26
++	xtn	$H0,$ACC0
 +	 ushr	$T1.2s,$H3,#26
 +	 bic	$H3,#0xfc,lsl#24
++	 bic	$H0,#0xfc,lsl#24
 +	add	$H1,$H1,$T0.2s		// h0 -> h1
 +	 add	$H4,$H4,$T1.2s		// h3 -> h4
 +
@@ -9679,9 +9747,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +
 +.Lskip_loop:
 +	dup	$IN23_2,${IN23_2}[0]
-+	movi	$MASK.2d,#-1
 +	add	$IN01_2,$IN01_2,$H2
-+	ushr	$MASK.2d,$MASK.2d,#38
 +
 +	////////////////////////////////////////////////////////////////
 +	// multiply (inp[0:1]+hash) or inp[2:3] by r^2:r^1
@@ -9904,10 +9970,10 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +	print $_,"\n";
 +}
 +close STDOUT;
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
+diff -urN /dev/null 1.0.1e-2+deb7u20+ore5
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-x86.pl	2016-04-05 22:43:21.000000000 +0900
-@@ -0,0 +1,1212 @@
++++ b/crypto/poly1305/asm/poly1305-x86.pl	2016-04-28 23:25:31.000000000 +0900
+@@ -0,0 +1,1213 @@
 +#!/usr/bin/env perl
 +#
 +# ====================================================================
@@ -10430,11 +10496,12 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +
 +sub lazy_reduction {
 +my $extra = shift;
-+my $paddx = defined($extra) ? paddq : paddd;
 +
 +	################################################################
 +	# lazy reduction as discussed in "NEON crypto" by D.J. Bernstein
 +	# and P. Schwabe
++	#
++	# [(*) see discussion in poly1305-armv4 module]
 +
 +	 &movdqa	($T0,$D3);
 +	 &pand		($D3,$MASK);
@@ -10456,7 +10523,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +							# on Atom
 +	 &psllq		($T0,2);
 +	&paddq		($T1,$D2);			# h1 -> h2
-+	 &$paddx	($T0,$D0);			# h4 -> h0
++	 &paddq		($T0,$D0);			# h4 -> h0 (*)
 +	&pand		($D1,$MASK);
 +	&movdqa		($D2,$T1);
 +	&psrlq		($T1,26);
