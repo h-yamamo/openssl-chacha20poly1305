@@ -104,4 +104,11 @@ CVE-2016-0799.patch
 CVE-2016-0797.patch
 CVE-2016-0702.patch
 preserve_digests_for_sni.patch
+CVE-2016-2105.patch
+CVE-2016-2106.patch
+CVE-2016-2107.patch
+CVE-2016-2108-1.patch
+CVE-2016-2108-2.patch
+CVE-2016-2109.patch
+min_1024_dh_size.patch
 chacha20poly1305.patch

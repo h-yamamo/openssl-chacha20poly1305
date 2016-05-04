@@ -1,27 +1,32 @@
-openssl (1.0.1k-3+deb8u4+ore5) jessie; urgency=low
+openssl (1.0.1k-3+deb8u5+ore1) jessie; urgency=low
 
-  * Update assembler sources from OpenSSL master branch.
-
- -- Ore sama <oresama@hoge.japan>  Fri, 29 Apr 2016 01:00:00 +0900
-
-openssl (1.0.1k-3+deb8u4+ore4) jessie; urgency=low
-
-  * Fix issue [openssl.org #4439] [openssl.org #4482] poly1305.
-
- -- Ore sama <oresama@hoge.japan>  Wed, 06 Apr 2016 21:00:00 +0900
-
-openssl (1.0.1k-3+deb8u4+ore3) jessie; urgency=low
-
-  * Workaround about [openssl.org #4439] [openssl.org #4482] poly1305.
-
- -- Ore sama <oresama@hoge.japan>  Thu, 31 Mar 2016 01:00:00 +0900
-
-openssl (1.0.1k-3+deb8u4+ore2) jessie; urgency=low
-
-  * Improve performance using OpenSSL 1.1.0(beta) assembler codes.  For
-    take in these new codes, copied around codes from the BoringSSL and
-    OpenSSL 1.0.2.
-    - Add:
+  * Non-maintainer release.
+  * Support ChaCha20+Poly1305 cipher suites.
+    - Origin:
+        git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
+        (Deleted. Got in 2014.)
+    - References:
+        BoringSSL, LibreSSL and OpenSSL master branch.
+    - Modify SSL headers to be better compatibility with released official
+      packages - e.g. apache2 and nginx.
+    - Improve performance using SSE2 in i386 arch if it is available.
+    - Rewrite part of ssl/t1_enc.c to improve maintainability.
+    - Add the RFC 7539 ChaCha20-Poly1305 AEAD based on the BoringSSL.
+        Refactor ChaCha20-Poly1305 AEAD nonce handling.
+    - Add support the standardized ChaCha20-Poly1305 Cipher Suites for TLS.
+      Implement draft-ietf-tls-chacha20-poly1305-04 based on the BoringSSL.
+        Change EVP_aead_chacha20_poly1305() to the RFC 7539 version.
+        Add cipher suites IDs.
+        Implement XORing fixed nonce.
+    - Copied the following as is from the BoringSSL.
+        test/aes_128_gcm_tests.txt
+        test/aes_256_gcm_tests.txt
+        test/chacha20_poly1305_old_tests.txt
+        test/chacha20_poly1305_tests.txt
+    - Improve performance using OpenSSL 1.1.0(beta) assembler codes.
+      For take in these new codes, copied around codes from the BoringSSL
+      and OpenSSL 1.0.2.
+      Add:
         crypto/chacha/asm/chacha-armv4.pl
         crypto/chacha/asm/chacha-armv8.pl
         crypto/chacha/asm/chacha-x86_64.pl
@@ -31,43 +36,31 @@ openssl (1.0.1k-3+deb8u4+ore2) jessie; urgency=low
         crypto/poly1305/asm/poly1305-x86_64.pl
         crypto/arm64cpuid.S
         crypto/perlasm/arm-xlate.pl
-    - Delete:
+      Modify:
+        crypto/chacha/Makefile
+        crypto/chacha/chacha_enc.c
+        crypto/chacha/chachatest.c
+        crypto/poly1305/Makefile
+        crypto/poly1305/poly1305.c
+        crypto/poly1305/poly1305test.c
+      Delete:
         crypto/chacha/chacha_vec_arm.S
         crypto/poly1305/poly1305_arm.c
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Mon, 21 Mar 2016 12:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 04 May 2016 18:00:00 +0900
 
-openssl (1.0.1k-3+deb8u4+ore1) jessie; urgency=low
+openssl (1.0.1k-3+deb8u5) jessie-security; urgency=medium
 
-  * Non-maintainer release.
-  * Support ChaCha20+Poly1305 cipher suites.
-    - Origin:
-        git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
-        (Deleted. Got in 2014.)
-    - References:
-        BoringSSL and LibreSSL
-    - Copied the following as is from the BoringSSL.
-        crypto/chacha/chacha_vec_arm.S
-        crypto/poly1305/poly1305_arm_asm.S
-        test/chacha20_poly1305_old_tests.txt
-        test/chacha20_poly1305_tests.txt
-    - Improve performance using NEON in armhf arch or SSE2 in i386 arch
-      if there are available.
-    - Modify SSL headers to be better compatibility with released official
-      packages.
-    - Use aligned buffer for a mac return area in poly1305_arm.c.
-    - Rewrite part of ssl/t1_enc.c to improve maintainability.
-    - Add the RFC 7539 ChaCha20-Poly1305 AEAD based on the BoringSSL.
-        Refactor ChaCha20-Poly1305 AEAD nonce handling.
-    - Add support the standardized ChaCha20-Poly1305 Cipher Suites for TLS.
-      Implement draft-ietf-tls-chacha20-poly1305-04 based on the BoringSSL.
-        Change EVP_aead_chacha20_poly1305() to the RFC 7539 version.
-        Add cipher suites IDs.
-        Implement XORing fixed nonce.
+  * Fix CVE-2016-2105
+  * Fix CVE-2016-2106
+  * Fix CVE-2016-2107
+  * Fix CVE-2016-2108
+  * Fix CVE-2016-2109
+  * Fix CVE-2016-2176
 
- -- Ore sama <oresama@hoge.japan>  Wed, 02 Mar 2016 01:40:00 +0900
+ -- Kurt Roeckx <kurt@roeckx.be>  Tue, 03 May 2016 18:44:21 +0200
 
 openssl (1.0.1k-3+deb8u4) jessie-security; urgency=medium
 

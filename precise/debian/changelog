@@ -1,27 +1,33 @@
-openssl (1.0.1-4ubuntu5.35+ore5) precise; urgency=low
+openssl (1.0.1-4ubuntu5.36+ore1) precise; urgency=low
 
-  * Update assembler sources from OpenSSL master branch.
-
- -- Ore sama <oresama@hoge.japan>  Fri, 29 Apr 2016 01:00:00 +0900
-
-openssl (1.0.1-4ubuntu5.35+ore4) precise; urgency=low
-
-  * Fix issue [openssl.org #4439] [openssl.org #4482] poly1305.
-
- -- Ore sama <oresama@hoge.japan>  Wed, 06 Apr 2016 21:00:00 +0900
-
-openssl (1.0.1-4ubuntu5.35+ore3) precise; urgency=low
-
-  * Workaround about [openssl.org #4439] [openssl.org #4482] poly1305.
-
- -- Ore sama <oresama@hoge.japan>  Thu, 31 Mar 2016 01:00:00 +0900
-
-openssl (1.0.1-4ubuntu5.35+ore2) precise; urgency=low
-
-  * Improve performance using OpenSSL 1.1.0(beta) assembler codes.  For
-    take in these new codes, copied around codes from the BoringSSL and
-    OpenSSL 1.0.2.
-    - Add:
+  * Non-maintainer release.
+  * Support ChaCha20+Poly1305 cipher suites.
+    - Origin:
+        git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
+        (Deleted. Got in 2014.)
+    - References:
+        BoringSSL, LibreSSL and OpenSSL master branch.
+    - Modify SSL headers to be better compatibility with released official
+      packages - e.g. apache2 and nginx.
+    - Remove OPENSSL_NO_TLS1_2_CLIENT macro from CFLAGS.
+    - Improve performance using SSE2 in i386 arch if it is available.
+    - Rewrite part of ssl/t1_enc.c to improve maintainability.
+    - Add the RFC 7539 ChaCha20-Poly1305 AEAD based on the BoringSSL.
+        Refactor ChaCha20-Poly1305 AEAD nonce handling.
+    - Add support the standardized ChaCha20-Poly1305 Cipher Suites for TLS.
+      Implement draft-ietf-tls-chacha20-poly1305-04 based on the BoringSSL.
+        Change EVP_aead_chacha20_poly1305() to the RFC 7539 version.
+        Add cipher suites IDs.
+        Implement XORing fixed nonce.
+    - Copied the following as is from the BoringSSL.
+        test/aes_128_gcm_tests.txt
+        test/aes_256_gcm_tests.txt
+        test/chacha20_poly1305_old_tests.txt
+        test/chacha20_poly1305_tests.txt
+    - Improve performance using OpenSSL 1.1.0(beta) assembler codes.
+      For take in these new codes, copied around codes from the BoringSSL
+      and OpenSSL 1.0.2.
+      Add:
         crypto/chacha/asm/chacha-armv4.pl
         crypto/chacha/asm/chacha-armv8.pl
         crypto/chacha/asm/chacha-x86_64.pl
@@ -31,44 +37,51 @@ openssl (1.0.1-4ubuntu5.35+ore2) precise; urgency=low
         crypto/poly1305/asm/poly1305-x86_64.pl
         crypto/arm64cpuid.S
         crypto/perlasm/arm-xlate.pl
-    - Delete:
+      Modify:
+        crypto/chacha/Makefile
+        crypto/chacha/chacha_enc.c
+        crypto/chacha/chachatest.c
+        crypto/poly1305/Makefile
+        crypto/poly1305/poly1305.c
+        crypto/poly1305/poly1305test.c
+      Delete:
         crypto/chacha/chacha_vec_arm.S
         crypto/poly1305/poly1305_arm.c
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Mon, 21 Mar 2016 12:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 04 May 2016 18:00:00 +0900
 
-openssl (1.0.1-4ubuntu5.35+ore1) precise; urgency=low
+openssl (1.0.1-4ubuntu5.36) precise-security; urgency=medium
 
-  * Non-maintainer release.
-  * Support ChaCha20+Poly1305 cipher suites.
-    - Origin:
-        git clone -b 1.0.2-aead git://git.openssl.org/openssl.git
-        (Deleted. Got in 2014.)
-    - References:
-        BoringSSL and LibreSSL
-    - Copied the following as is from the BoringSSL.
-        crypto/chacha/chacha_vec_arm.S
-        crypto/poly1305/poly1305_arm_asm.S
-        test/chacha20_poly1305_old_tests.txt
-        test/chacha20_poly1305_tests.txt
-    - Improve performance using NEON in armhf arch or SSE2 in i386 arch
-      if there are available.
-    - Remove OPENSSL_NO_TLS1_2_CLIENT macro from CFLAGS.
-    - Modify SSL headers to be better compatibility with released official
-      packages.
-    - Use aligned buffer for a mac return area in poly1305_arm.c.
-    - Rewrite part of ssl/t1_enc.c to improve maintainability.
-    - Add the RFC 7539 ChaCha20-Poly1305 AEAD based on the BoringSSL.
-        Refactor ChaCha20-Poly1305 AEAD nonce handling.
-    - Add support the standardized ChaCha20-Poly1305 Cipher Suites for TLS.
-      Implement draft-ietf-tls-chacha20-poly1305-04 based on the BoringSSL.
-        Change EVP_aead_chacha20_poly1305() to the RFC 7539 version.
-        Add cipher suites IDs.
-        Implement XORing fixed nonce.
+  * SECURITY UPDATE: EVP_EncodeUpdate overflow
+    - debian/patches/CVE-2016-2105.patch: properly check lengths in
+      crypto/evp/encode.c, add documentation to
+      doc/crypto/EVP_EncodeInit.pod, doc/crypto/evp.pod.
+    - CVE-2016-2105
+  * SECURITY UPDATE: EVP_EncryptUpdate overflow
+    - debian/patches/CVE-2016-2106.patch: fix overflow in
+      crypto/evp/evp_enc.c.
+    - CVE-2016-2106
+  * SECURITY UPDATE: Padding oracle in AES-NI CBC MAC check
+    - debian/patches/CVE-2016-2107.patch: check that there are enough
+      padding characters in crypto/evp/e_aes_cbc_hmac_sha1.c.
+    - CVE-2016-2107
+  * SECURITY UPDATE: Memory corruption in the ASN.1 encoder
+    - debian/patches/CVE-2016-2108-1.patch: don't mishandle zero if it is
+      marked as negative in crypto/asn1/a_int.c.
+    - debian/patches/CVE-2016-2108-2.patch: fix ASN1_INTEGER handling in
+      crypto/asn1/a_type.c, crypto/asn1/asn1.h, crypto/asn1/tasn_dec.c,
+      crypto/asn1/tasn_enc.c.
+    - CVE-2016-2108
+  * SECURITY UPDATE: ASN.1 BIO excessive memory allocation
+    - debian/patches/CVE-2016-2109.patch: properly handle large amounts of
+      data in crypto/asn1/a_d2i_fp.c.
+    - CVE-2016-2109
+  * debian/patches/min_1024_dh_size.patch: change minimum DH size from 768
+    to 1024.
 
- -- Ore sama <oresama@hoge.japan>  Wed, 02 Mar 2016 19:50:00 +0900
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 28 Apr 2016 11:45:24 -0400
 
 openssl (1.0.1-4ubuntu5.35) precise-security; urgency=medium
 

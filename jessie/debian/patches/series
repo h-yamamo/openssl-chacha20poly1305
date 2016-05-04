@@ -44,4 +44,10 @@ CVE-2016-0798.patch
 CVE-2016-0799.patch
 CVE-2016-0702.patch
 CVE-2016-0705.patch
+CVE-2016-2108.patch
+CVE-2016-2107.patch
+CVE-2016-2105.patch
+CVE-2016-2176.patch
+CVE-2016-2106.patch
+CVE-2016-2109.patch
 chacha20poly1305.patch

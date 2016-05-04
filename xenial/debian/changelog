@@ -1,10 +1,4 @@
-openssl (1.0.2g-1ubuntu4+ore2) xenial; urgency=low
-
-  * Update assembler sources from OpenSSL master branch.
-
- -- Ore sama <oresama@hoge.japan>  Fri, 29 Apr 2016 01:00:00 +0900
-
-openssl (1.0.2g-1ubuntu4+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.1+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -57,7 +51,35 @@ openssl (1.0.2g-1ubuntu4+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Sun, 17 Apr 2016 15:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 04 May 2016 18:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.1) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: EVP_EncodeUpdate overflow
+    - debian/patches/CVE-2016-2105.patch: properly check lengths in
+      crypto/evp/encode.c, add documentation to
+      doc/crypto/EVP_EncodeInit.pod, doc/crypto/evp.pod.
+    - CVE-2016-2105
+  * SECURITY UPDATE: EVP_EncryptUpdate overflow
+    - debian/patches/CVE-2016-2106.patch: fix overflow in
+      crypto/evp/evp_enc.c.
+    - CVE-2016-2106
+  * SECURITY UPDATE: Padding oracle in AES-NI CBC MAC check
+    - debian/patches/CVE-2016-2107.patch: check that there are enough
+      padding characters in crypto/evp/e_aes_cbc_hmac_sha1.c,
+      crypto/evp/e_aes_cbc_hmac_sha256.c.
+    - CVE-2016-2107
+  * SECURITY UPDATE: Memory corruption in the ASN.1 encoder
+    - debian/patches/CVE-2016-2108.patch: fix ASN1_INTEGER handling in
+      crypto/asn1/a_type.c, crypto/asn1/asn1.h, crypto/asn1/tasn_dec.c,
+      crypto/asn1/tasn_enc.c.
+    - CVE-2016-2108
+  * SECURITY UPDATE: ASN.1 BIO excessive memory allocation
+    - debian/patches/CVE-2016-2109.patch: properly handle large amounts of
+      data in crypto/asn1/a_d2i_fp.c.
+    - CVE-2016-2109
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 28 Apr 2016 09:15:39 -0400
 
 openssl (1.0.2g-1ubuntu4) xenial; urgency=medium
 
