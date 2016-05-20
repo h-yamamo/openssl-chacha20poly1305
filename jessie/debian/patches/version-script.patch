@@ -1,8 +1,13 @@
-Index: openssl-1.0.1d/Configure
-===================================================================
---- openssl-1.0.1d.orig/Configure	2013-02-06 19:41:43.000000000 +0100
-+++ openssl-1.0.1d/Configure	2013-02-06 19:41:43.000000000 +0100
-@@ -1621,6 +1621,8 @@
+---
+ Configure                 |    2 
+ engines/ccgost/openssl.ld |   10 
+ engines/openssl.ld        |   10 
+ openssl.ld                | 4626 ++++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 4648 insertions(+)
+
+--- a/Configure
++++ b/Configure
+@@ -1635,6 +1635,8 @@ if ($strict_warnings)
  		}
  	}
  
@@ -11,10 +16,34 @@ Index: openssl-1.0.1d/Configure
  open(IN,'<Makefile.org') || die "unable to read Makefile.org:$!\n";
  unlink("$Makefile.new") || die "unable to remove old $Makefile.new:$!\n" if -e "$Makefile.new";
  open(OUT,">$Makefile.new") || die "unable to create $Makefile.new:$!\n";
-Index: openssl-1.0.1d/openssl.ld
-===================================================================
---- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ openssl-1.0.1d/openssl.ld	2016-03-02 01:25:04.000000000 +0900
+--- /dev/null
++++ b/engines/ccgost/openssl.ld
+@@ -0,0 +1,10 @@
++OPENSSL_1.0.0 {
++	global:
++		bind_engine;
++		v_check;
++		OPENSSL_init;
++		OPENSSL_finish;
++	local:
++		*;
++};
++
+--- /dev/null
++++ b/engines/openssl.ld
+@@ -0,0 +1,10 @@
++OPENSSL_1.0.0 {
++	global:
++		bind_engine;
++		v_check;
++		OPENSSL_init;
++		OPENSSL_finish;
++	local:
++		*;
++};
++
+--- /dev/null
++++ b/openssl.ld
 @@ -0,0 +1,4643 @@
 +OPENSSL_1.0.0 {
 +	global:
@@ -4658,34 +4687,4 @@ Index: openssl-1.0.1d/openssl.ld
 +		SRP_VBASE_get1_by_user;
 +		SRP_user_pwd_free;
 +} OPENSSL_1.0.1d;
-+
-Index: openssl-1.0.1d/engines/openssl.ld
-===================================================================
---- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ openssl-1.0.1d/engines/openssl.ld	2013-02-06 19:41:43.000000000 +0100
-@@ -0,0 +1,10 @@
-+OPENSSL_1.0.0 {
-+	global:
-+		bind_engine;
-+		v_check;
-+		OPENSSL_init;
-+		OPENSSL_finish;
-+	local:
-+		*;
-+};
-+
-Index: openssl-1.0.1d/engines/ccgost/openssl.ld
-===================================================================
---- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ openssl-1.0.1d/engines/ccgost/openssl.ld	2013-02-06 19:41:43.000000000 +0100
-@@ -0,0 +1,10 @@
-+OPENSSL_1.0.0 {
-+	global:
-+		bind_engine;
-+		v_check;
-+		OPENSSL_init;
-+		OPENSSL_finish;
-+	local:
-+		*;
-+};
 +

@@ -1,4 +1,4 @@
-openssl (1.0.1k-3+deb8u5+ore1) jessie; urgency=low
+openssl (1.0.1t-1+deb8u2+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,26 @@ openssl (1.0.1k-3+deb8u5+ore1) jessie; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Wed, 04 May 2016 18:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 20 May 2016 03:00:00 +0900
+
+openssl (1.0.1t-1+deb8u2) jessie; urgency=medium
+
+  * add Update-S-MIME-certificates.patch to update expired certificates to
+    pass the test suite
+
+ -- Sebastian Andrzej Siewior <sebastian@breakpoint.cc>  Wed, 11 May 2016 23:22:52 +0200
+
+openssl (1.0.1t-1+deb8u1) jessie; urgency=medium
+
+  [ Sebastian Andrzej Siewior ]
+  * Update to 1.0.1t stable release (drop applied patches and refresh existing
+    ones).
+    - Use alternate trust chains part of 1.0.1n (Closes: #774882).
+    - Use correct digest when exporting keying material (Closes: #807057)
+    - Fix CVE-2015-3197 (not affected, SSLv2 disabled)
+    - Fix CVE-2015-1793 (1.0.1n+ is affected and last upload was k)
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Fri, 06 May 2016 15:56:09 +0200
 
 openssl (1.0.1k-3+deb8u5) jessie-security; urgency=medium
 
@@ -262,7 +281,7 @@ openssl (1.0.1e-5) unstable; urgency=low
   * Drop support for multiple certificates in 1 file.  It never worked
     properly in the first place, and the only one shipping in
     ca-certificates has been split.
-  * Fix libdoc-manpgs-pod-spell.patch to only fix spalling errors
+  * Fix libdoc-manpgs-pod-spell.patch to only fix spelling errors
   * Remove make-targets.patch.  It prevented the test dir from being cleaned.
   * Update to a git snapshot of the OpenSSL_1_0_1-stable branch. 
     - Fixes CVE-2013-6449 (Closes: #732754)
