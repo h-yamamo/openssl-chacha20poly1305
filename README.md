@@ -29,6 +29,20 @@ tar xf ../openssl_1.0.1t-1+deb8u2.debian.tar.xz
 cp -av ../openssl-chacha20poly1305/jessie/debian/* debian/
 debuild -uc -us
 ```
+If you want to use version 1.0.1k rather than version 1.0.1t :
+```bash
+# In some directory
+git clone https://github.com/h-yamamo/openssl-chacha20poly1305
+cd openssl-chacha20poly1305
+git checkout 0757742be9d8f26a5c3adf65e28fe5d85ba67e3c
+cd ..
+apt-get -d source openssl=1.0.1k
+tar xf openssl_1.0.1k.orig.tar.gz
+cd openssl-1.0.1k
+tar xf ../openssl_1.0.1k-3+deb8u5.debian.tar.xz
+cp -av ../openssl-chacha20poly1305/jessie/debian/* debian/
+debuild -uc -us
+```
 
 ### Ubuntu 12.04 LTS (precise)
 
