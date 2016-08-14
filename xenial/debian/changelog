@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.1+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.2+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,15 @@ openssl (1.0.2g-1ubuntu4.1+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Wed, 04 May 2016 18:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sun, 14 Aug 2016 12:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.2) xenial; urgency=medium
+
+  * Cherry-pick s390x assembly pack bugfix to cache capability query
+    results for improved performance. LP: #1601836.
+  * Enable asm optimisations on s390x. LP: #1602655.
+
+ -- Dimitri John Ledkov <xnox@ubuntu.com>  Thu, 28 Jul 2016 15:37:07 +0300
 
 openssl (1.0.2g-1ubuntu4.1) xenial-security; urgency=medium
 
