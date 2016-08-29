@@ -1,6 +1,6 @@
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/Configure	2016-04-12 20:33:50.000000000 +0000
-+++ b/Configure	2016-04-14 21:53:32.000000000 +0900
+diff -ur openssl-1.0.2g-1ubuntu4.3 openssl-1.0.2g-1ubuntu4.3+ore1
+--- a/Configure	2016-08-19 17:05:06.000000000 +0000
++++ b/Configure	2016-08-29 20:00:00.000000000 +0900
 @@ -154,25 +154,25 @@
  my $bits1="THIRTY_TWO_BIT ";
  my $bits2="SIXTY_FOUR_BIT ";
@@ -59,7 +59,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  my $md5_obj="";
  my $sha1_obj="";
  my $rmd160_obj="";
-@@ -1264,7 +1268,7 @@
+@@ -1269,7 +1273,7 @@
  
  print "IsMK1MF=$IsMK1MF\n";
  
@@ -68,7 +68,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  my $cc = $fields[$idx_cc];
  # Allow environment CC to override compiler...
  if($ENV{CC}) {
-@@ -1303,6 +1307,8 @@
+@@ -1308,6 +1312,8 @@
  my $ar = $ENV{'AR'} || "ar";
  my $arflags = $fields[$idx_arflags];
  my $multilib = $fields[$idx_multilib];
@@ -77,7 +77,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  
  # if $prefix/lib$multilib is not an existing directory, then
  # assume that it's not searched by linker automatically, in
-@@ -1611,6 +1617,10 @@
+@@ -1617,6 +1623,10 @@
  $cast_obj=$cast_enc	unless ($cast_obj =~ /\.o$/);
  $rc4_obj=$rc4_enc	unless ($rc4_obj =~ /\.o$/);
  $rc5_obj=$rc5_enc	unless ($rc5_obj =~ /\.o$/);
@@ -88,7 +88,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  if ($sha1_obj =~ /\.o$/)
  	{
  #	$sha1_obj=$sha1_enc;
-@@ -1789,6 +1799,9 @@
+@@ -1795,6 +1805,9 @@
  	s/^CAST_ENC=.*$/CAST_ENC= $cast_obj/;
  	s/^RC4_ENC=.*$/RC4_ENC= $rc4_obj/;
  	s/^RC5_ENC=.*$/RC5_ENC= $rc5_obj/;
@@ -98,7 +98,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  	s/^MD5_ASM_OBJ=.*$/MD5_ASM_OBJ= $md5_obj/;
  	s/^SHA1_ASM_OBJ=.*$/SHA1_ASM_OBJ= $sha1_obj/;
  	s/^RMD160_ASM_OBJ=.*$/RMD160_ASM_OBJ= $rmd160_obj/;
-@@ -1855,6 +1868,8 @@
+@@ -1858,6 +1871,8 @@
  print "CAST_ENC      =$cast_obj\n";
  print "RC4_ENC       =$rc4_obj\n";
  print "RC5_ENC       =$rc5_obj\n";
@@ -107,7 +107,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  print "MD5_OBJ_ASM   =$md5_obj\n";
  print "SHA1_OBJ_ASM  =$sha1_obj\n";
  print "RMD160_OBJ_ASM=$rmd160_obj\n";
-@@ -1942,6 +1957,7 @@
+@@ -1945,6 +1960,7 @@
  print OUT "\n#endif /* OPENSSL_DOING_MAKEDEPEND */\n\n";
  print OUT $openssl_thread_defines;
  print OUT $openssl_other_defines,"\n";
@@ -115,7 +115,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  
  print OUT "/* The OPENSSL_NO_* macros are also defined as NO_* if the application\n";
  print OUT "   asks for it.  This is a transient feature that is provided for those\n";
-@@ -2258,11 +2274,11 @@
+@@ -2261,11 +2277,11 @@
  
  	my ($cc, $cflags, $unistd, $thread_cflag, $sys_id, $lflags,
  	    $bn_ops, $cpuid_obj, $bn_obj, $ec_obj, $des_obj, $aes_obj, $bf_obj,
@@ -130,7 +130,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  			
  	print <<EOF
  
-@@ -2284,6 +2300,8 @@
+@@ -2287,6 +2303,8 @@
  \$sha1_obj     = $sha1_obj
  \$cast_obj     = $cast_obj
  \$rc4_obj      = $rc4_obj
@@ -139,7 +139,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  \$rmd160_obj   = $rmd160_obj
  \$rc5_obj      = $rc5_obj
  \$wp_obj       = $wp_obj
-@@ -2313,7 +2331,7 @@
+@@ -2316,7 +2334,7 @@
  
  	foreach $target (sort keys %table)
  		{
@@ -148,9 +148,9 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  
  		if ($fields[$idx_dso_scheme-1] =~ /^(beos|dl|dlfcn|win32|vms)$/)
  			{
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/Makefile.org	2016-04-12 20:33:50.000000000 +0000
-+++ b/Makefile.org	2016-04-14 22:04:08.000000000 +0900
+diff -ur openssl-1.0.2g-1ubuntu4.3 openssl-1.0.2g-1ubuntu4.3+ore1
+--- a/Makefile.org	2016-08-19 17:05:06.000000000 +0000
++++ b/Makefile.org	2016-08-29 20:00:00.000000000 +0900
 @@ -85,6 +85,8 @@
  # the 80386.
  PROCESSOR=
@@ -169,16 +169,16 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  MD5_ASM_OBJ= 
  SHA1_ASM_OBJ= 
  RMD160_ASM_OBJ= 
-@@ -151,7 +155,7 @@
+@@ -148,7 +152,7 @@
  	bn ec rsa dsa ecdsa dh ecdh dso engine \
  	buffer bio stack lhash rand err \
  	evp asn1 pem x509 x509v3 conf txt_db pkcs7 pkcs12 comp ocsp ui krb5 \
--	cms pqueue ts jpake srp store cmac fips
-+	cms pqueue ts jpake srp store cmac fips chacha poly1305
+-	cms pqueue ts jpake srp store cmac
++	cms pqueue ts jpake srp store cmac chacha poly1305
  # keep in mind that the above list is adjusted by ./Configure
  # according to no-xxx arguments...
  
-@@ -238,6 +242,9 @@
+@@ -235,6 +239,9 @@
  		WP_ASM_OBJ='$(WP_ASM_OBJ)'			\
  		MODES_ASM_OBJ='$(MODES_ASM_OBJ)'		\
  		ENGINES_ASM_OBJ='$(ENGINES_ASM_OBJ)'		\
@@ -215,10 +215,10 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  } OPENSSL_1.0.0;
  
  OPENSSL_1.0.1d {
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/apps/speed.c	2016-04-12 20:33:50.000000000 +0000
-+++ b/apps/speed.c	2016-04-14 22:08:53.000000000 +0900
-@@ -224,7 +224,7 @@
+diff -ur openssl-1.0.2g-1ubuntu4.3 openssl-1.0.2g-1ubuntu4.3+ore1
+--- a/apps/speed.c	2016-08-19 17:05:06.000000000 +0000
++++ b/apps/speed.c	2016-08-29 20:00:00.000000000 +0900
+@@ -226,7 +226,7 @@
  # endif
  
  # undef BUFSIZE
@@ -227,7 +227,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  static volatile int run = 0;
  
  static int mr = 0;
-@@ -239,7 +239,7 @@
+@@ -241,7 +241,7 @@
  static int do_multi(int multi);
  # endif
  
@@ -236,7 +236,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  # define SIZE_NUM        5
  # define RSA_NUM         4
  # define DSA_NUM         3
-@@ -254,7 +254,8 @@
+@@ -256,7 +256,8 @@
      "aes-128 cbc", "aes-192 cbc", "aes-256 cbc",
      "camellia-128 cbc", "camellia-192 cbc", "camellia-256 cbc",
      "evp", "sha256", "sha512", "whirlpool",
@@ -246,7 +246,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  };
  
  static double results[ALGOR_NUM][SIZE_NUM];
-@@ -514,6 +515,9 @@
+@@ -516,6 +517,9 @@
  # define D_IGE_192_AES   27
  # define D_IGE_256_AES   28
  # define D_GHASH         29
@@ -256,7 +256,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      double d = 0.0;
      long c[ALGOR_NUM][SIZE_NUM];
  # define R_DSA_512       0
-@@ -862,6 +866,15 @@
+@@ -864,6 +868,15 @@
              doit[D_IGE_192_AES] = 1;
          else if (strcmp(*argv, "aes-256-ige") == 0)
              doit[D_IGE_256_AES] = 1;
@@ -272,7 +272,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
          else
  # endif
  # ifndef OPENSSL_NO_CAMELLIA
-@@ -1137,6 +1150,10 @@
+@@ -1129,6 +1142,10 @@
  # ifndef OPENSSL_NO_AES
              BIO_printf(bio_err, "aes-128-cbc aes-192-cbc aes-256-cbc ");
              BIO_printf(bio_err, "aes-128-ige aes-192-ige aes-256-ige ");
@@ -283,7 +283,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  # endif
  # ifndef OPENSSL_NO_CAMELLIA
              BIO_printf(bio_err, "\n");
-@@ -1400,6 +1417,9 @@
+@@ -1370,6 +1387,9 @@
      c[D_IGE_192_AES][0] = count;
      c[D_IGE_256_AES][0] = count;
      c[D_GHASH][0] = count;
@@ -293,7 +293,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  
      for (i = 1; i < SIZE_NUM; i++) {
          c[D_MD2][i] = c[D_MD2][0] * 4 * lengths[0] / lengths[i];
-@@ -1436,6 +1456,9 @@
+@@ -1406,6 +1426,9 @@
          c[D_IGE_128_AES][i] = c[D_IGE_128_AES][i - 1] * l0 / l1;
          c[D_IGE_192_AES][i] = c[D_IGE_192_AES][i - 1] * l0 / l1;
          c[D_IGE_256_AES][i] = c[D_IGE_256_AES][i - 1] * l0 / l1;
@@ -303,7 +303,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      }
  #   ifndef OPENSSL_NO_RSA
      rsa_c[R_RSA_512][0] = count / 2000;
-@@ -1851,6 +1874,80 @@
+@@ -1820,6 +1843,80 @@
          }
          CRYPTO_gcm128_release(ctx);
      }
@@ -6627,10 +6627,10 @@ diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
 +
 +	return 0;
 +	}
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/crypto/evp/e_aes.c	2016-04-12 20:33:50.000000000 +0000
-+++ b/crypto/evp/e_aes.c	2016-04-14 22:18:43.000000000 +0900
-@@ -1273,57 +1273,54 @@
+diff -ur openssl-1.0.2g-1ubuntu4.3 openssl-1.0.2g-1ubuntu4.3+ore1
+--- a/crypto/evp/e_aes.c	2016-08-19 17:05:06.000000000 +0000
++++ b/crypto/evp/e_aes.c	2016-08-29 20:00:00.000000000 +0900
+@@ -1271,57 +1271,54 @@
      }
  }
  
@@ -6721,7 +6721,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
          /*
           * If we have an iv can set it directly, otherwise use saved IV.
           */
-@@ -2032,3 +2029,182 @@
+@@ -2022,3 +2019,182 @@
  {
      return &aes_256_wrap;
  }
@@ -7357,10 +7357,10 @@ diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA && !OPENSSL_NO_POLY1305 */
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/crypto/evp/evp.h	2016-04-12 20:33:50.000000000 +0000
-+++ b/crypto/evp/evp.h	2016-04-14 22:22:14.000000000 +0900
-@@ -1368,6 +1368,129 @@
+diff -ur openssl-1.0.2g-1ubuntu4.3 openssl-1.0.2g-1ubuntu4.3+ore1
+--- a/crypto/evp/evp.h	2016-08-19 17:05:06.000000000 +0000
++++ b/crypto/evp/evp.h	2016-08-29 20:00:00.000000000 +0900
+@@ -1365,6 +1365,129 @@
  
  void EVP_add_alg_module(void);
  
@@ -7490,7 +7490,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  /* BEGIN ERROR CODES */
  /*
   * The following lines are auto generated by the script mkerr.pl. Any changes
-@@ -1378,6 +1501,14 @@
+@@ -1375,6 +1498,14 @@
  /* Error codes for the EVP functions. */
  
  /* Function codes. */
@@ -7505,7 +7505,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  # define EVP_F_AESNI_INIT_KEY                             165
  # define EVP_F_AESNI_XTS_CIPHER                           176
  # define EVP_F_AES_INIT_KEY                               133
-@@ -1394,6 +1525,9 @@
+@@ -1391,6 +1522,9 @@
  # define EVP_F_DSA_PKEY2PKCS8                             135
  # define EVP_F_ECDSA_PKEY2PKCS8                           129
  # define EVP_F_ECKEY_PKEY2PKCS8                           132
@@ -7515,7 +7515,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  # define EVP_F_EVP_CIPHERINIT_EX                          123
  # define EVP_F_EVP_CIPHER_CTX_COPY                        163
  # define EVP_F_EVP_CIPHER_CTX_CTRL                        124
-@@ -1509,10 +1643,12 @@
+@@ -1506,10 +1640,12 @@
  # define EVP_R_NO_VERIFY_FUNCTION_CONFIGURED              105
  # define EVP_R_OPERATION_NOT_SUPPORTED_FOR_THIS_KEYTYPE   150
  # define EVP_R_OPERATON_NOT_INITIALIZED                   151
@@ -7757,10 +7757,10 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      {ERR_REASON(EVP_R_TOO_LARGE), "too large"},
      {ERR_REASON(EVP_R_UNKNOWN_CIPHER), "unknown cipher"},
      {ERR_REASON(EVP_R_UNKNOWN_DIGEST), "unknown digest"},
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/crypto/evp/evp_locl.h     2016-04-12 20:33:50.000000000 +0000
-+++ b/crypto/evp/evp_locl.h     2016-04-14 22:25:55.000000000 +0900
-@@ -331,6 +331,30 @@
+diff -ur openssl-1.0.2g-1ubuntu4.3 openssl-1.0.2g-1ubuntu4.3+ore1
+--- a/crypto/evp/evp_locl.h     2016-08-19 17:05:06.000000000 +0000
++++ b/crypto/evp/evp_locl.h     2016-08-29 20:00:00.000000000 +0900
+@@ -333,6 +333,30 @@
                               const EVP_CIPHER *c, const EVP_MD *md,
                               int en_de);
  
@@ -16322,10 +16322,10 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
          if (comp == NULL) {
              if (BIO_printf(bp, "\n    Compression: %d", x->compress_meth) <=
                  0)
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/ssl/t1_enc.c	2016-04-12 20:33:50.000000000 +0000
-+++ b/ssl/t1_enc.c	2016-04-14 22:52:13.000000000 +0900
-@@ -333,7 +333,135 @@
+diff -ur openssl-1.0.2g-1ubuntu4.3 openssl-1.0.2g-1ubuntu4.3+ore1
+--- a/ssl/t1_enc.c	2016-08-19 17:05:06.000000000 +0000
++++ b/ssl/t1_enc.c	2016-08-29 20:00:00.000000000 +0900
+@@ -316,7 +316,135 @@
      return ret;
  }
  
@@ -16462,7 +16462,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  {
      static const unsigned char empty[] = "";
      unsigned char *p, *mac_secret;
-@@ -647,11 +775,28 @@
+@@ -630,11 +758,28 @@
      return (0);
  }
  
@@ -16493,7 +16493,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      int num;
      SSL_COMP *comp;
      int mac_type = NID_undef, mac_secret_size = 0;
-@@ -664,18 +809,38 @@
+@@ -647,18 +792,38 @@
      if (s->s3->tmp.key_block_length != 0)
          return (1);
  
@@ -16538,7 +16538,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      num *= 2;
  
      ssl3_cleanup_key_block(s);
-@@ -753,6 +918,10 @@
+@@ -736,6 +901,10 @@
          OPENSSL_free(p2);
      }
      return (ret);
@@ -16549,7 +16549,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  }
  
  /*-
-@@ -772,6 +941,138 @@
+@@ -755,6 +924,138 @@
      unsigned long l;
      int bs, i, j, k, pad = 0, ret, mac_size = 0;
      const EVP_CIPHER *enc;

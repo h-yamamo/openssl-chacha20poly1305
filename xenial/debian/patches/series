@@ -19,12 +19,6 @@ disable_sslv3_test.patch
 perlpath-quilt.patch
 no-sslv3.patch
 arm64-aarch64_asm.patch
-openssl-1.0.2g-fips.patch
-openssl-1.0.2a-fips-ec.patch
-openssl-1.0.2a-fips-md5-allow.patch
-openssl-1.0.2a-fips-ctor.patch
-openssl-1.0.2f-new-fips-reqs.patch
-openssl-1.0.2g-ubuntu-fips-cleanup.patch
 CVE-2016-2105.patch
 CVE-2016-2106.patch
 CVE-2016-2107.patch

@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.2+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.3+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,16 @@ openssl (1.0.2g-1ubuntu4.2+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Sun, 14 Aug 2016 12:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Mon, 29 Aug 2016 20:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.3) xenial; urgency=medium
+
+  * Remove incomplete FIPS patches for now. (LP: #1614210)
+    (related bugs: LP: #1594748, LP: #1593953, LP: #1591797, LP: #1588524)
+    - debian/patches/*fips*.patch: removed.
+    - debian/rules: removed fips from CONFARGS.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 19 Aug 2016 13:03:55 -0400
 
 openssl (1.0.2g-1ubuntu4.2) xenial; urgency=medium
 
