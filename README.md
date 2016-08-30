@@ -68,3 +68,18 @@ tar xf ../openssl_1.0.2g-1ubuntu4.3.debian.tar.xz
 cp -av ../openssl-chacha20poly1305/xenial/debian/* debian/
 debuild -uc -us
 ```
+
+Since May 11 2016, an **update test-certs patch required** to build
+packages in **wheezy**, **precise** and **trusty**.
+That certs patch named `Update-S-MIME-certificates.patch` is in the
+debian-package-files of jessie.
+
+Get from
+
+`ftp.debian.org/debian/pool/main/o/openssl/openssl_1.0.1t-1+deb8u2.debian.tar.xz`
+
+or some mirror site.
+
+Before you build,
+* copy `Update-S-MIME-certificates.patch` to `debian/patches/`
+* add `Update-S-MIME-certificates.patch` to `debian/patches/series`
