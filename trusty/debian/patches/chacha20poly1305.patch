@@ -1032,11 +1032,18 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.15+ore2
 +int main() { return 0; }
 +
 +#endif /* OPENSSL_NO_CHACHA */
-diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore2
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/chacha/asm/chacha-armv4.pl	2016-03-13 00:45:02.000000000 +0900
-@@ -0,0 +1,1151 @@
-+#!/usr/bin/env perl
+diff -urN /dev/null 1.0.1f-1ubuntu2.19+ore1
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/crypto/chacha/asm/chacha-armv4.pl	2016-08-25 15:29:20.000000000 +0000
+@@ -0,0 +1,1158 @@
++#! /usr/bin/env perl
++# Copyright 2016 The OpenSSL Project Authors. All Rights Reserved.
++#
++# Licensed under the OpenSSL license (the "License").  You may not use
++# this file except in compliance with the License.  You can obtain a copy
++# in the file LICENSE in the source distribution or at
++# https://www.openssl.org/source/license.html
++
 +#
 +# ====================================================================
 +# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
@@ -2165,7 +2172,7 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore2
 +	ldrb		@t[1],[r12],#1		@ read input
 +	subs		@t[3],@t[3],#1
 +	eor		@t[0],@t[0],@t[1]
-+	strb		@t[0],[r14],#1		@ store ouput
++	strb		@t[0],[r14],#1		@ store output
 +	bne		.Loop_tail_neon
 +
 +.Ldone_neon:
@@ -2187,11 +2194,18 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore2
 +	print $_,"\n";
 +}
 +close STDOUT;
-diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/chacha/asm/chacha-armv8.pl	2016-04-27 04:35:05.000000000 +0900
-@@ -0,0 +1,1127 @@
-+#!/usr/bin/env perl
+diff -urN /dev/null 1.0.1f-1ubuntu2.19+ore1
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/crypto/chacha/asm/chacha-armv8.pl	2016-08-25 15:29:20.000000000 +0000
+@@ -0,0 +1,1135 @@
++#! /usr/bin/env perl
++# Copyright 2016 The OpenSSL Project Authors. All Rights Reserved.
++#
++# Licensed under the OpenSSL license (the "License").  You may not use
++# this file except in compliance with the License.  You can obtain a copy
++# in the file LICENSE in the source distribution or at
++# https://www.openssl.org/source/license.html
++
 +#
 +# ====================================================================
 +# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
@@ -2213,6 +2227,7 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
 +# Cortex-A57		8.06/+43%       4.90            4.43(**)
 +# Denver		4.50/+82%       2.63		2.67(*)
 +# X-Gene		9.50/+46%       8.82		8.89(*)
++# Mongoose		8.00/+44%	3.64		3.25
 +#
 +# (*)	it's expected that doubling interleave factor doesn't help
 +#	all processors, only those with higher NEON latency and
@@ -3318,11 +3333,18 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
 +	print $_,"\n";
 +}
 +close STDOUT;	# flush
-diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore2
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/chacha/asm/chacha-x86_64.pl	2016-03-07 20:27:48.000000000 +0900
-@@ -0,0 +1,2237 @@
-+#!/usr/bin/env perl
+diff -urN /dev/null 1.0.1f-1ubuntu2.19+ore1
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/crypto/chacha/asm/chacha-x86_64.pl	2016-08-25 15:29:20.000000000 +0000
+@@ -0,0 +1,2244 @@
++#! /usr/bin/env perl
++# Copyright 2016 The OpenSSL Project Authors. All Rights Reserved.
++#
++# Licensed under the OpenSSL license (the "License").  You may not use
++# this file except in compliance with the License.  You can obtain a copy
++# in the file LICENSE in the source distribution or at
++# https://www.openssl.org/source/license.html
++
 +#
 +# ====================================================================
 +# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
@@ -3391,7 +3413,7 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore2
 +	$avx = ($2>=3.0) + ($2>3.0);
 +}
 +
-+open OUT,"| \"$^X\" $xlate $flavour $output";
++open OUT,"| \"$^X\" \"$xlate\" $flavour \"$output\"";
 +*STDOUT=*OUT;
 +
 +# input parameter block
@@ -7786,11 +7808,18 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
 +int main() { return 0; }
 +
 +#endif
-diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-armv4.pl	2016-04-27 04:35:05.000000000 +0900
-@@ -0,0 +1,1245 @@
-+#!/usr/bin/env perl
+diff -urN /dev/null 1.0.1f-1ubuntu2.19+ore1
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/crypto/poly1305/asm/poly1305-armv4.pl	2016-08-25 15:29:21.000000000 +0000
+@@ -0,0 +1,1252 @@
++#! /usr/bin/env perl
++# Copyright 2016 The OpenSSL Project Authors. All Rights Reserved.
++#
++# Licensed under the OpenSSL license (the "License").  You may not use
++# this file except in compliance with the License.  You can obtain a copy
++# in the file LICENSE in the source distribution or at
++# https://www.openssl.org/source/license.html
++
 +#
 +# ====================================================================
 +# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
@@ -9035,11 +9064,18 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
 +	print $_,"\n";
 +}
 +close STDOUT; # enforce flush
-diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-armv8.pl	2016-04-27 04:35:05.000000000 +0900
-@@ -0,0 +1,931 @@
-+#!/usr/bin/env perl
+diff -urN /dev/null 1.0.1f-1ubuntu2.19+ore1
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/crypto/poly1305/asm/poly1305-armv8.pl	2016-08-25 15:29:21.000000000 +0000
+@@ -0,0 +1,939 @@
++#! /usr/bin/env perl
++# Copyright 2016 The OpenSSL Project Authors. All Rights Reserved.
++#
++# Licensed under the OpenSSL license (the "License").  You may not use
++# this file except in compliance with the License.  You can obtain a copy
++# in the file LICENSE in the source distribution or at
++# https://www.openssl.org/source/license.html
++
 +#
 +# ====================================================================
 +# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
@@ -9061,6 +9097,7 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
 +# Cortex-A57	2.70/+7%	1.14
 +# Denver	1.64/+50%	1.18(*)
 +# X-Gene	2.13/+68%	2.27
++# Mongoose	1.77/+75%	1.12
 +#
 +# (*)	estimate based on resources availability is less than 1.0,
 +#	i.e. measured result is worse than expected, presumably binary
@@ -9970,11 +10007,18 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
 +	print $_,"\n";
 +}
 +close STDOUT;
-diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-x86.pl	2016-04-28 23:25:31.000000000 +0900
-@@ -0,0 +1,1213 @@
-+#!/usr/bin/env perl
+diff -urN /dev/null 1.0.1f-1ubuntu2.19+ore1
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/crypto/poly1305/asm/poly1305-x86.pl	2016-08-31 21:52:00.000000000 +0900
+@@ -0,0 +1,1220 @@
++#! /usr/bin/env perl
++# Copyright 2016 The OpenSSL Project Authors. All Rights Reserved.
++#
++# Licensed under the OpenSSL license (the "License").  You may not use
++# this file except in compliance with the License.  You can obtain a copy
++# in the file LICENSE in the source distribution or at
++# https://www.openssl.org/source/license.html
++
 +#
 +# ====================================================================
 +# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
@@ -11187,11 +11231,18 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore5
 +&asm_finish();
 +
 +close STDOUT;
-diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore4
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/poly1305/asm/poly1305-x86_64.pl	2016-04-05 22:15:46.000000000 +0900
-@@ -0,0 +1,2256 @@
-+#!/usr/bin/env perl
+diff -urN /dev/null 1.0.1f-1ubuntu2.19+ore1
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/crypto/poly1305/asm/poly1305-x86_64.pl	2016-08-25 15:29:21.000000000 +0000
+@@ -0,0 +1,2267 @@
++#! /usr/bin/env perl
++# Copyright 2016 The OpenSSL Project Authors. All Rights Reserved.
++#
++# Licensed under the OpenSSL license (the "License").  You may not use
++# this file except in compliance with the License.  You can obtain a copy
++# in the file LICENSE in the source distribution or at
++# https://www.openssl.org/source/license.html
++
 +#
 +# ====================================================================
 +# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
@@ -11258,7 +11309,7 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore4
 +	$avx = ($2>=3.0) + ($2>3.0);
 +}
 +
-+open OUT,"| \"$^X\" $xlate $flavour $output";
++open OUT,"| \"$^X\" \"$xlate\" $flavour \"$output\"";
 +*STDOUT=*OUT;
 +
 +my ($ctx,$inp,$len,$padbit)=("%rdi","%rsi","%rdx","%rcx");
@@ -11323,8 +11374,12 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore4
 +.extern	OPENSSL_ia32cap_P
 +
 +.globl	poly1305_init
++.hidden	poly1305_init
 +.globl	poly1305_blocks
++.hidden	poly1305_blocks
 +.globl	poly1305_emit
++.hidden	poly1305_emit
++
 +.type	poly1305_init,\@function,3
 +.align	32
 +poly1305_init:
@@ -11688,10 +11743,10 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore4
 +
 +	################################# base 2^26 -> base 2^64
 +	mov	$d1#d,$h0#d
-+	and	\$-1<<31,$d1
++	and	\$`-1*(1<<31)`,$d1
 +	mov	$d2,$r1			# borrow $r1
 +	mov	$d2#d,$h1#d
-+	and	\$-1<<31,$d2
++	and	\$`-1*(1<<31)`,$d2
 +
 +	shr	\$6,$d1
 +	shl	\$52,$r1
@@ -12576,10 +12631,10 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore4
 +
 +	################################# base 2^26 -> base 2^64
 +	mov	$d1#d,$h0#d
-+	and	\$-1<<31,$d1
++	and	\$`-1*(1<<31)`,$d1
 +	mov	$d2,$r1			# borrow $r1
 +	mov	$d2#d,$h1#d
-+	and	\$-1<<31,$d2
++	and	\$`-1*(1<<31)`,$d2
 +
 +	shr	\$6,$d1
 +	shl	\$52,$r1
@@ -13184,7 +13239,7 @@ diff -urN /dev/null 1.0.1f-1ubuntu2.18+ore4
 +.Lmask24:
 +.long	0x0ffffff,0,0x0ffffff,0,0x0ffffff,0,0x0ffffff,0
 +.L129:
-+.long	1<<24,0,1<<24,0,1<<24,0,1<<24,0
++.long	`1<<24`,0,`1<<24`,0,`1<<24`,0,`1<<24`,0
 +.Lmask26:
 +.long	0x3ffffff,0,0x3ffffff,0,0x3ffffff,0,0x3ffffff,0
 +.Lfive:

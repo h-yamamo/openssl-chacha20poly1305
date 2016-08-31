@@ -24,7 +24,7 @@ openssl (1.0.1-4ubuntu5.36+ore1) precise; urgency=low
         test/aes_256_gcm_tests.txt
         test/chacha20_poly1305_old_tests.txt
         test/chacha20_poly1305_tests.txt
-    - Improve performance using OpenSSL 1.1.0(beta) assembler codes.
+    - Improve performance using OpenSSL 1.1.0 assembler codes.
       For take in these new codes, copied around codes from the BoringSSL
       and OpenSSL 1.0.2.
       Add:
