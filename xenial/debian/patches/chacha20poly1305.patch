@@ -384,13 +384,19 @@ diff -ur openssl-1.0.2g-1ubuntu4.3 openssl-1.0.2g-1ubuntu4.3+ore1
  # endif
  # ifndef OPENSSL_NO_CAMELLIA
      if (doit[D_CBC_128_CML]) {
-diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/perlasm/arm-xlate.pl	2016-03-07 20:27:48.000000000 +0900
-@@ -0,0 +1,172 @@
-+#!/usr/bin/env perl
+diff -urN /dev/null 1.0.2g-1ubuntu4.3+ore1
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/crypto/perlasm/arm-xlate.pl	2016-08-25 15:29:21.000000000 +0000
+@@ -0,0 +1,177 @@
++#! /usr/bin/env perl
++# Copyright 2015-2016 The OpenSSL Project Authors. All Rights Reserved.
++#
++# Licensed under the OpenSSL license (the "License").  You may not use
++# this file except in compliance with the License.  You can obtain a copy
++# in the file LICENSE in the source distribution or at
++# https://www.openssl.org/source/license.html
 +
-+# ARM assembler distiller by <appro>.
++use strict;
 +
 +my $flavour = shift;
 +my $output = shift;
@@ -445,9 +451,7 @@ diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
 +			      };
 +    }
 +
-+    $ret = ".globl	$name\n";
-+    # All symbols in assembly files are hidden.
-+    $ret .= &$hidden($name);
++    $ret = ".globl	$name" if (!$ret);
 +    $$global = $name;
 +    $ret;
 +};
@@ -458,6 +462,12 @@ diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
 +};
 +my $type = sub {
 +    if ($flavour =~ /linux/)	{ ".type\t".join(',',@_); }
++    elsif ($flavour =~ /ios32/)	{ if (join(',',@_) =~ /(\w+),%function/) {
++					"#ifdef __thumb2__\n".
++					".thumb_func	$1\n".
++					"#endif";
++				  }
++			        }
 +    else			{ ""; }
 +};
 +my $size = sub {
@@ -508,10 +518,7 @@ diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
 +    return $line;
 +}
 +
-+print "#if defined(__arm__)\n" if ($flavour eq "linux32");
-+print "#if defined(__aarch64__)\n" if ($flavour eq "linux64");
-+
-+while($line=<>) {
++while(my $line=<>) {
 +
 +    if ($line =~ m/^\s*(#|@|\/\/)/)	{ print $line; next; }
 +
@@ -556,8 +563,6 @@ diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
 +    print $line if ($line);
 +    print "\n";
 +}
-+
-+print "#endif\n" if ($flavour eq "linux32" || $flavour eq "linux64");
 +
 +close STDOUT;
 //
