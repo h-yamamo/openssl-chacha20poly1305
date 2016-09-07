@@ -20,4 +20,5 @@ defaults.patch
 openssl_fix_for_x32.patch
 ppc64el.patch
 Update-S-MIME-certificates.patch
+Fix-name-length-limit-check.patch
 chacha20poly1305.patch

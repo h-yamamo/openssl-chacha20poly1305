@@ -25,7 +25,7 @@ git clone --depth 1 https://github.com/h-yamamo/openssl-chacha20poly1305
 apt-get -d source openssl
 tar xf openssl_1.0.1t.orig.tar.gz
 cd openssl-1.0.1t
-tar xf ../openssl_1.0.1t-1+deb8u2.debian.tar.xz
+tar xf ../openssl_1.0.1t-1+deb8u3.debian.tar.xz
 cp -av ../openssl-chacha20poly1305/jessie/debian/* debian/
 debuild -uc -us
 ```
@@ -89,7 +89,7 @@ debian-package-files of jessie.
 
 Get from
 
-`ftp.debian.org/debian/pool/main/o/openssl/openssl_1.0.1t-1+deb8u2.debian.tar.xz`
+`ftp.debian.org/debian/pool/main/o/openssl/openssl_1.0.1t-1+deb8u3.debian.tar.xz`
 
 or some mirror site.
 
