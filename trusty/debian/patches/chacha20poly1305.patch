@@ -16539,10 +16539,10 @@ diff -ur openssl-1.0.1f-1ubuntu2.16 1.0.1f-1ubuntu2.16+ore2
  /* end of list */
  	};
  
-diff -ur openssl-1.0.1f-1ubuntu2.8 1.0.1f-1ubuntu2.8+ore1
---- a/ssl/s3_pkt.c	2015-01-09 21:55:51.000000000 +0900
-+++ b/ssl/s3_pkt.c	2015-01-10 19:32:30.000000000 +0900
-@@ -779,7 +779,12 @@
+diff -ur openssl-1.0.1f-1ubuntu2.20 1.0.1f-1ubuntu2.20+ore1
+--- a/ssl/s3_pkt.c	2016-09-23 02:38:17.000000000 +0900
++++ b/ssl/s3_pkt.c	2016-09-23 18:00:00.000000000 +0900
+@@ -780,7 +780,12 @@
  		else
  			eivlen = 0;
  		}
@@ -16556,9 +16556,9 @@ diff -ur openssl-1.0.1f-1ubuntu2.8 1.0.1f-1ubuntu2.8+ore1
  		eivlen = 0;
  
  	/* lets setup the record stuff. */
-diff -ur openssl-1.0.1f-1ubuntu2.15 1.0.1f-1ubuntu2.15+ore1
---- a/ssl/ssl.h	2015-06-09 00:15:38.000000000 +0900
-+++ b/ssl/ssl.h	2015-06-12 20:47:24.000000000 +0900
+diff -ur openssl-1.0.1f-1ubuntu2.20 1.0.1f-1ubuntu2.20+ore1
+--- a/ssl/ssl.h	2016-09-23 02:38:17.000000000 +0900
++++ b/ssl/ssl.h	2016-09-23 18:00:00.000000000 +0900
 @@ -292,6 +292,7 @@
  #define SSL_TXT_CAMELLIA128	"CAMELLIA128"
  #define SSL_TXT_CAMELLIA256	"CAMELLIA256"
@@ -16623,7 +16623,7 @@ diff -ur openssl-1.0.1f-1ubuntu2.15 1.0.1f-1ubuntu2.15+ore1
  	};
  
  #endif
-@@ -2277,8 +2297,11 @@
+@@ -2278,8 +2298,11 @@
  #define SSL_F_SSL_USE_RSAPRIVATEKEY_FILE		 206
  #define SSL_F_SSL_VERIFY_CERT_CHAIN			 207
  #define SSL_F_SSL_WRITE					 208
@@ -16778,10 +16778,10 @@ diff -ur openssl-1.0.1f-1ubuntu2.16 1.0.1f-1ubuntu2.16+ore2
  	default:
  		enc="unknown";
  		break;
-diff -ur openssl-1.0.1f-1ubuntu2.15 1.0.1f-1ubuntu2.15+ore1
---- a/ssl/ssl_err.c	2015-06-09 00:15:38.000000000 +0900
-+++ b/ssl/ssl_err.c	2015-06-12 20:48:50.000000000 +0900
-@@ -278,8 +278,11 @@
+diff -ur openssl-1.0.1f-1ubuntu2.20 1.0.1f-1ubuntu2.20+ore1
+--- a/ssl/ssl_err.c	2016-09-23 02:38:17.000000000 +0900
++++ b/ssl/ssl_err.c	2016-09-23 18:00:00.000000000 +0900
+@@ -279,8 +279,11 @@
  {ERR_FUNC(SSL_F_SSL_USE_RSAPRIVATEKEY_FILE),	"SSL_use_RSAPrivateKey_file"},
  {ERR_FUNC(SSL_F_SSL_VERIFY_CERT_CHAIN),	"SSL_VERIFY_CERT_CHAIN"},
  {ERR_FUNC(SSL_F_SSL_WRITE),	"SSL_write"},

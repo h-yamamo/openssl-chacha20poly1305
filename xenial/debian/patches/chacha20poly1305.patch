@@ -15739,9 +15739,9 @@ diff -urN /dev/null 1.0.2g-1ubuntu4.3+ore1
 +	print $_,"\n";
 +}
 +close STDOUT;
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/ssl/d1_both.c	2016-03-01 13:35:53.000000000 +0000
-+++ b/ssl/d1_both.c	2016-04-09 21:47:40.000000000 +0900
+diff -ur openssl-1.0.2g-1ubuntu4.4 openssl-1.0.2g-1ubuntu4.4+ore1
+--- a/ssl/d1_both.c	2016-09-22 12:37:03.000000000 +0000
++++ b/ssl/d1_both.c	2016-09-23 18:00:00.000000000 +0900
 @@ -211,14 +211,26 @@
      return frag;
  }
@@ -15773,7 +15773,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      }
      if (frag->fragment)
          OPENSSL_free(frag->fragment);
-@@ -1169,7 +1181,12 @@
+@@ -1184,7 +1196,12 @@
      frag->msg_header.is_ccs = is_ccs;
  
      /* save current state */
@@ -15787,7 +15787,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      frag->msg_header.saved_retransmit_state.write_hash = s->write_hash;
      frag->msg_header.saved_retransmit_state.compress = s->compress;
      frag->msg_header.saved_retransmit_state.session = s->session;
-@@ -1248,7 +1265,10 @@
+@@ -1263,7 +1280,10 @@
                                   frag->msg_header.frag_len);
  
      /* save current state */
@@ -15799,7 +15799,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      saved_state.write_hash = s->write_hash;
      saved_state.compress = s->compress;
      saved_state.session = s->session;
-@@ -1258,7 +1278,13 @@
+@@ -1273,7 +1293,13 @@
      s->d1->retransmitting = 1;
  
      /* restore state in which the message was originally sent */
@@ -15814,7 +15814,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      s->write_hash = frag->msg_header.saved_retransmit_state.write_hash;
      s->compress = frag->msg_header.saved_retransmit_state.compress;
      s->session = frag->msg_header.saved_retransmit_state.session;
-@@ -1276,7 +1302,10 @@
+@@ -1291,7 +1317,10 @@
                           SSL3_RT_CHANGE_CIPHER_SPEC : SSL3_RT_HANDSHAKE);
  
      /* restore current state */
@@ -15826,10 +15826,10 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      s->write_hash = saved_state.write_hash;
      s->compress = saved_state.compress;
      s->session = saved_state.session;
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/ssl/d1_pkt.c	2016-03-01 13:35:53.000000000 +0000
-+++ b/ssl/d1_pkt.c	2016-04-09 21:52:37.000000000 +0900
-@@ -914,7 +914,7 @@
+diff -ur openssl-1.0.2g-1ubuntu4.4 openssl-1.0.2g-1ubuntu4.4+ore1
+--- a/ssl/d1_pkt.c	2016-09-22 12:37:03.000000000 +0000
++++ b/ssl/d1_pkt.c	2016-09-23 18:00:00.000000000 +0900
+@@ -964,7 +964,7 @@
           * doing a handshake for the first time
           */
          if (SSL_in_init(s) && (type == SSL3_RT_APPLICATION_DATA) &&
@@ -15838,7 +15838,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
              al = SSL_AD_UNEXPECTED_MESSAGE;
              SSLerr(SSL_F_DTLS1_READ_BYTES, SSL_R_APP_DATA_IN_HANDSHAKE);
              goto f_err;
-@@ -1604,6 +1604,9 @@
+@@ -1654,6 +1654,9 @@
              eivlen = EVP_GCM_TLS_EXPLICIT_IV_LEN;
          else
              eivlen = 0;
@@ -16040,9 +16040,9 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      } else
          eivlen = 0;
  
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/ssl/ssl.h	2016-03-01 13:35:53.000000000 +0000
-+++ b/ssl/ssl.h	2016-04-09 22:16:06.000000000 +0900
+diff -ur openssl-1.0.2g-1ubuntu4.4 openssl-1.0.2g-1ubuntu4.4+ore1
+--- a/ssl/ssl.h	2016-09-22 12:37:03.000000000 +0000
++++ b/ssl/ssl.h	2016-09-23 18:00:00.000000000 +0900
 @@ -297,6 +297,7 @@
  # define SSL_TXT_CAMELLIA128     "CAMELLIA128"
  # define SSL_TXT_CAMELLIA256     "CAMELLIA256"
@@ -16107,7 +16107,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  };
  
  # endif
-@@ -2822,8 +2842,11 @@
+@@ -2823,8 +2843,11 @@
  # define SSL_F_SSL_VERIFY_CERT_CHAIN                      207
  # define SSL_F_SSL_WRITE                                  208
  # define SSL_F_TLS12_CHECK_PEER_SIGALG                    333
@@ -16260,10 +16260,10 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
      default:
          enc = "unknown";
          break;
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/ssl/ssl_err.c	2016-03-01 13:35:53.000000000 +0000
-+++ b/ssl/ssl_err.c	2016-04-09 22:24:08.000000000 +0900
-@@ -355,8 +355,13 @@
+diff -ur openssl-1.0.2g-1ubuntu4.4 openssl-1.0.2g-1ubuntu4.4+ore1
+--- a/ssl/ssl_err.c	2016-09-22 12:37:03.000000000 +0000
++++ b/ssl/ssl_err.c	2016-09-23 18:00:00.000000000 +0900
+@@ -357,8 +357,13 @@
      {ERR_FUNC(SSL_F_SSL_VERIFY_CERT_CHAIN), "ssl_verify_cert_chain"},
      {ERR_FUNC(SSL_F_SSL_WRITE), "SSL_write"},
      {ERR_FUNC(SSL_F_TLS12_CHECK_PEER_SIGALG), "tls12_check_peer_sigalg"},

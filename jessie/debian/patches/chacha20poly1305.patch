@@ -16522,9 +16522,9 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
      } else
          eivlen = 0;
  
-diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
---- a/ssl/ssl.h	2016-05-03 22:49:00.000000000 +0900
-+++ b/ssl/ssl.h	2016-05-19 20:26:54.000000000 +0900
+diff -ur openssl-1.0.1t-1+deb8u4 openssl-1.0.1t-1+deb8u4+ore1
+--- a/ssl/ssl.h	2016-09-22 06:36:15.000000000 +0900
++++ b/ssl/ssl.h	2016-09-23 20:00:00.000000000 +0900
 @@ -293,6 +293,7 @@
  # define SSL_TXT_CAMELLIA128     "CAMELLIA128"
  # define SSL_TXT_CAMELLIA256     "CAMELLIA256"
@@ -16589,7 +16589,7 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
  };
  
  # endif
-@@ -2444,8 +2464,11 @@
+@@ -2445,8 +2465,11 @@
  # define SSL_F_SSL_USE_RSAPRIVATEKEY_FILE                 206
  # define SSL_F_SSL_VERIFY_CERT_CHAIN                      207
  # define SSL_F_SSL_WRITE                                  208
@@ -16742,10 +16742,10 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
      default:
          enc = "unknown";
          break;
-diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
---- a/ssl/ssl_err.c	2016-05-03 22:49:00.000000000 +0900
-+++ b/ssl/ssl_err.c	2016-05-19 20:47:16.000000000 +0900
-@@ -341,8 +341,13 @@
+diff -ur openssl-1.0.1t-1+deb8u4 openssl-1.0.1t-1+deb8u4+ore1
+--- a/ssl/ssl_err.c	2016-09-22 06:36:15.000000000 +0900
++++ b/ssl/ssl_err.c	2016-09-23 18:00:00.000000000 +0900
+@@ -343,8 +343,13 @@
       "SSL_use_RSAPrivateKey_file"},
      {ERR_FUNC(SSL_F_SSL_VERIFY_CERT_CHAIN), "SSL_VERIFY_CERT_CHAIN"},
      {ERR_FUNC(SSL_F_SSL_WRITE), "SSL_write"},

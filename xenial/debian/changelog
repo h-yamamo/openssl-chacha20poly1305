@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.3+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.4+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,62 @@ openssl (1.0.2g-1ubuntu4.3+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Mon, 29 Aug 2016 20:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 23 Sep 2016 18:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.4) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: Pointer arithmetic undefined behaviour
+    - debian/patches/CVE-2016-2177.patch: avoid undefined pointer
+      arithmetic in ssl/s3_srvr.c, ssl/ssl_sess.c, ssl/t1_lib.c.
+    - CVE-2016-2177
+  * SECURITY UPDATE: Constant time flag not preserved in DSA signing
+    - debian/patches/CVE-2016-2178-*.patch: preserve BN_FLG_CONSTTIME in
+      crypto/dsa/dsa_ossl.c.
+    - CVE-2016-2178
+  * SECURITY UPDATE: DTLS buffered message DoS
+    - debian/patches/CVE-2016-2179.patch: fix queue handling in
+      ssl/d1_both.c, ssl/d1_clnt.c, ssl/d1_lib.c, ssl/d1_srvr.c,
+      ssl/ssl_locl.h.
+    - CVE-2016-2179
+  * SECURITY UPDATE: OOB read in TS_OBJ_print_bio()
+    - debian/patches/CVE-2016-2180.patch: fix text handling in
+      crypto/ts/ts_lib.c.
+    - CVE-2016-2180
+  * SECURITY UPDATE: DTLS replay protection DoS
+    - debian/patches/CVE-2016-2181-1.patch: properly handle unprocessed
+      records in ssl/d1_pkt.c.
+    - debian/patches/CVE-2016-2181-2.patch: protect against replay attacks
+      in ssl/d1_pkt.c, ssl/ssl.h, ssl/ssl_err.c.
+    - debian/patches/CVE-2016-2181-3.patch: update error code in ssl/ssl.h.
+    - CVE-2016-2181
+  * SECURITY UPDATE: OOB write in BN_bn2dec()
+    - debian/patches/CVE-2016-2182.patch: don't overflow buffer in
+      crypto/bn/bn_print.c.
+    - CVE-2016-2182
+  * SECURITY UPDATE: SWEET32 Mitigation
+    - debian/patches/CVE-2016-2183.patch: move DES ciphersuites from HIGH
+      to MEDIUM in ssl/s3_lib.c.
+    - CVE-2016-2183
+  * SECURITY UPDATE: Malformed SHA512 ticket DoS
+    - debian/patches/CVE-2016-6302.patch: sanity check ticket length in
+      ssl/t1_lib.c.
+    - CVE-2016-6302
+  * SECURITY UPDATE: OOB write in MDC2_Update()
+    - debian/patches/CVE-2016-6303.patch: avoid overflow in
+      crypto/mdc2/mdc2dgst.c.
+    - CVE-2016-6303
+  * SECURITY UPDATE: OCSP Status Request extension unbounded memory growth
+    - debian/patches/CVE-2016-6304.patch: remove OCSP_RESPIDs from previous
+      handshake in ssl/t1_lib.c.
+    - CVE-2016-6304
+  * SECURITY UPDATE: Certificate message OOB reads
+    - debian/patches/CVE-2016-6306-1.patch: check lengths in ssl/s3_clnt.c,
+      ssl/s3_srvr.c.
+    - debian/patches/CVE-2016-6306-2.patch: make message buffer slightly
+      larger in ssl/d1_both.c, ssl/s3_both.c.
+    - CVE-2016-6306
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 22 Sep 2016 08:22:22 -0400
 
 openssl (1.0.2g-1ubuntu4.3) xenial; urgency=medium
 

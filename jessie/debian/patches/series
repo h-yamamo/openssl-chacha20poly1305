@@ -21,4 +21,15 @@ openssl_fix_for_x32.patch
 ppc64el.patch
 Update-S-MIME-certificates.patch
 Fix-name-length-limit-check.patch
+CVE-2016-2177.patch
+CVE-2016-2178.patch
+CVE-2016-2179.patch
+CVE-2016-2180.patch
+CVE-2016-2181.patch
+CVE-2016-2182.patch
+CVE-2016-2183.patch
+CVE-2016-6302.patch
+CVE-2016-6303.patch
+CVE-2016-6304.patch
+CVE-2016-6306.patch
 chacha20poly1305.patch
