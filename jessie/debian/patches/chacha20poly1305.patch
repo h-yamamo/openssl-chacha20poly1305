@@ -16593,7 +16593,7 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
  # define SSL_F_SSL_USE_RSAPRIVATEKEY_FILE                 206
  # define SSL_F_SSL_VERIFY_CERT_CHAIN                      207
  # define SSL_F_SSL_WRITE                                  208
-+# define SSL_F_TLS1_AEAD_CTX_INIT                         339
++# define SSL_F_TLS1_AEAD_CTX_INIT                         341
  # define SSL_F_TLS1_CERT_VERIFY_MAC                       286
  # define SSL_F_TLS1_CHANGE_CIPHER_STATE                   209
 +# define SSL_F_TLS1_CHANGE_CIPHER_STATE_AEAD              340
