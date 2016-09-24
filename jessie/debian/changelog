@@ -1,4 +1,4 @@
-openssl (1.0.1t-1+deb8u4+ore1) jessie; urgency=low
+openssl (1.0.1t-1+deb8u5+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,13 @@ openssl (1.0.1t-1+deb8u4+ore1) jessie; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Fri, 23 Sep 2016 18:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sat, 24 Sep 2016 10:00:00 +0900
+
+openssl (1.0.1t-1+deb8u5) jessie-security; urgency=medium
+
+  * The patch for CVE-2016-2182 was missing a fix.  (Closes: #838652, #838659)
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Fri, 23 Sep 2016 19:48:42 +0200
 
 openssl (1.0.1t-1+deb8u4) jessie-security; urgency=medium
 

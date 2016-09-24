@@ -25,7 +25,7 @@ git clone --depth 1 https://github.com/h-yamamo/openssl-chacha20poly1305
 apt-get -d source openssl
 tar xf openssl_1.0.1t.orig.tar.gz
 cd openssl-1.0.1t
-tar xf ../openssl_1.0.1t-1+deb8u4.debian.tar.xz
+tar xf ../openssl_1.0.1t-1+deb8u5.debian.tar.xz
 cp -av ../openssl-chacha20poly1305/jessie/debian/* debian/
 debuild -uc -us
 ```
@@ -51,7 +51,7 @@ git clone --depth 1 https://github.com/h-yamamo/openssl-chacha20poly1305
 apt-get -d source openssl
 tar xf openssl_1.0.1.orig.tar.gz
 cd openssl-1.0.1
-tar xf ../openssl_1.0.1-4ubuntu5.37.debian.tar.gz
+tar xf ../openssl_1.0.1-4ubuntu5.38.debian.tar.gz
 cp -av ../openssl-chacha20poly1305/precise/debian/* debian/
 debuild -uc -us
 ```
@@ -64,7 +64,7 @@ git clone --depth 1 https://github.com/h-yamamo/openssl-chacha20poly1305
 apt-get -d source openssl
 tar xf openssl_1.0.1f.orig.tar.gz
 cd openssl-1.0.1f
-tar xf ../openssl_1.0.1f-1ubuntu2.20.debian.tar.gz
+tar xf ../openssl_1.0.1f-1ubuntu2.21.debian.tar.gz
 cp -av ../openssl-chacha20poly1305/trusty/debian/* debian/
 debuild -uc -us
 ```
@@ -77,7 +77,7 @@ git clone --depth 1 https://github.com/h-yamamo/openssl-chacha20poly1305
 apt-get -d source openssl
 tar xf openssl_1.0.2g.orig.tar.gz
 cd openssl-1.0.2g
-tar xf ../openssl_1.0.2g-1ubuntu4.4.debian.tar.xz
+tar xf ../openssl_1.0.2g-1ubuntu4.5.debian.tar.xz
 cp -av ../openssl-chacha20poly1305/xenial/debian/* debian/
 debuild -uc -us
 ```
@@ -89,7 +89,7 @@ debian-package-files of jessie.
 
 Get from
 
-`ftp.debian.org/debian/pool/main/o/openssl/openssl_1.0.1t-1+deb8u4.debian.tar.xz`
+`http://security.debian.org/pool/updates/main/o/openssl/openssl_1.0.1t-1+deb8u5.debian.tar.xz`
 
 or some mirror site.
 

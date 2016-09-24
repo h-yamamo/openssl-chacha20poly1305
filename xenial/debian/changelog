@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.4+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.5+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,15 @@ openssl (1.0.2g-1ubuntu4.4+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Fri, 23 Sep 2016 18:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sat, 24 Sep 2016 10:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.5) xenial-security; urgency=medium
+
+  * SECURITY REGRESSION: incomplete fix for CVE-2016-2182 (LP: #1626883)
+    - debian/patches/CVE-2016-2182-2.patch: fix off-by-one in overflow
+      check in crypto/bn/bn_print.c.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 23 Sep 2016 08:00:13 -0400
 
 openssl (1.0.2g-1ubuntu4.4) xenial-security; urgency=medium
 
