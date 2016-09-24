@@ -1,6 +1,6 @@
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/Configure	2016-08-22 19:08:34.000000000 +0000
-+++ b/Configure	2016-09-04 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
+--- a/Configure	2016-09-22 19:31:54.000000000 +0000
++++ b/Configure	2016-09-24 00:00:00.000000000 +0900
 @@ -154,25 +154,25 @@
  my $bits1="THIRTY_TWO_BIT ";
  my $bits2="SIXTY_FOUR_BIT ";
@@ -59,7 +59,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  my $md5_obj="";
  my $sha1_obj="";
  my $rmd160_obj="";
-@@ -1270,7 +1274,7 @@
+@@ -1265,7 +1269,7 @@
  
  print "IsMK1MF=$IsMK1MF\n";
  
@@ -68,19 +68,19 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  my $cc = $fields[$idx_cc];
  # Allow environment CC to override compiler...
  if($ENV{CC}) {
-@@ -1309,6 +1313,8 @@
- my $ar = $ENV{'AR'} || "ar";
+@@ -1305,6 +1309,8 @@
  my $arflags = $fields[$idx_arflags];
+ my $windres = $ENV{'RC'} || $ENV{'WINDRES'} || "windres";
  my $multilib = $fields[$idx_multilib];
 +my $chacha_obj = $fields[$idx_chacha_obj];
 +my $poly1305_obj = $fields[$idx_poly1305_obj];
  
  # if $prefix/lib$multilib is not an existing directory, then
  # assume that it's not searched by linker automatically, in
-@@ -1618,6 +1624,10 @@
- $cast_obj=$cast_enc	unless ($cast_obj =~ /\.o$/);
- $rc4_obj=$rc4_enc	unless ($rc4_obj =~ /\.o$/);
- $rc5_obj=$rc5_enc	unless ($rc5_obj =~ /\.o$/);
+@@ -1621,6 +1627,10 @@
+ 	{
+ 	$rc4_obj=$rc4_enc;
+ 	}
 +$chacha_obj=$chacha_enc	unless ($chacha_obj =~ /\.o$/);
 +my $sse2_flag = "";
 +$sse2_flag = "-msse2" if ($cpuid_obj =~ /^x86cpuid/ && !$no_sse2);
@@ -88,7 +88,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  if ($sha1_obj =~ /\.o$/)
  	{
  #	$sha1_obj=$sha1_enc;
-@@ -1796,6 +1806,9 @@
+@@ -1801,6 +1811,9 @@
  	s/^CAST_ENC=.*$/CAST_ENC= $cast_obj/;
  	s/^RC4_ENC=.*$/RC4_ENC= $rc4_obj/;
  	s/^RC5_ENC=.*$/RC5_ENC= $rc5_obj/;
@@ -98,7 +98,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  	s/^MD5_ASM_OBJ=.*$/MD5_ASM_OBJ= $md5_obj/;
  	s/^SHA1_ASM_OBJ=.*$/SHA1_ASM_OBJ= $sha1_obj/;
  	s/^RMD160_ASM_OBJ=.*$/RMD160_ASM_OBJ= $rmd160_obj/;
-@@ -1859,6 +1872,8 @@
+@@ -1864,6 +1877,8 @@
  print "CAST_ENC      =$cast_obj\n";
  print "RC4_ENC       =$rc4_obj\n";
  print "RC5_ENC       =$rc5_obj\n";
@@ -107,7 +107,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  print "MD5_OBJ_ASM   =$md5_obj\n";
  print "SHA1_OBJ_ASM  =$sha1_obj\n";
  print "RMD160_OBJ_ASM=$rmd160_obj\n";
-@@ -1946,6 +1961,7 @@
+@@ -1951,6 +1966,7 @@
  print OUT "\n#endif /* OPENSSL_DOING_MAKEDEPEND */\n\n";
  print OUT $openssl_thread_defines;
  print OUT $openssl_other_defines,"\n";
@@ -115,7 +115,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  
  print OUT "/* The OPENSSL_NO_* macros are also defined as NO_* if the application\n";
  print OUT "   asks for it.  This is a transient feature that is provided for those\n";
-@@ -2262,11 +2278,11 @@
+@@ -2267,11 +2283,11 @@
  
  	my ($cc, $cflags, $unistd, $thread_cflag, $sys_id, $lflags,
  	    $bn_ops, $cpuid_obj, $bn_obj, $ec_obj, $des_obj, $aes_obj, $bf_obj,
@@ -130,7 +130,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  			
  	print <<EOF
  
-@@ -2288,6 +2304,8 @@
+@@ -2293,6 +2309,8 @@
  \$sha1_obj     = $sha1_obj
  \$cast_obj     = $cast_obj
  \$rc4_obj      = $rc4_obj
@@ -139,7 +139,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  \$rmd160_obj   = $rmd160_obj
  \$rc5_obj      = $rc5_obj
  \$wp_obj       = $wp_obj
-@@ -2317,7 +2335,7 @@
+@@ -2322,7 +2340,7 @@
  
  	foreach $target (sort keys %table)
  		{
@@ -148,10 +148,10 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  
  		if ($fields[$idx_dso_scheme-1] =~ /^(beos|dl|dlfcn|win32|vms)$/)
  			{
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/Makefile.org	2016-08-22 19:08:34.000000000 +0000
-+++ b/Makefile.org	2016-09-04 00:00:00.000000000 +0900
-@@ -85,6 +85,8 @@
+diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
+--- a/Makefile.org	2016-09-22 19:31:54.000000000 +0000
++++ b/Makefile.org	2016-09-24 00:00:00.000000000 +0900
+@@ -86,6 +86,8 @@
  # the 80386.
  PROCESSOR=
  
@@ -160,7 +160,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  # CPUID module collects small commonly used assembler snippets
  CPUID_OBJ= 
  BN_ASM= bn_asm.o
-@@ -95,6 +97,8 @@
+@@ -96,6 +98,8 @@
  CAST_ENC= c_enc.o
  RC4_ENC= rc4_enc.o
  RC5_ENC= rc5_enc.o
@@ -169,7 +169,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  MD5_ASM_OBJ= 
  SHA1_ASM_OBJ= 
  RMD160_ASM_OBJ= 
-@@ -148,7 +152,7 @@
+@@ -149,7 +153,7 @@
  	bn ec rsa dsa ecdsa dh ecdh dso engine \
  	buffer bio stack lhash rand err \
  	evp asn1 pem x509 x509v3 conf txt_db pkcs7 pkcs12 comp ocsp ui krb5 \
@@ -178,7 +178,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  # keep in mind that the above list is adjusted by ./Configure
  # according to no-xxx arguments...
  
-@@ -235,6 +239,9 @@
+@@ -237,6 +241,9 @@
  		WP_ASM_OBJ='$(WP_ASM_OBJ)'			\
  		MODES_ASM_OBJ='$(MODES_ASM_OBJ)'		\
  		ENGINES_ASM_OBJ='$(ENGINES_ASM_OBJ)'		\
@@ -15739,9 +15739,9 @@ diff -urN /dev/null 1.0.2h-1~bpo8+2+ore1
 +	print $_,"\n";
 +}
 +close STDOUT;
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/ssl/d1_both.c	2016-05-03 13:44:42.000000000 +0000
-+++ b/ssl/d1_both.c	2016-09-04 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
+--- a/ssl/d1_both.c	2016-09-22 10:23:06.000000000 +0000
++++ b/ssl/d1_both.c	2016-09-24 00:00:00.000000000 +0900
 @@ -211,14 +211,26 @@
      return frag;
  }
@@ -15773,7 +15773,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      }
      if (frag->fragment)
          OPENSSL_free(frag->fragment);
-@@ -1169,7 +1181,12 @@
+@@ -1184,7 +1196,12 @@
      frag->msg_header.is_ccs = is_ccs;
  
      /* save current state */
@@ -15787,7 +15787,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      frag->msg_header.saved_retransmit_state.write_hash = s->write_hash;
      frag->msg_header.saved_retransmit_state.compress = s->compress;
      frag->msg_header.saved_retransmit_state.session = s->session;
-@@ -1248,7 +1265,10 @@
+@@ -1263,7 +1280,10 @@
                                   frag->msg_header.frag_len);
  
      /* save current state */
@@ -15799,7 +15799,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      saved_state.write_hash = s->write_hash;
      saved_state.compress = s->compress;
      saved_state.session = s->session;
-@@ -1258,7 +1278,13 @@
+@@ -1273,7 +1293,13 @@
      s->d1->retransmitting = 1;
  
      /* restore state in which the message was originally sent */
@@ -15814,7 +15814,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      s->write_hash = frag->msg_header.saved_retransmit_state.write_hash;
      s->compress = frag->msg_header.saved_retransmit_state.compress;
      s->session = frag->msg_header.saved_retransmit_state.session;
-@@ -1276,7 +1302,10 @@
+@@ -1291,7 +1317,10 @@
                           SSL3_RT_CHANGE_CIPHER_SPEC : SSL3_RT_HANDSHAKE);
  
      /* restore current state */
@@ -15826,10 +15826,10 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      s->write_hash = saved_state.write_hash;
      s->compress = saved_state.compress;
      s->session = saved_state.session;
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/ssl/d1_pkt.c	2016-05-03 13:44:42.000000000 +0000
-+++ b/ssl/d1_pkt.c	2016-09-04 00:00:00.000000000 +0900
-@@ -914,7 +914,7 @@
+diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
+--- a/ssl/d1_pkt.c	2016-09-22 10:23:06.000000000 +0000
++++ b/ssl/d1_pkt.c	2016-09-24 00:00:00.000000000 +0900
+@@ -994,7 +994,7 @@
           * doing a handshake for the first time
           */
          if (SSL_in_init(s) && (type == SSL3_RT_APPLICATION_DATA) &&
@@ -15838,7 +15838,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
              al = SSL_AD_UNEXPECTED_MESSAGE;
              SSLerr(SSL_F_DTLS1_READ_BYTES, SSL_R_APP_DATA_IN_HANDSHAKE);
              goto f_err;
-@@ -1604,6 +1604,9 @@
+@@ -1692,6 +1692,9 @@
              eivlen = EVP_GCM_TLS_EXPLICIT_IV_LEN;
          else
              eivlen = 0;
@@ -16040,9 +16040,9 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      } else
          eivlen = 0;
  
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/ssl/ssl.h	2016-05-03 13:44:42.000000000 +0000
-+++ b/ssl/ssl.h	2016-09-04 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
+--- a/ssl/ssl.h	2016-09-22 10:23:06.000000000 +0000
++++ b/ssl/ssl.h	2016-09-24 00:00:00.000000000 +0900
 @@ -297,6 +297,7 @@
  # define SSL_TXT_CAMELLIA128     "CAMELLIA128"
  # define SSL_TXT_CAMELLIA256     "CAMELLIA256"
@@ -16107,7 +16107,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  };
  
  # endif
-@@ -2822,8 +2842,11 @@
+@@ -2815,8 +2835,11 @@
  # define SSL_F_SSL_VERIFY_CERT_CHAIN                      207
  # define SSL_F_SSL_WRITE                                  208
  # define SSL_F_TLS12_CHECK_PEER_SIGALG                    333
@@ -16260,10 +16260,10 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      default:
          enc = "unknown";
          break;
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/ssl/ssl_err.c	2016-05-03 13:44:42.000000000 +0000
-+++ b/ssl/ssl_err.c	2016-09-04 00:00:00.000000000 +0900
-@@ -355,8 +355,13 @@
+diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
+--- a/ssl/ssl_err.c	2016-09-22 10:23:06.000000000 +0000
++++ b/ssl/ssl_err.c	2016-09-24 00:00:00.000000000 +0900
+@@ -357,8 +357,13 @@
      {ERR_FUNC(SSL_F_SSL_VERIFY_CERT_CHAIN), "ssl_verify_cert_chain"},
      {ERR_FUNC(SSL_F_SSL_WRITE), "SSL_write"},
      {ERR_FUNC(SSL_F_TLS12_CHECK_PEER_SIGALG), "tls12_check_peer_sigalg"},
@@ -16297,9 +16297,9 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  #ifndef OPENSSL_NO_COMP
      if (s->expand != NULL) {
          COMP_CTX_free(s->expand);
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/ssl/ssl_locl.h	2016-05-03 13:44:42.000000000 +0000
-+++ b/ssl/ssl_locl.h	2016-09-04 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
+--- a/ssl/ssl_locl.h	2016-09-22 10:23:06.000000000 +0000
++++ b/ssl/ssl_locl.h	2016-09-24 00:00:00.000000000 +0900
 @@ -354,6 +354,7 @@
  # define SSL_SEED                0x00000800L
  # define SSL_AES128GCM           0x00001000L
@@ -16334,7 +16334,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  /*
   * Export and cipher strength information. For each cipher we have to decide
   * whether it is exportable or not. This information is likely to change
-@@ -818,6 +838,22 @@
+@@ -828,6 +848,22 @@
   */
  # define SSL_ENC_FLAG_TLS1_2_CIPHERS     0x10
  
@@ -16357,7 +16357,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  # ifndef OPENSSL_NO_COMP
  /* Used for holding the relevant compression methods loaded into SSL_CTX */
  typedef struct ssl3_comp_st {
-@@ -1080,9 +1116,11 @@
+@@ -1090,9 +1126,11 @@
                                               STACK_OF(SSL_CIPHER) **sorted,
                                               const char *rule_str, CERT *c);
  void ssl_update_cache(SSL *s, int mode);
@@ -16382,9 +16382,9 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
          if (comp == NULL) {
              if (BIO_printf(bp, "\n    Compression: %d", x->compress_meth) <=
                  0)
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/ssl/t1_enc.c	2016-05-03 13:44:42.000000000 +0000
-+++ b/ssl/t1_enc.c	2016-09-04 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
+--- a/ssl/t1_enc.c	2016-09-22 10:23:06.000000000 +0000
++++ b/ssl/t1_enc.c	2016-09-24 00:00:00.000000000 +0900
 @@ -316,7 +316,135 @@
      return ret;
  }
@@ -16598,7 +16598,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      num *= 2;
  
      ssl3_cleanup_key_block(s);
-@@ -736,6 +901,10 @@
+@@ -735,6 +900,10 @@
          OPENSSL_free(p2);
      }
      return (ret);
@@ -16609,7 +16609,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  }
  
  /*-
-@@ -755,6 +924,138 @@
+@@ -754,6 +923,138 @@
      unsigned long l;
      int bs, i, j, k, pad = 0, ret, mac_size = 0;
      const EVP_CIPHER *enc;
@@ -16782,62 +16782,61 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  # define TLS_CT_RSA_SIGN                 1
  # define TLS_CT_DSS_SIGN                 2
  # define TLS_CT_RSA_FIXED_DH             3
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/test/Makefile	2016-05-03 13:46:41.000000000 +0000
-+++ b/test/Makefile	2016-09-04 00:00:00.000000000 +0900
-@@ -71,6 +71,9 @@
- VERIFYEXTRATEST=	verify_extra_test
- CLIENTHELLOTEST=	clienthellotest
+diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
+--- a/test/Makefile	2016-09-22 10:24:53.000000000 +0000
++++ b/test/Makefile	2016-09-24 00:00:00.000000000 +0900
+@@ -73,6 +73,9 @@
+ BADDTLSTEST=	bad_dtls_test
  SSLV2CONFTEST = 	sslv2conftest
+ DTLSTEST =	dtlstest
 +CHACHATEST=	chachatest
 +POLY1305TEST=	poly1305test
 +AEADTEST=	aeadtest
  
  TESTS=		alltests
  
-@@ -84,7 +87,8 @@
- 	$(EVPTEST)$(EXE_EXT) $(EVPEXTRATEST)$(EXE_EXT) $(IGETEST)$(EXE_EXT) $(JPAKETEST)$(EXE_EXT) $(SRPTEST)$(EXE_EXT) \
+@@ -87,7 +90,8 @@
  	$(ASN1TEST)$(EXE_EXT) $(V3NAMETEST)$(EXE_EXT) $(HEARTBEATTEST)$(EXE_EXT) \
  	$(CONSTTIMETEST)$(EXE_EXT) $(VERIFYEXTRATEST)$(EXE_EXT) \
--	$(CLIENTHELLOTEST)$(EXE_EXT) $(SSLV2CONFTEST)$(EXE_EXT)
-+	$(CLIENTHELLOTEST)$(EXE_EXT) $(SSLV2CONFTEST)$(EXE_EXT) \
+ 	$(CLIENTHELLOTEST)$(EXE_EXT) $(SSLV2CONFTEST)$(EXE_EXT) $(DTLSTEST)$(EXE_EXT) \
+-	$(BADDTLSTEST)$(EXE_EXT)
++	$(BADDTLSTEST)$(EXE_EXT) \
 +	$(CHACHATEST)$(EXE_EXT) $(POLY1305TEST)$(EXE_EXT) $(AEADTEST)$(EXE_EXT)
  
  # $(METHTEST)$(EXE_EXT)
  
-@@ -98,7 +102,8 @@
- 	$(BFTEST).o  $(SSLTEST).o  $(DSATEST).o  $(EXPTEST).o $(RSATEST).o \
+@@ -102,7 +106,8 @@
  	$(EVPTEST).o $(EVPEXTRATEST).o $(IGETEST).o $(JPAKETEST).o $(ASN1TEST).o $(V3NAMETEST).o \
  	$(HEARTBEATTEST).o $(CONSTTIMETEST).o $(VERIFYEXTRATEST).o \
--	$(CLIENTHELLOTEST).o  $(SSLV2CONFTEST).o
-+	$(CLIENTHELLOTEST).o  $(SSLV2CONFTEST).o \
+ 	$(CLIENTHELLOTEST).o  $(SSLV2CONFTEST).o $(DTLSTEST).o ssltestlib.o \
+-	$(BADDTLSTEST).o
++	$(BADDTLSTEST).o \
 +	$(CHACHATEST).o $(POLY1305TEST).o $(AEADTEST).o
  
  SRC=	$(BNTEST).c $(ECTEST).c  $(ECDSATEST).c $(ECDHTEST).c $(IDEATEST).c \
  	$(MD2TEST).c  $(MD4TEST).c $(MD5TEST).c \
-@@ -109,7 +114,8 @@
- 	$(BFTEST).c  $(SSLTEST).c $(DSATEST).c   $(EXPTEST).c $(RSATEST).c \
+@@ -114,7 +119,8 @@
  	$(EVPTEST).c $(EVPEXTRATEST).c $(IGETEST).c $(JPAKETEST).c $(SRPTEST).c $(ASN1TEST).c \
  	$(V3NAMETEST).c $(HEARTBEATTEST).c $(CONSTTIMETEST).c $(VERIFYEXTRATEST).c \
--	$(CLIENTHELLOTEST).c  $(SSLV2CONFTEST).c
-+	$(CLIENTHELLOTEST).c  $(SSLV2CONFTEST).c \
+ 	$(CLIENTHELLOTEST).c  $(SSLV2CONFTEST).c $(DTLSTEST).c ssltestlib.c \
+-	$(BADDTLSTEST).c
++	$(BADDTLSTEST).c \
 +	$(CHACHATEST).c $(POLY1305TEST).c $(AEADTEST).c
  
  EXHEADER= 
- HEADER=	testutil.h $(EXHEADER)
-@@ -153,7 +159,8 @@
- 	test_gen test_req test_pkcs7 test_verify test_dh test_dsa \
+ HEADER=	testutil.h ssltestlib.h $(EXHEADER)
+@@ -159,7 +165,7 @@
  	test_ss test_ca test_engine test_evp test_evp_extra test_ssl test_tsa test_ige \
  	test_jpake test_srp test_cms test_ocsp test_v3name test_heartbeat \
--	test_constant_time test_verify_extra test_clienthello test_sslv2conftest
-+	test_constant_time test_verify_extra test_clienthello test_sslv2conftest \
-+	test_chacha test_poly1305 test_aead
+ 	test_constant_time test_verify_extra test_clienthello test_sslv2conftest \
+-	test_dtls test_bad_dtls
++	test_dtls test_bad_dtls test_chacha test_poly1305 test_aead
  
  test_evp: $(EVPTEST)$(EXE_EXT) evptests.txt
  	../util/shlib_wrap.sh ./$(EVPTEST) evptests.txt
-@@ -366,6 +373,29 @@
+@@ -380,6 +386,29 @@
  	@echo $(START) $@
- 	../util/shlib_wrap.sh ./$(SSLV2CONFTEST)
+ 	../util/shlib_wrap.sh ./$(DTLSTEST) ../apps/server.pem ../apps/server.pem
  
 +test_chacha: $(CHACHATEST)$(EXE_EXT)
 +	@echo "Test ChaCha20"
@@ -16865,7 +16864,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  lint:
  	lint -DLINT $(INCLUDES) $(SRC)>fluff
  
-@@ -450,6 +480,15 @@
+@@ -464,6 +493,15 @@
  $(SHA512TEST)$(EXE_EXT): $(SHA512TEST).o $(DLIBCRYPTO)
  	@target=$(SHA512TEST); $(BUILD_CMD)
  

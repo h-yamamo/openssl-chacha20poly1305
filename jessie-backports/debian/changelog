@@ -1,4 +1,4 @@
-openssl (1.0.2h-1~bpo8+2+ore1) jessie-backports; urgency=low
+openssl (1.0.2i-1~bpo8+1+ore1) jessie-backports; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,28 @@ openssl (1.0.2h-1~bpo8+2+ore1) jessie-backports; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Sun, 04 Sep 2016 00:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sat, 24 Sep 2016 17:00:00 +0900
+
+openssl (1.0.2i-1~bpo8+1) jessie-backports; urgency=medium
+
+  * New upstream version
+    - Fix CVE-2016-2177
+    - Fix CVE-2016-2178
+    - Fix CVE-2016-2179
+    - Fix CVE-2016-2180
+    - Fix CVE-2016-2181
+    - Fix CVE-2016-2182
+    - Fix CVE-2016-2183
+    - Fix CVE-2016-6302
+    - Fix CVE-2016-6303
+    - Fix CVE-2016-6304
+    - Fix CVE-2016-6306
+  * Remove Fix-name-length-limit-check.patch, applied upstream
+  * Drop ca.patch, option is now documented upstream
+  * Update engines-path.patch to also update the libcrypto.pc, now that that
+    has an enginesdir in it.
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Thu, 22 Sep 2016 21:28:38 +0200
 
 openssl (1.0.2h-1~bpo8+2) jessie-backports; urgency=medium
 
