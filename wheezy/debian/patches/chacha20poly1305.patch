@@ -1,7 +1,7 @@
 //
 // line 89: rm -f ../../include/openssl/chacha.h
 //	added workaround to avoid error in dpkg-buildpackage.
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u4+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/Makefile	2016-03-10 23:44:05.000000000 +0900
 @@ -0,0 +1,92 @@
@@ -97,7 +97,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +
 +# DO NOT DELETE THIS LINE -- make depend depends on it.
 +
-diff -urN /dev/null 1.0.1e-2+deb7u17+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u1+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/chacha.h	2015-10-29 20:51:09.000000000 +0900
 @@ -0,0 +1,91 @@
@@ -192,7 +192,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u17+ore2
 +#endif
 +
 +#endif
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u4+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/chacha_enc.c	2016-03-07 22:53:12.000000000 +0900
 @@ -0,0 +1,229 @@
@@ -425,7 +425,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +
 +#endif /* !(NO_ASM || !(arm aarch64 x86_64)) */
 +#endif  /* !OPENSSL_NO_CHACHA */
-diff -urN /dev/null 1.0.1e-2+deb7u17+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u1+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/chacha_vec.c	2015-10-29 20:45:17.000000000 +0900
 @@ -0,0 +1,358 @@
@@ -787,7 +787,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u17+ore2
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA */
-diff -urN /dev/null 1.0.1e-2+deb7u17+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u1+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/chacha/chachatest.c	2015-11-01 21:35:41.000000000 +0900
 @@ -0,0 +1,241 @@
@@ -1032,7 +1032,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u17+ore2
 +int main() { return 0; }
 +
 +#endif /* OPENSSL_NO_CHACHA */
-diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
+diff -urN /dev/null 1.0.1t-1+deb8u2+ore1
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ b/crypto/chacha/asm/chacha-armv4.pl	2016-08-25 15:29:20.000000000 +0000
 @@ -0,0 +1,1158 @@
@@ -2194,7 +2194,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
 +	print $_,"\n";
 +}
 +close STDOUT;
-diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
+diff -urN /dev/null 1.0.1t-1+deb8u2+ore1
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ b/crypto/chacha/asm/chacha-armv8.pl	2016-08-25 15:29:20.000000000 +0000
 @@ -0,0 +1,1135 @@
@@ -3333,7 +3333,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
 +	print $_,"\n";
 +}
 +close STDOUT;	# flush
-diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
+diff -urN /dev/null 1.0.1t-1+deb8u2+ore1
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ b/crypto/chacha/asm/chacha-x86_64.pl	2016-08-25 15:29:20.000000000 +0000
 @@ -0,0 +1,2244 @@
@@ -5584,7 +5584,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
 //
 // line 88: rm -f ../../include/openssl/poly1305.h
 //	added workaround to avoid error in dpkg-buildpackage.
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u4+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/Makefile	2016-03-10 23:55:12.000000000 +0900
 @@ -0,0 +1,91 @@
@@ -5679,7 +5679,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +
 +# DO NOT DELETE THIS LINE -- make depend depends on it.
 +
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
+diff -urN /dev/null 1.0.1k-3+deb8u4+ore4
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/poly1305.c	2016-04-05 23:09:03.000000000 +0900
 @@ -0,0 +1,390 @@
@@ -6073,7 +6073,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore4
 +}
 +
 +#endif  /* !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u4+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/poly1305.h	2016-03-07 21:38:48.000000000 +0900
 @@ -0,0 +1,92 @@
@@ -6169,7 +6169,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +#endif
 +
 +#endif  /* HEADER_POLY1305_H_ */
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore5
+diff -urN /dev/null 1.0.1k-3+deb8u4+ore5
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/poly1305/poly1305test.c	2016-04-27 22:21:31.000000000 +0900
 @@ -0,0 +1,1635 @@
@@ -7808,7 +7808,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore5
 +int main() { return 0; }
 +
 +#endif
-diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
+diff -urN /dev/null 1.0.1t-1+deb8u2+ore1
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ b/crypto/poly1305/asm/poly1305-armv4.pl	2016-08-25 15:29:21.000000000 +0000
 @@ -0,0 +1,1252 @@
@@ -9064,7 +9064,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
 +	print $_,"\n";
 +}
 +close STDOUT; # enforce flush
-diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
+diff -urN /dev/null 1.0.1t-1+deb8u2+ore1
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ b/crypto/poly1305/asm/poly1305-armv8.pl	2016-08-25 15:29:21.000000000 +0000
 @@ -0,0 +1,939 @@
@@ -10007,7 +10007,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
 +	print $_,"\n";
 +}
 +close STDOUT;
-diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
+diff -urN /dev/null 1.0.1t-1+deb8u2+ore1
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ b/crypto/poly1305/asm/poly1305-x86.pl	2016-08-31 21:52:00.000000000 +0900
 @@ -0,0 +1,1220 @@
@@ -11231,7 +11231,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
 +&asm_finish();
 +
 +close STDOUT;
-diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
+diff -urN /dev/null 1.0.1t-1+deb8u2+ore1
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ b/crypto/poly1305/asm/poly1305-x86_64.pl	2016-08-25 15:29:21.000000000 +0000
 @@ -0,0 +1,2267 @@
@@ -13502,7 +13502,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
 +	print $_,"\n";
 +}
 +close STDOUT;
-diff -urN /dev/null 1.0.1e-2+deb7u18+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u2+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/evp/e_chacha20poly1305.c	2015-12-19 18:55:33.000000000 +0900
 @@ -0,0 +1,449 @@
@@ -13955,7 +13955,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u18+ore2
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA && !OPENSSL_NO_POLY1305 */
-diff -urN /dev/null 1.0.1e-2+deb7u12+ore2 
+diff -urN /dev/null 1.0.1k-1+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/evp/evp_aead.c	2014-08-13 01:06:38.000000000 +0900
 @@ -0,0 +1,180 @@
@@ -14139,7 +14139,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u12+ore2
 +	*out_len = 0;
 +	return 0;
 +	}
-diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u4+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/arm64cpuid.S	2016-01-28 22:56:08.000000000 +0900
 @@ -0,0 +1,46 @@
@@ -14189,60 +14189,60 @@ diff -urN /dev/null 1.0.1e-2+deb7u20+ore2
 +	pmull	v0.1q, v0.1d, v0.1d
 +	ret
 +.size	_armv8_pmull_probe,.-_armv8_pmull_probe
-diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
---- a/crypto/arm_arch.h	2013-02-12 00:26:04.000000000 +0900
-+++ b/crypto/arm_arch.h	2016-03-01 00:53:56.000000000 +0900
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/crypto/arm_arch.h	2016-05-03 22:49:00.000000000 +0900
++++ b/crypto/arm_arch.h	2016-05-19 22:49:09.000000000 +0900
 @@ -10,13 +10,24 @@
- #   define __ARMEL__
- #  endif
- # elif defined(__GNUC__)
-+#  if   defined(__aarch64__)
-+#   define __ARM_ARCH__ 8
-+#   if __BYTE_ORDER__==__ORDER_BIG_ENDIAN__
-+#    define __ARMEB__
-+#   else
-+#    define __ARMEL__
-+#   endif
+ #    define __ARMEL__
+ #   endif
+ #  elif defined(__GNUC__)
++#   if   defined(__aarch64__)
++#    define __ARM_ARCH__ 8
++#    if __BYTE_ORDER__==__ORDER_BIG_ENDIAN__
++#     define __ARMEB__
++#    else
++#     define __ARMEL__
++#    endif
    /*
     * Why doesn't gcc define __ARM_ARCH__? Instead it defines
     * bunch of below macros. See all_architectires[] table in
     * gcc/config/arm/arm.c. On a side note it defines
     * __ARMEL__/__ARMEB__ for little-/big-endian.
     */
--#  if	defined(__ARM_ARCH_7__)	|| defined(__ARM_ARCH_7A__)	|| \
-+#  elif defined(__ARM_ARCH)
-+#   define __ARM_ARCH__ __ARM_ARCH
-+#  elif defined(__ARM_ARCH_8A__)
-+#   define __ARM_ARCH__ 8
-+#  elif defined(__ARM_ARCH_7__)	|| defined(__ARM_ARCH_7A__)	|| \
- 	defined(__ARM_ARCH_7R__)|| defined(__ARM_ARCH_7M__)	|| \
- 	defined(__ARM_ARCH_7EM__)
- #   define __ARM_ARCH__ 7
+-#   if   defined(__ARM_ARCH_7__) || defined(__ARM_ARCH_7A__)     || \
++#   elif defined(__ARM_ARCH)
++#    define __ARM_ARCH__ __ARM_ARCH
++#   elif defined(__ARM_ARCH_8A__)
++#    define __ARM_ARCH__ 8
++#   elif defined(__ARM_ARCH_7__) || defined(__ARM_ARCH_7A__)     || \
+         defined(__ARM_ARCH_7R__)|| defined(__ARM_ARCH_7M__)     || \
+         defined(__ARM_ARCH_7EM__)
+ #    define __ARM_ARCH__ 7
 @@ -41,11 +52,19 @@
- #include <openssl/fipssyms.h>
- #endif
+ #  include <openssl/fipssyms.h>
+ # endif
  
-+#if !defined(__ARM_MAX_ARCH__)
-+# define __ARM_MAX_ARCH__ __ARM_ARCH__
-+#endif
++# if !defined(__ARM_MAX_ARCH__)
++#  define __ARM_MAX_ARCH__ __ARM_ARCH__
++# endif
 +
- #if !__ASSEMBLER__
+ # if !__ASSEMBLER__
  extern unsigned int OPENSSL_armcap_P;
-+#endif
-                                      
- #define ARMV7_NEON      (1<<0)
- #define ARMV7_TICK      (1<<1)
--#endif
-+#define ARMV8_AES       (1<<2)
-+#define ARMV8_SHA1      (1<<3)
-+#define ARMV8_SHA256    (1<<4)
-+#define ARMV8_PMULL     (1<<5)
++# endif
+ 
+ #  define ARMV7_NEON      (1<<0)
+ #  define ARMV7_TICK      (1<<1)
+-# endif
++# define ARMV8_AES        (1<<2)
++# define ARMV8_SHA1       (1<<3)
++# define ARMV8_SHA256     (1<<4)
++# define ARMV8_PMULL      (1<<5)
  
  #endif
-diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
---- a/crypto/armcap.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/crypto/armcap.c	2016-03-01 01:44:15.000000000 +0900
-@@ -19,6 +19,10 @@
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/crypto/armcap.c	2016-05-03 22:49:00.000000000 +0900
++++ b/crypto/armcap.c	2016-05-19 23:22:05.000000000 +0900
+@@ -22,6 +22,10 @@
   * ARM compilers support inline assembler...
   */
  void _armv7_neon_probe(void);
@@ -14253,10 +14253,10 @@ diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
  unsigned int _armv7_tick(void);
  
  unsigned int OPENSSL_rdtsc(void)
-@@ -31,7 +35,38 @@
+@@ -34,7 +38,38 @@
  
  #if defined(__GNUC__) && __GNUC__>=2
- void OPENSSL_cpuid_setup(void) __attribute__((constructor));
+ void OPENSSL_cpuid_setup(void) __attribute__ ((constructor));
 +extern unsigned long getauxval(unsigned long type) __attribute__ ((weak));
 +#else
 +static unsigned long (*getauxval) (unsigned long) = NULL;
@@ -14290,116 +14290,113 @@ diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
 +# endif
 +
  void OPENSSL_cpuid_setup(void)
- 	{
- 	char *e;
-@@ -64,10 +99,46 @@
- 	sigprocmask(SIG_SETMASK,&ill_act.sa_mask,&oset);
- 	sigaction(SIGILL,&ill_act,&ill_oact);
+ {
+     char *e;
+@@ -67,9 +102,45 @@
+     sigprocmask(SIG_SETMASK, &ill_act.sa_mask, &oset);
+     sigaction(SIGILL, &ill_act, &ill_oact);
  
-+	if (getauxval != NULL) {
-+	  if (getauxval(HWCAP) & HWCAP_NEON) {
-+	    unsigned long hwcap = getauxval(HWCAP_CE);
++    if (getauxval != NULL) {
++        if (getauxval(HWCAP) & HWCAP_NEON) {
++            unsigned long hwcap = getauxval(HWCAP_CE);
 +
-+	    OPENSSL_armcap_P |= ARMV7_NEON;
++            OPENSSL_armcap_P |= ARMV7_NEON;
 +
-+	    if (hwcap & HWCAP_CE_AES)
-+	      OPENSSL_armcap_P |= ARMV8_AES;
++            if (hwcap & HWCAP_CE_AES)
++                OPENSSL_armcap_P |= ARMV8_AES;
 +
-+	    if (hwcap & HWCAP_CE_PMULL)
-+	      OPENSSL_armcap_P |= ARMV8_PMULL;
++            if (hwcap & HWCAP_CE_PMULL)
++                OPENSSL_armcap_P |= ARMV8_PMULL;
 +
-+	    if (hwcap & HWCAP_CE_SHA1)
-+	      OPENSSL_armcap_P |= ARMV8_SHA1;
++            if (hwcap & HWCAP_CE_SHA1)
++                OPENSSL_armcap_P |= ARMV8_SHA1;
 +
-+	    if (hwcap & HWCAP_CE_SHA256)
-+	      OPENSSL_armcap_P |= ARMV8_SHA256;
-+	  }
-+	} else
- 	if (sigsetjmp(ill_jmp,1) == 0)
- 		{
- 		_armv7_neon_probe();
- 		OPENSSL_armcap_P |= ARMV7_NEON;
++            if (hwcap & HWCAP_CE_SHA256)
++                OPENSSL_armcap_P |= ARMV8_SHA256;
++        }
++    } else
+     if (sigsetjmp(ill_jmp, 1) == 0) {
+         _armv7_neon_probe();
+         OPENSSL_armcap_P |= ARMV7_NEON;
 +#ifdef __aarch64__
-+		if (sigsetjmp(ill_jmp, 1) == 0) {
-+		  _armv8_pmull_probe();
-+		  OPENSSL_armcap_P |= ARMV8_PMULL | ARMV8_AES;
-+		} else if (sigsetjmp(ill_jmp, 1) == 0) {
-+		  _armv8_aes_probe();
-+		  OPENSSL_armcap_P |= ARMV8_AES;
-+		}
-+		if (sigsetjmp(ill_jmp, 1) == 0) {
-+		  _armv8_sha1_probe();
-+		  OPENSSL_armcap_P |= ARMV8_SHA1;
-+		}
-+		if (sigsetjmp(ill_jmp, 1) == 0) {
-+		  _armv8_sha256_probe();
-+		  OPENSSL_armcap_P |= ARMV8_SHA256;
-+		}
++        if (sigsetjmp(ill_jmp, 1) == 0) {
++            _armv8_pmull_probe();
++            OPENSSL_armcap_P |= ARMV8_PMULL | ARMV8_AES;
++        } else if (sigsetjmp(ill_jmp, 1) == 0) {
++            _armv8_aes_probe();
++            OPENSSL_armcap_P |= ARMV8_AES;
++        }
++        if (sigsetjmp(ill_jmp, 1) == 0) {
++            _armv8_sha1_probe();
++            OPENSSL_armcap_P |= ARMV8_SHA1;
++        }
++        if (sigsetjmp(ill_jmp, 1) == 0) {
++            _armv8_sha256_probe();
++            OPENSSL_armcap_P |= ARMV8_SHA256;
++        }
 +#endif
- 		}
- 	if (sigsetjmp(ill_jmp,1) == 0)
- 		{
-diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
---- a/crypto/cryptlib.c	2014-05-04 15:44:25.000000000 +0900
-+++ b/crypto/cryptlib.c	2016-03-08 21:18:43.000000000 +0900
-@@ -665,7 +665,7 @@
- 	defined(__INTEL__) || \
- 	defined(__x86_64) || defined(__x86_64__) || defined(_M_AMD64) || defined(_M_X64)
+     }
+     if (sigsetjmp(ill_jmp, 1) == 0) {
+         _armv7_tick();
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/crypto/cryptlib.c	2016-05-03 22:49:00.000000000 +0900
++++ b/crypto/cryptlib.c	2016-05-19 23:36:53.000000000 +0900
+@@ -653,7 +653,7 @@
+         defined(__x86_64) || defined(__x86_64__) || \
+         defined(_M_AMD64) || defined(_M_X64)
  
--unsigned int  OPENSSL_ia32cap_P[2];
+-unsigned int OPENSSL_ia32cap_P[2];
 +extern unsigned int OPENSSL_ia32cap_P[4];
  unsigned long *OPENSSL_ia32cap_loc(void)
- {   if (sizeof(long)==4)
- 	/*
-@@ -674,6 +674,9 @@
- 	 * is 32-bit.
- 	 */
- 	OPENSSL_ia32cap_P[1]=0;
+ {
+     if (sizeof(long) == 4)
+@@ -663,6 +663,9 @@
+          * is 32-bit.
+          */
+         OPENSSL_ia32cap_P[1] = 0;
 +
 +    OPENSSL_ia32cap_P[2] = 0;
 +
      return (unsigned long *)OPENSSL_ia32cap_P;
  }
  
-@@ -686,7 +689,7 @@
- #endif
+@@ -676,7 +679,7 @@
  void OPENSSL_cpuid_setup(void)
- { static int trigger=0;
--  IA32CAP OPENSSL_ia32_cpuid(void);
-+  IA32CAP OPENSSL_ia32_cpuid(unsigned int *);
-   IA32CAP vec;
-   char *env;
+ {
+     static int trigger = 0;
+-    IA32CAP OPENSSL_ia32_cpuid(void);
++    IA32CAP OPENSSL_ia32_cpuid(unsigned int *);
+     IA32CAP vec;
+     char *env;
  
-@@ -700,10 +703,25 @@
- #else
- 	if (!sscanf(env+off,"%lli",(long long *)&vec)) vec = strtoul(env+off,NULL,0);
- #endif
--	if (off) vec = OPENSSL_ia32_cpuid()&~vec;
-+	if (off)
-+		vec = OPENSSL_ia32_cpuid(OPENSSL_ia32cap_P) & ~vec;
-+	else if (env[0] == ':')
-+		vec = OPENSSL_ia32_cpuid(OPENSSL_ia32cap_P);
+@@ -694,9 +697,23 @@
+             vec = strtoul(env + off, NULL, 0);
+ #  endif
+         if (off)
+-            vec = OPENSSL_ia32_cpuid() & ~vec;
++            vec = OPENSSL_ia32_cpuid(OPENSSL_ia32cap_P) & ~vec;
++        else if (env[0] == ':')
++            vec = OPENSSL_ia32_cpuid(OPENSSL_ia32cap_P);
 +
-+	OPENSSL_ia32cap_P[2] = 0;
-+	if ((env = strchr(env, ':'))) {
-+		unsigned int vecx;
-+		env++;
-+		off = (env[0] == '~') ? 1 : 0;
-+		vecx = strtoul(env + off, NULL, 0);
-+		if (off)
-+			OPENSSL_ia32cap_P[2] &= ~vecx;
-+		else
-+			OPENSSL_ia32cap_P[2] = vecx;
-+	}
-     }
-     else
--	vec = OPENSSL_ia32_cpuid();
-+	vec = OPENSSL_ia32_cpuid(OPENSSL_ia32cap_P);
++        OPENSSL_ia32cap_P[2] = 0;
++        if ((env = strchr(env, ':'))) {
++            unsigned int vecx;
++            env++;
++            off = (env[0] == '~') ? 1 : 0;
++            vecx = strtoul(env + off, NULL, 0);
++            if (off)
++                OPENSSL_ia32cap_P[2] &= ~vecx;
++            else
++                OPENSSL_ia32cap_P[2] = vecx;
++        }
+     } else
+-        vec = OPENSSL_ia32_cpuid();
++        vec = OPENSSL_ia32_cpuid(OPENSSL_ia32cap_P);
  
      /*
       * |(1<<10) sets a reserved bit to signal that variable
-diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
---- a/crypto/x86_64cpuid.pl	2013-02-12 00:26:04.000000000 +0900
+diff -ur openssl-1.0.1k-3+deb8u4 openssl-1.0.1k-3+deb8u4+ore2
+--- a/crypto/x86_64cpuid.pl	2015-01-08 23:00:36.000000000 +0900
 +++ b/crypto/x86_64cpuid.pl	2016-03-01 22:35:53.000000000 +0900
 @@ -24,7 +24,7 @@
  	call	OPENSSL_cpuid_setup
@@ -14470,8 +14467,8 @@ diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
  ___
  
  close STDOUT;	# flush
-diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
---- a/crypto/x86cpuid.pl	2014-05-04 15:44:25.000000000 +0900
+diff -ur openssl-1.0.1k-3+deb8u4 openssl-1.0.1k-3+deb8u4+ore2
+--- a/crypto/x86cpuid.pl	2015-01-08 23:03:40.000000000 +0900
 +++ b/crypto/x86cpuid.pl	2016-03-02 19:50:48.000000000 +0900
 @@ -24,6 +24,8 @@
  	&xor	("eax","eax");
@@ -14539,7 +14536,7 @@ diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
 +&hidden("OPENSSL_ia32cap_P");
 +
  &asm_finish();
-diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
+diff -urN /dev/null 1.0.1t-1+deb8u2+ore1
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
 +++ b/crypto/perlasm/arm-xlate.pl	2016-08-25 15:29:21.000000000 +0000
 @@ -0,0 +1,177 @@
@@ -14720,8 +14717,8 @@ diff -urN /dev/null 1.0.1e-2+deb7u21+ore1
 +}
 +
 +close STDOUT;
-diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
---- a/crypto/perlasm/x86_64-xlate.pl	2016-02-29 08:49:33.000000000 +0900
+diff -ur openssl-1.0.1k-3+deb8u4 openssl-1.0.1k-3+deb8u4+ore2
+--- a/crypto/perlasm/x86_64-xlate.pl	2016-02-29 05:53:20.000000000 +0900
 +++ b/crypto/perlasm/x86_64-xlate.pl	2016-03-01 22:35:53.000000000 +0900
 @@ -198,8 +198,11 @@
  	if ($gas) {
@@ -14878,8 +14875,8 @@ diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
  		    if ($arg =~ /^mm[0-9]+$/)  { $insn.=$sz; $sz="q" if(!$sz); last; }
  		}
  		@args = reverse(@args);
-diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
---- a/crypto/perlasm/x86asm.pl	2013-02-12 00:26:04.000000000 +0900
+diff -ur openssl-1.0.1k-3+deb8u4 openssl-1.0.1k-3+deb8u4+ore2
+--- a/crypto/perlasm/x86asm.pl	2015-01-08 23:00:36.000000000 +0900
 +++ b/crypto/perlasm/x86asm.pl	2016-03-01 22:35:53.000000000 +0900
 @@ -131,6 +131,40 @@
      {	&::generic("rdrand",@_);	}
@@ -14938,10 +14935,10 @@ diff -ur openssl-1.0.1e-2+deb7u20 openssl-1.0.1e-2+deb7u20+ore2
 +sub ::hidden {}
 +
  1;
-diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
---- a/Configure	2014-05-04 15:44:25.000000000 +0900
-+++ b/Configure	2016-04-05 23:04:02.000000000 +0900
-@@ -128,24 +128,25 @@
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/Configure	2016-05-16 04:16:55.000000000 +0900
++++ b/Configure	2016-05-20 00:01:00.000000000 +0900
+@@ -137,24 +137,25 @@
  my $bits1="THIRTY_TWO_BIT ";
  my $bits2="SIXTY_FOUR_BIT ";
  
@@ -14981,15 +14978,16 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  
  # As for $BSDthreads. Idea is to maintain "collective" set of flags,
  # which would cover all BSD flavors. -pthread applies to them all, 
-@@ -348,6 +349,7 @@
+@@ -358,7 +359,7 @@
  "debian-alpha","gcc:-DTERMIO ${debian_cflags}::-D_REENTRANT::-ldl:SIXTY_FOUR_BIT_LONG RC4_CHUNK DES_RISC1 DES_UNROLL:${alpha_asm}:dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
  "debian-alpha-ev4","gcc:-DTERMIO ${debian_cflags} -mcpu=ev4::-D_REENTRANT::-ldl:SIXTY_FOUR_BIT_LONG RC4_CHUNK DES_RISC1 DES_UNROLL:${alpha_asm}:dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
  "debian-alpha-ev5","gcc:-DTERMIO ${debian_cflags} -mcpu=ev5::-D_REENTRANT::-ldl:SIXTY_FOUR_BIT_LONG RC4_CHUNK DES_RISC1 DES_UNROLL:${alpha_asm}:dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
+-"debian-arm64","gcc:-DL_ENDIAN -DTERMIO ${debian_cflags}::-D_REENTRANT::-ldl:SIXTY_FOUR_BIT_LONG RC4_CHAR RC4_CHUNK DES_INT DES_UNROLL BF_PTR:${no_asm}:dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
 +"debian-arm64","gcc:-DL_ENDIAN -DTERMIO ${debian_cflags}::-D_REENTRANT::-ldl:SIXTY_FOUR_BIT_LONG RC4_CHAR RC4_CHUNK DES_INT DES_UNROLL BF_PTR:${armv8_asm}:dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
  "debian-armel","gcc:-DL_ENDIAN -DTERMIO ${debian_cflags}::-D_REENTRANT::-ldl:BN_LLONG RC4_CHAR RC4_CHUNK DES_INT DES_UNROLL BF_PTR:${armv4_asm}:dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
  "debian-armhf","gcc:-DL_ENDIAN -DTERMIO ${debian_cflags}::-D_REENTRANT::-ldl:BN_LLONG RC4_CHAR RC4_CHUNK DES_INT DES_UNROLL BF_PTR:${armv4_asm}:dlfcn:linux-shared:-fPIC::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
  "debian-amd64", "gcc:-m64 -DL_ENDIAN -DTERMIO ${debian_cflags} -DMD32_REG_T=int::-D_REENTRANT::-ldl:SIXTY_FOUR_BIT_LONG RC4_CHUNK DES_INT DES_UNROLL:${x86_64_asm}:elf:dlfcn:linux-shared:-fPIC:-m64:.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR):::",
-@@ -692,6 +694,8 @@
+@@ -711,6 +712,8 @@
  my $idx_cmll_obj = $idx++;
  my $idx_modes_obj = $idx++;
  my $idx_engines_obj = $idx++;
@@ -14998,7 +14996,7 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  my $idx_perlasm_scheme = $idx++;
  my $idx_dso_scheme = $idx++;
  my $idx_shared_target = $idx++;
-@@ -737,6 +741,8 @@
+@@ -756,6 +759,8 @@
  my $bf_enc	="bf_enc.o";
  my $cast_enc="c_enc.o";
  my $rc4_enc="rc4_enc.o rc4_skey.o";
@@ -15007,7 +15005,7 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  my $rc5_enc="rc5_enc.o";
  my $md5_obj="";
  my $sha1_obj="";
-@@ -1189,7 +1195,7 @@
+@@ -1216,7 +1221,7 @@
  
  print "IsMK1MF=$IsMK1MF\n";
  
@@ -15016,7 +15014,7 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  my $cc = $fields[$idx_cc];
  # Allow environment CC to override compiler...
  if($ENV{CC}) {
-@@ -1226,6 +1232,8 @@
+@@ -1253,6 +1258,8 @@
  my $ar = $ENV{'AR'} || "ar";
  my $arflags = $fields[$idx_arflags];
  my $multilib = $fields[$idx_multilib];
@@ -15025,7 +15023,7 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  
  # if $prefix/lib$multilib is not an existing directory, then
  # assume that it's not searched by linker automatically, in
-@@ -1522,6 +1530,10 @@
+@@ -1549,6 +1556,10 @@
  $bf_obj=$bf_enc		unless ($bf_obj =~ /\.o$/);
  $cast_obj=$cast_enc	unless ($cast_obj =~ /\.o$/);
  $rc4_obj=$rc4_enc	unless ($rc4_obj =~ /\.o$/);
@@ -15036,7 +15034,7 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  $rc5_obj=$rc5_enc	unless ($rc5_obj =~ /\.o$/);
  if ($sha1_obj =~ /\.o$/)
  	{
-@@ -1684,6 +1696,9 @@
+@@ -1720,6 +1731,9 @@
  	s/^BF_ENC=.*$/BF_ENC= $bf_obj/;
  	s/^CAST_ENC=.*$/CAST_ENC= $cast_obj/;
  	s/^RC4_ENC=.*$/RC4_ENC= $rc4_obj/;
@@ -15046,7 +15044,7 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  	s/^RC5_ENC=.*$/RC5_ENC= $rc5_obj/;
  	s/^MD5_ASM_OBJ=.*$/MD5_ASM_OBJ= $md5_obj/;
  	s/^SHA1_ASM_OBJ=.*$/SHA1_ASM_OBJ= $sha1_obj/;
-@@ -1746,6 +1761,8 @@
+@@ -1782,6 +1796,8 @@
  print "BF_ENC        =$bf_obj\n";
  print "CAST_ENC      =$cast_obj\n";
  print "RC4_ENC       =$rc4_obj\n";
@@ -15055,7 +15053,7 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  print "RC5_ENC       =$rc5_obj\n";
  print "MD5_OBJ_ASM   =$md5_obj\n";
  print "SHA1_OBJ_ASM  =$sha1_obj\n";
-@@ -2144,11 +2161,12 @@
+@@ -2186,11 +2202,12 @@
  
  	(my $cc,my $cflags,my $unistd,my $thread_cflag,my $sys_id,my $lflags,
  	my $bn_ops,my $cpuid_obj,my $bn_obj,my $des_obj,my $aes_obj, my $bf_obj,
@@ -15073,7 +15071,7 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  			
  	print <<EOF
  
-@@ -2169,6 +2187,8 @@
+@@ -2211,6 +2228,8 @@
  \$sha1_obj     = $sha1_obj
  \$cast_obj     = $cast_obj
  \$rc4_obj      = $rc4_obj
@@ -15082,7 +15080,7 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  \$rmd160_obj   = $rmd160_obj
  \$rc5_obj      = $rc5_obj
  \$wp_obj       = $wp_obj
-@@ -2198,7 +2218,7 @@
+@@ -2240,7 +2259,7 @@
  
  	foreach $target (sort keys %table)
  		{
@@ -15091,9 +15089,9 @@ diff -ur 1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore4
  
  		if ($fields[$idx_dso_scheme-1] =~ /^(beos|dl|dlfcn|win32|vms)$/)
  			{
-diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore4
---- a/Makefile.org	2014-05-04 15:44:25.827711748 +0900
-+++ b/Makefile.org	2014-08-27 00:48:35.000000000 +0900
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/Makefile.org	2016-05-16 04:16:55.000000000 +0900
++++ b/Makefile.org	2016-05-20 00:18:23.000000000 +0900
 @@ -85,6 +85,8 @@
  # the 80386.
  PROCESSOR=
@@ -15121,7 +15119,7 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore4
  # keep in mind that the above list is adjusted by ./Configure
  # according to no-xxx arguments...
  
-@@ -233,6 +237,9 @@
+@@ -232,6 +236,9 @@
  		WP_ASM_OBJ='$(WP_ASM_OBJ)'			\
  		MODES_ASM_OBJ='$(MODES_ASM_OBJ)'		\
  		ENGINES_ASM_OBJ='$(ENGINES_ASM_OBJ)'		\
@@ -15131,220 +15129,203 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore4
  		PERLASM_SCHEME='$(PERLASM_SCHEME)'		\
  		FIPSLIBDIR='${FIPSLIBDIR}'			\
  		FIPSDIR='${FIPSDIR}'				\
-diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore3
---- a/apps/speed.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/apps/speed.c	2014-08-23 19:55:28.000000000 +0900
-@@ -224,7 +224,7 @@
- #endif
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/apps/speed.c	2016-05-03 22:49:00.000000000 +0900
++++ b/apps/speed.c	2016-05-20 00:50:06.000000000 +0900
+@@ -226,7 +226,7 @@
+ # endif
  
- #undef BUFSIZE
--#define BUFSIZE	((long)1024*8+1)
-+#define BUFSIZE	((long)1024*8+64)
- int run=0;
+ # undef BUFSIZE
+-# define BUFSIZE ((long)1024*8+1)
++# define BUFSIZE ((long)1024*8+64)
+ static volatile int run = 0;
  
- static int mr=0;
-@@ -239,7 +239,7 @@
+ static int mr = 0;
+@@ -241,7 +241,7 @@
  static int do_multi(int multi);
- #endif
+ # endif
  
--#define ALGOR_NUM	30
-+#define ALGOR_NUM	33
- #define SIZE_NUM	5
- #define RSA_NUM		4
- #define DSA_NUM		3
-@@ -254,7 +254,9 @@
-   "aes-128 cbc","aes-192 cbc","aes-256 cbc",
-   "camellia-128 cbc","camellia-192 cbc","camellia-256 cbc",
-   "evp","sha256","sha512","whirlpool",
--  "aes-128 ige","aes-192 ige","aes-256 ige","ghash" };
-+  "aes-128 ige","aes-192 ige","aes-256 ige","ghash",
-+  "aes-128 gcm", "aes-256 gcm", "chacha20 poly1305",
-+};
+-# define ALGOR_NUM       30
++# define ALGOR_NUM       33
+ # define SIZE_NUM        5
+ # define RSA_NUM         4
+ # define DSA_NUM         3
+@@ -256,7 +256,8 @@
+     "aes-128 cbc", "aes-192 cbc", "aes-256 cbc",
+     "camellia-128 cbc", "camellia-192 cbc", "camellia-256 cbc",
+     "evp", "sha256", "sha512", "whirlpool",
+-    "aes-128 ige", "aes-192 ige", "aes-256 ige", "ghash"
++    "aes-128 ige", "aes-192 ige", "aes-256 ige", "ghash",
++    "aes-128 gcm", "aes-256 gcm", "chacha20 poly1305",
+ };
+ 
  static double results[ALGOR_NUM][SIZE_NUM];
- static int lengths[SIZE_NUM]={16,64,256,1024,8*1024};
- #ifndef OPENSSL_NO_RSA
-@@ -498,6 +500,9 @@
- #define D_IGE_192_AES   27
- #define D_IGE_256_AES   28
- #define D_GHASH		29
-+#define D_AES_128_GCM	30
-+#define D_AES_256_GCM	31
-+#define D_CHACHA20_POLY1305	32
- 	double d=0.0;
- 	long c[ALGOR_NUM][SIZE_NUM];
- #define	R_DSA_512	0
-@@ -927,6 +932,14 @@
- 			{
- 			doit[D_GHASH]=1;
- 			}
-+		else if (strcmp(*argv,"aes-128-gcm") == 0)
-+			{
-+			doit[D_AES_128_GCM]=1;
-+			}
-+		else if (strcmp(*argv,"aes-256-gcm") == 0)
-+			{
-+			doit[D_AES_256_GCM]=1;
-+			}
- 		else
- #endif
- #ifndef OPENSSL_NO_CAMELLIA
-@@ -938,6 +951,13 @@
- 			}
- 		else
- #endif
-+#if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
-+			if (strcmp(*argv,"chacha20-poly1305") == 0)
-+			{
-+			doit[D_CHACHA20_POLY1305]=1;
-+			}
-+		else
-+#endif
- #ifndef OPENSSL_NO_RSA
- 			if (strcmp(*argv,"rsa") == 0)
- 			{
-@@ -1070,7 +1090,8 @@
- #endif
- #ifndef OPENSSL_NO_AES
- 			BIO_printf(bio_err,"aes-128-cbc aes-192-cbc aes-256-cbc ");
--			BIO_printf(bio_err,"aes-128-ige aes-192-ige aes-256-ige ");
-+			BIO_printf(bio_err,"aes-128-ige aes-192-ige aes-256-ige\n");
-+			BIO_printf(bio_err,"aes-128-gcm aes-256-gcm ");
- #endif
- #ifndef OPENSSL_NO_CAMELLIA
- 			BIO_printf(bio_err,"\n");
-@@ -1079,6 +1100,9 @@
- #ifndef OPENSSL_NO_RC4
- 			BIO_printf(bio_err,"rc4");
- #endif
-+#if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
-+			BIO_printf(bio_err," chacha20-poly1305");
-+#endif
- 			BIO_printf(bio_err,"\n");
+@@ -514,6 +515,9 @@
+ # define D_IGE_192_AES   27
+ # define D_IGE_256_AES   28
+ # define D_GHASH         29
++# define D_AES_128_GCM   30
++# define D_AES_256_GCM   31
++# define D_CHACHA20_POLY1305 32
+     double d = 0.0;
+     long c[ALGOR_NUM][SIZE_NUM];
+ # define R_DSA_512       0
+@@ -957,6 +961,10 @@
+             doit[D_CBC_256_AES] = 1;
+         } else if (strcmp(*argv, "ghash") == 0) {
+             doit[D_GHASH] = 1;
++        } else if (strcmp(*argv, "aes-128-gcm") == 0) {
++            doit[D_AES_128_GCM] = 1;
++        } else if (strcmp(*argv, "aes-256-gcm") == 0) {
++            doit[D_AES_256_GCM] = 1;
+         } else
+ # endif
+ # ifndef OPENSSL_NO_CAMELLIA
+@@ -966,6 +974,11 @@
+             doit[D_CBC_256_CML] = 1;
+         } else
+ # endif
++# if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
++        if (strcmp(*argv, "chacha20-poly1305") == 0) {
++            doit[D_CHACHA20_POLY1305] = 1;
++        } else
++# endif
+ # ifndef OPENSSL_NO_RSA
+         if (strcmp(*argv, "rsa") == 0) {
+             rsa_doit[R_RSA_512] = 1;
+@@ -1122,7 +1135,8 @@
+ # endif
+ # ifndef OPENSSL_NO_AES
+             BIO_printf(bio_err, "aes-128-cbc aes-192-cbc aes-256-cbc ");
+-            BIO_printf(bio_err, "aes-128-ige aes-192-ige aes-256-ige ");
++            BIO_printf(bio_err, "aes-128-ige aes-192-ige aes-256-ige\n");
++            BIO_printf(bio_err,"aes-128-gcm aes-256-gcm ");
+ # endif
+ # ifndef OPENSSL_NO_CAMELLIA
+             BIO_printf(bio_err, "\n");
+@@ -1132,6 +1146,9 @@
+ # ifndef OPENSSL_NO_RC4
+             BIO_printf(bio_err, "rc4");
+ # endif
++# if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
++            BIO_printf(bio_err, " chacha20-poly1305");
++# endif
+             BIO_printf(bio_err, "\n");
  
- #ifndef OPENSSL_NO_RSA
-@@ -1298,6 +1322,9 @@
- 	c[D_IGE_192_AES][0]=count;
- 	c[D_IGE_256_AES][0]=count;
- 	c[D_GHASH][0]=count;
-+	c[D_AES_128_GCM][0]=count;
-+	c[D_AES_256_GCM][0]=count;
-+	c[D_CHACHA20_POLY1305][0]=count;
+ # ifndef OPENSSL_NO_RSA
+@@ -1364,6 +1381,9 @@
+     c[D_IGE_192_AES][0] = count;
+     c[D_IGE_256_AES][0] = count;
+     c[D_GHASH][0] = count;
++    c[D_AES_128_GCM][0] = count;
++    c[D_AES_256_GCM][0] = count;
++    c[D_CHACHA20_POLY1305][0] = count;
  
- 	for (i=1; i<SIZE_NUM; i++)
- 		{
-@@ -1336,6 +1363,9 @@
- 		c[D_IGE_128_AES][i]=c[D_IGE_128_AES][i-1]*l0/l1;
- 		c[D_IGE_192_AES][i]=c[D_IGE_192_AES][i-1]*l0/l1;
- 		c[D_IGE_256_AES][i]=c[D_IGE_256_AES][i-1]*l0/l1;
-+		c[D_AES_128_GCM][i]=c[D_AES_128_GCM][i-1]*l0/l1;
-+		c[D_AES_256_GCM][i]=c[D_AES_256_GCM][i-1]*l0/l1;
-+		c[D_CHACHA20_POLY1305][i]=c[D_CHACHA20_POLY1305][i-1]*l0/l1;
- 		}
- #ifndef OPENSSL_NO_RSA
- 	rsa_c[R_RSA_512][0]=count/2000;
-@@ -1805,7 +1835,90 @@
- 		CRYPTO_gcm128_release(ctx);
- 		}
- 
-+	if (doit[D_AES_128_GCM])
-+		{
-+		const EVP_AEAD *aead = EVP_aead_aes_128_gcm();
-+		const unsigned char *nonce = iv;
-+		size_t out_len, nonce_len;
-+		EVP_AEAD_CTX ctx;
+     for (i = 1; i < SIZE_NUM; i++) {
+         c[D_MD2][i] = c[D_MD2][0] * 4 * lengths[0] / lengths[i];
+@@ -1400,6 +1420,9 @@
+         c[D_IGE_128_AES][i] = c[D_IGE_128_AES][i - 1] * l0 / l1;
+         c[D_IGE_192_AES][i] = c[D_IGE_192_AES][i - 1] * l0 / l1;
+         c[D_IGE_256_AES][i] = c[D_IGE_256_AES][i - 1] * l0 / l1;
++        c[D_AES_128_GCM][i] = c[D_AES_128_GCM][i - 1] * l0 / l1;
++        c[D_AES_256_GCM][i] = c[D_AES_256_GCM][i - 1] * l0 / l1;
++        c[D_CHACHA20_POLY1305][i] = c[D_CHACHA20_POLY1305][i - 1] * l0 / l1;
+     }
+ #   ifndef OPENSSL_NO_RSA
+     rsa_c[R_RSA_512][0] = count / 2000;
+@@ -1814,6 +1837,80 @@
+         }
+         CRYPTO_gcm128_release(ctx);
+     }
++    if (doit[D_AES_128_GCM]) {
++        const EVP_AEAD *aead = EVP_aead_aes_128_gcm();
++        const unsigned char *nonce = iv;
++        size_t out_len, nonce_len;
++        EVP_AEAD_CTX ctx;
 +
-+		EVP_AEAD_CTX_init(&ctx, aead, key32, EVP_AEAD_key_length(aead),
-+				  EVP_AEAD_DEFAULT_TAG_LENGTH, NULL);
-+		nonce_len = EVP_AEAD_nonce_length(aead);
++        EVP_AEAD_CTX_init(&ctx, aead, key32, EVP_AEAD_key_length(aead),
++                          EVP_AEAD_DEFAULT_TAG_LENGTH, NULL);
++        nonce_len = EVP_AEAD_nonce_length(aead);
 +
-+		for (j=0; j<SIZE_NUM; j++)
-+			{
-+			print_message(names[D_AES_128_GCM], c[D_AES_128_GCM][j],
-+				      lengths[j]);
-+			Time_F(START);
-+			for (count=0,run=1; COND(c[D_AES_128_GCM][j]); count++)
-+				if (!EVP_AEAD_CTX_seal(&ctx, buf, &out_len, BUFSIZE,
-+						nonce, nonce_len, buf, lengths[j],
-+						NULL, 0))
-+					exit(1);
-+			d=Time_F(STOP);
-+			print_result(D_AES_128_GCM,j,count,d);
-+			}
-+		EVP_AEAD_CTX_cleanup(&ctx);
-+		}
++        for (j = 0; j < SIZE_NUM; j++) {
++            print_message(names[D_AES_128_GCM], c[D_AES_128_GCM][j],
++                          lengths[j]);
++            Time_F(START);
++            for (count = 0, run = 1; COND(c[D_AES_128_GCM][j]); count++)
++                if (!EVP_AEAD_CTX_seal(&ctx, buf, &out_len, BUFSIZE,
++                                       nonce, nonce_len, buf, lengths[j],
++                                       NULL, 0))
++                   exit(1);
++            d = Time_F(STOP);
++            print_result(D_AES_128_GCM, j, count, d);
++        }
++        EVP_AEAD_CTX_cleanup(&ctx);
++    }
++    if (doit[D_AES_256_GCM]) {
++        const EVP_AEAD *aead = EVP_aead_aes_256_gcm();
++        const unsigned char *nonce = iv;
++        size_t out_len, nonce_len;
++        EVP_AEAD_CTX ctx;
 +
-+	if (doit[D_AES_256_GCM])
-+		{
-+		const EVP_AEAD *aead = EVP_aead_aes_256_gcm();
-+		const unsigned char *nonce = iv;
-+		size_t out_len, nonce_len;
-+		EVP_AEAD_CTX ctx;
++        EVP_AEAD_CTX_init(&ctx, aead, key32, EVP_AEAD_key_length(aead),
++                          EVP_AEAD_DEFAULT_TAG_LENGTH, NULL);
++        nonce_len = EVP_AEAD_nonce_length(aead);
 +
-+		EVP_AEAD_CTX_init(&ctx, aead, key32, EVP_AEAD_key_length(aead),
-+				  EVP_AEAD_DEFAULT_TAG_LENGTH, NULL);
-+		nonce_len = EVP_AEAD_nonce_length(aead);
++        for (j = 0; j < SIZE_NUM; j++) {
++            print_message(names[D_AES_256_GCM], c[D_AES_256_GCM][j],
++                          lengths[j]);
++            Time_F(START);
++            for (count = 0, run = 1; COND(c[D_AES_256_GCM][j]); count++)
++                if (!EVP_AEAD_CTX_seal(&ctx, buf, &out_len, BUFSIZE,
++                                       nonce, nonce_len, buf, lengths[j],
++                                       NULL, 0))
++                    exit(1);
++            d = Time_F(STOP);
++            print_result(D_AES_256_GCM, j, count, d);
++        }
++        EVP_AEAD_CTX_cleanup(&ctx);
++    }
++# endif
++# if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
++    if (doit[D_CHACHA20_POLY1305]) {
++        const EVP_AEAD *aead = EVP_aead_chacha20_poly1305();
++        const unsigned char *nonce = iv;
++        size_t out_len, nonce_len;
++        EVP_AEAD_CTX ctx;
 +
-+		for (j=0; j<SIZE_NUM; j++)
-+			{
-+			print_message(names[D_AES_256_GCM], c[D_AES_256_GCM][j],
-+				      lengths[j]);
-+			Time_F(START);
-+			for (count=0,run=1; COND(c[D_AES_256_GCM][j]); count++)
-+				if (!EVP_AEAD_CTX_seal(&ctx, buf, &out_len, BUFSIZE,
-+						nonce, nonce_len, buf, lengths[j],
-+						NULL, 0))
-+					exit(1);
-+			d=Time_F(STOP);
-+			print_result(D_AES_256_GCM,j,count,d);
-+			}
-+		EVP_AEAD_CTX_cleanup(&ctx);
-+		}
- #endif
++        EVP_AEAD_CTX_init(&ctx, aead, key32, EVP_AEAD_key_length(aead),
++                          EVP_AEAD_DEFAULT_TAG_LENGTH, NULL);
++        nonce_len = EVP_AEAD_nonce_length(aead);
 +
-+#if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
-+	if (doit[D_CHACHA20_POLY1305])
-+		{
-+		const EVP_AEAD *aead = EVP_aead_chacha20_poly1305();
-+		const unsigned char *nonce = iv;
-+		size_t out_len, nonce_len;
-+		EVP_AEAD_CTX ctx;
-+
-+		EVP_AEAD_CTX_init(&ctx, aead, key32, EVP_AEAD_key_length(aead),
-+				  EVP_AEAD_DEFAULT_TAG_LENGTH, NULL);
-+		nonce_len = EVP_AEAD_nonce_length(aead);
-+
-+		for (j=0; j<SIZE_NUM; j++)
-+			{
-+			print_message(names[D_CHACHA20_POLY1305],
-+				      c[D_CHACHA20_POLY1305][j], lengths[j]);
-+			Time_F(START);
-+			for (count=0,run=1; COND(c[D_CHACHA20_POLY1305][j]); count++)
-+				if (!EVP_AEAD_CTX_seal(&ctx, buf, &out_len, BUFSIZE,
-+						nonce, nonce_len, buf, lengths[j],
-+						NULL, 0))
-+					exit(1);
-+			d=Time_F(STOP);
-+			print_result(D_CHACHA20_POLY1305,j,count,d);
-+			}
-+		EVP_AEAD_CTX_cleanup(&ctx);
-+		}
-+#endif
-+
- #ifndef OPENSSL_NO_CAMELLIA
- 	if (doit[D_CBC_128_CML])
- 		{
++        for (j = 0; j < SIZE_NUM; j++) {
++            print_message(names[D_CHACHA20_POLY1305],
++                          c[D_CHACHA20_POLY1305][j], lengths[j]);
++            Time_F(START);
++            for (count = 0, run = 1; COND(c[D_CHACHA20_POLY1305][j]); count++)
++                if (!EVP_AEAD_CTX_seal(&ctx, buf, &out_len, BUFSIZE,
++                                       nonce, nonce_len, buf, lengths[j],
++                                       NULL, 0))
++                    exit(1);
++            d = Time_F(STOP);
++            print_result(D_CHACHA20_POLY1305, j, count, d);
++        }
++        EVP_AEAD_CTX_cleanup(&ctx);
++    }
+ # endif
+ # ifndef OPENSSL_NO_CAMELLIA
+     if (doit[D_CBC_128_CML]) {
 //
-// line 101: rm -f ../../test/aeadtest.c
+// line 103: rm -f ../../test/aeadtest.c
 //	added workaround to avoid error in dpkg-buildpackage.
-diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore5
---- a/crypto/evp/Makefile	2013-02-12 00:26:04.000000000 +0900
-+++ b/crypto/evp/Makefile	2014-09-07 16:43:28.000000000 +0900
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/crypto/evp/Makefile	2016-05-03 22:49:45.000000000 +0900
++++ b/crypto/evp/Makefile	2016-05-20 00:59:26.000000000 +0900
 @@ -13,7 +13,7 @@
  CFLAGS= $(INCLUDES) $(CFLAG)
  
  GENERAL=Makefile
--TEST=evp_test.c
-+TEST=evp_test.c aeadtest.c
+-TEST=evp_test.c evp_extra_test.c
++TEST=evp_test.c evp_extra_test.c aeadtest.c
  TESTDATA=evptests.txt
  APPS=
  
@@ -15368,7 +15349,7 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore5
  
  SRC= $(LIBSRC)
  
-@@ -96,6 +98,7 @@
+@@ -98,6 +100,7 @@
  
  clean:
  	rm -f *.o *.obj lib tags core .pure .nfs* *.old *.bak fluff
@@ -15376,7 +15357,7 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore5
  
  # DO NOT DELETE THIS LINE -- make depend depends on it.
  
-@@ -239,6 +242,21 @@
+@@ -241,6 +244,21 @@
  e_cast.o: ../../include/openssl/opensslv.h ../../include/openssl/ossl_typ.h
  e_cast.o: ../../include/openssl/safestack.h ../../include/openssl/stack.h
  e_cast.o: ../../include/openssl/symhacks.h ../cryptlib.h e_cast.c evp_locl.h
@@ -15398,7 +15379,7 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore5
  e_des.o: ../../e_os.h ../../include/openssl/asn1.h ../../include/openssl/bio.h
  e_des.o: ../../include/openssl/buffer.h ../../include/openssl/crypto.h
  e_des.o: ../../include/openssl/des.h ../../include/openssl/des_old.h
-@@ -356,6 +373,14 @@
+@@ -358,6 +376,14 @@
  evp_acnf.o: ../../include/openssl/opensslv.h ../../include/openssl/ossl_typ.h
  evp_acnf.o: ../../include/openssl/safestack.h ../../include/openssl/stack.h
  evp_acnf.o: ../../include/openssl/symhacks.h ../cryptlib.h evp_acnf.c
@@ -15413,484 +15394,452 @@ diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore5
  evp_cnf.o: ../../e_os.h ../../include/openssl/asn1.h
  evp_cnf.o: ../../include/openssl/bio.h ../../include/openssl/buffer.h
  evp_cnf.o: ../../include/openssl/conf.h ../../include/openssl/crypto.h
-diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore2
---- a/crypto/evp/e_aes.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/crypto/evp/e_aes.c	2014-08-13 22:30:31.000000000 +0900
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/crypto/evp/e_aes.c	2016-05-03 22:49:00.000000000 +0900
++++ b/crypto/evp/e_aes.c	2016-05-20 01:27:02.000000000 +0900
 @@ -62,7 +62,7 @@
+ #  include <openssl/rand.h>
  
- typedef struct
- 	{
--	AES_KEY ks;
-+	union { double align; AES_KEY ks; } ks;
- 	block128_f block;
- 	union {
- 		cbc128_f cbc;
-@@ -72,7 +72,7 @@
+ typedef struct {
+-    AES_KEY ks;
++    union { double align; AES_KEY ks; } ks;
+     block128_f block;
+     union {
+         cbc128_f cbc;
+@@ -71,7 +71,7 @@
+ } EVP_AES_KEY;
  
- typedef struct
- 	{
--	AES_KEY ks;		/* AES key schedule to use */
-+	union { double align; AES_KEY ks; } ks;	/* AES key schedule to use */
- 	int key_set;		/* Set if key initialised */
- 	int iv_set;		/* Set if an iv is set */
- 	GCM128_CONTEXT gcm;
-@@ -86,7 +86,7 @@
+ typedef struct {
+-    AES_KEY ks;                 /* AES key schedule to use */
++    union { double align; AES_KEY ks; } ks; /* AES key schedule to use */
+     int key_set;                /* Set if key initialised */
+     int iv_set;                 /* Set if an iv is set */
+     GCM128_CONTEXT gcm;
+@@ -84,7 +84,7 @@
+ } EVP_AES_GCM_CTX;
  
- typedef struct
- 	{
--	AES_KEY ks1, ks2;	/* AES key schedules to use */
-+	union { double align; AES_KEY ks; } ks1, ks2;	/* AES key schedules to use */
- 	XTS128_CONTEXT xts;
- 	void     (*stream)(const unsigned char *in,
- 			unsigned char *out, size_t length,
-@@ -96,7 +96,7 @@
+ typedef struct {
+-    AES_KEY ks1, ks2;           /* AES key schedules to use */
++    union { double align; AES_KEY ks; } ks1, ks2; /* AES key schedules to use */
+     XTS128_CONTEXT xts;
+     void (*stream) (const unsigned char *in,
+                     unsigned char *out, size_t length,
+@@ -93,7 +93,7 @@
+ } EVP_AES_XTS_CTX;
  
- typedef struct
- 	{
--	AES_KEY ks;		/* AES key schedule to use */
-+	union { double align; AES_KEY ks; } ks;	/* AES key schedule to use */
- 	int key_set;		/* Set if key initialised */
- 	int iv_set;		/* Set if an iv is set */
- 	int tag_set;		/* Set if tag is valid */
-@@ -310,7 +310,7 @@
- 		return 1;
- 	if (key)
- 		{
--		aesni_set_encrypt_key(key, ctx->key_len * 8, &gctx->ks);
-+		aesni_set_encrypt_key(key, ctx->key_len * 8, &gctx->ks.ks);
- 		CRYPTO_gcm128_init(&gctx->gcm, &gctx->ks,
- 				(block128_f)aesni_encrypt);
- 		gctx->ctr = (ctr128_f)aesni_ctr32_encrypt_blocks;
-@@ -355,19 +355,19 @@
- 		/* key_len is two AES keys */
- 		if (enc)
- 			{
--			aesni_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1);
-+			aesni_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
- 			xctx->xts.block1 = (block128_f)aesni_encrypt;
- 			xctx->stream = aesni_xts_encrypt;
- 			}
- 		else
- 			{
--			aesni_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1);
-+			aesni_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
- 			xctx->xts.block1 = (block128_f)aesni_decrypt;
- 			xctx->stream = aesni_xts_decrypt;
- 			}
+ typedef struct {
+-    AES_KEY ks;                 /* AES key schedule to use */
++    union { double align; AES_KEY ks; } ks; /* AES key schedule to use */
+     int key_set;                /* Set if key initialised */
+     int iv_set;                 /* Set if an iv is set */
+     int tag_set;                /* Set if tag is valid */
+@@ -298,7 +298,7 @@
+     if (!iv && !key)
+         return 1;
+     if (key) {
+-        aesni_set_encrypt_key(key, ctx->key_len * 8, &gctx->ks);
++        aesni_set_encrypt_key(key, ctx->key_len * 8, &gctx->ks.ks);
+         CRYPTO_gcm128_init(&gctx->gcm, &gctx->ks, (block128_f) aesni_encrypt);
+         gctx->ctr = (ctr128_f) aesni_ctr32_encrypt_blocks;
+         /*
+@@ -337,17 +337,17 @@
+     if (key) {
+         /* key_len is two AES keys */
+         if (enc) {
+-            aesni_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1);
++            aesni_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
+             xctx->xts.block1 = (block128_f) aesni_encrypt;
+             xctx->stream = aesni_xts_encrypt;
+         } else {
+-            aesni_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1);
++            aesni_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
+             xctx->xts.block1 = (block128_f) aesni_decrypt;
+             xctx->stream = aesni_xts_decrypt;
+         }
  
- 		aesni_set_encrypt_key(key + ctx->key_len/2,
--						ctx->key_len * 4, &xctx->ks2);
-+						ctx->key_len * 4, &xctx->ks2.ks);
- 		xctx->xts.block2 = (block128_f)aesni_encrypt;
+         aesni_set_encrypt_key(key + ctx->key_len / 2,
+-                              ctx->key_len * 4, &xctx->ks2);
++                              ctx->key_len * 4, &xctx->ks2.ks);
+         xctx->xts.block2 = (block128_f) aesni_encrypt;
  
- 		xctx->xts.key1 = &xctx->ks1;
-@@ -394,7 +394,7 @@
- 		return 1;
- 	if (key)
- 		{
--		aesni_set_encrypt_key(key, ctx->key_len * 8, &cctx->ks);
-+		aesni_set_encrypt_key(key, ctx->key_len * 8, &cctx->ks.ks);
- 		CRYPTO_ccm128_init(&cctx->ccm, cctx->M, cctx->L,
- 					&cctx->ks, (block128_f)aesni_encrypt);
- 		cctx->str = enc?(ccm128_f)aesni_ccm64_encrypt_blocks :
-@@ -505,7 +505,7 @@
- #ifdef BSAES_CAPABLE
- 	    if (BSAES_CAPABLE && mode==EVP_CIPH_CBC_MODE)
- 		{
--		ret = AES_set_decrypt_key(key,ctx->key_len*8,&dat->ks);
-+		ret = AES_set_decrypt_key(key,ctx->key_len*8,&dat->ks.ks);
- 		dat->block	= (block128_f)AES_decrypt;
- 		dat->stream.cbc	= (cbc128_f)bsaes_cbc_encrypt;
- 		}
-@@ -514,7 +514,7 @@
- #ifdef VPAES_CAPABLE
- 	    if (VPAES_CAPABLE)
- 		{
--		ret = vpaes_set_decrypt_key(key,ctx->key_len*8,&dat->ks);
-+		ret = vpaes_set_decrypt_key(key,ctx->key_len*8,&dat->ks.ks);
- 		dat->block	= (block128_f)vpaes_decrypt;
- 		dat->stream.cbc	= mode==EVP_CIPH_CBC_MODE ?
- 					(cbc128_f)vpaes_cbc_encrypt :
-@@ -523,7 +523,7 @@
- 	    else
- #endif
- 		{
--		ret = AES_set_decrypt_key(key,ctx->key_len*8,&dat->ks);
-+		ret = AES_set_decrypt_key(key,ctx->key_len*8,&dat->ks.ks);
- 		dat->block	= (block128_f)AES_decrypt;
- 		dat->stream.cbc	= mode==EVP_CIPH_CBC_MODE ?
- 					(cbc128_f)AES_cbc_encrypt :
-@@ -533,7 +533,7 @@
- #ifdef BSAES_CAPABLE
- 	    if (BSAES_CAPABLE && mode==EVP_CIPH_CTR_MODE)
- 		{
--		ret = AES_set_encrypt_key(key,ctx->key_len*8,&dat->ks);
-+		ret = AES_set_encrypt_key(key,ctx->key_len*8,&dat->ks.ks);
- 		dat->block	= (block128_f)AES_encrypt;
- 		dat->stream.ctr	= (ctr128_f)bsaes_ctr32_encrypt_blocks;
- 		}
-@@ -542,7 +542,7 @@
- #ifdef VPAES_CAPABLE
- 	    if (VPAES_CAPABLE)
- 		{
--		ret = vpaes_set_encrypt_key(key,ctx->key_len*8,&dat->ks);
-+		ret = vpaes_set_encrypt_key(key,ctx->key_len*8,&dat->ks.ks);
- 		dat->block	= (block128_f)vpaes_encrypt;
- 		dat->stream.cbc	= mode==EVP_CIPH_CBC_MODE ?
- 					(cbc128_f)vpaes_cbc_encrypt :
-@@ -551,7 +551,7 @@
- 	    else
- #endif
- 		{
--		ret = AES_set_encrypt_key(key,ctx->key_len*8,&dat->ks);
-+		ret = AES_set_encrypt_key(key,ctx->key_len*8,&dat->ks.ks);
- 		dat->block	= (block128_f)AES_encrypt;
- 		dat->stream.cbc	= mode==EVP_CIPH_CBC_MODE ?
- 					(cbc128_f)AES_cbc_encrypt :
-@@ -814,44 +814,48 @@
- 		}
- 	}
+         xctx->xts.key1 = &xctx->ks1;
+@@ -372,7 +372,7 @@
+     if (!iv && !key)
+         return 1;
+     if (key) {
+-        aesni_set_encrypt_key(key, ctx->key_len * 8, &cctx->ks);
++        aesni_set_encrypt_key(key, ctx->key_len * 8, &cctx->ks.ks);
+         CRYPTO_ccm128_init(&cctx->ccm, cctx->M, cctx->L,
+                            &cctx->ks, (block128_f) aesni_encrypt);
+         cctx->str = enc ? (ccm128_f) aesni_ccm64_encrypt_blocks :
+@@ -481,42 +481,42 @@
+         && !enc)
+ #  ifdef BSAES_CAPABLE
+         if (BSAES_CAPABLE && mode == EVP_CIPH_CBC_MODE) {
+-            ret = AES_set_decrypt_key(key, ctx->key_len * 8, &dat->ks);
++            ret = AES_set_decrypt_key(key, ctx->key_len * 8, &dat->ks.ks);
+             dat->block = (block128_f) AES_decrypt;
+             dat->stream.cbc = (cbc128_f) bsaes_cbc_encrypt;
+         } else
+ #  endif
+ #  ifdef VPAES_CAPABLE
+         if (VPAES_CAPABLE) {
+-            ret = vpaes_set_decrypt_key(key, ctx->key_len * 8, &dat->ks);
++            ret = vpaes_set_decrypt_key(key, ctx->key_len * 8, &dat->ks.ks);
+             dat->block = (block128_f) vpaes_decrypt;
+             dat->stream.cbc = mode == EVP_CIPH_CBC_MODE ?
+                 (cbc128_f) vpaes_cbc_encrypt : NULL;
+         } else
+ #  endif
+         {
+-            ret = AES_set_decrypt_key(key, ctx->key_len * 8, &dat->ks);
++            ret = AES_set_decrypt_key(key, ctx->key_len * 8, &dat->ks.ks);
+             dat->block = (block128_f) AES_decrypt;
+             dat->stream.cbc = mode == EVP_CIPH_CBC_MODE ?
+                 (cbc128_f) AES_cbc_encrypt : NULL;
+     } else
+ #  ifdef BSAES_CAPABLE
+     if (BSAES_CAPABLE && mode == EVP_CIPH_CTR_MODE) {
+-        ret = AES_set_encrypt_key(key, ctx->key_len * 8, &dat->ks);
++        ret = AES_set_encrypt_key(key, ctx->key_len * 8, &dat->ks.ks);
+         dat->block = (block128_f) AES_encrypt;
+         dat->stream.ctr = (ctr128_f) bsaes_ctr32_encrypt_blocks;
+     } else
+ #  endif
+ #  ifdef VPAES_CAPABLE
+     if (VPAES_CAPABLE) {
+-        ret = vpaes_set_encrypt_key(key, ctx->key_len * 8, &dat->ks);
++        ret = vpaes_set_encrypt_key(key, ctx->key_len * 8, &dat->ks.ks);
+         dat->block = (block128_f) vpaes_encrypt;
+         dat->stream.cbc = mode == EVP_CIPH_CBC_MODE ?
+             (cbc128_f) vpaes_cbc_encrypt : NULL;
+     } else
+ #  endif
+     {
+-        ret = AES_set_encrypt_key(key, ctx->key_len * 8, &dat->ks);
++        ret = AES_set_encrypt_key(key, ctx->key_len * 8, &dat->ks.ks);
+         dat->block = (block128_f) AES_encrypt;
+         dat->stream.cbc = mode == EVP_CIPH_CBC_MODE ?
+             (cbc128_f) AES_cbc_encrypt : NULL;
+@@ -797,44 +797,43 @@
+     }
+ }
  
 -static int aes_gcm_init_key(EVP_CIPHER_CTX *ctx, const unsigned char *key,
--                        const unsigned char *iv, int enc)
+-                            const unsigned char *iv, int enc)
 +static ctr128_f aes_gcm_set_key(AES_KEY *aes_key, GCM128_CONTEXT *gcm_ctx,
-+				const unsigned char *key, size_t key_len)
- 	{
--	EVP_AES_GCM_CTX *gctx = ctx->cipher_data;
--	if (!iv && !key)
--		return 1;
--	if (key)
--		{ do {
- #ifdef BSAES_CAPABLE
- 		if (BSAES_CAPABLE)
- 			{
--			AES_set_encrypt_key(key,ctx->key_len*8,&gctx->ks);
--			CRYPTO_gcm128_init(&gctx->gcm,&gctx->ks,
-+			AES_set_encrypt_key(key,key_len*8,aes_key);
-+			CRYPTO_gcm128_init(gcm_ctx,aes_key,
- 					(block128_f)AES_encrypt);
--			gctx->ctr = (ctr128_f)bsaes_ctr32_encrypt_blocks;
--			break;
-+			return (ctr128_f)bsaes_ctr32_encrypt_blocks;
- 			}
--		else
- #endif
- #ifdef VPAES_CAPABLE
- 		if (VPAES_CAPABLE)
- 			{
--			vpaes_set_encrypt_key(key,ctx->key_len*8,&gctx->ks);
--			CRYPTO_gcm128_init(&gctx->gcm,&gctx->ks,
-+			vpaes_set_encrypt_key(key,key_len*8,aes_key);
-+			CRYPTO_gcm128_init(gcm_ctx,aes_key,
- 					(block128_f)vpaes_encrypt);
--			gctx->ctr = NULL;
--			break;
-+			return NULL;
- 			}
-+		else
- #endif
--		AES_set_encrypt_key(key, ctx->key_len * 8, &gctx->ks);
--		CRYPTO_gcm128_init(&gctx->gcm, &gctx->ks, (block128_f)AES_encrypt);
-+		(void)0;	/* terminate potentially open 'else' */
-+
-+	AES_set_encrypt_key(key, key_len*8, aes_key);
-+	CRYPTO_gcm128_init(gcm_ctx, aes_key, (block128_f)AES_encrypt);
- #ifdef AES_CTR_ASM
--		gctx->ctr = (ctr128_f)AES_ctr32_encrypt;
-+	return (ctr128_f)AES_ctr32_encrypt;
- #else
--		gctx->ctr = NULL;
-+	return NULL;
- #endif
--		} while (0);
-+	}
++                                const unsigned char *key, size_t key_len)
+ {
+-    EVP_AES_GCM_CTX *gctx = ctx->cipher_data;
+-    if (!iv && !key)
+-        return 1;
+-    if (key) {
+-        do {
+ #  ifdef BSAES_CAPABLE
+-            if (BSAES_CAPABLE) {
+-                AES_set_encrypt_key(key, ctx->key_len * 8, &gctx->ks);
+-                CRYPTO_gcm128_init(&gctx->gcm, &gctx->ks,
+-                                   (block128_f) AES_encrypt);
+-                gctx->ctr = (ctr128_f) bsaes_ctr32_encrypt_blocks;
+-                break;
+-            } else
++    if (BSAES_CAPABLE) {
++        AES_set_encrypt_key(key, key_len * 8, aes_key);
++        CRYPTO_gcm128_init(gcm_ctx, aes_key, (block128_f) AES_encrypt);
++        return (ctr128_f) bsaes_ctr32_encrypt_blocks;
++    } else
+ #  endif
+ #  ifdef VPAES_CAPABLE
+-            if (VPAES_CAPABLE) {
+-                vpaes_set_encrypt_key(key, ctx->key_len * 8, &gctx->ks);
+-                CRYPTO_gcm128_init(&gctx->gcm, &gctx->ks,
+-                                   (block128_f) vpaes_encrypt);
+-                gctx->ctr = NULL;
+-                break;
+-            } else
++    if (VPAES_CAPABLE) {
++        vpaes_set_encrypt_key(key, key_len * 8, aes_key);
++        CRYPTO_gcm128_init(gcm_ctx, aes_key, (block128_f) vpaes_encrypt);
++        return NULL;
++    } else
+ #  endif
+-                (void)0;        /* terminate potentially open 'else' */
++        (void)0;        /* terminate potentially open 'else' */
+ 
+-            AES_set_encrypt_key(key, ctx->key_len * 8, &gctx->ks);
+-            CRYPTO_gcm128_init(&gctx->gcm, &gctx->ks,
+-                               (block128_f) AES_encrypt);
++    AES_set_encrypt_key(key, key_len * 8, aes_key);
++    CRYPTO_gcm128_init(gcm_ctx, aes_key, (block128_f) AES_encrypt);
+ #  ifdef AES_CTR_ASM
+-            gctx->ctr = (ctr128_f) AES_ctr32_encrypt;
++    return (ctr128_f) AES_ctr32_encrypt;
+ #  else
+-            gctx->ctr = NULL;
++    return NULL;
+ #  endif
+-        } while (0);
++}
  
 +static int aes_gcm_init_key(EVP_CIPHER_CTX *ctx, const unsigned char *key,
-+                        const unsigned char *iv, int enc)
-+	{
-+	EVP_AES_GCM_CTX *gctx = ctx->cipher_data;
-+	if (!iv && !key)
-+		return 1;
-+	if (key)
-+		{
-+		gctx->ctr = aes_gcm_set_key(&gctx->ks.ks, &gctx->gcm, key, ctx->key_len);
- 		/* If we have an iv can set it directly, otherwise use
- 		 * saved IV.
- 		 */
-@@ -1074,36 +1078,39 @@
- 		    {
- 		    if (enc)
- 			{
--			vpaes_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1);
-+			vpaes_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
- 			xctx->xts.block1 = (block128_f)vpaes_encrypt;
- 			}
- 		    else
- 			{
--			vpaes_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1);
-+			vpaes_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
- 			xctx->xts.block1 = (block128_f)vpaes_decrypt;
- 			}
++                            const unsigned char *iv, int enc)
++{
++    EVP_AES_GCM_CTX *gctx = ctx->cipher_data;
++    if (!iv && !key)
++        return 1;
++    if (key) {
++        gctx->ctr = aes_gcm_set_key(&gctx->ks.ks, &gctx->gcm,
++                                    key, ctx->key_len);
+         /*
+          * If we have an iv can set it directly, otherwise use saved IV.
+          */
+@@ -1046,15 +1045,15 @@
+ #  ifdef VPAES_CAPABLE
+             if (VPAES_CAPABLE) {
+                 if (enc) {
+-                    vpaes_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1);
++                    vpaes_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
+                     xctx->xts.block1 = (block128_f) vpaes_encrypt;
+                 } else {
+-                    vpaes_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1);
++                    vpaes_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
+                     xctx->xts.block1 = (block128_f) vpaes_decrypt;
+                 }
  
--		vpaes_set_encrypt_key(key + ctx->key_len/2,
--						ctx->key_len * 4, &xctx->ks2);
--		xctx->xts.block2 = (block128_f)vpaes_encrypt;
--
--		xctx->xts.key1 = &xctx->ks1;
--		break;
--		}
-+		    vpaes_set_encrypt_key(key + ctx->key_len/2,
-+						ctx->key_len * 4, &xctx->ks2.ks);
-+		    xctx->xts.block2 = (block128_f)vpaes_encrypt;
+                 vpaes_set_encrypt_key(key + ctx->key_len / 2,
+-                                      ctx->key_len * 4, &xctx->ks2);
++                                      ctx->key_len * 4, &xctx->ks2.ks);
+                 xctx->xts.block2 = (block128_f) vpaes_encrypt;
+ 
+                 xctx->xts.key1 = &xctx->ks1;
+@@ -1064,15 +1063,15 @@
+                 (void)0;        /* terminate potentially open 'else' */
+ 
+             if (enc) {
+-                AES_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1);
++                AES_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
+                 xctx->xts.block1 = (block128_f) AES_encrypt;
+             } else {
+-                AES_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1);
++                AES_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
+                 xctx->xts.block1 = (block128_f) AES_decrypt;
+             }
+ 
+             AES_set_encrypt_key(key + ctx->key_len / 2,
+-                                ctx->key_len * 4, &xctx->ks2);
++                                ctx->key_len * 4, &xctx->ks2.ks);
+             xctx->xts.block2 = (block128_f) AES_encrypt;
+ 
+             xctx->xts.key1 = &xctx->ks1;
+@@ -1193,7 +1192,7 @@
+         do {
+ #  ifdef VPAES_CAPABLE
+             if (VPAES_CAPABLE) {
+-                vpaes_set_encrypt_key(key, ctx->key_len * 8, &cctx->ks);
++                vpaes_set_encrypt_key(key, ctx->key_len * 8, &cctx->ks.ks);
+                 CRYPTO_ccm128_init(&cctx->ccm, cctx->M, cctx->L,
+                                    &cctx->ks, (block128_f) vpaes_encrypt);
+                 cctx->str = NULL;
+@@ -1201,7 +1200,7 @@
+                 break;
+             }
+ #  endif
+-            AES_set_encrypt_key(key, ctx->key_len * 8, &cctx->ks);
++            AES_set_encrypt_key(key, ctx->key_len * 8, &cctx->ks.ks);
+             CRYPTO_ccm128_init(&cctx->ccm, cctx->M, cctx->L,
+                                &cctx->ks, (block128_f) AES_encrypt);
+             cctx->str = NULL;
+@@ -1282,5 +1281,184 @@
+                     EVP_CIPH_FLAG_FIPS | CUSTOM_FLAGS)
+     BLOCK_CIPHER_custom(NID_aes, 256, 1, 12, ccm, CCM,
+                     EVP_CIPH_FLAG_FIPS | CUSTOM_FLAGS)
 +
-+		    xctx->xts.key1 = &xctx->ks1;
-+		    break;
-+		    }
-+		else
- #endif
-+		(void)0;	/* terminate potentially open 'else' */
-+
- 		if (enc)
- 			{
--			AES_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1);
-+			AES_set_encrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
- 			xctx->xts.block1 = (block128_f)AES_encrypt;
- 			}
- 		else
- 			{
--			AES_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1);
-+			AES_set_decrypt_key(key, ctx->key_len * 4, &xctx->ks1.ks);
- 			xctx->xts.block1 = (block128_f)AES_decrypt;
- 			}
- 
- 		AES_set_encrypt_key(key + ctx->key_len/2,
--						ctx->key_len * 4, &xctx->ks2);
-+						ctx->key_len * 4, &xctx->ks2.ks);
- 		xctx->xts.block2 = (block128_f)AES_encrypt;
- 
- 		xctx->xts.key1 = &xctx->ks1;
-@@ -1214,7 +1221,7 @@
- #ifdef VPAES_CAPABLE
- 		if (VPAES_CAPABLE)
- 			{
--			vpaes_set_encrypt_key(key, ctx->key_len*8, &cctx->ks);
-+			vpaes_set_encrypt_key(key, ctx->key_len*8, &cctx->ks.ks);
- 			CRYPTO_ccm128_init(&cctx->ccm, cctx->M, cctx->L,
- 					&cctx->ks, (block128_f)vpaes_encrypt);
- 			cctx->str = NULL;
-@@ -1222,7 +1229,7 @@
- 			break;
- 			}
- #endif
--		AES_set_encrypt_key(key, ctx->key_len * 8, &cctx->ks);
-+		AES_set_encrypt_key(key, ctx->key_len * 8, &cctx->ks.ks);
- 		CRYPTO_ccm128_init(&cctx->ccm, cctx->M, cctx->L,
- 					&cctx->ks, (block128_f)AES_encrypt);
- 		cctx->str = NULL;
-@@ -1310,5 +1317,197 @@
- BLOCK_CIPHER_custom(NID_aes,192,1,12,ccm,CCM,EVP_CIPH_FLAG_FIPS|CUSTOM_FLAGS)
- BLOCK_CIPHER_custom(NID_aes,256,1,12,ccm,CCM,EVP_CIPH_FLAG_FIPS|CUSTOM_FLAGS)
- 
-+#define EVP_AEAD_AES_GCM_TAG_LEN 16
++#  define EVP_AEAD_AES_GCM_TAG_LEN 16
 +
 +struct aead_aes_gcm_ctx {
-+	union { double align; AES_KEY ks; } ks;
-+	GCM128_CONTEXT gcm;
-+	ctr128_f ctr;
-+	unsigned tag_len;
++    union {
++        double align;
++        AES_KEY ks;
++    } ks;
++    GCM128_CONTEXT gcm;
++    ctr128_f ctr;
++    unsigned tag_len;
 +};
 +
-+static int aead_aes_gcm_init(EVP_AEAD_CTX *ctx,
-+	const unsigned char *key, size_t key_len, size_t tag_len)
-+	{
-+	struct aead_aes_gcm_ctx *gcm_ctx;
-+	const size_t key_bits = key_len * 8;
++static int aead_aes_gcm_init(EVP_AEAD_CTX *ctx, const unsigned char *key,
++                             size_t key_len, size_t tag_len)
++{
++    struct aead_aes_gcm_ctx *gcm_ctx;
++    const size_t key_bits = key_len * 8;
 +
-+	if (key_bits != 128 && key_bits != 256)
-+		{
-+		EVPerr(EVP_F_AEAD_AES_GCM_INIT, EVP_R_BAD_KEY_LENGTH);
-+		return 0;  /* EVP_AEAD_CTX_init should catch this. */
-+		}
++    if (key_bits != 128 && key_bits != 256) {
++        EVPerr(EVP_F_AEAD_AES_GCM_INIT, EVP_R_BAD_KEY_LENGTH);
++        return 0;   /* EVP_AEAD_CTX_init should catch this. */
++    }
 +
-+	if (tag_len == EVP_AEAD_DEFAULT_TAG_LENGTH)
-+		tag_len = EVP_AEAD_AES_GCM_TAG_LEN;
++    if (tag_len == EVP_AEAD_DEFAULT_TAG_LENGTH)
++        tag_len = EVP_AEAD_AES_GCM_TAG_LEN;
 +
-+	if (tag_len > EVP_AEAD_AES_GCM_TAG_LEN)
-+		{
-+		EVPerr(EVP_F_AEAD_AES_GCM_INIT, EVP_R_TAG_TOO_LARGE);
-+		return 0;
-+		}
++    if (tag_len > EVP_AEAD_AES_GCM_TAG_LEN) {
++        EVPerr(EVP_F_AEAD_AES_GCM_INIT, EVP_R_TAG_TOO_LARGE);
++        return 0;
++    }
 +
-+	gcm_ctx = OPENSSL_malloc(sizeof(struct aead_aes_gcm_ctx));
-+	if (gcm_ctx == NULL)
-+		return 0;
++    gcm_ctx = OPENSSL_malloc(sizeof(struct aead_aes_gcm_ctx));
++    if (gcm_ctx == NULL)
++        return 0;
 +
 +#ifdef AESNI_CAPABLE
-+	if (AESNI_CAPABLE)
-+		{
-+		aesni_set_encrypt_key(key, key_bits, &gcm_ctx->ks.ks);
-+		CRYPTO_gcm128_init(&gcm_ctx->gcm, &gcm_ctx->ks.ks,
-+				   (block128_f)aesni_encrypt);
-+		gcm_ctx->ctr = (ctr128_f) aesni_ctr32_encrypt_blocks;
-+		}
-+	else
++    if (AESNI_CAPABLE) {
++        aesni_set_encrypt_key(key, key_bits, &gcm_ctx->ks.ks);
++        CRYPTO_gcm128_init(&gcm_ctx->gcm, &gcm_ctx->ks.ks,
++                           (block128_f) aesni_encrypt);
++        gcm_ctx->ctr = (ctr128_f) aesni_ctr32_encrypt_blocks;
++    } else
 +#endif
-+		{
-+		gcm_ctx->ctr = aes_gcm_set_key(&gcm_ctx->ks.ks, &gcm_ctx->gcm,
-+					       key, key_len);
-+		}
-+	gcm_ctx->tag_len = tag_len;
-+	ctx->aead_state = gcm_ctx;
-+
-+	return 1;
-+	}
++    {
++        gcm_ctx->ctr = aes_gcm_set_key(&gcm_ctx->ks.ks, &gcm_ctx->gcm,
++                                       key, key_len);
++    }
++    gcm_ctx->tag_len = tag_len;
++    ctx->aead_state = gcm_ctx;
++    return 1;
++}
 +
 +static void aead_aes_gcm_cleanup(EVP_AEAD_CTX *ctx)
-+	{
-+	struct aead_aes_gcm_ctx *gcm_ctx = ctx->aead_state;
-+	OPENSSL_cleanse(gcm_ctx, sizeof(*gcm_ctx));
-+	OPENSSL_free(gcm_ctx);
-+	}
++{
++    struct aead_aes_gcm_ctx *gcm_ctx = ctx->aead_state;
++    OPENSSL_cleanse(gcm_ctx, sizeof(*gcm_ctx));
++    OPENSSL_free(gcm_ctx);
++}
 +
-+static int aead_aes_gcm_seal(const EVP_AEAD_CTX *ctx,
-+	unsigned char *out, size_t *out_len, size_t max_out_len,
-+	const unsigned char *nonce, size_t nonce_len,
-+	const unsigned char *in, size_t in_len,
-+	const unsigned char *ad, size_t ad_len)
-+	{
-+	size_t bulk = 0;
-+	const struct aead_aes_gcm_ctx *gcm_ctx = ctx->aead_state;
-+	GCM128_CONTEXT gcm;
++static int aead_aes_gcm_seal(const EVP_AEAD_CTX *ctx, unsigned char *out,
++                             size_t *out_len, size_t max_out_len,
++                             const unsigned char *nonce, size_t nonce_len,
++                             const unsigned char *in, size_t in_len,
++                             const unsigned char *ad, size_t ad_len)
++{
++    size_t bulk = 0;
++    const struct aead_aes_gcm_ctx *gcm_ctx = ctx->aead_state;
++    GCM128_CONTEXT gcm;
 +
-+	if (max_out_len < in_len + gcm_ctx->tag_len)
-+		{
-+		EVPerr(EVP_F_AEAD_AES_GCM_SEAL, EVP_R_BUFFER_TOO_SMALL);
-+		return 0;
-+		}
++    if (max_out_len < in_len + gcm_ctx->tag_len) {
++        EVPerr(EVP_F_AEAD_AES_GCM_SEAL, EVP_R_BUFFER_TOO_SMALL);
++        return 0;
++    }
 +
-+	memcpy(&gcm, &gcm_ctx->gcm, sizeof(gcm));
-+	CRYPTO_gcm128_setiv(&gcm, nonce, nonce_len);
++    memcpy(&gcm, &gcm_ctx->gcm, sizeof(gcm));
++    CRYPTO_gcm128_setiv(&gcm, nonce, nonce_len);
 +
-+	if (ad_len > 0 && CRYPTO_gcm128_aad(&gcm, ad, ad_len))
-+		return 0;
++    if (ad_len > 0 && CRYPTO_gcm128_aad(&gcm, ad, ad_len))
++        return 0;
 +
-+	if (gcm_ctx->ctr)
-+		{
-+		if (CRYPTO_gcm128_encrypt_ctr32(&gcm, in + bulk, out + bulk,
-+						in_len - bulk, gcm_ctx->ctr))
-+			return 0;
-+		}
-+	else
-+		{
-+		if (CRYPTO_gcm128_encrypt(&gcm, in + bulk, out + bulk,
-+					  in_len - bulk))
-+			return 0;
-+		}
++    if (gcm_ctx->ctr) {
++        if (CRYPTO_gcm128_encrypt_ctr32(&gcm, in + bulk, out + bulk,
++                                        in_len - bulk, gcm_ctx->ctr))
++            return 0;
++    } else {
++        if (CRYPTO_gcm128_encrypt(&gcm, in + bulk, out + bulk, in_len - bulk))
++            return 0;
++    }
 +
-+	CRYPTO_gcm128_tag(&gcm, out + in_len, gcm_ctx->tag_len);
-+	*out_len = in_len + gcm_ctx->tag_len;
-+	return 1;
-+	}
++    CRYPTO_gcm128_tag(&gcm, out + in_len, gcm_ctx->tag_len);
++    *out_len = in_len + gcm_ctx->tag_len;
++    return 1;
++}
 +
-+static int aead_aes_gcm_open(const EVP_AEAD_CTX *ctx,
-+	unsigned char *out, size_t *out_len, size_t max_out_len,
-+	const unsigned char *nonce, size_t nonce_len,
-+	const unsigned char *in, size_t in_len,
-+	const unsigned char *ad, size_t ad_len)
-+	{
-+	size_t bulk = 0;
-+	const struct aead_aes_gcm_ctx *gcm_ctx = ctx->aead_state;
-+	unsigned char tag[EVP_AEAD_AES_GCM_TAG_LEN];
-+	size_t plaintext_len;
-+	GCM128_CONTEXT gcm;
++static int aead_aes_gcm_open(const EVP_AEAD_CTX *ctx, unsigned char *out,
++                             size_t *out_len, size_t max_out_len,
++                             const unsigned char *nonce, size_t nonce_len,
++                             const unsigned char *in, size_t in_len,
++                             const unsigned char *ad, size_t ad_len)
++{
++    size_t bulk = 0;
++    const struct aead_aes_gcm_ctx *gcm_ctx = ctx->aead_state;
++    unsigned char tag[EVP_AEAD_AES_GCM_TAG_LEN];
++    size_t plaintext_len;
++    GCM128_CONTEXT gcm;
 +
-+	if (in_len < gcm_ctx->tag_len)
-+		{
-+		EVPerr(EVP_F_AEAD_AES_GCM_OPEN, EVP_R_BAD_DECRYPT);
-+		return 0;
-+		}
++    if (in_len < gcm_ctx->tag_len) {
++        EVPerr(EVP_F_AEAD_AES_GCM_OPEN, EVP_R_BAD_DECRYPT);
++        return 0;
++    }
 +
-+	plaintext_len = in_len - gcm_ctx->tag_len;
++    plaintext_len = in_len - gcm_ctx->tag_len;
 +
-+	if (max_out_len < plaintext_len)
-+		{
-+		EVPerr(EVP_F_AEAD_AES_GCM_OPEN, EVP_R_BUFFER_TOO_SMALL);
-+		return 0;
-+		}
++    if (max_out_len < plaintext_len) {
++        EVPerr(EVP_F_AEAD_AES_GCM_OPEN, EVP_R_BUFFER_TOO_SMALL);
++        return 0;
++    }
 +
-+	memcpy(&gcm, &gcm_ctx->gcm, sizeof(gcm));
-+	CRYPTO_gcm128_setiv(&gcm, nonce, nonce_len);
++    memcpy(&gcm, &gcm_ctx->gcm, sizeof(gcm));
++    CRYPTO_gcm128_setiv(&gcm, nonce, nonce_len);
 +
-+	if (CRYPTO_gcm128_aad(&gcm, ad, ad_len))
-+		return 0;
++    if (CRYPTO_gcm128_aad(&gcm, ad, ad_len))
++        return 0;
 +
-+	if (gcm_ctx->ctr)
-+		{
-+		if (CRYPTO_gcm128_decrypt_ctr32(&gcm, in + bulk, out + bulk,
-+						in_len-bulk-gcm_ctx->tag_len,
-+						gcm_ctx->ctr))
-+			return 0;
-+		}
-+	else
-+		{
-+		if (CRYPTO_gcm128_decrypt(&gcm, in + bulk, out + bulk,
-+					  in_len - bulk - gcm_ctx->tag_len))
-+			return 0;
-+		}
++    if (gcm_ctx->ctr) {
++        if (CRYPTO_gcm128_decrypt_ctr32(&gcm, in + bulk, out + bulk,
++                                        in_len-bulk-gcm_ctx->tag_len,
++                                        gcm_ctx->ctr))
++            return 0;
++    } else {
++        if (CRYPTO_gcm128_decrypt(&gcm, in + bulk, out + bulk,
++                                  in_len - bulk - gcm_ctx->tag_len))
++            return 0;
++    }
 +
-+	CRYPTO_gcm128_tag(&gcm, tag, gcm_ctx->tag_len);
-+	if (CRYPTO_memcmp(tag, in + plaintext_len, gcm_ctx->tag_len) != 0)
-+		{
-+		EVPerr(EVP_F_AEAD_AES_GCM_OPEN, EVP_R_BAD_DECRYPT);
-+		return 0;
-+		}
++    CRYPTO_gcm128_tag(&gcm, tag, gcm_ctx->tag_len);
++    if (CRYPTO_memcmp(tag, in + plaintext_len, gcm_ctx->tag_len) != 0) {
++        EVPerr(EVP_F_AEAD_AES_GCM_OPEN, EVP_R_BAD_DECRYPT);
++        return 0;
++    }
 +
-+	*out_len = plaintext_len;
-+	return 1;
-+	}
++    *out_len = plaintext_len;
++    return 1;
++}
 +
 +static const EVP_AEAD aead_aes_128_gcm = {
-+	16,  /* key len */
-+	12,  /* nonce len */
-+	EVP_AEAD_AES_GCM_TAG_LEN,  /* overhead */
-+	EVP_AEAD_AES_GCM_TAG_LEN,  /* max tag length */
++    16,                         /* key len */
++    12,                         /* nonce len */
++    EVP_AEAD_AES_GCM_TAG_LEN,   /* overhead */
++    EVP_AEAD_AES_GCM_TAG_LEN,   /* max tag length */
 +
-+	aead_aes_gcm_init,
-+	aead_aes_gcm_cleanup,
-+	aead_aes_gcm_seal,
-+	aead_aes_gcm_open,
++    aead_aes_gcm_init,
++    aead_aes_gcm_cleanup,
++    aead_aes_gcm_seal,
++    aead_aes_gcm_open,
 +};
 +
 +static const EVP_AEAD aead_aes_256_gcm = {
-+	32,  /* key len */
-+	12,  /* nonce len */
-+	EVP_AEAD_AES_GCM_TAG_LEN,  /* overhead */
-+	EVP_AEAD_AES_GCM_TAG_LEN,  /* max tag length */
++    32,                         /* key len */
++    12,                         /* nonce len */
++    EVP_AEAD_AES_GCM_TAG_LEN,   /* overhead */
++    EVP_AEAD_AES_GCM_TAG_LEN,   /* max tag length */
 +
-+	aead_aes_gcm_init,
-+	aead_aes_gcm_cleanup,
-+	aead_aes_gcm_seal,
-+	aead_aes_gcm_open,
++    aead_aes_gcm_init,
++    aead_aes_gcm_cleanup,
++    aead_aes_gcm_seal,
++    aead_aes_gcm_open,
 +};
 +
 +const EVP_AEAD *EVP_aead_aes_128_gcm()
-+	{
-+	return &aead_aes_128_gcm;
-+	}
++{
++    return &aead_aes_128_gcm;
++}
 +
 +const EVP_AEAD *EVP_aead_aes_256_gcm()
-+	{
-+	return &aead_aes_256_gcm;
-+	}
-+
++{
++    return &aead_aes_256_gcm;
++}
+ # endif
  #endif
- #endif
-diff -ur openssl-1.0.1e-2+deb7u17 1.0.1e-2+deb7u17+ore2
---- a/crypto/evp/evp.h	2013-02-12 00:26:04.000000000 +0900
-+++ b/crypto/evp/evp.h	2015-11-02 21:05:30.000000000 +0900
-@@ -1242,6 +1242,129 @@
- 	int (*ctrl_str)(EVP_PKEY_CTX *ctx,
- 					const char *type, const char *value));
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/crypto/evp/evp.h	2016-05-03 22:49:00.000000000 +0900
++++ b/crypto/evp/evp.h	2016-05-20 01:59:52.000000000 +0900
+@@ -1314,6 +1314,129 @@
+ 
+ void EVP_add_alg_module(void);
  
 +/* Authenticated Encryption with Additional Data.
 + *
@@ -15902,19 +15851,19 @@ diff -ur openssl-1.0.1e-2+deb7u17 1.0.1e-2+deb7u17+ore2
 +struct evp_aead_st;
 +typedef struct evp_aead_st EVP_AEAD;
 +
-+#ifndef OPENSSL_NO_AES
++# ifndef OPENSSL_NO_AES
 +/* EVP_aes_128_gcm is AES-128 in Galois Counter Mode. */
 +const EVP_AEAD *EVP_aead_aes_128_gcm(void);
 +/* EVP_aes_256_gcm is AES-256 in Galois Counter Mode. */
 +const EVP_AEAD *EVP_aead_aes_256_gcm(void);
-+#endif
++# endif
 +
-+#if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
++# if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
 +/* EVP_aead_chacha20_poly1305 is ChaCha20 with a Poly1305 authenticator. */
 +const EVP_AEAD *EVP_aead_chacha20_poly1305(void);
 +const EVP_AEAD *EVP_aead_chacha20_poly1305_old(void);
 +const EVP_AEAD *EVP_aead_chacha20_poly1305_rfc7539(void);
-+#endif
++# endif
 +
 +/* EVP_AEAD_key_length returns the length, in bytes, of the keys used by
 + * |aead|. */
@@ -15936,20 +15885,20 @@ diff -ur openssl-1.0.1e-2+deb7u17 1.0.1e-2+deb7u17+ore2
 +/* An EVP_AEAD_CTX represents an AEAD algorithm configured with a specific key
 + * and message-independent IV. */
 +typedef struct evp_aead_ctx_st {
-+	const EVP_AEAD *aead;
-+	/* aead_state is an opaque pointer to whatever state the AEAD needs to
-+	 * maintain. */
-+	void *aead_state;
++    const EVP_AEAD *aead;
++    /* aead_state is an opaque pointer to whatever state the AEAD needs to
++     * maintain. */
++    void *aead_state;
 +} EVP_AEAD_CTX;
 +
 +/* EVP_AEAD_MAX_TAG_LENGTH contains the maximum tag length used by any AEAD
 + * defined in this header. */
-+#define EVP_AEAD_MAX_TAG_LENGTH 16
++# define EVP_AEAD_MAX_TAG_LENGTH 16
 +
 +/* EVP_AEAD_DEFAULT_TAG_LENGTH is a magic value that can be passed to
 + * EVP_AEAD_CTX_init to indicate that the default tag length for an AEAD should
 + * be used. */
-+#define EVP_AEAD_DEFAULT_TAG_LENGTH 0
++# define EVP_AEAD_DEFAULT_TAG_LENGTH 0
 +
 +/* EVP_AEAD_init initializes |ctx| for the given AEAD algorithm from |impl|.
 + * The |impl| argument may be NULL to choose the default implementation.
@@ -15958,8 +15907,8 @@ diff -ur openssl-1.0.1e-2+deb7u17 1.0.1e-2+deb7u17+ore2
 + * EVP_AEAD_DEFAULT_TAG_LENGTH for readability.
 + * Returns 1 on success. Otherwise returns 0 and pushes to the error stack. */
 +int EVP_AEAD_CTX_init(EVP_AEAD_CTX *ctx, const EVP_AEAD *aead,
-+		      const unsigned char *key, size_t key_len,
-+		      size_t tag_len, ENGINE *impl);
++                      const unsigned char *key, size_t key_len,
++                      size_t tag_len, ENGINE *impl);
 +
 +/* EVP_AEAD_CTX_cleanup frees any data allocated by |ctx|. */
 +void EVP_AEAD_CTX_cleanup(EVP_AEAD_CTX *ctx);
@@ -15985,10 +15934,10 @@ diff -ur openssl-1.0.1e-2+deb7u17 1.0.1e-2+deb7u17+ore2
 + *
 + * If |in| and |out| alias then |out| must be <= |in|. */
 +int EVP_AEAD_CTX_seal(const EVP_AEAD_CTX *ctx, unsigned char *out,
-+		      size_t *out_len, size_t max_out_len,
-+		      const unsigned char *nonce, size_t nonce_len,
-+		      const unsigned char *in, size_t in_len,
-+		      const unsigned char *ad, size_t ad_len);
++                      size_t *out_len, size_t max_out_len,
++                      const unsigned char *nonce, size_t nonce_len,
++                      const unsigned char *in, size_t in_len,
++                      const unsigned char *ad, size_t ad_len);
 +
 +/* EVP_AEAD_CTX_open authenticates |in_len| bytes from |in| and |ad_len| bytes
 + * from |ad| and decrypts at most |in_len| bytes into |out|. It returns one on
@@ -16010,64 +15959,64 @@ diff -ur openssl-1.0.1e-2+deb7u17 1.0.1e-2+deb7u17+ore2
 + *
 + * If |in| and |out| alias then |out| must be <= |in|. */
 +int EVP_AEAD_CTX_open(const EVP_AEAD_CTX *ctx, unsigned char *out,
-+		      size_t *out_len, size_t max_out_len,
-+		      const unsigned char *nonce, size_t nonce_len,
-+		      const unsigned char *in, size_t in_len,
-+		      const unsigned char *ad, size_t ad_len);
++                      size_t *out_len, size_t max_out_len,
++                      const unsigned char *nonce, size_t nonce_len,
++                      const unsigned char *in, size_t in_len,
++                      const unsigned char *ad, size_t ad_len);
 +
- void EVP_add_alg_module(void);
- 
  /* BEGIN ERROR CODES */
-@@ -1253,20 +1376,33 @@
+ /*
+  * The following lines are auto generated by the script mkerr.pl. Any changes
+@@ -1324,20 +1447,33 @@
  /* Error codes for the EVP functions. */
  
  /* Function codes. */
-+#define EVP_F_AEAD_AES_GCM_INIT				 187
-+#define EVP_F_AEAD_AES_GCM_OPEN				 188
-+#define EVP_F_AEAD_AES_GCM_SEAL				 189
-+#define EVP_F_AEAD_CHACHA20_POLY1305_INIT		 192
-+#define EVP_F_AEAD_CHACHA20_POLY1305_OPEN		 193
-+#define EVP_F_AEAD_CHACHA20_POLY1305_SEAL		 194
-+#define EVP_F_AEAD_CTX_OPEN				 185
-+#define EVP_F_AEAD_CTX_SEAL				 186
- #define EVP_F_AESNI_INIT_KEY				 165
- #define EVP_F_AESNI_XTS_CIPHER				 176
- #define EVP_F_AES_INIT_KEY				 133
-+#define EVP_F_AES_T4_INIT_KEY				 178
- #define EVP_F_AES_XTS					 172
- #define EVP_F_AES_XTS_CIPHER				 175
- #define EVP_F_ALG_MODULE_INIT				 177
- #define EVP_F_CAMELLIA_INIT_KEY				 159
- #define EVP_F_CMAC_INIT					 173
-+#define EVP_F_CMLL_T4_INIT_KEY				 179
- #define EVP_F_D2I_PKEY					 100
- #define EVP_F_DO_SIGVER_INIT				 161
- #define EVP_F_DSAPKEY2PKCS8				 134
- #define EVP_F_DSA_PKEY2PKCS8				 135
- #define EVP_F_ECDSA_PKEY2PKCS8				 129
- #define EVP_F_ECKEY_PKEY2PKCS8				 132
-+#define EVP_F_EVP_AEAD_CTX_INIT				 180
-+#define EVP_F_EVP_AEAD_CTX_OPEN				 190
-+#define EVP_F_EVP_AEAD_CTX_SEAL				 191
- #define EVP_F_EVP_CIPHERINIT_EX				 123
- #define EVP_F_EVP_CIPHER_CTX_COPY			 163
- #define EVP_F_EVP_CIPHER_CTX_CTRL			 124
-@@ -1382,10 +1518,12 @@
- #define EVP_R_NO_VERIFY_FUNCTION_CONFIGURED		 105
- #define EVP_R_OPERATION_NOT_SUPPORTED_FOR_THIS_KEYTYPE	 150
- #define EVP_R_OPERATON_NOT_INITIALIZED			 151
-+#define EVP_R_OUTPUT_ALIASES_INPUT			 172
- #define EVP_R_PKCS8_UNKNOWN_BROKEN_TYPE			 117
- #define EVP_R_PRIVATE_KEY_DECODE_ERROR			 145
- #define EVP_R_PRIVATE_KEY_ENCODE_ERROR			 146
- #define EVP_R_PUBLIC_KEY_NOT_RSA			 106
-+#define EVP_R_TAG_TOO_LARGE				 171
- #define EVP_R_TOO_LARGE					 164
- #define EVP_R_UNKNOWN_CIPHER				 160
- #define EVP_R_UNKNOWN_DIGEST				 161
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
---- a/crypto/evp/evp_err.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/crypto/evp/evp_err.c	2014-05-07 00:42:27.208914803 +0900
++# define EVP_F_AEAD_AES_GCM_INIT                          187
++# define EVP_F_AEAD_AES_GCM_OPEN                          188
++# define EVP_F_AEAD_AES_GCM_SEAL                          189
++# define EVP_F_AEAD_CHACHA20_POLY1305_INIT                192
++# define EVP_F_AEAD_CHACHA20_POLY1305_OPEN                193
++# define EVP_F_AEAD_CHACHA20_POLY1305_SEAL                194
++# define EVP_F_AEAD_CTX_OPEN                              185
++# define EVP_F_AEAD_CTX_SEAL                              186
+ # define EVP_F_AESNI_INIT_KEY                             165
+ # define EVP_F_AESNI_XTS_CIPHER                           176
+ # define EVP_F_AES_INIT_KEY                               133
++# define EVP_F_AES_T4_INIT_KEY                            178
+ # define EVP_F_AES_XTS                                    172
+ # define EVP_F_AES_XTS_CIPHER                             175
+ # define EVP_F_ALG_MODULE_INIT                            177
+ # define EVP_F_CAMELLIA_INIT_KEY                          159
+ # define EVP_F_CMAC_INIT                                  173
++# define EVP_F_CMLL_T4_INIT_KEY                           179
+ # define EVP_F_D2I_PKEY                                   100
+ # define EVP_F_DO_SIGVER_INIT                             161
+ # define EVP_F_DSAPKEY2PKCS8                              134
+ # define EVP_F_DSA_PKEY2PKCS8                             135
+ # define EVP_F_ECDSA_PKEY2PKCS8                           129
+ # define EVP_F_ECKEY_PKEY2PKCS8                           132
++# define EVP_F_EVP_AEAD_CTX_INIT                          180
++# define EVP_F_EVP_AEAD_CTX_OPEN                          190
++# define EVP_F_EVP_AEAD_CTX_SEAL                          191
+ # define EVP_F_EVP_CIPHERINIT_EX                          123
+ # define EVP_F_EVP_CIPHER_CTX_COPY                        163
+ # define EVP_F_EVP_CIPHER_CTX_CTRL                        124
+@@ -1453,10 +1589,12 @@
+ # define EVP_R_NO_VERIFY_FUNCTION_CONFIGURED              105
+ # define EVP_R_OPERATION_NOT_SUPPORTED_FOR_THIS_KEYTYPE   150
+ # define EVP_R_OPERATON_NOT_INITIALIZED                   151
++# define EVP_R_OUTPUT_ALIASES_INPUT                       172
+ # define EVP_R_PKCS8_UNKNOWN_BROKEN_TYPE                  117
+ # define EVP_R_PRIVATE_KEY_DECODE_ERROR                   145
+ # define EVP_R_PRIVATE_KEY_ENCODE_ERROR                   146
+ # define EVP_R_PUBLIC_KEY_NOT_RSA                         106
++# define EVP_R_TAG_TOO_LARGE                              171
+ # define EVP_R_TOO_LARGE                                  164
+ # define EVP_R_UNKNOWN_CIPHER                             160
+ # define EVP_R_UNKNOWN_DIGEST                             161
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/crypto/evp/evp_err.c	2016-05-03 22:49:00.000000000 +0900
++++ b/crypto/evp/evp_err.c	2016-05-20 02:11:53.000000000 +0900
 @@ -1,6 +1,6 @@
  /* crypto/evp/evp_err.c */
  /* ====================================================================
@@ -16076,147 +16025,150 @@ diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
   *
   * Redistribution and use in source and binary forms, with or without
   * modification, are permitted provided that the following conditions
-@@ -70,20 +70,33 @@
+@@ -70,20 +70,36 @@
+ # define ERR_REASON(reason) ERR_PACK(ERR_LIB_EVP,0,reason)
  
- static ERR_STRING_DATA EVP_str_functs[]=
- 	{
-+{ERR_FUNC(EVP_F_AEAD_AES_GCM_INIT),	"AEAD_AES_GCM_INIT"},
-+{ERR_FUNC(EVP_F_AEAD_AES_GCM_OPEN),	"AEAD_AES_GCM_OPEN"},
-+{ERR_FUNC(EVP_F_AEAD_AES_GCM_SEAL),	"AEAD_AES_GCM_SEAL"},
-+{ERR_FUNC(EVP_F_AEAD_CHACHA20_POLY1305_INIT),	"AEAD_CHACHA20_POLY1305_INIT"},
-+{ERR_FUNC(EVP_F_AEAD_CHACHA20_POLY1305_OPEN),	"AEAD_CHACHA20_POLY1305_OPEN"},
-+{ERR_FUNC(EVP_F_AEAD_CHACHA20_POLY1305_SEAL),	"AEAD_CHACHA20_POLY1305_SEAL"},
-+{ERR_FUNC(EVP_F_AEAD_CTX_OPEN),	"AEAD_CTX_OPEN"},
-+{ERR_FUNC(EVP_F_AEAD_CTX_SEAL),	"AEAD_CTX_SEAL"},
- {ERR_FUNC(EVP_F_AESNI_INIT_KEY),	"AESNI_INIT_KEY"},
- {ERR_FUNC(EVP_F_AESNI_XTS_CIPHER),	"AESNI_XTS_CIPHER"},
- {ERR_FUNC(EVP_F_AES_INIT_KEY),	"AES_INIT_KEY"},
-+{ERR_FUNC(EVP_F_AES_T4_INIT_KEY),	"AES_T4_INIT_KEY"},
- {ERR_FUNC(EVP_F_AES_XTS),	"AES_XTS"},
- {ERR_FUNC(EVP_F_AES_XTS_CIPHER),	"AES_XTS_CIPHER"},
- {ERR_FUNC(EVP_F_ALG_MODULE_INIT),	"ALG_MODULE_INIT"},
- {ERR_FUNC(EVP_F_CAMELLIA_INIT_KEY),	"CAMELLIA_INIT_KEY"},
- {ERR_FUNC(EVP_F_CMAC_INIT),	"CMAC_INIT"},
-+{ERR_FUNC(EVP_F_CMLL_T4_INIT_KEY),	"CMLL_T4_INIT_KEY"},
- {ERR_FUNC(EVP_F_D2I_PKEY),	"D2I_PKEY"},
- {ERR_FUNC(EVP_F_DO_SIGVER_INIT),	"DO_SIGVER_INIT"},
- {ERR_FUNC(EVP_F_DSAPKEY2PKCS8),	"DSAPKEY2PKCS8"},
- {ERR_FUNC(EVP_F_DSA_PKEY2PKCS8),	"DSA_PKEY2PKCS8"},
- {ERR_FUNC(EVP_F_ECDSA_PKEY2PKCS8),	"ECDSA_PKEY2PKCS8"},
- {ERR_FUNC(EVP_F_ECKEY_PKEY2PKCS8),	"ECKEY_PKEY2PKCS8"},
-+{ERR_FUNC(EVP_F_EVP_AEAD_CTX_INIT),	"EVP_AEAD_CTX_init"},
-+{ERR_FUNC(EVP_F_EVP_AEAD_CTX_OPEN),	"EVP_AEAD_CTX_open"},
-+{ERR_FUNC(EVP_F_EVP_AEAD_CTX_SEAL),	"EVP_AEAD_CTX_seal"},
- {ERR_FUNC(EVP_F_EVP_CIPHERINIT_EX),	"EVP_CipherInit_ex"},
- {ERR_FUNC(EVP_F_EVP_CIPHER_CTX_COPY),	"EVP_CIPHER_CTX_copy"},
- {ERR_FUNC(EVP_F_EVP_CIPHER_CTX_CTRL),	"EVP_CIPHER_CTX_ctrl"},
-@@ -202,10 +215,12 @@
- {ERR_REASON(EVP_R_NO_VERIFY_FUNCTION_CONFIGURED),"no verify function configured"},
- {ERR_REASON(EVP_R_OPERATION_NOT_SUPPORTED_FOR_THIS_KEYTYPE),"operation not supported for this keytype"},
- {ERR_REASON(EVP_R_OPERATON_NOT_INITIALIZED),"operaton not initialized"},
-+{ERR_REASON(EVP_R_OUTPUT_ALIASES_INPUT)  ,"output aliases input"},
- {ERR_REASON(EVP_R_PKCS8_UNKNOWN_BROKEN_TYPE),"pkcs8 unknown broken type"},
- {ERR_REASON(EVP_R_PRIVATE_KEY_DECODE_ERROR),"private key decode error"},
- {ERR_REASON(EVP_R_PRIVATE_KEY_ENCODE_ERROR),"private key encode error"},
- {ERR_REASON(EVP_R_PUBLIC_KEY_NOT_RSA)    ,"public key not rsa"},
-+{ERR_REASON(EVP_R_TAG_TOO_LARGE)         ,"tag too large"},
- {ERR_REASON(EVP_R_TOO_LARGE)             ,"too large"},
- {ERR_REASON(EVP_R_UNKNOWN_CIPHER)        ,"unknown cipher"},
- {ERR_REASON(EVP_R_UNKNOWN_DIGEST)        ,"unknown digest"},
-diff -ur openssl-1.0.1e-2+deb7u12 1.0.1e-2+deb7u12+ore2
---- a/crypto/evp/evp_locl.h	2013-02-12 00:26:04.000000000 +0900
-+++ b/crypto/evp/evp_locl.h	2014-08-15 21:24:24.000000000 +0900
-@@ -348,6 +348,30 @@
- 			     ASN1_TYPE *param,
- 			     const EVP_CIPHER *c, const EVP_MD *md, int en_de);
+ static ERR_STRING_DATA EVP_str_functs[] = {
++    {ERR_FUNC(EVP_F_AEAD_AES_GCM_INIT), "AEAD_AES_GCM_INIT"},
++    {ERR_FUNC(EVP_F_AEAD_AES_GCM_OPEN), "AEAD_AES_GCM_OPEN"},
++    {ERR_FUNC(EVP_F_AEAD_AES_GCM_SEAL), "AEAD_AES_GCM_SEAL"},
++    {ERR_FUNC(EVP_F_AEAD_CHACHA20_POLY1305_INIT),
++     "AEAD_CHACHA20_POLY1305_INIT"},
++    {ERR_FUNC(EVP_F_AEAD_CHACHA20_POLY1305_OPEN),
++     "AEAD_CHACHA20_POLY1305_OPEN"},
++    {ERR_FUNC(EVP_F_AEAD_CHACHA20_POLY1305_SEAL),
++     "AEAD_CHACHA20_POLY1305_SEAL"},
++    {ERR_FUNC(EVP_F_AEAD_CTX_OPEN), "AEAD_CTX_OPEN"},
++    {ERR_FUNC(EVP_F_AEAD_CTX_SEAL), "AEAD_CTX_SEAL"},
+     {ERR_FUNC(EVP_F_AESNI_INIT_KEY), "AESNI_INIT_KEY"},
+     {ERR_FUNC(EVP_F_AESNI_XTS_CIPHER), "AESNI_XTS_CIPHER"},
+     {ERR_FUNC(EVP_F_AES_INIT_KEY), "AES_INIT_KEY"},
++    {ERR_FUNC(EVP_F_AES_T4_INIT_KEY), "AES_T4_INIT_KEY"},
+     {ERR_FUNC(EVP_F_AES_XTS), "AES_XTS"},
+     {ERR_FUNC(EVP_F_AES_XTS_CIPHER), "AES_XTS_CIPHER"},
+     {ERR_FUNC(EVP_F_ALG_MODULE_INIT), "ALG_MODULE_INIT"},
+     {ERR_FUNC(EVP_F_CAMELLIA_INIT_KEY), "CAMELLIA_INIT_KEY"},
+     {ERR_FUNC(EVP_F_CMAC_INIT), "CMAC_INIT"},
++    {ERR_FUNC(EVP_F_CMLL_T4_INIT_KEY), "CMLL_T4_INIT_KEY"},
+     {ERR_FUNC(EVP_F_D2I_PKEY), "D2I_PKEY"},
+     {ERR_FUNC(EVP_F_DO_SIGVER_INIT), "DO_SIGVER_INIT"},
+     {ERR_FUNC(EVP_F_DSAPKEY2PKCS8), "DSAPKEY2PKCS8"},
+     {ERR_FUNC(EVP_F_DSA_PKEY2PKCS8), "DSA_PKEY2PKCS8"},
+     {ERR_FUNC(EVP_F_ECDSA_PKEY2PKCS8), "ECDSA_PKEY2PKCS8"},
+     {ERR_FUNC(EVP_F_ECKEY_PKEY2PKCS8), "ECKEY_PKEY2PKCS8"},
++    {ERR_FUNC(EVP_F_EVP_AEAD_CTX_INIT), "EVP_AEAD_CTX_init"},
++    {ERR_FUNC(EVP_F_EVP_AEAD_CTX_OPEN), "EVP_AEAD_CTX_open"},
++    {ERR_FUNC(EVP_F_EVP_AEAD_CTX_SEAL), "EVP_AEAD_CTX_seal"},
+     {ERR_FUNC(EVP_F_EVP_CIPHERINIT_EX), "EVP_CipherInit_ex"},
+     {ERR_FUNC(EVP_F_EVP_CIPHER_CTX_COPY), "EVP_CIPHER_CTX_copy"},
+     {ERR_FUNC(EVP_F_EVP_CIPHER_CTX_CTRL), "EVP_CIPHER_CTX_ctrl"},
+@@ -210,11 +226,13 @@
+     {ERR_REASON(EVP_R_OPERATION_NOT_SUPPORTED_FOR_THIS_KEYTYPE),
+      "operation not supported for this keytype"},
+     {ERR_REASON(EVP_R_OPERATON_NOT_INITIALIZED), "operaton not initialized"},
++    {ERR_REASON(EVP_R_OUTPUT_ALIASES_INPUT), "output aliases input"},
+     {ERR_REASON(EVP_R_PKCS8_UNKNOWN_BROKEN_TYPE),
+      "pkcs8 unknown broken type"},
+     {ERR_REASON(EVP_R_PRIVATE_KEY_DECODE_ERROR), "private key decode error"},
+     {ERR_REASON(EVP_R_PRIVATE_KEY_ENCODE_ERROR), "private key encode error"},
+     {ERR_REASON(EVP_R_PUBLIC_KEY_NOT_RSA), "public key not rsa"},
++    {ERR_REASON(EVP_R_TAG_TOO_LARGE), "tag too large"},
+     {ERR_REASON(EVP_R_TOO_LARGE), "too large"},
+     {ERR_REASON(EVP_R_UNKNOWN_CIPHER), "unknown cipher"},
+     {ERR_REASON(EVP_R_UNKNOWN_DIGEST), "unknown digest"},
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/crypto/evp/evp_locl.h	2016-05-03 22:49:00.000000000 +0900
++++ b/crypto/evp/evp_locl.h	2016-05-20 02:17:48.000000000 +0900
+@@ -333,6 +333,30 @@
+                              const EVP_CIPHER *c, const EVP_MD *md,
+                              int en_de);
  
 +/* EVP_AEAD represents a specific AEAD algorithm. */
 +struct evp_aead_st {
-+	unsigned char key_len;
-+	unsigned char nonce_len;
-+	unsigned char overhead;
-+	unsigned char max_tag_len;
++    unsigned char key_len;
++    unsigned char nonce_len;
++    unsigned char overhead;
++    unsigned char max_tag_len;
 +
-+	int (*init) (struct evp_aead_ctx_st*, const unsigned char *key,
-+		     size_t key_len, size_t tag_len);
-+	void (*cleanup) (struct evp_aead_ctx_st*);
++    int (*init) (struct evp_aead_ctx_st*, const unsigned char *key,
++                 size_t key_len, size_t tag_len);
++    void (*cleanup) (struct evp_aead_ctx_st*);
 +
-+	int (*seal) (const struct evp_aead_ctx_st *ctx,
-+		     unsigned char *out, size_t *out_len, size_t max_out_len,
-+		     const unsigned char *nonce, size_t nonce_len,
-+		     const unsigned char *in, size_t in_len,
-+		     const unsigned char *ad, size_t ad_len);
++    int (*seal) (const struct evp_aead_ctx_st *ctx,
++                 unsigned char *out, size_t *out_len, size_t max_out_len,
++                 const unsigned char *nonce, size_t nonce_len,
++                 const unsigned char *in, size_t in_len,
++                 const unsigned char *ad, size_t ad_len);
 +
-+	int (*open) (const struct evp_aead_ctx_st *ctx,
-+		     unsigned char *out, size_t *out_len, size_t max_out_len,
-+		     const unsigned char *nonce, size_t nonce_len,
-+		     const unsigned char *in, size_t in_len,
-+		     const unsigned char *ad, size_t ad_len);
++    int (*open) (const struct evp_aead_ctx_st *ctx,
++                 unsigned char *out, size_t *out_len, size_t max_out_len,
++                 const unsigned char *nonce, size_t nonce_len,
++                 const unsigned char *in, size_t in_len,
++                 const unsigned char *ad, size_t ad_len);
 +};
 +
  #ifdef OPENSSL_FIPS
  
- #ifdef OPENSSL_DOING_MAKEDEPEND
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
---- a/ssl/s2_clnt.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/s2_clnt.c	2014-05-05 00:09:08.000000000 +0900
-@@ -623,7 +623,7 @@
- 	if (s->state == SSL2_ST_SEND_CLIENT_MASTER_KEY_A)
- 		{
+ # ifdef OPENSSL_DOING_MAKEDEPEND
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/s2_clnt.c	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/s2_clnt.c	2016-05-19 19:11:50.000000000 +0900
+@@ -606,7 +606,7 @@
+     buf = (unsigned char *)s->init_buf->data;
+     if (s->state == SSL2_ST_SEND_CLIENT_MASTER_KEY_A) {
  
--		if (!ssl_cipher_get_evp(s->session,&c,&md,NULL,NULL,NULL))
-+		if (!ssl_cipher_get_evp(s->session,&c,&md,NULL,NULL))
- 			{
- 			ssl2_return_error(s,SSL2_PE_NO_CIPHER);
- 			SSLerr(SSL_F_CLIENT_MASTER_KEY,SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
---- a/ssl/s2_enc.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/s2_enc.c	2014-05-05 00:09:08.000000000 +0900
+-        if (!ssl_cipher_get_evp(s->session, &c, &md, NULL, NULL, NULL)) {
++        if (!ssl_cipher_get_evp(s->session, &c, &md, NULL, NULL)) {
+             ssl2_return_error(s, SSL2_PE_NO_CIPHER);
+             SSLerr(SSL_F_CLIENT_MASTER_KEY,
+                    SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/s2_enc.c	2016-05-03 22:44:42.000000000 +0900
++++ b/ssl/s2_enc.c	2016-05-19 19:14:59.000000000 +0900
 @@ -68,7 +68,7 @@
- 	const EVP_MD *md;
- 	int num;
+     const EVP_MD *md;
+     int num;
  
--	if (!ssl_cipher_get_evp(s->session,&c,&md,NULL,NULL,NULL))
-+	if (!ssl_cipher_get_evp(s->session,&c,&md,NULL,NULL))
- 		{
- 		ssl2_return_error(s,SSL2_PE_NO_CIPHER);
- 		SSLerr(SSL_F_SSL2_ENC_INIT,SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
-diff -ur openssl-1.0.1e-2+deb7u15 1.0.1e-2+deb7u15+ore1
---- a/ssl/s2_srvr.c	2015-03-18 03:24:40.000000000 +0900
-+++ b/ssl/s2_srvr.c	2015-03-20 20:02:43.000000000 +0900
-@@ -449,7 +449,7 @@
+-    if (!ssl_cipher_get_evp(s->session, &c, &md, NULL, NULL, NULL)) {
++    if (!ssl_cipher_get_evp(s->session, &c, &md, NULL, NULL)) {
+         ssl2_return_error(s, SSL2_PE_NO_CIPHER);
+         SSLerr(SSL_F_SSL2_ENC_INIT, SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
+         return (0);
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/s2_srvr.c	2016-05-03 22:44:42.000000000 +0900
++++ b/ssl/s2_srvr.c	2016-05-19 19:17:23.000000000 +0900
+@@ -462,7 +462,7 @@
  
- 	is_export=SSL_C_IS_EXPORT(s->session->cipher);
- 	
--	if (!ssl_cipher_get_evp(s->session,&c,&md,NULL,NULL,NULL))
-+	if (!ssl_cipher_get_evp(s->session,&c,&md,NULL,NULL))
- 		{
- 		ssl2_return_error(s,SSL2_PE_NO_CIPHER);
- 		SSLerr(SSL_F_GET_CLIENT_MASTER_KEY,SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
---- a/ssl/s3_enc.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/s3_enc.c	2014-05-05 00:09:08.000000000 +0900
-@@ -397,7 +397,13 @@
- 	if (s->s3->tmp.key_block_length != 0)
- 		return(1);
+     is_export = SSL_C_IS_EXPORT(s->session->cipher);
  
--	if (!ssl_cipher_get_evp(s->session,&c,&hash,NULL,NULL,&comp))
-+	if (!ssl_cipher_get_comp(s->session, &comp))
-+		{
-+		SSLerr(SSL_F_SSL3_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
-+		return(0);
-+		}
+-    if (!ssl_cipher_get_evp(s->session, &c, &md, NULL, NULL, NULL)) {
++    if (!ssl_cipher_get_evp(s->session, &c, &md, NULL, NULL)) {
+         ssl2_return_error(s, SSL2_PE_NO_CIPHER);
+         SSLerr(SSL_F_GET_CLIENT_MASTER_KEY,
+                SSL_R_PROBLEMS_MAPPING_CIPHER_FUNCTIONS);
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/s3_enc.c	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/s3_enc.c	2016-05-19 19:24:50.000000000 +0900
+@@ -402,7 +402,12 @@
+     if (s->s3->tmp.key_block_length != 0)
+         return (1);
+ 
+-    if (!ssl_cipher_get_evp(s->session, &c, &hash, NULL, NULL, &comp)) {
++    if (!ssl_cipher_get_comp(s->session, &comp)) {
++        SSLerr(SSL_F_SSL3_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
++        return (0);
++    }
 +
-+	if (!ssl_cipher_get_evp(s->session,&c,&hash,NULL,NULL))
- 		{
- 		SSLerr(SSL_F_SSL3_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
- 		return(0);
-diff -ur openssl-1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore1
---- a/ssl/s3_lib.c	2016-02-29 08:49:33.000000000 +0900
-+++ b/ssl/s3_lib.c	2016-03-02 19:21:50.000000000 +0900
++    if (!ssl_cipher_get_evp(s->session, &c, &hash, NULL, NULL)) {
+         SSLerr(SSL_F_SSL3_SETUP_KEY_BLOCK, SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
+         return (0);
+     }
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/s3_lib.c	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/s3_lib.c	2016-05-19 19:58:10.000000000 +0900
 @@ -166,6 +166,11 @@
  
- #define SSL3_NUM_CIPHERS	(sizeof(ssl3_ciphers)/sizeof(SSL_CIPHER))
+ #define SSL3_NUM_CIPHERS        (sizeof(ssl3_ciphers)/sizeof(SSL_CIPHER))
  
 +/* FIXED_NONCE_LEN is a macro that results in the correct value to set the
 + * fixed nonce length in SSL_CIPHER.algorithms2. It's the inverse of
@@ -16224,1116 +16176,1096 @@ diff -ur openssl-1.0.1e-2+deb7u20 1.0.1e-2+deb7u20+ore1
 +#define FIXED_NONCE_LEN(x) ((x & 0xe) << 24)
 +
  /* list of available SSLv3 ciphers (sorted by id) */
- OPENSSL_GLOBAL SSL_CIPHER ssl3_ciphers[]={
+ OPENSSL_GLOBAL SSL_CIPHER ssl3_ciphers[] = {
  
-@@ -1369,7 +1374,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	128,
- 	128,
- 	},
-@@ -1385,7 +1392,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384,
-+	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	256,
- 	256,
- 	},
-@@ -1401,7 +1410,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	128,
- 	128,
- 	},
-@@ -1417,7 +1428,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384,
-+	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	256,
- 	256,
- 	},
-@@ -1433,7 +1446,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	128,
- 	128,
- 	},
-@@ -1449,7 +1464,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384,
-+	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	256,
- 	256,
- 	},
-@@ -1465,7 +1482,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	128,
- 	128,
- 	},
-@@ -1481,7 +1500,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384,
-+	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	256,
- 	256,
- 	},
-@@ -1497,7 +1518,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	128,
- 	128,
- 	},
-@@ -1513,7 +1536,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384,
-+	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	256,
- 	256,
- 	},
-@@ -1529,7 +1554,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	128,
- 	128,
- 	},
-@@ -1545,7 +1572,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384,
-+	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	256,
- 	256,
- 	},
-@@ -2242,7 +2271,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	128,
- 	128,
- 	},
-@@ -2258,7 +2289,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384,
-+	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	256,
- 	256,
- 	},
-@@ -2274,7 +2307,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	128,
- 	128,
- 	},
-@@ -2290,7 +2325,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384,
-+	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	256,
- 	256,
- 	},
-@@ -2306,7 +2343,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	128,
- 	128,
- 	},
-@@ -2322,7 +2361,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384,
-+	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	256,
- 	256,
- 	},
-@@ -2338,7 +2379,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	128,
- 	128,
- 	},
-@@ -2354,7 +2397,9 @@
- 	SSL_AEAD,
- 	SSL_TLSV1_2,
- 	SSL_NOT_EXP|SSL_HIGH|SSL_FIPS,
--	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384,
-+	SSL_HANDSHAKE_MAC_SHA384|TLS1_PRF_SHA384|SSL_CIPHER_ALGORITHM2_AEAD|
-+		FIXED_NONCE_LEN(4)|
-+		SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
- 	256,
- 	256,
- 	},
-@@ -2422,6 +2467,101 @@
- 	},
+@@ -1886,7 +1891,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      128,
+      128,
+      },
+@@ -1902,7 +1909,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384,
++     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      256,
+      256,
+      },
+@@ -1918,7 +1927,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      128,
+      128,
+      },
+@@ -1934,7 +1945,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384,
++     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      256,
+      256,
+      },
+@@ -1950,7 +1963,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      128,
+      128,
+      },
+@@ -1966,7 +1981,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384,
++     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      256,
+      256,
+      },
+@@ -1982,7 +1999,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      128,
+      128,
+      },
+@@ -1998,7 +2017,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384,
++     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      256,
+      256,
+      },
+@@ -2014,7 +2035,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      128,
+      128,
+      },
+@@ -2030,7 +2053,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384,
++     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      256,
+      256,
+      },
+@@ -2046,7 +2071,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_DEFAULT | SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      128,
+      128,
+      },
+@@ -2062,7 +2089,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_DEFAULT | SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384,
++     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      256,
+      256,
+      },
+@@ -2759,7 +2788,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      128,
+      128,
+      },
+@@ -2775,7 +2806,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384,
++     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      256,
+      256,
+      },
+@@ -2791,7 +2824,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      128,
+      128,
+      },
+@@ -2807,7 +2842,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384,
++     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      256,
+      256,
+      },
+@@ -2823,7 +2860,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      128,
+      128,
+      },
+@@ -2839,7 +2878,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384,
++     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      256,
+      256,
+      },
+@@ -2855,7 +2896,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      128,
+      128,
+      },
+@@ -2871,7 +2914,9 @@
+      SSL_AEAD,
+      SSL_TLSV1_2,
+      SSL_NOT_EXP | SSL_HIGH | SSL_FIPS,
+-     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384,
++     SSL_HANDSHAKE_MAC_SHA384 | TLS1_PRF_SHA384 | SSL_CIPHER_ALGORITHM2_AEAD |
++         FIXED_NONCE_LEN(4) |
++         SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD,
+      256,
+      256,
+      },
+@@ -2935,6 +2980,110 @@
+      256},
  #endif
  
 +#if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
-+	{
-+	1,
-+	TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_OLD,
-+	TLS1_CK_ECDHE_RSA_CHACHA20_POLY1305_OLD,
-+	SSL_kEECDH,
-+	SSL_aRSA,
-+	SSL_CHACHA20POLY1305,
-+	SSL_AEAD,
-+	SSL_TLSV1_2,
-+	SSL_NOT_EXP|SSL_HIGH,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|FIXED_NONCE_LEN(0),
-+	256,
-+	256,
-+	},
++    /* Cipher CC13 */
++    {
++     1,
++     TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_OLD,
++     TLS1_CK_ECDHE_RSA_CHACHA20_POLY1305_OLD,
++     SSL_kEECDH,
++     SSL_aRSA,
++     SSL_CHACHA20POLY1305,
++     SSL_AEAD,
++     SSL_TLSV1_2,
++     SSL_NOT_EXP | SSL_HIGH,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++             FIXED_NONCE_LEN(0),
++     256,
++     256,
++     },
 +
-+	{
-+	1,
-+	TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_OLD,
-+	TLS1_CK_ECDHE_ECDSA_CHACHA20_POLY1305_OLD,
-+	SSL_kEECDH,
-+	SSL_aECDSA,
-+	SSL_CHACHA20POLY1305,
-+	SSL_AEAD,
-+	SSL_TLSV1_2,
-+	SSL_NOT_EXP|SSL_HIGH,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|FIXED_NONCE_LEN(0),
-+	256,
-+	256,
-+	},
++    /* Cipher CC14 */
++    {
++     1,
++     TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_OLD,
++     TLS1_CK_ECDHE_ECDSA_CHACHA20_POLY1305_OLD,
++     SSL_kEECDH,
++     SSL_aECDSA,
++     SSL_CHACHA20POLY1305,
++     SSL_AEAD,
++     SSL_TLSV1_2,
++     SSL_NOT_EXP | SSL_HIGH,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++             FIXED_NONCE_LEN(0),
++     256,
++     256,
++     },
 +
-+	{
-+	1,
-+	TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_OLD,
-+	TLS1_CK_DHE_RSA_CHACHA20_POLY1305_OLD,
-+	SSL_kEDH,
-+	SSL_aRSA,
-+	SSL_CHACHA20POLY1305,
-+	SSL_AEAD,
-+	SSL_TLSV1_2,
-+	SSL_NOT_EXP|SSL_HIGH,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|FIXED_NONCE_LEN(0),
-+	256,
-+	256,
-+	},
++    /* Cipher CC15 */
++    {
++     1,
++     TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_OLD,
++     TLS1_CK_DHE_RSA_CHACHA20_POLY1305_OLD,
++     SSL_kEDH,
++     SSL_aRSA,
++     SSL_CHACHA20POLY1305,
++     SSL_AEAD,
++     SSL_TLSV1_2,
++     SSL_NOT_EXP | SSL_HIGH,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++             FIXED_NONCE_LEN(0),
++     256,
++     256,
++     },
 +
-+	{
-+	1,
-+	TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
-+	TLS1_CK_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
-+	SSL_kEECDH,
-+	SSL_aRSA,
-+	SSL_CHACHA20POLY1305,
-+	SSL_AEAD,
-+	SSL_TLSV1_2,
-+	SSL_NOT_EXP|SSL_HIGH,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE|FIXED_NONCE_LEN(12),
-+	256,
-+	256,
-+	},
++    /* Cipher CCA8 */
++    {
++     1,
++     TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
++     TLS1_CK_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
++     SSL_kEECDH,
++     SSL_aRSA,
++     SSL_CHACHA20POLY1305,
++     SSL_AEAD,
++     SSL_TLSV1_2,
++     SSL_NOT_EXP | SSL_HIGH,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++             SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE | FIXED_NONCE_LEN(12),
++     256,
++     256,
++     },
 +
-+	{
-+	1,
-+	TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
-+	TLS1_CK_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
-+	SSL_kEECDH,
-+	SSL_aECDSA,
-+	SSL_CHACHA20POLY1305,
-+	SSL_AEAD,
-+	SSL_TLSV1_2,
-+	SSL_NOT_EXP|SSL_HIGH,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE|FIXED_NONCE_LEN(12),
-+	256,
-+	256,
-+	},
++    /* Cipher CCA9 */
++    {
++     1,
++     TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
++     TLS1_CK_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
++     SSL_kEECDH,
++     SSL_aECDSA,
++     SSL_CHACHA20POLY1305,
++     SSL_AEAD,
++     SSL_TLSV1_2,
++     SSL_NOT_EXP | SSL_HIGH,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++             SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE | FIXED_NONCE_LEN(12),
++     256,
++     256,
++     },
 +
-+	{
-+	1,
-+	TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
-+	TLS1_CK_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
-+	SSL_kEDH,
-+	SSL_aRSA,
-+	SSL_CHACHA20POLY1305,
-+	SSL_AEAD,
-+	SSL_TLSV1_2,
-+	SSL_NOT_EXP|SSL_HIGH,
-+	SSL_HANDSHAKE_MAC_SHA256|TLS1_PRF_SHA256|SSL_CIPHER_ALGORITHM2_AEAD|
-+		SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE|FIXED_NONCE_LEN(12),
-+	256,
-+	256,
-+	},
++    /* Cipher CCAA */
++    {
++     1,
++     TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
++     TLS1_CK_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
++     SSL_kEDH,
++     SSL_aRSA,
++     SSL_CHACHA20POLY1305,
++     SSL_AEAD,
++     SSL_TLSV1_2,
++     SSL_NOT_EXP | SSL_HIGH,
++     SSL_HANDSHAKE_MAC_SHA256 | TLS1_PRF_SHA256 | SSL_CIPHER_ALGORITHM2_AEAD |
++             SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE | FIXED_NONCE_LEN(12),
++     256,
++     256,
++     },
 +#endif
 +
  /* end of list */
- 	};
+ };
  
-diff -ur openssl-1.0.1e-2+deb7u15 1.0.1e-2+deb7u15+ore1
---- a/ssl/s3_pkt.c	2015-03-18 03:24:40.000000000 +0900
-+++ b/ssl/s3_pkt.c	2015-03-20 20:04:08.000000000 +0900
-@@ -777,7 +777,12 @@
- 		else
- 			eivlen = 0;
- 		}
--	else 
-+	else if (s->aead_write_ctx != NULL &&
-+		 s->aead_write_ctx->variable_nonce_included_in_record)
-+		{
-+		eivlen = s->aead_write_ctx->variable_nonce_len;
-+		}
-+	else
- 		eivlen = 0;
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/s3_pkt.c	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/s3_pkt.c	2016-05-19 20:08:12.000000000 +0900
+@@ -822,6 +822,9 @@
+             eivlen = EVP_GCM_TLS_EXPLICIT_IV_LEN;
+         else
+             eivlen = 0;
++    } else if (s->aead_write_ctx != NULL &&
++               s->aead_write_ctx->variable_nonce_included_in_record) {
++        eivlen = s->aead_write_ctx->variable_nonce_len;
+     } else
+         eivlen = 0;
  
- 	/* lets setup the record stuff. */
-diff -ur openssl-1.0.1e-2+deb7u17 1.0.1e-2+deb7u17+ore1
---- a/ssl/ssl.h	2015-06-13 03:59:04.000000000 +0900
-+++ b/ssl/ssl.h	2015-06-14 01:47:50.000000000 +0900
-@@ -292,6 +292,7 @@
- #define SSL_TXT_CAMELLIA128	"CAMELLIA128"
- #define SSL_TXT_CAMELLIA256	"CAMELLIA256"
- #define SSL_TXT_CAMELLIA	"CAMELLIA"
-+#define SSL_TXT_CHACHA20	"CHACHA20"
+diff -ur openssl-1.0.1t-1+deb8u4 openssl-1.0.1t-1+deb8u4+ore1
+--- a/ssl/ssl.h	2016-09-22 06:36:15.000000000 +0900
++++ b/ssl/ssl.h	2016-09-23 20:00:00.000000000 +0900
+@@ -293,6 +293,7 @@
+ # define SSL_TXT_CAMELLIA128     "CAMELLIA128"
+ # define SSL_TXT_CAMELLIA256     "CAMELLIA256"
+ # define SSL_TXT_CAMELLIA        "CAMELLIA"
++# define SSL_TXT_CHACHA20        "CHACHA20"
  
- #define SSL_TXT_MD5		"MD5"
- #define SSL_TXT_SHA1		"SHA1"
-@@ -400,7 +401,9 @@
- 	unsigned long algorithm_ssl;	/* (major) protocol version */
+ # define SSL_TXT_MD5             "MD5"
+ # define SSL_TXT_SHA1            "SHA1"
+@@ -406,7 +407,9 @@
+     unsigned long algorithm_mac; /* symmetric authentication */
+     unsigned long algorithm_ssl; /* (major) protocol version */
+     unsigned long algo_strength; /* strength and export flags */
+-    unsigned long algorithm2;   /* Extra flags */
++    unsigned long algorithm2;   /* Extra flags. See SSL2_CF_* in ssl2.h
++                                   and algorithm2 section in
++                                   ssl_locl.h */
+     int strength_bits;          /* Number of bits really used */
+     int alg_bits;               /* Number of bits for algorithm */
+ };
+@@ -776,6 +779,9 @@
  
- 	unsigned long algo_strength;	/* strength and export flags */
--	unsigned long algorithm2;	/* Extra flags */
-+	unsigned long algorithm2;	/* Extra flags. See SSL2_CF_* in ssl2.h
-+					   and algorithm2 section in
-+					   ssl_locl.h */
- 	int strength_bits;		/* Number of bits really used */
- 	int alg_bits;			/* Number of bits for algorithm */
- 	};
-@@ -731,6 +734,9 @@
- 
- #endif
+ # endif
  
 +struct ssl_aead_ctx_st;
 +typedef struct ssl_aead_ctx_st SSL_AEAD_CTX;
 +
- #if defined(OPENSSL_SYS_MSDOS) && !defined(OPENSSL_SYS_WIN32)
- #define SSL_MAX_CERT_LIST_DEFAULT 1024*30 /* 30k max cert list :-) */
- #else
-@@ -1199,6 +1205,11 @@
- 	/* These are the ones being used, the ones in SSL_SESSION are
- 	 * the ones to be 'copied' into these ones */
- 	int mac_flags; 
-+#if 0 /* move to bottom */
-+	SSL_AEAD_CTX *aead_read_ctx;	/* AEAD context. If non-NULL, then
-+					   |enc_read_ctx| and |read_hash| are
-+					   ignored. */
-+#endif
- 	EVP_CIPHER_CTX *enc_read_ctx;		/* cryptographic state */
- 	EVP_MD_CTX *read_hash;		/* used for mac generation */
- #ifndef OPENSSL_NO_COMP
-@@ -1207,6 +1218,11 @@
- 	char *expand;
- #endif
+ # if defined(OPENSSL_SYS_MSDOS) && !defined(OPENSSL_SYS_WIN32)
+ #  define SSL_MAX_CERT_LIST_DEFAULT 1024*30
+                                           /* 30k max cert list :-) */
+@@ -1336,6 +1342,11 @@
+      * be 'copied' into these ones
+      */
+     int mac_flags;
++#  if 0 /* move to bottom */
++    SSL_AEAD_CTX *aead_read_ctx;  /* AEAD context. If non-NULL, then
++                                     |enc_read_ctx| and |read_hash| are
++                                     ignored. */
++#  endif
+     EVP_CIPHER_CTX *enc_read_ctx; /* cryptographic state */
+     EVP_MD_CTX *read_hash;      /* used for mac generation */
+ #  ifndef OPENSSL_NO_COMP
+@@ -1343,6 +1354,11 @@
+ #  else
+     char *expand;
+ #  endif
++#  if 0 /* move to bottom */
++    SSL_AEAD_CTX *aead_write_ctx;   /* AEAD context. If non-NULL, then
++                                       |enc_write_ctx| and |write_hash| are
++                                       ignored. */
++#  endif
+     EVP_CIPHER_CTX *enc_write_ctx; /* cryptographic state */
+     EVP_MD_CTX *write_hash;     /* used for mac generation */
+ #  ifndef OPENSSL_NO_COMP
+@@ -1502,6 +1518,10 @@
+     /* ctx for SRP authentication */
+     SRP_CTX srp_ctx;
+ #  endif
++#  if 1 /* for compat. */
++    SSL_AEAD_CTX *aead_read_ctx;
++    SSL_AEAD_CTX *aead_write_ctx;
++#  endif
+ };
  
-+#if 0 /* move to bottom */
-+	SSL_AEAD_CTX *aead_write_ctx;	/* AEAD context. If non-NULL, then
-+					   |enc_write_ctx| and |write_hash| are
-+					   ignored. */
-+#endif
- 	EVP_CIPHER_CTX *enc_write_ctx;		/* cryptographic state */
- 	EVP_MD_CTX *write_hash;		/* used for mac generation */
- #ifndef OPENSSL_NO_COMP
-@@ -1359,6 +1375,10 @@
- #ifndef OPENSSL_NO_SRP
- 	SRP_CTX srp_ctx; /* ctx for SRP authentication */
- #endif
-+#if 1 /* for compat. */
-+	SSL_AEAD_CTX *aead_read_ctx;
-+	SSL_AEAD_CTX *aead_write_ctx;
-+#endif
- 	};
+ # endif
+@@ -2445,8 +2465,11 @@
+ # define SSL_F_SSL_USE_RSAPRIVATEKEY_FILE                 206
+ # define SSL_F_SSL_VERIFY_CERT_CHAIN                      207
+ # define SSL_F_SSL_WRITE                                  208
++# define SSL_F_TLS1_AEAD_CTX_INIT                         341
+ # define SSL_F_TLS1_CERT_VERIFY_MAC                       286
+ # define SSL_F_TLS1_CHANGE_CIPHER_STATE                   209
++# define SSL_F_TLS1_CHANGE_CIPHER_STATE_AEAD              340
++# define SSL_F_TLS1_CHANGE_CIPHER_STATE_CIPHER            338
+ # define SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT              274
+ # define SSL_F_TLS1_ENC                                   210
+ # define SSL_F_TLS1_EXPORT_KEYING_MATERIAL                314
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/ssl3.h	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/ssl3.h	2016-05-19 20:32:55.000000000 +0900
+@@ -552,6 +552,9 @@
+         int key_block_length;
+         unsigned char *key_block;
+         const EVP_CIPHER *new_sym_enc;
++#  if 0 /* move to bottom */
++        const EVP_AEAD *new_aead;
++#  endif
+         const EVP_MD *new_hash;
+         int new_mac_pkey_type;
+         int new_mac_secret_size;
+@@ -587,6 +590,9 @@
+     char is_probably_safari;
+ #   endif                       /* !OPENSSL_NO_EC */
+ #  endif                        /* !OPENSSL_NO_TLSEXT */
++#  if 1 /* for compat. */
++    const EVP_AEAD *new_aead;
++#  endif
+ } SSL3_STATE;
  
- #endif
-@@ -2271,8 +2291,11 @@
- #define SSL_F_SSL_USE_RSAPRIVATEKEY_FILE		 206
- #define SSL_F_SSL_VERIFY_CERT_CHAIN			 207
- #define SSL_F_SSL_WRITE					 208
-+#define SSL_F_TLS1_AEAD_CTX_INIT			 339
- #define SSL_F_TLS1_CERT_VERIFY_MAC			 286
- #define SSL_F_TLS1_CHANGE_CIPHER_STATE			 209
-+#define SSL_F_TLS1_CHANGE_CIPHER_STATE_AEAD		 340
-+#define SSL_F_TLS1_CHANGE_CIPHER_STATE_CIPHER		 338
- #define SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT		 274
- #define SSL_F_TLS1_ENC					 210
- #define SSL_F_TLS1_EXPORT_KEYING_MATERIAL		 314
-diff -ur openssl-1.0.1e-2+deb7u14 1.0.1e-2+deb7u14+ore2
---- a/ssl/ssl3.h	2014-10-16 02:51:58.000000000 +0900
-+++ b/ssl/ssl3.h	2015-01-20 20:52:20.000000000 +0900
-@@ -523,6 +523,9 @@
- 		unsigned char *key_block;
+ # endif
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/ssl_ciph.c	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/ssl_ciph.c	2016-05-19 20:47:23.000000000 +0900
+@@ -314,6 +314,7 @@
+     {0, SSL_TXT_CAMELLIA256, 0, 0, 0, SSL_CAMELLIA256, 0, 0, 0, 0, 0, 0},
+     {0, SSL_TXT_CAMELLIA, 0, 0, 0, SSL_CAMELLIA128 | SSL_CAMELLIA256, 0, 0, 0,
+      0, 0, 0},
++    {0, SSL_TXT_CHACHA20, 0, 0, 0, SSL_CHACHA20POLY1305, 0, 0, 0, 0, 0, 0},
  
- 		const EVP_CIPHER *new_sym_enc;
-+#if 0 /* move to bottom */
-+		const EVP_AEAD *new_aead;
-+#endif
- 		const EVP_MD *new_hash;
- 		int new_mac_pkey_type;
- 		int new_mac_secret_size;
-@@ -554,6 +557,9 @@
- 	char is_probably_safari;
- #endif	/* OPENSSL_NO_EC */
- #endif	/* OPENSSL_NO_TLSEXT */
-+#if 1 /* for compat. */
-+	const EVP_AEAD *new_aead;
-+#endif
- 	} SSL3_STATE;
- 
- #endif
-diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
---- a/ssl/ssl_ciph.c	2015-03-18 03:24:40.000000000 +0900
-+++ b/ssl/ssl_ciph.c	2015-12-21 22:14:22.000000000 +0900
-@@ -299,6 +299,7 @@
- 	{0,SSL_TXT_CAMELLIA128,0,0,0,SSL_CAMELLIA128,0,0,0,0,0,0},
- 	{0,SSL_TXT_CAMELLIA256,0,0,0,SSL_CAMELLIA256,0,0,0,0,0,0},
- 	{0,SSL_TXT_CAMELLIA   ,0,0,0,SSL_CAMELLIA128|SSL_CAMELLIA256,0,0,0,0,0,0},
-+	{0,SSL_TXT_CHACHA20   ,0,0,0,SSL_CHACHA20POLY1305,0,0,0,0,0,0},
- 
- 	/* MAC aliases */	
- 	{0,SSL_TXT_MD5,0,     0,0,0,SSL_MD5,   0,0,0,0,0},
-@@ -485,32 +486,80 @@
- 	}
+     /* MAC aliases */
+     {0, SSL_TXT_MD5, 0, 0, 0, 0, SSL_MD5, 0, 0, 0, 0, 0},
+@@ -488,9 +489,68 @@
+ }
  #endif
  
 +/* ssl_cipher_get_comp sets |comp| to the correct SSL_COMP for the given
 + * session and returns 1. On error it returns 0. */
 +int ssl_cipher_get_comp(const SSL_SESSION *s, SSL_COMP **comp)
-+	{
-+	int i;
++{
++    int i;
 +
-+	SSL_COMP ctmp;
++    SSL_COMP ctmp;
 +#ifndef OPENSSL_NO_COMP
-+	load_builtin_compressions();
++    load_builtin_compressions();
 +#endif
 +
-+	*comp=NULL;
-+	ctmp.id=s->compress_meth;
-+	if (ssl_comp_methods != NULL)
-+		{
-+		i=sk_SSL_COMP_find(ssl_comp_methods,&ctmp);
-+		if (i >= 0)
-+			*comp=sk_SSL_COMP_value(ssl_comp_methods,i);
-+		else
-+			*comp=NULL;
-+		}
++    *comp = NULL;
++    ctmp.id = s->compress_meth;
++    if (ssl_comp_methods != NULL) {
++        i = sk_SSL_COMP_find(ssl_comp_methods, &ctmp);
++        if (i >= 0)
++            *comp = sk_SSL_COMP_value(ssl_comp_methods, i);
++        else
++            *comp = NULL;
++    }
 +
-+	return 1;
-+	}
++    return 1;
++}
 +
 +/* ssl_cipher_get_evp_aead sets |*aead| to point to the correct EVP_AEAD object
 + * for |s->cipher|. It returns 1 on success and 0 on error. */
 +int ssl_cipher_get_evp_aead(const SSL_SESSION *s, const EVP_AEAD **aead)
-+	{
-+	const SSL_CIPHER *c = s->cipher;
++{
++    const SSL_CIPHER *c = s->cipher;
 +
-+	*aead = NULL;
++    *aead = NULL;
 +
-+	if (c == NULL)
-+		return 0;
-+	if ((c->algorithm2 & SSL_CIPHER_ALGORITHM2_AEAD) == 0)
-+		return 0;
++    if (c == NULL)
++        return 0;
++    if ((c->algorithm2 & SSL_CIPHER_ALGORITHM2_AEAD) == 0)
++        return 0;
 +
-+	switch (c->algorithm_enc)
-+		{
++    switch (c->algorithm_enc) {
 +#ifndef OPENSSL_NO_AES
-+	case SSL_AES128GCM:
-+		*aead = EVP_aead_aes_128_gcm();
-+		return 1;
-+	case SSL_AES256GCM:
-+		*aead = EVP_aead_aes_256_gcm();
-+		return 1;
++    case SSL_AES128GCM:
++        *aead = EVP_aead_aes_128_gcm();
++        return 1;
++    case SSL_AES256GCM:
++        *aead = EVP_aead_aes_256_gcm();
++        return 1;
 +#endif
 +#if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
-+	case SSL_CHACHA20POLY1305:
-+		if (c->id & 0x80)
-+			*aead = EVP_aead_chacha20_poly1305();
-+		else
-+			*aead = EVP_aead_chacha20_poly1305_old();
-+		return 1;
++    case SSL_CHACHA20POLY1305:
++        if (c->id & 0x80)
++            *aead = EVP_aead_chacha20_poly1305();
++        else
++            *aead = EVP_aead_chacha20_poly1305_old();
++        return 1;
 +#endif
-+		}
++    }
 +
-+	return 0;
-+	}
++    return 0;
++}
 +
  int ssl_cipher_get_evp(const SSL_SESSION *s, const EVP_CIPHER **enc,
--	     const EVP_MD **md, int *mac_pkey_type, int *mac_secret_size,SSL_COMP **comp)
-+	     const EVP_MD **md, int *mac_pkey_type, int *mac_secret_size)
- 	{
- 	int i;
- 	const SSL_CIPHER *c;
- 
- 	c=s->cipher;
- 	if (c == NULL) return(0);
--	if (comp != NULL)
--		{
--		SSL_COMP ctmp;
+                        const EVP_MD **md, int *mac_pkey_type,
+-                       int *mac_secret_size, SSL_COMP **comp)
++                       int *mac_secret_size)
+ {
+     int i;
+     const SSL_CIPHER *c;
+@@ -498,22 +558,11 @@
+     c = s->cipher;
+     if (c == NULL)
+         return (0);
+-    if (comp != NULL) {
+-        SSL_COMP ctmp;
 -#ifndef OPENSSL_NO_COMP
--		load_builtin_compressions();
+-        load_builtin_compressions();
 -#endif
  
--		*comp=NULL;
--		ctmp.id=s->compress_meth;
--		if (ssl_comp_methods != NULL)
--			{
--			i=sk_SSL_COMP_find(ssl_comp_methods,&ctmp);
--			if (i >= 0)
--				*comp=sk_SSL_COMP_value(ssl_comp_methods,i);
--			else
--				*comp=NULL;
--			}
--		}
-+	/* This function doesn't deal with EVP_AEAD. See
-+	 * |ssl_cipher_get_aead_evp|. */
-+	if (c->algorithm2 & SSL_CIPHER_ALGORITHM2_AEAD)
-+		return(0);
+-        *comp = NULL;
+-        ctmp.id = s->compress_meth;
+-        if (ssl_comp_methods != NULL) {
+-            i = sk_SSL_COMP_find(ssl_comp_methods, &ctmp);
+-            if (i >= 0)
+-                *comp = sk_SSL_COMP_value(ssl_comp_methods, i);
+-            else
+-                *comp = NULL;
+-        }
+-    }
++    /* This function doesn't deal with EVP_AEAD. See
++     * |ssl_cipher_get_aead_evp|. */
++    if (c->algorithm2 & SSL_CIPHER_ALGORITHM2_AEAD)
++        return (0);
  
- 	if ((enc == NULL) || (md == NULL)) return(0);
- 
-@@ -1685,6 +1734,9 @@
- 	case SSL_SEED:
- 		enc="SEED(128)";
- 		break;
-+	case SSL_CHACHA20POLY1305:
-+		enc="ChaCha20-Poly1305";
-+		break;
- 	default:
- 		enc="unknown";
- 		break;
-diff -ur openssl-1.0.1e-2+deb7u17 1.0.1e-2+deb7u17+ore1
---- a/ssl/ssl_err.c	2015-06-13 03:59:04.000000000 +0900
-+++ b/ssl/ssl_err.c	2015-06-14 01:50:08.000000000 +0900
-@@ -278,8 +278,11 @@
- {ERR_FUNC(SSL_F_SSL_USE_RSAPRIVATEKEY_FILE),	"SSL_use_RSAPrivateKey_file"},
- {ERR_FUNC(SSL_F_SSL_VERIFY_CERT_CHAIN),	"SSL_VERIFY_CERT_CHAIN"},
- {ERR_FUNC(SSL_F_SSL_WRITE),	"SSL_write"},
-+{ERR_FUNC(SSL_F_TLS1_AEAD_CTX_INIT),	"TLS1_AEAD_CTX_INIT"},
- {ERR_FUNC(SSL_F_TLS1_CERT_VERIFY_MAC),	"tls1_cert_verify_mac"},
--{ERR_FUNC(SSL_F_TLS1_CHANGE_CIPHER_STATE),	"TLS1_CHANGE_CIPHER_STATE"},
-+{ERR_FUNC(SSL_F_TLS1_CHANGE_CIPHER_STATE),	"tls1_change_cipher_state"},
-+{ERR_FUNC(SSL_F_TLS1_CHANGE_CIPHER_STATE_AEAD),	"TLS1_CHANGE_CIPHER_STATE_AEAD"},
-+{ERR_FUNC(SSL_F_TLS1_CHANGE_CIPHER_STATE_CIPHER),	"TLS1_CHANGE_CIPHER_STATE_CIPHER"},
- {ERR_FUNC(SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT),	"TLS1_CHECK_SERVERHELLO_TLSEXT"},
- {ERR_FUNC(SSL_F_TLS1_ENC),	"TLS1_ENC"},
- {ERR_FUNC(SSL_F_TLS1_EXPORT_KEYING_MATERIAL),	"TLS1_EXPORT_KEYING_MATERIAL"},
-diff -ur openssl-1.0.1e-2+deb7u13 1.0.1e-2+deb7u13+ore1
---- a/ssl/ssl_lib.c	2014-10-16 02:51:58.000000000 +0900
-+++ b/ssl/ssl_lib.c	2014-10-17 20:27:03.000000000 +0900
-@@ -2812,6 +2812,18 @@
- 		OPENSSL_free(s->enc_write_ctx);
- 		s->enc_write_ctx=NULL;
- 		}
-+	if (s->aead_read_ctx != NULL)
-+		{
-+		EVP_AEAD_CTX_cleanup(&s->aead_read_ctx->ctx);
-+		OPENSSL_free(s->aead_read_ctx);
-+		s->aead_read_ctx = NULL;
-+		}
-+	if (s->aead_write_ctx != NULL)
-+		{
-+		EVP_AEAD_CTX_cleanup(&s->aead_write_ctx->ctx);
-+		OPENSSL_free(s->aead_write_ctx);
-+		s->aead_write_ctx = NULL;
-+		}
+     if ((enc == NULL) || (md == NULL))
+         return (0);
+@@ -1728,6 +1777,9 @@
+     case SSL_eGOST2814789CNT:
+         enc = "GOST89(256)";
+         break;
++    case SSL_CHACHA20POLY1305:
++        enc = "ChaCha20-Poly1305";
++        break;
+     default:
+         enc = "unknown";
+         break;
+diff -ur openssl-1.0.1t-1+deb8u4 openssl-1.0.1t-1+deb8u4+ore1
+--- a/ssl/ssl_err.c	2016-09-22 06:36:15.000000000 +0900
++++ b/ssl/ssl_err.c	2016-09-23 18:00:00.000000000 +0900
+@@ -343,8 +343,13 @@
+      "SSL_use_RSAPrivateKey_file"},
+     {ERR_FUNC(SSL_F_SSL_VERIFY_CERT_CHAIN), "SSL_VERIFY_CERT_CHAIN"},
+     {ERR_FUNC(SSL_F_SSL_WRITE), "SSL_write"},
++    {ERR_FUNC(SSL_F_TLS1_AEAD_CTX_INIT), "TLS1_AEAD_CTX_INIT"},
+     {ERR_FUNC(SSL_F_TLS1_CERT_VERIFY_MAC), "tls1_cert_verify_mac"},
+-    {ERR_FUNC(SSL_F_TLS1_CHANGE_CIPHER_STATE), "TLS1_CHANGE_CIPHER_STATE"},
++    {ERR_FUNC(SSL_F_TLS1_CHANGE_CIPHER_STATE), "tls1_change_cipher_state"},
++    {ERR_FUNC(SSL_F_TLS1_CHANGE_CIPHER_STATE_AEAD),
++     "TLS1_CHANGE_CIPHER_STATE_AEAD"},
++    {ERR_FUNC(SSL_F_TLS1_CHANGE_CIPHER_STATE_CIPHER),
++     "TLS1_CHANGE_CIPHER_STATE_CIPHER"},
+     {ERR_FUNC(SSL_F_TLS1_CHECK_SERVERHELLO_TLSEXT),
+      "TLS1_CHECK_SERVERHELLO_TLSEXT"},
+     {ERR_FUNC(SSL_F_TLS1_ENC), "TLS1_ENC"},
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/ssl_lib.c	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/ssl_lib.c	2016-05-19 20:52:14.000000000 +0900
+@@ -2779,6 +2779,16 @@
+         OPENSSL_free(s->enc_write_ctx);
+         s->enc_write_ctx = NULL;
+     }
++    if (s->aead_read_ctx != NULL) {
++        EVP_AEAD_CTX_cleanup(&s->aead_read_ctx->ctx);
++        OPENSSL_free(s->aead_read_ctx);
++        s->aead_read_ctx = NULL;
++    }
++    if (s->aead_write_ctx != NULL) {
++        EVP_AEAD_CTX_cleanup(&s->aead_write_ctx->ctx);
++        OPENSSL_free(s->aead_write_ctx);
++        s->aead_write_ctx = NULL;
++    }
  #ifndef OPENSSL_NO_COMP
- 	if (s->expand != NULL)
- 		{
-diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
---- a/ssl/ssl_locl.h	2015-06-13 03:59:04.000000000 +0900
-+++ b/ssl/ssl_locl.h	2015-12-21 20:21:34.000000000 +0900
-@@ -329,6 +329,7 @@
- #define SSL_SEED		0x00000800L
- #define SSL_AES128GCM		0x00001000L
- #define SSL_AES256GCM		0x00002000L
-+#define SSL_CHACHA20POLY1305	0x00004000L
+     if (s->expand != NULL) {
+         COMP_CTX_free(s->expand);
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/ssl_locl.h	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/ssl_locl.h	2016-05-19 21:04:52.000000000 +0900
+@@ -353,6 +353,7 @@
+ # define SSL_SEED                0x00000800L
+ # define SSL_AES128GCM           0x00001000L
+ # define SSL_AES256GCM           0x00002000L
++# define SSL_CHACHA20POLY1305    0x00004000L
  
- #define SSL_AES        		(SSL_AES128|SSL_AES256|SSL_AES128GCM|SSL_AES256GCM)
- #define SSL_CAMELLIA		(SSL_CAMELLIA128|SSL_CAMELLIA256)
-@@ -379,7 +380,24 @@
-  * (currently this also goes into algorithm2) */
- #define TLS1_STREAM_MAC 0x04
+ # define SSL_AES                 (SSL_AES128|SSL_AES256|SSL_AES128GCM|SSL_AES256GCM)
+ # define SSL_CAMELLIA            (SSL_CAMELLIA128|SSL_CAMELLIA256)
+@@ -405,6 +406,25 @@
+  */
+ # define TLS1_STREAM_MAC 0x04
  
--
 +/* SSL_CIPHER_ALGORITHM2_AEAD is a flag in SSL_CIPHER.algorithm2 which
 + * indicates that the cipher is implemented via an EVP_AEAD. */
-+#define SSL_CIPHER_ALGORITHM2_AEAD (1<<23)
++# define SSL_CIPHER_ALGORITHM2_AEAD (1 << 23)
 +
 +/* SSL_CIPHER_AEAD_FIXED_NONCE_LEN returns the number of bytes of fixed nonce
 + * for an SSL_CIPHER* with the SSL_CIPHER_ALGORITHM2_AEAD flag. */
-+#define SSL_CIPHER_AEAD_FIXED_NONCE_LEN(ssl_cipher) \
-+	((ssl_cipher->algorithm2 >> 24) & 0xe)
++# define SSL_CIPHER_AEAD_FIXED_NONCE_LEN(ssl_cipher) \
++                                        ((ssl_cipher->algorithm2 >> 24) & 0xe)
 +
 +/* SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD is a flag in
 + * SSL_CIPHER.algorithm2 which indicates that the variable part of the nonce is
 + * included as a prefix of the record. (AES-GCM, for example, does with with an
 + * 8-byte variable nonce.) */
-+#define SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD (1<<22)
++# define SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD (1 << 22)
 +
 +/* SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE is a flag in SSL_CIPHER.algorithm2
 + * which indicates that XOR the fixed nonce. (CHACHA20-POLY1305, for example) */
-+#define SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE (1<<24)
- 
++# define SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE (1 << 24)
++
  /*
   * Export and cipher strength information. For each cipher we have to decide
-@@ -587,6 +605,23 @@
- 				      int use_context);
- 	} SSL3_ENC_METHOD;
+  * whether it is exportable or not. This information is likely to change
+@@ -625,6 +645,22 @@
+                                    int use_context);
+ } SSL3_ENC_METHOD;
  
 +/* ssl_aead_ctx_st contains information about an AEAD that is being used to
 + * encrypt an SSL connection. */
-+struct ssl_aead_ctx_st
-+	{
-+	EVP_AEAD_CTX ctx;
-+	/* fixed_nonce contains any bytes of the nonce that are fixed for all
-+	 * records. */
-+	unsigned char fixed_nonce[12];
-+	unsigned char fixed_nonce_len, variable_nonce_len, tag_len;
-+	/* variable_nonce_included_in_record is non-zero if the variable nonce
-+	 * for a record is included as a prefix before the ciphertext. */
-+	char variable_nonce_included_in_record;
-+	/* xor_fixed_nonce is non-zero if the fixed nonce should be XOR'd into
-+	 * the variable nonce rather than prepended. */
-+	char xor_fixed_nonce;
-+	};
++struct ssl_aead_ctx_st {
++    EVP_AEAD_CTX ctx;
++    /* fixed_nonce contains any bytes of the nonce that are fixed for all
++     * records. */
++    unsigned char fixed_nonce[12];
++    unsigned char fixed_nonce_len, variable_nonce_len, tag_len;
++    /* variable_nonce_included_in_record is non-zero if the variable nonce
++     * for a record is included as a prefix before the ciphertext. */
++    char variable_nonce_included_in_record;
++    /* xor_fixed_nonce is non-zero if the fixed nonce should be XOR'd into
++     * the variable nonce rather than prepended. */
++    char xor_fixed_nonce;
++};
 +
- #ifndef OPENSSL_NO_COMP
+ # ifndef OPENSSL_NO_COMP
  /* Used for holding the relevant compression methods loaded into SSL_CTX */
- typedef struct ssl3_comp_st
-@@ -836,8 +871,10 @@
- 					     STACK_OF(SSL_CIPHER) **sorted,
- 					     const char *rule_str);
+ typedef struct ssl3_comp_st {
+@@ -883,9 +919,11 @@
+                                              STACK_OF(SSL_CIPHER) **sorted,
+                                              const char *rule_str);
  void ssl_update_cache(SSL *s, int mode);
 +int ssl_cipher_get_comp(const SSL_SESSION *s, SSL_COMP **comp);
 +int ssl_cipher_get_evp_aead(const SSL_SESSION *s, const EVP_AEAD **aead);
- int ssl_cipher_get_evp(const SSL_SESSION *s,const EVP_CIPHER **enc,
--		       const EVP_MD **md,int *mac_pkey_type,int *mac_secret_size, SSL_COMP **comp);
-+		       const EVP_MD **md,int *mac_pkey_type,int *mac_secret_size);
- int ssl_get_handshake_digest(int i,long *mask,const EVP_MD **md);			   
- int ssl_verify_cert_chain(SSL *s,STACK_OF(X509) *sk);
+ int ssl_cipher_get_evp(const SSL_SESSION *s, const EVP_CIPHER **enc,
+                        const EVP_MD **md, int *mac_pkey_type,
+-                       int *mac_secret_size, SSL_COMP **comp);
++                       int *mac_secret_size);
+ int ssl_get_handshake_digest(int i, long *mask, const EVP_MD **md);
+ int ssl_verify_cert_chain(SSL *s, STACK_OF(X509) *sk);
  int ssl_undefined_function(SSL *s);
-diff -ur openssl-1.0.1e-2+deb7u9 1.0.1e-2+deb7u9+ore1
---- a/ssl/ssl_txt.c	2013-02-12 00:26:04.000000000 +0900
-+++ b/ssl/ssl_txt.c	2014-05-05 00:09:08.000000000 +0900
-@@ -216,7 +216,7 @@
- 		{
- 		SSL_COMP *comp = NULL;
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/ssl_txt.c	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/ssl_txt.c	2016-05-19 21:09:24.000000000 +0900
+@@ -224,7 +224,7 @@
+     if (x->compress_meth != 0) {
+         SSL_COMP *comp = NULL;
  
--		ssl_cipher_get_evp(x,NULL,NULL,NULL,NULL,&comp);
-+		ssl_cipher_get_comp(x, &comp);
- 		if (comp == NULL)
- 			{
- 			if (BIO_printf(bp,"\n    Compression: %d",x->compress_meth) <= 0) goto err;
-diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
---- a/ssl/t1_enc.c	2014-10-16 02:51:58.000000000 +0900
-+++ b/ssl/t1_enc.c	2015-12-21 20:28:19.000000000 +0900
-@@ -316,7 +316,147 @@
- 	return ret;
- 	}
+-        ssl_cipher_get_evp(x, NULL, NULL, NULL, NULL, &comp);
++        ssl_cipher_get_comp(x, &comp);
+         if (comp == NULL) {
+             if (BIO_printf(bp, "\n    Compression: %d", x->compress_meth) <=
+                 0)
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/t1_enc.c	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/t1_enc.c	2016-05-19 21:13:48.000000000 +0900
+@@ -317,7 +317,135 @@
+     return ret;
+ }
  
 -int tls1_change_cipher_state(SSL *s, int which)
 +/* tls1_aead_ctx_init allocates |*aead_ctx|, if needed and returns 1. It
 + * returns 0 on malloc error. */
 +static int tls1_aead_ctx_init(SSL_AEAD_CTX **aead_ctx)
-+	{
-+	if (*aead_ctx != NULL)
-+		EVP_AEAD_CTX_cleanup(&(*aead_ctx)->ctx);
-+	else
-+		{
-+		*aead_ctx = (SSL_AEAD_CTX*) OPENSSL_malloc(sizeof(SSL_AEAD_CTX));
-+		if (*aead_ctx == NULL)
-+			{
-+			SSLerr(SSL_F_TLS1_AEAD_CTX_INIT, ERR_R_MALLOC_FAILURE);
-+			return 0;
-+			}
-+		}
++{
++    if (*aead_ctx != NULL)
++        EVP_AEAD_CTX_cleanup(&(*aead_ctx)->ctx);
++    else {
++        *aead_ctx = (SSL_AEAD_CTX*) OPENSSL_malloc(sizeof(SSL_AEAD_CTX));
++        if (*aead_ctx == NULL) {
++            SSLerr(SSL_F_TLS1_AEAD_CTX_INIT, ERR_R_MALLOC_FAILURE);
++            return 0;
++        }
++    }
 +
-+	return 1;
-+	}
++    return 1;
++}
 +
 +static int tls1_change_cipher_state_aead2(SSL *s, char is_read,
-+	const unsigned char *key, unsigned key_len,
-+	const unsigned char *iv, unsigned iv_len)
-+	{
++                                          const unsigned char *key,
++                                          unsigned key_len,
++                                          const unsigned char *iv,
++                                          unsigned iv_len)
++{
 +#if 1 /* for compat. */
-+	const EVP_AEAD *aead = s->s3->new_aead;
++    const EVP_AEAD *aead = s->s3->new_aead;
 +#else
-+	const EVP_AEAD *aead = s->s3->tmp.new_aead;
++    const EVP_AEAD *aead = s->s3->tmp.new_aead;
 +#endif
-+	SSL_AEAD_CTX *aead_ctx;
++    SSL_AEAD_CTX *aead_ctx;
 +
-+	if (is_read)
-+		{
-+		if (!tls1_aead_ctx_init(&s->aead_read_ctx))
-+			return 0;
-+		aead_ctx = s->aead_read_ctx;
-+		}
-+	else
-+		{
-+		if (!tls1_aead_ctx_init(&s->aead_write_ctx))
-+			return 0;
-+		aead_ctx = s->aead_write_ctx;
-+		}
++    if (is_read) {
++        if (!tls1_aead_ctx_init(&s->aead_read_ctx))
++            return 0;
++        aead_ctx = s->aead_read_ctx;
++    } else {
++        if (!tls1_aead_ctx_init(&s->aead_write_ctx))
++            return 0;
++        aead_ctx = s->aead_write_ctx;
++    }
 +
-+	if (!EVP_AEAD_CTX_init(&aead_ctx->ctx, aead, key, key_len,
-+			       EVP_AEAD_DEFAULT_TAG_LENGTH, NULL /* engine */))
-+		return 0;
-+	if (iv_len > sizeof(aead_ctx->fixed_nonce))
-+		{
-+		SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE_AEAD, ERR_R_INTERNAL_ERROR);
-+		return 0;
-+		}
-+	memcpy(aead_ctx->fixed_nonce, iv, iv_len);
-+	aead_ctx->fixed_nonce_len = iv_len;
-+	aead_ctx->variable_nonce_len = 8;  /* always the case, currently. */
-+	aead_ctx->variable_nonce_included_in_record =
-+		!!(s->s3->tmp.new_cipher->algorithm2 &
-+			SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD);
-+	aead_ctx->xor_fixed_nonce = !!(s->s3->tmp.new_cipher->algorithm2 &
-+					SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE);
-+	if ((aead_ctx->xor_fixed_nonce &&
-+		aead_ctx->fixed_nonce_len != EVP_AEAD_nonce_length(aead)) ||
-+	    (!aead_ctx->xor_fixed_nonce &&
-+		aead_ctx->variable_nonce_len + aead_ctx->fixed_nonce_len !=
-+			EVP_AEAD_nonce_length(aead)))
-+		{
-+		SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE_AEAD, ERR_R_INTERNAL_ERROR);
-+		return 0;
-+		}
-+	aead_ctx->tag_len = EVP_AEAD_max_overhead(aead);
++    if (!EVP_AEAD_CTX_init(&aead_ctx->ctx, aead, key, key_len,
++                           EVP_AEAD_DEFAULT_TAG_LENGTH, NULL /* engine */))
++        return 0;
++    if (iv_len > sizeof(aead_ctx->fixed_nonce)) {
++        SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE_AEAD, ERR_R_INTERNAL_ERROR);
++        return 0;
++    }
++    memcpy(aead_ctx->fixed_nonce, iv, iv_len);
++    aead_ctx->fixed_nonce_len = iv_len;
++    aead_ctx->variable_nonce_len = 8;  /* always the case, currently. */
++    aead_ctx->variable_nonce_included_in_record =
++            !!(s->s3->tmp.new_cipher->algorithm2 &
++                SSL_CIPHER_ALGORITHM2_VARIABLE_NONCE_INCLUDED_IN_RECORD);
++    aead_ctx->xor_fixed_nonce = !!(s->s3->tmp.new_cipher->algorithm2 &
++                                   SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE);
++    if ((aead_ctx->xor_fixed_nonce &&
++         aead_ctx->fixed_nonce_len != EVP_AEAD_nonce_length(aead)) ||
++        (!aead_ctx->xor_fixed_nonce &&
++         aead_ctx->variable_nonce_len + aead_ctx->fixed_nonce_len !=
++                EVP_AEAD_nonce_length(aead))) {
++        SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE_AEAD, ERR_R_INTERNAL_ERROR);
++        return 0;
++    }
++    aead_ctx->tag_len = EVP_AEAD_max_overhead(aead);
 +
-+	return 1;
-+	}
++    return 1;
++}
 +
 +static int tls1_change_cipher_state_aead(SSL *s, int which)
-+	{
-+	/* is_read is true if we have just read a ChangeCipherSpec message -
-+	 * i.e. we need to update the read cipherspec. Otherwise we have just
-+	 * written one. */
-+	const char is_read = (which & SSL3_CC_READ) != 0;
-+	/* use_client_keys is true if we wish to use the keys for the "client
-+	 * write" direction. This is the case if we're a client sending a
-+	 * ChangeCipherSpec, or a server reading a client's ChangeCipherSpec. */
-+	const char use_client_keys = which == SSL3_CHANGE_CIPHER_CLIENT_WRITE ||
-+				     which == SSL3_CHANGE_CIPHER_SERVER_READ;
-+	const unsigned char *client_write_key, *server_write_key, *key;
-+	const unsigned char *client_write_iv, *server_write_iv, *iv;
-+	const unsigned char *key_data;
-+	unsigned key_len, iv_len, mac_secret_len;
++{
++    /* is_read is true if we have just read a ChangeCipherSpec message -
++     * i.e. we need to update the read cipherspec. Otherwise we have just
++     * written one. */
++    const char is_read = (which & SSL3_CC_READ) != 0;
++    /* use_client_keys is true if we wish to use the keys for the "client
++     * write" direction. This is the case if we're a client sending a
++     * ChangeCipherSpec, or a server reading a client's ChangeCipherSpec. */
++    const char use_client_keys = which == SSL3_CHANGE_CIPHER_CLIENT_WRITE ||
++                                 which == SSL3_CHANGE_CIPHER_SERVER_READ;
++    const unsigned char *client_write_key, *server_write_key, *key;
++    const unsigned char *client_write_iv, *server_write_iv, *iv;
++    const unsigned char *key_data;
++    unsigned key_len, iv_len, mac_secret_len;
 +#if 1 /* for compat. */
-+	const EVP_AEAD *aead = s->s3->new_aead;
++    const EVP_AEAD *aead = s->s3->new_aead;
 +#else
-+	const EVP_AEAD *aead = s->s3->tmp.new_aead;
++    const EVP_AEAD *aead = s->s3->tmp.new_aead;
 +#endif
 +
-+	if (is_read)
-+		{
-+		s->mac_flags &= ~SSL_MAC_FLAG_READ_MAC_STREAM;
-+		if (s->version >= DTLS_MAX_VERSION)
-+			memset(s->s3->read_sequence, 0, 8);
-+		}
-+	else
-+		{
-+		s->mac_flags &= ~SSL_MAC_FLAG_WRITE_MAC_STREAM;
-+		if (s->version >= DTLS_MAX_VERSION)
-+			memset(s->s3->write_sequence, 0, 8);
-+		}
++    if (is_read) {
++        s->mac_flags &= ~SSL_MAC_FLAG_READ_MAC_STREAM;
++        if (s->version >= DTLS_MAX_VERSION)
++            memset(s->s3->read_sequence, 0, 8);
++    } else {
++        s->mac_flags &= ~SSL_MAC_FLAG_WRITE_MAC_STREAM;
++        if (s->version >= DTLS_MAX_VERSION)
++            memset(s->s3->write_sequence, 0, 8);
++    }
 +
-+	key_data = s->s3->tmp.key_block;
-+	mac_secret_len = (unsigned) s->s3->tmp.new_mac_secret_size;
-+	key_len = EVP_AEAD_key_length(aead);
-+	iv_len = SSL_CIPHER_AEAD_FIXED_NONCE_LEN(s->s3->tmp.new_cipher);
++    key_data = s->s3->tmp.key_block;
++    mac_secret_len = (unsigned) s->s3->tmp.new_mac_secret_size;
++    key_len = EVP_AEAD_key_length(aead);
++    iv_len = SSL_CIPHER_AEAD_FIXED_NONCE_LEN(s->s3->tmp.new_cipher);
 +
-+	/* skip client_write_mac_secret + server_write_mac_secret */
-+	key_data += mac_secret_len * 2;
-+	client_write_key	= key_data; key_data += key_len;
-+	server_write_key	= key_data; key_data += key_len;
-+	client_write_iv		= key_data; key_data += iv_len;
-+	server_write_iv		= key_data; key_data += iv_len;
++    /* skip client_write_mac_secret + server_write_mac_secret */
++    key_data += mac_secret_len * 2;
++    client_write_key = key_data; key_data += key_len;
++    server_write_key = key_data; key_data += key_len;
++    client_write_iv  = key_data; key_data += iv_len;
++    server_write_iv  = key_data; key_data += iv_len;
 +
-+	if (use_client_keys)
-+		{
-+		key = client_write_key;
-+		iv = client_write_iv;
-+		}
-+	else
-+		{
-+		key = server_write_key;
-+		iv = server_write_iv;
-+		}
++    if (use_client_keys) {
++        key = client_write_key;
++        iv = client_write_iv;
++    } else {
++        key = server_write_key;
++        iv = server_write_iv;
++    }
 +
-+	if (key_data - s->s3->tmp.key_block > s->s3->tmp.key_block_length)
-+		{
-+		SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE,ERR_R_INTERNAL_ERROR);
-+		return 0;
-+		}
++    if (key_data - s->s3->tmp.key_block > s->s3->tmp.key_block_length) {
++        SSLerr(SSL_F_TLS1_CHANGE_CIPHER_STATE, ERR_R_INTERNAL_ERROR);
++        return 0;
++    }
 +
-+	return tls1_change_cipher_state_aead2(s, is_read,
-+						key, key_len, iv, iv_len);
-+	}
++    return tls1_change_cipher_state_aead2(s, is_read,
++                                          key, key_len, iv, iv_len);
++}
 +
 +static int tls1_change_cipher_state_cipher(SSL *s, int which)
- 	{
- 	static const unsigned char empty[]="";
- 	unsigned char *p,*mac_secret;
-@@ -580,11 +720,28 @@
- 	return(0);
- 	}
+ {
+     static const unsigned char empty[] = "";
+     unsigned char *p, *mac_secret;
+@@ -612,11 +740,28 @@
+     return (0);
+ }
  
 +int tls1_change_cipher_state(SSL *s, int which)
-+	{
-+	const EVP_AEAD *aead =
++{
++    const EVP_AEAD *aead =
 +#if 1 /* for compat. */
-+			s->s3->new_aead;
++                s->s3->new_aead;
 +#else
-+			s->s3->tmp.new_aead;
++                s->s3->tmp.new_aead;
 +#endif
 +
-+	if (aead)
-+		return tls1_change_cipher_state_aead(s, which);
++    if (aead)
++        return tls1_change_cipher_state_aead(s, which);
 +
-+	return tls1_change_cipher_state_cipher(s, which);
-+	}
++    return tls1_change_cipher_state_cipher(s, which);
++}
 +
  int tls1_setup_key_block(SSL *s)
- 	{
- 	unsigned char *p1,*p2=NULL;
--	const EVP_CIPHER *c;
--	const EVP_MD *hash;
-+	const EVP_AEAD *aead = NULL;
-+	const EVP_CIPHER *c = NULL;
-+	const EVP_MD *hash = NULL;
-+	unsigned key_len, iv_len;
- 	int num;
- 	SSL_COMP *comp;
- 	int mac_type= NID_undef,mac_secret_size=0;
-@@ -597,17 +754,41 @@
- 	if (s->s3->tmp.key_block_length != 0)
- 		return(1);
+ {
+     unsigned char *p1, *p2 = NULL;
+-    const EVP_CIPHER *c;
+-    const EVP_MD *hash;
++    const EVP_AEAD *aead = NULL;
++    const EVP_CIPHER *c = NULL;
++    const EVP_MD *hash = NULL;
++    unsigned key_len, iv_len;
+     int num;
+     SSL_COMP *comp;
+     int mac_type = NID_undef, mac_secret_size = 0;
+@@ -629,18 +774,38 @@
+     if (s->s3->tmp.key_block_length != 0)
+         return (1);
  
--	if (!ssl_cipher_get_evp(s->session,&c,&hash,&mac_type,&mac_secret_size,&comp))
-+	if (!ssl_cipher_get_comp(s->session, &comp))
-+		goto cipher_unavailable_err;
+-    if (!ssl_cipher_get_evp
+-        (s->session, &c, &hash, &mac_type, &mac_secret_size, &comp)) {
+-        SSLerr(SSL_F_TLS1_SETUP_KEY_BLOCK, SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
+-        return (0);
++    if (!ssl_cipher_get_comp(s->session, &comp))
++        goto cipher_unavailable_err;
 +
-+	if (s->session->cipher->algorithm2 & SSL_CIPHER_ALGORITHM2_AEAD)
- 		{
--		SSLerr(SSL_F_TLS1_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
--		return(0);
-+		if (!ssl_cipher_get_evp_aead(s->session, &aead))
-+			goto cipher_unavailable_err;
++    if (s->session->cipher->algorithm2 & SSL_CIPHER_ALGORITHM2_AEAD) {
++        if (!ssl_cipher_get_evp_aead(s->session, &aead))
++            goto cipher_unavailable_err;
 +
-+		key_len = EVP_AEAD_key_length(aead);
-+		iv_len = SSL_CIPHER_AEAD_FIXED_NONCE_LEN(s->session->cipher);
- 		}
-+	else
-+		{
-+		if (!ssl_cipher_get_evp(s->session,&c,&hash,&mac_type,&mac_secret_size))
-+			goto cipher_unavailable_err;
++        key_len = EVP_AEAD_key_length(aead);
++        iv_len = SSL_CIPHER_AEAD_FIXED_NONCE_LEN(s->session->cipher);
++    } else {
++        if (!ssl_cipher_get_evp(s->session, &c, &hash,
++                                &mac_type, &mac_secret_size))
++            goto cipher_unavailable_err;
++
++        key_len = EVP_CIPHER_key_length(c);
++
++        if (EVP_CIPHER_mode(c) == EVP_CIPH_GCM_MODE)
++            iv_len = EVP_GCM_TLS_FIXED_IV_LEN;
++        else
++            iv_len = EVP_CIPHER_iv_length(c);
+     }
  
-+		key_len = EVP_CIPHER_key_length(c);
-+
-+		if (EVP_CIPHER_mode(c) == EVP_CIPH_GCM_MODE)
-+			iv_len = EVP_GCM_TLS_FIXED_IV_LEN;
-+		else
-+			iv_len = EVP_CIPHER_iv_length(c);
-+		}
-+
 +#if 1 /* for compat. */
-+	s->s3->new_aead = aead;
++    s->s3->new_aead = aead;
 +#else
-+	s->s3->tmp.new_aead = aead;
++    s->s3->tmp.new_aead = aead;
 +#endif
- 	s->s3->tmp.new_sym_enc=c;
- 	s->s3->tmp.new_hash=hash;
- 	s->s3->tmp.new_mac_pkey_type = mac_type;
- 	s->s3->tmp.new_mac_secret_size = mac_secret_size;
--	num=EVP_CIPHER_key_length(c)+mac_secret_size+EVP_CIPHER_iv_length(c);
-+
-+	num = key_len + mac_secret_size + iv_len;
- 	num*=2;
+     s->s3->tmp.new_sym_enc = c;
+     s->s3->tmp.new_hash = hash;
+     s->s3->tmp.new_mac_pkey_type = mac_type;
+     s->s3->tmp.new_mac_secret_size = mac_secret_size;
+-    num =
+-        EVP_CIPHER_key_length(c) + mac_secret_size + EVP_CIPHER_iv_length(c);
++    num = key_len + mac_secret_size + iv_len;
+     num *= 2;
  
- 	ssl3_cleanup_key_block(s);
-@@ -670,6 +851,10 @@
- 		OPENSSL_free(p2);
- 		}
- 	return(ret);
+     ssl3_cleanup_key_block(s);
+@@ -718,6 +883,10 @@
+         OPENSSL_free(p2);
+     }
+     return (ret);
 +
 +cipher_unavailable_err:
-+	SSLerr(SSL_F_TLS1_SETUP_KEY_BLOCK,SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
-+	return 0;
- 	}
++    SSLerr(SSL_F_TLS1_SETUP_KEY_BLOCK, SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
++    return (0);
+ }
  
- /* tls1_enc encrypts/decrypts the record in |s->wrec| / |s->rrec|, respectively.
-@@ -688,6 +873,151 @@
- 	unsigned long l;
- 	int bs,i,j,k,pad=0,ret,mac_size=0;
- 	const EVP_CIPHER *enc;
-+	const SSL_AEAD_CTX *aead = send ? s->aead_write_ctx : s->aead_read_ctx;
+ /*-
+@@ -737,6 +906,138 @@
+     unsigned long l;
+     int bs, i, j, k, pad = 0, ret, mac_size = 0;
+     const EVP_CIPHER *enc;
++    const SSL_AEAD_CTX *aead = send ? s->aead_write_ctx : s->aead_read_ctx;
 +
-+	if (aead)
-+		{
-+		unsigned char ad[13], *seq, *in, *out, nonce[16];
-+		unsigned nonce_used;
-+		size_t n;
++    if (aead) {
++        unsigned char ad[13], *seq, *in, *out, nonce[16];
++        unsigned nonce_used;
++        size_t n;
 +
-+		seq = send ? s->s3->write_sequence : s->s3->read_sequence;
++        seq = send ? s->s3->write_sequence : s->s3->read_sequence;
 +
-+		if (s->version == DTLS1_VERSION || s->version == DTLS1_BAD_VER)
-+			{
-+			unsigned char dtlsseq[9], *p = dtlsseq;
++        if (s->version == DTLS1_VERSION || s->version == DTLS1_BAD_VER) {
++            unsigned char dtlsseq[9], *p = dtlsseq;
 +
-+			s2n(send ? s->d1->w_epoch : s->d1->r_epoch, p);
-+			memcpy(p, &seq[2], 6);
-+			memcpy(ad, dtlsseq, 8);
-+			}
-+		else
-+			{
-+			memcpy(ad, seq, 8);
-+			for (i=7; i>=0; i--)	/* increment */
-+				{
-+				++seq[i];
-+				if (seq[i] != 0)
-+					break;
-+				}
-+			}
++            s2n(send ? s->d1->w_epoch : s->d1->r_epoch, p);
++            memcpy(p, &seq[2], 6);
++            memcpy(ad, dtlsseq, 8);
++        } else {
++            memcpy(ad, seq, 8);
++            for (i = 7; i >= 0; i--) {  /* increment */
++                ++seq[i];
++                if (seq[i] != 0)
++                    break;
++            }
++        }
 +
-+		rec = send ? &s->s3->wrec : &s->s3->rrec;
++        rec = send ? &s->s3->wrec : &s->s3->rrec;
 +
-+		ad[8]  = rec->type;
-+		ad[9]  = (unsigned char)(s->version>>8);
-+		ad[10] = (unsigned char)(s->version);
++        ad[8]  = rec->type;
++        ad[9]  = (unsigned char)(s->version >> 8);
++        ad[10] = (unsigned char)(s->version);
 +
-+#if 0	/* off assert because checked in tls1_change_cipher_state_aead2() */
-+		if ((!aead->xor_fixed_nonce &&
-+		     aead->fixed_nonce_len + aead->variable_nonce_len
-+							> sizeof(nonce)) ||
-+		    (aead->xor_fixed_nonce &&
-+		     aead->fixed_nonce_len > sizeof(nonce)) ||
-+		    aead->variable_nonce_len > 8)
-+			return -1;  /* internal error - should never happen. */
++#if 0 /* off assert because checked in tls1_change_cipher_state_aead2() */
++        if ((!aead->xor_fixed_nonce &&
++             aead->fixed_nonce_len + aead->variable_nonce_len
++                                            > sizeof(nonce)) ||
++            (aead->xor_fixed_nonce &&
++             aead->fixed_nonce_len > sizeof(nonce)) ||
++            aead->variable_nonce_len > 8)
++            return -1;  /* internal error - should never happen. */
 +#endif
-+		/* Prepend the fixed nonce, or left-pad with zeros if XORing. */
-+		if (aead->xor_fixed_nonce)
-+			{
-+			nonce_used = aead->fixed_nonce_len - aead->variable_nonce_len;
-+			memset(nonce, 0, nonce_used);
-+			}
-+		else
-+			{
-+			memcpy(nonce, aead->fixed_nonce, aead->fixed_nonce_len);
-+			nonce_used = aead->fixed_nonce_len;
-+			}
++        /* Prepend the fixed nonce, or left-pad with zeros if XORing. */
++        if (aead->xor_fixed_nonce) {
++            nonce_used = aead->fixed_nonce_len - aead->variable_nonce_len;
++            memset(nonce, 0, nonce_used);
++        } else {
++            memcpy(nonce, aead->fixed_nonce, aead->fixed_nonce_len);
++            nonce_used = aead->fixed_nonce_len;
++        }
 +
-+		if (send)
-+			{
-+			size_t len = rec->length;
-+			size_t eivlen = 0;
-+			in = rec->input;
-+			out = rec->data;
++        if (send) {
++            size_t len = rec->length;
++            size_t eivlen = 0;
++            in = rec->input;
++            out = rec->data;
 +
-+			/* When sending we use the sequence number as the
-+			 * variable part of the nonce. */
-+			if (aead->variable_nonce_len > 8)
-+				return -1;
-+			memcpy(nonce + nonce_used, ad, aead->variable_nonce_len);
-+			nonce_used += aead->variable_nonce_len;
++            /* When sending we use the sequence number as the
++             * variable part of the nonce. */
++            if (aead->variable_nonce_len > 8)
++                return -1;
++            memcpy(nonce + nonce_used, ad, aead->variable_nonce_len);
++            nonce_used += aead->variable_nonce_len;
 +
-+			/* in do_ssl3_write, rec->input is moved forward by
-+			 * variable_nonce_len in order to leave space for the
-+			 * variable nonce. Thus we can copy the sequence number
-+			 * bytes into place without overwriting any of the
-+			 * plaintext. */
-+			if (aead->variable_nonce_included_in_record)
-+				{
-+				memcpy(out, ad, aead->variable_nonce_len);
-+				len -= aead->variable_nonce_len;
-+				eivlen = aead->variable_nonce_len;
-+				}
++            /* in do_ssl3_write, rec->input is moved forward by
++             * variable_nonce_len in order to leave space for the
++             * variable nonce. Thus we can copy the sequence number
++             * bytes into place without overwriting any of the
++             * plaintext. */
++            if (aead->variable_nonce_included_in_record) {
++                memcpy(out, ad, aead->variable_nonce_len);
++                len -= aead->variable_nonce_len;
++                eivlen = aead->variable_nonce_len;
++            }
 +
-+			ad[11] = len >> 8;
-+			ad[12] = len & 0xff;
++            ad[11] = len >> 8;
++            ad[12] = len & 0xff;
 +
-+			/* XOR the fixed nonce, if necessary. */
-+			if (aead->xor_fixed_nonce)
-+				for (i = 0; i < aead->fixed_nonce_len; i++)
-+					nonce[i] ^= aead->fixed_nonce[i];
++            /* XOR the fixed nonce, if necessary. */
++            if (aead->xor_fixed_nonce)
++                for (i = 0; i < aead->fixed_nonce_len; i++)
++                    nonce[i] ^= aead->fixed_nonce[i];
 +
-+			if (!EVP_AEAD_CTX_seal(&aead->ctx,
-+					out + eivlen, &n, len + aead->tag_len,
-+					nonce, nonce_used,
-+					in + eivlen, len,
-+					ad, sizeof(ad)))
-+				return -1;
-+			if (aead->variable_nonce_included_in_record)
-+				n += aead->variable_nonce_len;
-+			}
-+		else
-+			{
-+			/* receive */
-+			size_t len = rec->length;
++            if (!EVP_AEAD_CTX_seal(&aead->ctx,
++                                   out + eivlen, &n, len + aead->tag_len,
++                                   nonce, nonce_used,
++                                   in + eivlen, len,
++                                   ad, sizeof(ad)))
++                return -1;
++            if (aead->variable_nonce_included_in_record)
++                n += aead->variable_nonce_len;
++        } else {
++            /* receive */
++            size_t len = rec->length;
 +
-+			if (rec->data != rec->input)
-+				return -1;  /* internal error - should never happen. */
-+			out = in = rec->input;
++            if (rec->data != rec->input)
++                return -1;  /* internal error - should never happen. */
++            out = in = rec->input;
 +
-+			if (len < aead->variable_nonce_len)
-+				return 0;
-+			memcpy(nonce + nonce_used,
-+			       aead->variable_nonce_included_in_record ? in : ad,
-+			       aead->variable_nonce_len);
-+			nonce_used += aead->variable_nonce_len;
++            if (len < aead->variable_nonce_len)
++                return 0;
++            memcpy(nonce + nonce_used,
++                   aead->variable_nonce_included_in_record ? in : ad,
++                   aead->variable_nonce_len);
++            nonce_used += aead->variable_nonce_len;
 +
-+			if (aead->variable_nonce_included_in_record)
-+				{
-+				in += aead->variable_nonce_len;
-+				len -= aead->variable_nonce_len;
-+				out += aead->variable_nonce_len;
-+				}
++            if (aead->variable_nonce_included_in_record) {
++                in += aead->variable_nonce_len;
++                len -= aead->variable_nonce_len;
++                out += aead->variable_nonce_len;
++            }
 +
-+			/* XOR the fixed nonce, if necessary. */
-+			if (aead->xor_fixed_nonce)
-+				for (i = 0; i < aead->fixed_nonce_len; i++)
-+					nonce[i] ^= aead->fixed_nonce[i];
++            /* XOR the fixed nonce, if necessary. */
++            if (aead->xor_fixed_nonce)
++                for (i = 0; i < aead->fixed_nonce_len; i++)
++                    nonce[i] ^= aead->fixed_nonce[i];
 +
-+			if (len < aead->tag_len)
-+				return 0;
-+			len -= aead->tag_len;
++            if (len < aead->tag_len)
++                return 0;
++            len -= aead->tag_len;
 +
-+			ad[11] = len >> 8;
-+			ad[12] = len & 0xff;
++            ad[11] = len >> 8;
++            ad[12] = len & 0xff;
 +
-+			if (!EVP_AEAD_CTX_open(&aead->ctx, out, &n, len,
-+					nonce, nonce_used,
-+					in, len + aead->tag_len, ad, sizeof(ad)))
-+				return -1;
++            if (!EVP_AEAD_CTX_open(&aead->ctx, out, &n, len,
++                                    nonce, nonce_used,
++                                    in, len + aead->tag_len, ad, sizeof(ad)))
++                return -1;
 +
-+			rec->data = rec->input = out;
-+			}
++            rec->data = rec->input = out;
++        }
 +
-+		rec->length = n;
-+		return 1;
-+		}
++        rec->length = n;
++        return 1;
++    }
  
- 	if (send)
- 		{
-diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
---- a/ssl/tls1.h	2014-10-16 02:51:58.000000000 +0900
-+++ b/ssl/tls1.h	2015-12-21 21:09:31.000000000 +0900
-@@ -522,6 +522,13 @@
- #define TLS1_CK_ECDH_RSA_WITH_AES_128_GCM_SHA256        0x0300C031
- #define TLS1_CK_ECDH_RSA_WITH_AES_256_GCM_SHA384        0x0300C032
+     if (send) {
+         if (EVP_MD_CTX_md(s->write_hash)) {
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/ssl/tls1.h	2016-05-03 22:49:00.000000000 +0900
++++ b/ssl/tls1.h	2016-05-19 21:41:11.000000000 +0900
+@@ -537,6 +537,13 @@
+ # define TLS1_CK_ECDH_RSA_WITH_AES_128_GCM_SHA256        0x0300C031
+ # define TLS1_CK_ECDH_RSA_WITH_AES_256_GCM_SHA384        0x0300C032
  
-+#define TLS1_CK_ECDHE_RSA_CHACHA20_POLY1305_OLD		0x0300CC13
-+#define TLS1_CK_ECDHE_ECDSA_CHACHA20_POLY1305_OLD	0x0300CC14
-+#define TLS1_CK_DHE_RSA_CHACHA20_POLY1305_OLD		0x0300CC15
-+#define TLS1_CK_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256		0x0300CCA8
-+#define TLS1_CK_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256	0x0300CCA9
-+#define TLS1_CK_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256		0x0300CCAA
++# define TLS1_CK_ECDHE_RSA_CHACHA20_POLY1305_OLD         0x0300CC13
++# define TLS1_CK_ECDHE_ECDSA_CHACHA20_POLY1305_OLD       0x0300CC14
++# define TLS1_CK_DHE_RSA_CHACHA20_POLY1305_OLD           0x0300CC15
++# define TLS1_CK_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256     0x0300CCA8
++# define TLS1_CK_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256   0x0300CCA9
++# define TLS1_CK_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256       0x0300CCAA
 +
- /* XXX
-  * Inconsistency alert:
-  * The OpenSSL names of ciphers with ephemeral DH here include the string
-@@ -673,6 +680,13 @@
- #define TLS1_TXT_ECDH_RSA_WITH_AES_128_GCM_SHA256       "ECDH-RSA-AES128-GCM-SHA256"
- #define TLS1_TXT_ECDH_RSA_WITH_AES_256_GCM_SHA384       "ECDH-RSA-AES256-GCM-SHA384"
+ /*
+  * XXX Inconsistency alert: The OpenSSL names of ciphers with ephemeral DH
+  * here include the string "DHE", while elsewhere it has always been "EDH".
+@@ -688,6 +695,16 @@
+ # define TLS1_TXT_ECDH_RSA_WITH_AES_128_GCM_SHA256       "ECDH-RSA-AES128-GCM-SHA256"
+ # define TLS1_TXT_ECDH_RSA_WITH_AES_256_GCM_SHA384       "ECDH-RSA-AES256-GCM-SHA384"
  
-+#define TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256	"ECDHE-RSA-CHACHA20-POLY1305"
-+#define TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256	"ECDHE-ECDSA-CHACHA20-POLY1305"
-+#define TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256		"DHE-RSA-CHACHA20-POLY1305"
-+#define TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_OLD	TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-+#define TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_OLD	TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
-+#define TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_OLD	TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256
++# define TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256    "ECDHE-RSA-CHACHA20-POLY1305"
++# define TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256  "ECDHE-ECDSA-CHACHA20-POLY1305"
++# define TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256      "DHE-RSA-CHACHA20-POLY1305"
++# define TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_OLD \
++         TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
++# define TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_OLD \
++         TLS1_TXT_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
++# define TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_OLD \
++         TLS1_TXT_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256
 +
- #define TLS_CT_RSA_SIGN			1
- #define TLS_CT_DSS_SIGN			2
- #define TLS_CT_RSA_FIXED_DH		3
-diff -urN /dev/null 1.0.1e-2+deb7u19+ore1
+ # define TLS_CT_RSA_SIGN                 1
+ # define TLS_CT_DSS_SIGN                 2
+ # define TLS_CT_RSA_FIXED_DH             3
+diff -urN /dev/null 1.0.1k-3+deb8u2+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/crypto/evp/aeadtest.c	2016-02-04 00:36:42.000000000 +0900
 @@ -0,0 +1,422 @@
@@ -17759,61 +17691,58 @@ diff -urN /dev/null 1.0.1e-2+deb7u19+ore1
 +
 +	return 0;
 +	}
-diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
---- a/test/Makefile	2013-02-12 00:26:04.000000000 +0900
-+++ b/test/Makefile	2015-12-21 21:21:43.000000000 +0900
-@@ -63,6 +63,9 @@
- JPAKETEST=	jpaketest
- SRPTEST=	srptest
- ASN1TEST=	asn1test
+diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+--- a/test/Makefile	2016-05-03 22:49:51.000000000 +0900
++++ b/test/Makefile	2016-05-19 21:58:02.000000000 +0900
+@@ -68,6 +68,9 @@
+ CONSTTIMETEST=  constant_time_test
+ VERIFYEXTRATEST=	verify_extra_test
+ CLIENTHELLOTEST=	clienthellotest
 +CHACHATEST=	chachatest
 +POLY1305TEST=	poly1305test
 +AEADTEST=	aeadtest
  
  TESTS=		alltests
  
-@@ -74,7 +77,8 @@
- 	$(RANDTEST)$(EXE_EXT) $(DHTEST)$(EXE_EXT) $(ENGINETEST)$(EXE_EXT) \
+@@ -80,7 +83,7 @@
  	$(BFTEST)$(EXE_EXT) $(CASTTEST)$(EXE_EXT) $(SSLTEST)$(EXE_EXT) $(EXPTEST)$(EXE_EXT) $(DSATEST)$(EXE_EXT) $(RSATEST)$(EXE_EXT) \
- 	$(EVPTEST)$(EXE_EXT) $(IGETEST)$(EXE_EXT) $(JPAKETEST)$(EXE_EXT) $(SRPTEST)$(EXE_EXT) \
--	$(ASN1TEST)$(EXE_EXT)
-+	$(ASN1TEST)$(EXE_EXT) \
-+	$(CHACHATEST)$(EXE_EXT) $(POLY1305TEST)$(EXE_EXT) $(AEADTEST)$(EXE_EXT)
+ 	$(EVPTEST)$(EXE_EXT) $(EVPEXTRATEST)$(EXE_EXT) $(IGETEST)$(EXE_EXT) $(JPAKETEST)$(EXE_EXT) $(SRPTEST)$(EXE_EXT) \
+ 	$(ASN1TEST)$(EXE_EXT) $(HEARTBEATTEST)$(EXE_EXT) $(CONSTTIMETEST)$(EXE_EXT) $(VERIFYEXTRATEST)$(EXE_EXT) \
+-	$(CLIENTHELLOTEST)$(EXE_EXT)
++	$(CLIENTHELLOTEST)$(EXE_EXT) $(CHACHATEST)$(EXE_EXT) $(POLY1305TEST)$(EXE_EXT) $(AEADTEST)$(EXE_EXT)
  
  # $(METHTEST)$(EXE_EXT)
  
-@@ -86,7 +90,8 @@
- 	$(MDC2TEST).o $(RMDTEST).o \
- 	$(RANDTEST).o $(DHTEST).o $(ENGINETEST).o $(CASTTEST).o \
+@@ -94,7 +97,7 @@
  	$(BFTEST).o  $(SSLTEST).o  $(DSATEST).o  $(EXPTEST).o $(RSATEST).o \
--	$(EVPTEST).o $(IGETEST).o $(JPAKETEST).o $(ASN1TEST).o
-+	$(EVPTEST).o $(IGETEST).o $(JPAKETEST).o $(ASN1TEST).o \
-+	$(CHACHATEST).o $(POLY1305TEST).o $(AEADTEST).o
+ 	$(EVPTEST).o $(EVPEXTRATEST).o $(IGETEST).o $(JPAKETEST).o $(ASN1TEST).o \
+ 	$(HEARTBEATTEST).o $(CONSTTIMETEST).o $(VERIFYEXTRATEST).o \
+-	$(CLIENTHELLOTEST).o
++	$(CLIENTHELLOTEST).o $(CHACHATEST).o $(POLY1305TEST).o $(AEADTEST).o
+ 
  SRC=	$(BNTEST).c $(ECTEST).c  $(ECDSATEST).c $(ECDHTEST).c $(IDEATEST).c \
  	$(MD2TEST).c  $(MD4TEST).c $(MD5TEST).c \
- 	$(HMACTEST).c $(WPTEST).c \
-@@ -94,7 +99,8 @@
- 	$(DESTEST).c $(SHATEST).c $(SHA1TEST).c $(MDC2TEST).c $(RMDTEST).c \
- 	$(RANDTEST).c $(DHTEST).c $(ENGINETEST).c $(CASTTEST).c \
+@@ -105,7 +108,7 @@
  	$(BFTEST).c  $(SSLTEST).c $(DSATEST).c   $(EXPTEST).c $(RSATEST).c \
--	$(EVPTEST).c $(IGETEST).c $(JPAKETEST).c $(SRPTEST).c $(ASN1TEST).c
-+	$(EVPTEST).c $(IGETEST).c $(JPAKETEST).c $(SRPTEST).c $(ASN1TEST).c \
-+	$(CHACHATEST).c $(POLY1305TEST).c $(AEADTEST).c
+ 	$(EVPTEST).c $(EVPEXTRATEST).c $(IGETEST).c $(JPAKETEST).c $(SRPTEST).c $(ASN1TEST).c \
+ 	$(HEARTBEATTEST).c $(CONSTTIMETEST).c $(VERIFYEXTRATEST).c \
+-	$(CLIENTHELLOTEST).c
++	$(CLIENTHELLOTEST).c $(CHACHATEST).c $(POLY1305TEST).c $(AEADTEST).c
  
  EXHEADER= 
  HEADER=	$(EXHEADER)
-@@ -137,7 +143,7 @@
- 	test_enc test_x509 test_rsa test_crl test_sid \
+@@ -149,7 +152,7 @@
  	test_gen test_req test_pkcs7 test_verify test_dh test_dsa \
- 	test_ss test_ca test_engine test_evp test_ssl test_tsa test_ige \
--	test_jpake test_srp test_cms
-+	test_jpake test_srp test_cms test_chacha test_poly1305 test_aead
+ 	test_ss test_ca test_engine test_evp test_evp_extra test_ssl test_tsa test_ige \
+ 	test_jpake test_srp test_cms test_heartbeat test_constant_time test_verify_extra \
+-	test_clienthello
++	test_clienthello test_chacha test_poly1305 test_aead
  
  test_evp:
  	../util/shlib_wrap.sh ./$(EVPTEST) evptests.txt
-@@ -318,6 +324,29 @@
- 	@echo "Test SRP"
- 	../util/shlib_wrap.sh ./srptest
+@@ -348,6 +351,29 @@
+ 	@echo $(START) $@
+ 	../util/shlib_wrap.sh ./$(CLIENTHELLOTEST)
  
 +test_chacha: $(CHACHATEST)$(EXE_EXT)
 +	@echo "Test ChaCha20"
@@ -17841,7 +17770,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  lint:
  	lint -DLINT $(INCLUDES) $(SRC)>fluff
  
-@@ -394,6 +423,15 @@
+@@ -432,6 +458,15 @@
  $(SHA512TEST)$(EXE_EXT): $(SHA512TEST).o $(DLIBCRYPTO)
  	@target=$(SHA512TEST); $(BUILD_CMD)
  
@@ -17857,7 +17786,7 @@ diff -ur openssl-1.0.1e-2+deb7u18 1.0.1e-2+deb7u18+ore2
  $(RMDTEST)$(EXE_EXT): $(RMDTEST).o $(DLIBCRYPTO)
  	@target=$(RMDTEST); $(BUILD_CMD)
  
-diff -urN /dev/null 1.0.1e-2+deb7u12+ore5
+diff -urN /dev/null 1.0.1k-1+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/test/aes_128_gcm_tests.txt	2013-10-02 23:45:00.000000000 +0900
 @@ -0,0 +1,420 @@
@@ -18281,7 +18210,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u12+ore5
 +CT: 5f3627bd53f8da0bbe6f3c9246d6f96fe9abb91cdecf66ddd42f833d98f4d4634c2e1e1ad4088c84c22191bdb9d99ef227320e455dd112c4a9e9cca95724fcc9ae024ed12bf60a802d0b87b99d9bf22590786567c2962171d2b05bec9754c627608e9eba7bccc70540aa4da72e1e04b26d8f968b10230f707501c0091a8ac118f86e87aae1ac00257aee29c3345bd3839154977acd378fc1b2197f5c1fd8e12262f9c2974fb92dc481eeb51aadd44a8851f61b93a84ba57f2870df0423d289bfdcfe634f9ecb7d7c6110a95b49418a2dd6663377690275c205b3efa79a0a77c92567fb429d8ee437312a39df7516dc238f7b9414938223d7ec24d256d3fb3a5954a7c75dbd79486d49ba6bb38a7ccce0f58700260b71319adf98ab8684e34913abe2d9d97193e2
 +TAG: e690e89af39ff367f5d40a1b7c7ccd4f
 +
-diff -urN /dev/null 1.0.1e-2+deb7u12+ore5
+diff -urN /dev/null 1.0.1k-1+ore1
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/test/aes_256_gcm_tests.txt	2013-10-02 23:45:00.000000000 +0900
 @@ -0,0 +1,420 @@
@@ -18705,7 +18634,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u12+ore5
 +CT: 0fe35823610ea698aeb5b571f3ebbaf0ac3586ecb3b24fcc7c56943d4426f7fdf4e4a53fb430751456d41551f8e5502faa0e1ac5f452b27b13c1dc63e9231c6b192f8dd2978300293298acb6293459d3204429e374881085d49ed6ad76f1d85e3f6dd5455a7a5a9d7127386a30f80658395dc8eb158e5ca052a7137feef28aa247e176cceb9c031f73fb8d48139e3bdb30e2e19627f7fc3501a6d6287e2fb89ad184cefa1774585aa663586f289c778462eee3cd88071140274770e4ed98b9b83cd4fa659fcdd2d1fde7e58333c6cf7f83fe285b97ad8f276a375fafa15f88e6167f5f2bfb95af1aefee80b0620a9bc09402ab79036e716f0c8d518ae2fa15094f6ea4c5e8b283f97cc27f2f1d0b6367b4b508c7bad16f1539325751bd785e9e08cd508bdb3b84
 +TAG: 1976d7e121704ce463a8d4fe1b93d90f
 +
-diff -urN /dev/null 1.0.1e-2+deb7u18+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u2+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/test/chacha20_poly1305_old_tests.txt	2015-12-16 21:20:49.000000000 +0000
 @@ -0,0 +1,524 @@
@@ -19233,7 +19162,7 @@ diff -urN /dev/null 1.0.1e-2+deb7u18+ore2
 +AD: 3937592db78a61ff469691b6800792019bc2b3d42512f23c1b1a66a8274495cb
 +CT: 9d5bd1c7e766763eb00684c038043111d8c6390a8d6e17a15ef97c02ab16f09c
 +TAG: a64d0eeb4a01481ec0cee8c1c357e3
-diff -urN /dev/null 1.0.1e-2+deb7u18+ore2
+diff -urN /dev/null 1.0.1k-3+deb8u2+ore2
 --- /dev/null	1970-01-01 09:00:00.000000000 +0900
 +++ b/test/chacha20_poly1305_tests.txt	2015-12-16 21:20:49.000000000 +0000
 @@ -0,0 +1,578 @@
