@@ -36,9 +36,9 @@ debuild -uc -us
 # In some directory
 git clone --depth 1 https://github.com/h-yamamo/openssl-chacha20poly1305
 apt-get -d source openssl
-tar xf openssl_1.0.2i.orig.tar.gz
-cd openssl-1.0.2i
-tar xf ../openssl_1.0.2i-1~bpo8+1.debian.tar.xz
+tar xf openssl_1.0.2j.orig.tar.gz
+cd openssl-1.0.2j
+tar xf ../openssl_1.0.2j-1~bpo8+1.debian.tar.xz
 cp -av ../openssl-chacha20poly1305/jessie-backports/debian/* debian/
 debuild -uc -us
 ```

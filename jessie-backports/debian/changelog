@@ -1,4 +1,4 @@
-openssl (1.0.2i-1~bpo8+1+ore1) jessie-backports; urgency=low
+openssl (1.0.2j-1~bpo8+1+ore1) jessie-backports; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,14 @@ openssl (1.0.2i-1~bpo8+1+ore1) jessie-backports; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Sat, 24 Sep 2016 17:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Tue, 27 Sep 2016 22:00:00 +0900
+
+openssl (1.0.2j-1~bpo8+1) jessie-backports; urgency=medium
+
+  * New upstream release
+    - Fixes CVE-2016-7052
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Mon, 26 Sep 2016 18:20:20 +0200
 
 openssl (1.0.2i-1~bpo8+1) jessie-backports; urgency=medium
 
