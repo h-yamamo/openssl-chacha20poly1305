@@ -1,7 +1,7 @@
-diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
---- a/Configure	2016-09-22 19:31:54.000000000 +0000
-+++ b/Configure	2016-09-24 00:00:00.000000000 +0900
-@@ -154,25 +154,25 @@
+diff -ur openssl-1.0.2k-1~bpo8+1 openssl-1.0.2k-1~bpo8+1+ore1
+--- a/Configure	2017-01-28 21:22:13.000000000 +0000
++++ b/Configure	2017-01-29 12:00:00.000000000 +0900
+@@ -156,25 +156,25 @@
  my $bits1="THIRTY_TWO_BIT ";
  my $bits2="SIXTY_FOUR_BIT ";
  
@@ -41,7 +41,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  
  # As for $BSDthreads. Idea is to maintain "collective" set of flags,
  # which would cover all BSD flavors. -pthread applies to them all, 
-@@ -768,6 +768,8 @@
+@@ -770,6 +770,8 @@
  my $idx_cmll_obj = $idx++;
  my $idx_modes_obj = $idx++;
  my $idx_engines_obj = $idx++;
@@ -50,7 +50,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  my $idx_perlasm_scheme = $idx++;
  my $idx_dso_scheme = $idx++;
  my $idx_shared_target = $idx++;
-@@ -814,6 +816,8 @@
+@@ -816,6 +818,8 @@
  my $cast_enc="c_enc.o";
  my $rc4_enc="rc4_enc.o rc4_skey.o";
  my $rc5_enc="rc5_enc.o";
@@ -59,7 +59,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  my $md5_obj="";
  my $sha1_obj="";
  my $rmd160_obj="";
-@@ -1265,7 +1269,7 @@
+@@ -1267,7 +1271,7 @@
  
  print "IsMK1MF=$IsMK1MF\n";
  
@@ -68,7 +68,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  my $cc = $fields[$idx_cc];
  # Allow environment CC to override compiler...
  if($ENV{CC}) {
-@@ -1305,6 +1309,8 @@
+@@ -1307,6 +1311,8 @@
  my $arflags = $fields[$idx_arflags];
  my $windres = $ENV{'RC'} || $ENV{'WINDRES'} || "windres";
  my $multilib = $fields[$idx_multilib];
@@ -77,7 +77,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  
  # if $prefix/lib$multilib is not an existing directory, then
  # assume that it's not searched by linker automatically, in
-@@ -1621,6 +1627,10 @@
+@@ -1623,6 +1629,10 @@
  	{
  	$rc4_obj=$rc4_enc;
  	}
@@ -88,7 +88,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  if ($sha1_obj =~ /\.o$/)
  	{
  #	$sha1_obj=$sha1_enc;
-@@ -1801,6 +1811,9 @@
+@@ -1803,6 +1813,9 @@
  	s/^CAST_ENC=.*$/CAST_ENC= $cast_obj/;
  	s/^RC4_ENC=.*$/RC4_ENC= $rc4_obj/;
  	s/^RC5_ENC=.*$/RC5_ENC= $rc5_obj/;
@@ -98,7 +98,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  	s/^MD5_ASM_OBJ=.*$/MD5_ASM_OBJ= $md5_obj/;
  	s/^SHA1_ASM_OBJ=.*$/SHA1_ASM_OBJ= $sha1_obj/;
  	s/^RMD160_ASM_OBJ=.*$/RMD160_ASM_OBJ= $rmd160_obj/;
-@@ -1864,6 +1877,8 @@
+@@ -1874,6 +1887,8 @@
  print "CAST_ENC      =$cast_obj\n";
  print "RC4_ENC       =$rc4_obj\n";
  print "RC5_ENC       =$rc5_obj\n";
@@ -107,7 +107,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  print "MD5_OBJ_ASM   =$md5_obj\n";
  print "SHA1_OBJ_ASM  =$sha1_obj\n";
  print "RMD160_OBJ_ASM=$rmd160_obj\n";
-@@ -1951,6 +1966,7 @@
+@@ -1961,6 +1976,7 @@
  print OUT "\n#endif /* OPENSSL_DOING_MAKEDEPEND */\n\n";
  print OUT $openssl_thread_defines;
  print OUT $openssl_other_defines,"\n";
@@ -115,7 +115,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  
  print OUT "/* The OPENSSL_NO_* macros are also defined as NO_* if the application\n";
  print OUT "   asks for it.  This is a transient feature that is provided for those\n";
-@@ -2267,11 +2283,11 @@
+@@ -2281,11 +2297,11 @@
  
  	my ($cc, $cflags, $unistd, $thread_cflag, $sys_id, $lflags,
  	    $bn_ops, $cpuid_obj, $bn_obj, $ec_obj, $des_obj, $aes_obj, $bf_obj,
@@ -130,7 +130,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  			
  	print <<EOF
  
-@@ -2293,6 +2309,8 @@
+@@ -2307,6 +2323,8 @@
  \$sha1_obj     = $sha1_obj
  \$cast_obj     = $cast_obj
  \$rc4_obj      = $rc4_obj
@@ -139,7 +139,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  \$rmd160_obj   = $rmd160_obj
  \$rc5_obj      = $rc5_obj
  \$wp_obj       = $wp_obj
-@@ -2322,7 +2340,7 @@
+@@ -2336,7 +2354,7 @@
  
  	foreach $target (sort keys %table)
  		{
@@ -148,9 +148,9 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  
  		if ($fields[$idx_dso_scheme-1] =~ /^(beos|dl|dlfcn|win32|vms)$/)
  			{
-diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
---- a/Makefile.org	2016-09-22 19:31:54.000000000 +0000
-+++ b/Makefile.org	2016-09-24 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2k-1~bpo8+1 openssl-1.0.2k-1~bpo8+1+ore1
+--- a/Makefile.org	2017-01-28 21:22:13.000000000 +0000
++++ b/Makefile.org	2017-01-29 12:00:00.000000000 +0900
 @@ -86,6 +86,8 @@
  # the 80386.
  PROCESSOR=
@@ -178,7 +178,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
  # keep in mind that the above list is adjusted by ./Configure
  # according to no-xxx arguments...
  
-@@ -237,6 +241,9 @@
+@@ -238,6 +242,9 @@
  		WP_ASM_OBJ='$(WP_ASM_OBJ)'			\
  		MODES_ASM_OBJ='$(MODES_ASM_OBJ)'		\
  		ENGINES_ASM_OBJ='$(ENGINES_ASM_OBJ)'		\
@@ -215,9 +215,9 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  } OPENSSL_1.0.0;
  
  OPENSSL_1.0.1d {
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/apps/speed.c	2016-05-03 13:44:42.000000000 +0000
-+++ b/apps/speed.c	2016-09-04 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2k-1~bpo8+1 openssl-1.0.2k-1~bpo8+1+ore1
+--- a/apps/speed.c	2017-01-26 13:22:03.000000000 +0000
++++ b/apps/speed.c	2017-01-29 12:00:00.000000000 +0900
 @@ -226,7 +226,7 @@
  # endif
  
@@ -246,7 +246,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  };
  
  static double results[ALGOR_NUM][SIZE_NUM];
-@@ -516,6 +517,9 @@
+@@ -517,6 +518,9 @@
  # define D_IGE_192_AES   27
  # define D_IGE_256_AES   28
  # define D_GHASH         29
@@ -256,7 +256,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      double d = 0.0;
      long c[ALGOR_NUM][SIZE_NUM];
  # define R_DSA_512       0
-@@ -864,6 +868,15 @@
+@@ -863,6 +867,15 @@
              doit[D_IGE_192_AES] = 1;
          else if (strcmp(*argv, "aes-256-ige") == 0)
              doit[D_IGE_256_AES] = 1;
@@ -272,7 +272,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
          else
  # endif
  # ifndef OPENSSL_NO_CAMELLIA
-@@ -1129,6 +1142,10 @@
+@@ -1128,6 +1141,10 @@
  # ifndef OPENSSL_NO_AES
              BIO_printf(bio_err, "aes-128-cbc aes-192-cbc aes-256-cbc ");
              BIO_printf(bio_err, "aes-128-ige aes-192-ige aes-256-ige ");
@@ -283,7 +283,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  # endif
  # ifndef OPENSSL_NO_CAMELLIA
              BIO_printf(bio_err, "\n");
-@@ -1370,6 +1387,9 @@
+@@ -1369,6 +1386,9 @@
      c[D_IGE_192_AES][0] = count;
      c[D_IGE_256_AES][0] = count;
      c[D_GHASH][0] = count;
@@ -293,7 +293,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  
      for (i = 1; i < SIZE_NUM; i++) {
          c[D_MD2][i] = c[D_MD2][0] * 4 * lengths[0] / lengths[i];
-@@ -1406,6 +1426,9 @@
+@@ -1405,6 +1425,9 @@
          c[D_IGE_128_AES][i] = c[D_IGE_128_AES][i - 1] * l0 / l1;
          c[D_IGE_192_AES][i] = c[D_IGE_192_AES][i - 1] * l0 / l1;
          c[D_IGE_256_AES][i] = c[D_IGE_256_AES][i - 1] * l0 / l1;
@@ -303,7 +303,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      }
  #   ifndef OPENSSL_NO_RSA
      rsa_c[R_RSA_512][0] = count / 2000;
-@@ -1820,6 +1843,80 @@
+@@ -1819,6 +1842,80 @@
          }
          CRYPTO_gcm128_release(ctx);
      }
@@ -7384,9 +7384,9 @@ diff -urN /dev/null 1.0.2h-1~bpo8+2+ore1
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA && !OPENSSL_NO_POLY1305 */
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/crypto/evp/evp.h	2016-05-03 13:44:42.000000000 +0000
-+++ b/crypto/evp/evp.h	2017-01-29 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2k-1~bpo8+1 openssl-1.0.2k-1~bpo8+1+ore1
+--- a/crypto/evp/evp.h	2017-01-26 13:22:03.000000000 +0000
++++ b/crypto/evp/evp.h	2017-01-29 12:00:00.000000000 +0900
 @@ -1365,6 +1365,129 @@
  
  void EVP_add_alg_module(void);
@@ -7517,7 +7517,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  /* BEGIN ERROR CODES */
  /*
   * The following lines are auto generated by the script mkerr.pl. Any changes
-@@ -1375,6 +1498,12 @@
+@@ -1376,6 +1499,12 @@
  /* Error codes for the EVP functions. */
  
  /* Function codes. */
@@ -7530,7 +7530,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  # define EVP_F_AESNI_INIT_KEY                             165
  # define EVP_F_AESNI_XTS_CIPHER                           176
  # define EVP_F_AES_INIT_KEY                               133
-@@ -1391,6 +1520,9 @@
+@@ -1392,6 +1521,9 @@
  # define EVP_F_DSA_PKEY2PKCS8                             135
  # define EVP_F_ECDSA_PKEY2PKCS8                           129
  # define EVP_F_ECKEY_PKEY2PKCS8                           132
@@ -7540,7 +7540,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  # define EVP_F_EVP_CIPHERINIT_EX                          123
  # define EVP_F_EVP_CIPHER_CTX_COPY                        163
  # define EVP_F_EVP_CIPHER_CTX_CTRL                        124
-@@ -1506,10 +1638,12 @@
+@@ -1508,10 +1640,12 @@
  # define EVP_R_NO_VERIFY_FUNCTION_CONFIGURED              105
  # define EVP_R_OPERATION_NOT_SUPPORTED_FOR_THIS_KEYTYPE   150
  # define EVP_R_OPERATON_NOT_INITIALIZED                   151
@@ -7737,9 +7737,9 @@ diff -urN /dev/null 1.0.2h-1~bpo8+2+ore1
 +	*out_len = 0;
 +	return 0;
 +	}
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/crypto/evp/evp_err.c	2016-05-03 13:44:42.000000000 +0000
-+++ b/crypto/evp/evp_err.c	2017-01-29 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2k-1~bpo8+1 openssl-1.0.2k-1~bpo8+1+ore1
+--- a/crypto/evp/evp_err.c	2017-01-26 13:22:03.000000000 +0000
++++ b/crypto/evp/evp_err.c	2017-01-29 12:00:00.000000000 +0900
 @@ -70,6 +70,15 @@
  # define ERR_REASON(reason) ERR_PACK(ERR_LIB_EVP,0,reason)
  
@@ -7766,7 +7766,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
      {ERR_FUNC(EVP_F_EVP_CIPHERINIT_EX), "EVP_CipherInit_ex"},
      {ERR_FUNC(EVP_F_EVP_CIPHER_CTX_COPY), "EVP_CIPHER_CTX_copy"},
      {ERR_FUNC(EVP_F_EVP_CIPHER_CTX_CTRL), "EVP_CIPHER_CTX_ctrl"},
-@@ -212,11 +224,13 @@
+@@ -213,11 +225,13 @@
      {ERR_REASON(EVP_R_OPERATION_NOT_SUPPORTED_FOR_THIS_KEYTYPE),
       "operation not supported for this keytype"},
      {ERR_REASON(EVP_R_OPERATON_NOT_INITIALIZED), "operaton not initialized"},
@@ -15897,9 +15897,9 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
          SSLerr(SSL_F_SSL3_SETUP_KEY_BLOCK, SSL_R_CIPHER_OR_HASH_UNAVAILABLE);
          return (0);
      }
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/ssl/s3_lib.c	2016-05-03 13:44:42.000000000 +0000
-+++ b/ssl/s3_lib.c	2016-09-04 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2k-1~bpo8+1 openssl-1.0.2k-1~bpo8+1+ore1
+--- a/ssl/s3_lib.c	2017-01-28 21:22:13.000000000 +0000
++++ b/ssl/s3_lib.c	2017-01-29 12:00:00.000000000 +0900
 @@ -161,6 +161,11 @@
  
  #define SSL3_NUM_CIPHERS        (sizeof(ssl3_ciphers)/sizeof(SSL_CIPHER))
@@ -15912,7 +15912,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  /* list of available SSLv3 ciphers (sorted by id) */
  OPENSSL_GLOBAL SSL_CIPHER ssl3_ciphers[] = {
  
-@@ -2945,6 +2950,110 @@
+@@ -3002,6 +3007,110 @@
       256},
  #endif
  
@@ -16023,10 +16023,10 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
  /* end of list */
  };
  
-diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
---- a/ssl/s3_pkt.c	2016-05-03 13:44:42.000000000 +0000
-+++ b/ssl/s3_pkt.c	2016-09-04 00:00:00.000000000 +0900
-@@ -994,6 +994,9 @@
+diff -ur openssl-1.0.2k-1~bpo8+1 openssl-1.0.2k-1~bpo8+1+ore1
+--- a/ssl/s3_pkt.c	2017-01-26 13:22:04.000000000 +0000
++++ b/ssl/s3_pkt.c	2017-01-29 12:00:00.000000000 +0900
+@@ -997,6 +997,9 @@
              eivlen = EVP_GCM_TLS_EXPLICIT_IV_LEN;
          else
              eivlen = 0;

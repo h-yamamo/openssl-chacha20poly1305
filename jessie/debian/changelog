@@ -1,4 +1,4 @@
-openssl (1.0.1t-1+deb8u5+ore1) jessie; urgency=low
+openssl (1.0.1t-1+deb8u6+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,15 @@ openssl (1.0.1t-1+deb8u5+ore1) jessie; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Sat, 24 Sep 2016 10:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sun, 29 Jan 2017 12:00:00 +0900
+
+openssl (1.0.1t-1+deb8u6) jessie-security; urgency=medium
+
+  * Fix CVE-2016-8610
+  * Fix CVE-2017-3731
+  * Fix CVE-2016-7056
+
+ -- Kurt Roeckx <kurt@roeckx.be>  Thu, 26 Jan 2017 23:44:23 +0100
 
 openssl (1.0.1t-1+deb8u5) jessie-security; urgency=medium
 

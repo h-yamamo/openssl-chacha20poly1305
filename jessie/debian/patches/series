@@ -32,4 +32,7 @@ CVE-2016-6302.patch
 CVE-2016-6303.patch
 CVE-2016-6304.patch
 CVE-2016-6306.patch
+CVE-2016-8610.patch
+CVE-2017-3731.patch
+CVE-2016-7056.patch
 chacha20poly1305.patch

@@ -1,4 +1,4 @@
-openssl (1.0.2j-1~bpo8+1+ore1) jessie-backports; urgency=low
+openssl (1.0.2k-1~bpo8+1+ore1) jessie-backports; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,20 @@ openssl (1.0.2j-1~bpo8+1+ore1) jessie-backports; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Tue, 27 Sep 2016 22:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sun, 29 Jan 2017 12:00:00 +0900
+
+openssl (1.0.2k-1~bpo8+1) jessie-backports; urgency=medium
+
+  * New upstream release
+    - Fixes CVE-2017-3731
+    - Fixes CVE-2017-3732
+    - Fixes CVE-2016-7055
+  * Disable internal free list handling without breaking the ABI
+    (disable_freelist.patch).
+  * Mark RC4 and 3DES as weak which removes them from the SSL/TLS protocol
+    (Closes: #736687).
+
+ -- Sebastian Andrzej Siewior <sebastian@breakpoint.cc>  Fri, 27 Jan 2017 22:22:13 +0100
 
 openssl (1.0.2j-1~bpo8+1) jessie-backports; urgency=medium
 

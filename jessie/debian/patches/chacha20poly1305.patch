@@ -16776,9 +16776,9 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
  #ifndef OPENSSL_NO_COMP
      if (s->expand != NULL) {
          COMP_CTX_free(s->expand);
-diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
---- a/ssl/ssl_locl.h	2016-05-03 22:49:00.000000000 +0900
-+++ b/ssl/ssl_locl.h	2016-05-19 21:04:52.000000000 +0900
+diff -ur openssl-1.0.1t-1+deb8u6 openssl-1.0.1t-1+deb8u6+ore1
+--- a/ssl/ssl_locl.h	2017-01-27 08:11:49.000000000 +0900
++++ b/ssl/ssl_locl.h	2017-01-29 12:00:00.000000000 +0900
 @@ -353,6 +353,7 @@
  # define SSL_SEED                0x00000800L
  # define SSL_AES128GCM           0x00001000L
@@ -16813,7 +16813,7 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
  /*
   * Export and cipher strength information. For each cipher we have to decide
   * whether it is exportable or not. This information is likely to change
-@@ -625,6 +645,22 @@
+@@ -629,6 +649,22 @@
                                     int use_context);
  } SSL3_ENC_METHOD;
  
@@ -16836,7 +16836,7 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
  # ifndef OPENSSL_NO_COMP
  /* Used for holding the relevant compression methods loaded into SSL_CTX */
  typedef struct ssl3_comp_st {
-@@ -883,9 +919,11 @@
+@@ -887,9 +923,11 @@
                                               STACK_OF(SSL_CIPHER) **sorted,
                                               const char *rule_str);
  void ssl_update_cache(SSL *s, int mode);
