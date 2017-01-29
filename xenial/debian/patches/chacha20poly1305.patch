@@ -16295,7 +16295,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
          COMP_CTX_free(s->expand);
 diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
 --- a/ssl/ssl_locl.h	2016-03-01 13:35:53.000000000 +0000
-+++ b/ssl/ssl_locl.h	2016-04-10 00:37:01.000000000 +0900
++++ b/ssl/ssl_locl.h	2017-01-29 00:00:00.000000000 +0900
 @@ -354,6 +354,7 @@
  # define SSL_SEED                0x00000800L
  # define SSL_AES128GCM           0x00001000L
@@ -16325,7 +16325,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
 +
 +/* SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE is a flag in SSL_CIPHER.algorithm2
 + * which indicates that XOR the fixed nonce. (CHACHA20-POLY1305, for example) */
-+#define SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE (1 << 24)
++# define SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE (1 << 24)
 +
  /*
   * Export and cipher strength information. For each cipher we have to decide

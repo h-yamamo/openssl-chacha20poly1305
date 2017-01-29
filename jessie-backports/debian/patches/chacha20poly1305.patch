@@ -16295,7 +16295,7 @@ diff -ur openssl-1.0.2h-1~bpo8+2 openssl-1.0.2h-1~bpo8+2+ore1
          COMP_CTX_free(s->expand);
 diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
 --- a/ssl/ssl_locl.h	2016-09-22 10:23:06.000000000 +0000
-+++ b/ssl/ssl_locl.h	2016-09-24 00:00:00.000000000 +0900
++++ b/ssl/ssl_locl.h	2017-01-29 00:00:00.000000000 +0900
 @@ -354,6 +354,7 @@
  # define SSL_SEED                0x00000800L
  # define SSL_AES128GCM           0x00001000L
@@ -16325,7 +16325,7 @@ diff -ur openssl-1.0.2i-1~bpo8+1 openssl-1.0.2i-1~bpo8+1+ore1
 +
 +/* SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE is a flag in SSL_CIPHER.algorithm2
 + * which indicates that XOR the fixed nonce. (CHACHA20-POLY1305, for example) */
-+#define SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE (1 << 24)
++# define SSL_CIPHER_ALGORITHM2_XOR_FIXED_NONCE (1 << 24)
 +
  /*
   * Export and cipher strength information. For each cipher we have to decide
