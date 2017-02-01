@@ -128,4 +128,13 @@ CVE-2016-6306-2.patch
 update-expired-smime-test-certs.patch
 CVE-2014-3571-3.patch
 CVE-2016-2182-2.patch
+CVE-2016-2177-pre.patch
+CVE-2016-2177-pre2.patch
+CVE-2016-2177-pre3.patch
+CVE-2016-2177.patch
+CVE-2016-7056.patch
+CVE-2016-8610.patch
+CVE-2016-8610-2.patch
+CVE-2017-3731-pre.patch
+CVE-2017-3731.patch
 chacha20poly1305.patch

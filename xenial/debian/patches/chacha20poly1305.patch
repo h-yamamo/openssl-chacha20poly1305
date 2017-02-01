@@ -7737,7 +7737,7 @@ diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
 +	*out_len = 0;
 +	return 0;
 +	}
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
+diff -ur openssl-1.0.2g-1ubuntu4.6 openssl-1.0.2g-1ubuntu4.6+ore1
 --- a/crypto/evp/evp_err.c	2016-03-01 13:35:53.000000000 +0000
 +++ b/crypto/evp/evp_err.c	2017-01-29 00:00:00.000000000 +0900
 @@ -70,6 +70,15 @@
@@ -15822,10 +15822,10 @@ diff -ur openssl-1.0.2g-1ubuntu4.4 openssl-1.0.2g-1ubuntu4.4+ore1
      s->write_hash = saved_state.write_hash;
      s->compress = saved_state.compress;
      s->session = saved_state.session;
-diff -ur openssl-1.0.2g-1ubuntu4.4 openssl-1.0.2g-1ubuntu4.4+ore1
---- a/ssl/d1_pkt.c	2016-09-22 12:37:03.000000000 +0000
-+++ b/ssl/d1_pkt.c	2016-09-23 18:00:00.000000000 +0900
-@@ -964,7 +964,7 @@
+diff -ur openssl-1.0.2g-1ubuntu4.6 openssl-1.0.2g-1ubuntu4.6+ore1
+--- a/ssl/d1_pkt.c	2017-01-30 15:31:12.000000000 +0000
++++ b/ssl/d1_pkt.c	2017-02-01 20:00:00.000000000 +0900
+@@ -971,7 +971,7 @@
           * doing a handshake for the first time
           */
          if (SSL_in_init(s) && (type == SSL3_RT_APPLICATION_DATA) &&
@@ -15834,7 +15834,7 @@ diff -ur openssl-1.0.2g-1ubuntu4.4 openssl-1.0.2g-1ubuntu4.4+ore1
              al = SSL_AD_UNEXPECTED_MESSAGE;
              SSLerr(SSL_F_DTLS1_READ_BYTES, SSL_R_APP_DATA_IN_HANDSHAKE);
              goto f_err;
-@@ -1654,6 +1654,9 @@
+@@ -1669,6 +1669,9 @@
              eivlen = EVP_GCM_TLS_EXPLICIT_IV_LEN;
          else
              eivlen = 0;
@@ -16293,9 +16293,9 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  #ifndef OPENSSL_NO_COMP
      if (s->expand != NULL) {
          COMP_CTX_free(s->expand);
-diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
---- a/ssl/ssl_locl.h	2016-03-01 13:35:53.000000000 +0000
-+++ b/ssl/ssl_locl.h	2017-01-29 00:00:00.000000000 +0900
+diff -ur openssl-1.0.2g-1ubuntu4.6 openssl-1.0.2g-1ubuntu4.6+ore1
+--- a/ssl/ssl_locl.h	2017-01-30 15:31:12.000000000 +0000
++++ b/ssl/ssl_locl.h	2017-02-01 20:00:00.000000000 +0900
 @@ -354,6 +354,7 @@
  # define SSL_SEED                0x00000800L
  # define SSL_AES128GCM           0x00001000L
@@ -16330,7 +16330,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  /*
   * Export and cipher strength information. For each cipher we have to decide
   * whether it is exportable or not. This information is likely to change
-@@ -813,6 +833,22 @@
+@@ -817,6 +837,22 @@
   */
  # define SSL_ENC_FLAG_TLS1_2_CIPHERS     0x10
  
@@ -16353,7 +16353,7 @@ diff -ur openssl-1.0.2g-1ubuntu3 openssl-1.0.2g-1ubuntu3+ore1
  # ifndef OPENSSL_NO_COMP
  /* Used for holding the relevant compression methods loaded into SSL_CTX */
  typedef struct ssl3_comp_st {
-@@ -1075,9 +1111,11 @@
+@@ -1079,9 +1115,11 @@
                                               STACK_OF(SSL_CIPHER) **sorted,
                                               const char *rule_str, CERT *c);
  void ssl_update_cache(SSL *s, int mode);
