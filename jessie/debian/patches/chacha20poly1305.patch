@@ -15834,7 +15834,7 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
 +}
  # endif
  #endif
-diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+diff -ur openssl-1.0.1t-1+deb8u6 openssl-1.0.1t-1+deb8u6+ore1
 --- a/crypto/evp/evp.h	2016-05-03 22:49:00.000000000 +0900
 +++ b/crypto/evp/evp.h	2017-01-29 00:00:00.000000000 +0900
 @@ -1314,6 +1314,129 @@
@@ -16012,7 +16012,7 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
  # define EVP_R_TOO_LARGE                                  164
  # define EVP_R_UNKNOWN_CIPHER                             160
  # define EVP_R_UNKNOWN_DIGEST                             161
-diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
+diff -ur openssl-1.0.1t-1+deb8u6 openssl-1.0.1t-1+deb8u6+ore1
 --- a/crypto/evp/evp_err.c	2016-05-03 22:49:00.000000000 +0900
 +++ b/crypto/evp/evp_err.c	2017-01-29 00:00:00.000000000 +0900
 @@ -1,6 +1,6 @@
