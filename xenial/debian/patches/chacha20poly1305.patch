@@ -992,10 +992,10 @@ diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
 +
 +#endif /* !(NO_ASM || !(arm aarch64 x86_64)) */
 +#endif  /* !OPENSSL_NO_CHACHA */
-diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
---- /dev/null	1970-01-01 09:00:00.000000000 +0900
-+++ b/crypto/chacha/chacha_vec.c	2015-10-29 20:45:17.000000000 +0900
-@@ -0,0 +1,358 @@
+diff -urN /dev/null 1.0.2k-1+p1
+--- /dev/null	1970-01-01 00:00:00 +0000
++++ b/crypto/chacha/chacha_vec.c	2017-03-01
+@@ -0,0 +1,361 @@
 +/* ====================================================================
 + * Copyright (c) 2011-2013 The OpenSSL Project.  All rights reserved.
 + *
@@ -1111,7 +1111,7 @@ diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
 +#else
 +#define VBPI      3
 +#endif
-+#define ONE       (vec)_mm_set_epi32(0,0,0,1)
++#define ONE uv.one /* (vec)_mm_set_epi32(0,0,0,1) */
 +#define LOAD(m)   (vec)_mm_loadu_si128((__m128i*)(m))
 +#define STORE(m,r) _mm_storeu_si128((__m128i*)(m), (__m128i) (r))
 +#define ROTV1(x)  (vec)_mm_shuffle_epi32((__m128i)x,_MM_SHUFFLE(0,3,2,1))
@@ -1182,6 +1182,9 @@ diff -urN /dev/null 1.0.2g-1ubuntu3+ore1
 +	unsigned *np;
 +#endif
 +	vec s0, s1, s2, s3;
++#if defined(__SSE2__)
++	const union { vec one; int i[4]; } uv = { .i = {1,0,0,0} };
++#endif
 +#if !defined(__ARM_NEON__) && !defined(__SSE2__)
 +	__attribute__ ((aligned (16))) unsigned key[8], nonce[4];
 +#endif
