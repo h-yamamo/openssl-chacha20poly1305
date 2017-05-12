@@ -92,7 +92,7 @@ diff -urN /dev/null 1.0.1k-3+deb8u4+ore2
 +	mv -f Makefile.new $(MAKEFILE)
 +
 +clean:
-+	rm -f *.o *.obj lib tags core .pure .nfs* *.old *.bak fluff
++	rm -f *.s *.o *.obj lib tags core .pure .nfs* *.old *.bak fluff
 +	rm -f ../../include/openssl/chacha.h ../../test/chachatest.c
 +
 +# DO NOT DELETE THIS LINE -- make depend depends on it.
@@ -5677,7 +5677,7 @@ diff -urN /dev/null 1.0.1k-3+deb8u4+ore2
 +	mv -f Makefile.new $(MAKEFILE)
 +
 +clean:
-+	rm -f *.o *.obj lib tags core .pure .nfs* *.old *.bak fluff
++	rm -f *.s *.o *.obj lib tags core .pure .nfs* *.old *.bak fluff
 +	rm -f ../../include/openssl/poly1305.h ../../test/poly1305test.c
 +
 +# DO NOT DELETE THIS LINE -- make depend depends on it.
