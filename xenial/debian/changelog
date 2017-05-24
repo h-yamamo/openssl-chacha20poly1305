@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.7+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.8+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,14 @@ openssl (1.0.2g-1ubuntu4.7+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Fri, 12 May 2017 22:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 24 May 2017 22:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.8) xenial; urgency=medium
+
+  * aes/asm/aesni-sha*-x86_64.pl: fix IV handling in SHAEXT paths.
+    (LP: #1674399)
+
+ -- William Grant <wgrant@ubuntu.com>  Fri, 19 May 2017 18:27:58 +1000
 
 openssl (1.0.2g-1ubuntu4.7) xenial; urgency=medium
 
