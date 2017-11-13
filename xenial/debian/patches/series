@@ -48,4 +48,6 @@ CVE-2017-3731.patch
 CVE-2017-3732.patch
 move-extended-feature-detection.patch
 fix-sha-ni.patch
+CVE-2017-3735.patch
+CVE-2017-3736.patch
 chacha20poly1305.patch

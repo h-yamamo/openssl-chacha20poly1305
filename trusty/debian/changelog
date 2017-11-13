@@ -1,4 +1,4 @@
-openssl (1.0.1f-1ubuntu2.22+ore1) trusty; urgency=low
+openssl (1.0.1f-1ubuntu2.23+ore1) trusty; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,16 @@ openssl (1.0.1f-1ubuntu2.22+ore1) trusty; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Wed, 01 Feb 2017 20:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Mon, 13 Nov 2017 20:00:00 +0900
+
+openssl (1.0.1f-1ubuntu2.23) trusty-security; urgency=medium
+
+  * SECURITY UPDATE: Malformed X.509 IPAddressFamily could cause OOB read
+    - debian/patches/CVE-2017-3735.patch: avoid out-of-bounds read in
+      crypto/x509v3/v3_addr.c.
+    - CVE-2017-3735
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 02 Nov 2017 11:30:53 -0400
 
 openssl (1.0.1f-1ubuntu2.22) trusty-security; urgency=medium
 

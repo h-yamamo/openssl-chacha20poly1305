@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.8+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.9+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,20 @@ openssl (1.0.2g-1ubuntu4.8+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Wed, 24 May 2017 22:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Mon, 13 Nov 2017 20:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.9) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: Malformed X.509 IPAddressFamily could cause OOB read
+    - debian/patches/CVE-2017-3735.patch: avoid out-of-bounds read in
+      crypto/x509v3/v3_addr.c.
+    - CVE-2017-3735
+  * SECURITY UPDATE: bn_sqrx8x_internal carry bug on x86_64
+    - debian/patches/CVE-2017-3736.patch: fix carry bug in
+      bn_sqrx8x_internal in crypto/bn/asm/x86_64-mont5.pl.
+    - CVE-2017-3736
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 02 Nov 2017 11:28:46 -0400
 
 openssl (1.0.2g-1ubuntu4.8) xenial; urgency=medium
 

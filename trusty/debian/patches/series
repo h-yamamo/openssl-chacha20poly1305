@@ -137,4 +137,5 @@ CVE-2016-8610.patch
 CVE-2016-8610-2.patch
 CVE-2017-3731-pre.patch
 CVE-2017-3731.patch
+CVE-2017-3735.patch
 chacha20poly1305.patch
