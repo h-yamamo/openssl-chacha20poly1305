@@ -12,7 +12,7 @@ git clone --depth 1 https://github.com/h-yamamo/openssl-chacha20poly1305
 apt-get -d source openssl
 tar xf openssl_1.0.1t.orig.tar.gz
 cd openssl-1.0.1t
-tar xf ../openssl_1.0.1t-1+deb7u2.debian.tar.gz
+tar xf ../openssl_1.0.1t-1+deb7u3.debian.tar.gz
 cp -av ../openssl-chacha20poly1305/wheezy/debian/* debian/
 debuild -uc -us
 ```
