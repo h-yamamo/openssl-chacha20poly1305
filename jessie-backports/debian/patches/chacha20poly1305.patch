@@ -7399,9 +7399,9 @@ diff -urN /dev/null 1.0.2h-1~bpo8+2+ore1
 +	}
 +
 +#endif  /* !OPENSSL_NO_CHACHA && !OPENSSL_NO_POLY1305 */
-diff -ur openssl-1.0.2k-1~bpo8+1 openssl-1.0.2k-1~bpo8+1+ore1
---- a/crypto/evp/evp.h	2017-01-26 13:22:03.000000000 +0000
-+++ b/crypto/evp/evp.h	2017-01-29 12:00:00.000000000 +0900
+diff -ur openssl-1.0.2l-1~bpo8+1 openssl-1.0.2l-1~bpo8+1+ore1
+--- a/crypto/evp/evp.h	2017-05-24 12:54:34.000000000 +0000
++++ b/crypto/evp/evp.h	2017-12-16 00:00:00.000000000 +0900
 @@ -1365,6 +1365,129 @@
  
  void EVP_add_alg_module(void);
@@ -7564,7 +7564,7 @@ diff -ur openssl-1.0.2k-1~bpo8+1 openssl-1.0.2k-1~bpo8+1+ore1
  # define EVP_R_PRIVATE_KEY_DECODE_ERROR                   145
  # define EVP_R_PRIVATE_KEY_ENCODE_ERROR                   146
  # define EVP_R_PUBLIC_KEY_NOT_RSA                         106
-+# define EVP_R_TAG_TOO_LARGE                              171
++# define EVP_R_TAG_TOO_LARGE                              191
  # define EVP_R_TOO_LARGE                                  164
  # define EVP_R_UNKNOWN_CIPHER                             160
  # define EVP_R_UNKNOWN_DIGEST                             161
