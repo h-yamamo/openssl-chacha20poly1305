@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.10+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.11+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,16 @@ openssl (1.0.2g-1ubuntu4.10+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Tue, 12 Dec 2017 20:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Thu, 29 Mar 2018 22:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.11) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: DoS via ASN.1 types with a recursive definition
+    - debian/patches/CVE-2018-0739.patch: limit stack depth in
+      crypto/asn1/asn1.h, crypto/asn1/asn1_err.c, crypto/asn1/tasn_dec.c.
+    - CVE-2018-0739
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Tue, 27 Mar 2018 14:18:33 -0400
 
 openssl (1.0.2g-1ubuntu4.10) xenial-security; urgency=medium
 
