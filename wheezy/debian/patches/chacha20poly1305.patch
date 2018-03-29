@@ -17008,7 +17008,7 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
  #endif
  
 +#if !defined(OPENSSL_NO_CHACHA) && !defined(OPENSSL_NO_POLY1305)
-+    /* Cipher CC13 */
++# if 0 /* Cipher CC13 */
 +    {
 +     1,
 +     TLS1_TXT_ECDHE_RSA_WITH_CHACHA20_POLY1305_OLD,
@@ -17058,7 +17058,7 @@ diff -ur openssl-1.0.1t-1+deb8u2 openssl-1.0.1t-1+deb8u2+ore1
 +     256,
 +     256,
 +     },
-+
++# endif /* remove old cipher suites */
 +    /* Cipher CCA8 */
 +    {
 +     1,
