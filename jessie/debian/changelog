@@ -1,4 +1,4 @@
-openssl (1.0.1t-1+deb8u7+ore1) jessie; urgency=low
+openssl (1.0.1t-1+deb8u8+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,14 @@ openssl (1.0.1t-1+deb8u7+ore1) jessie; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Sat, 04 Nov 2017 16:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 30 Mar 2018 20:00:00 +0900
+
+openssl (1.0.1t-1+deb8u8) jessie-security; urgency=high
+
+  * CVE-2018-0739 (Constructed ASN.1 types with a recursive definition could
+    exceed the stack)
+
+ -- Sebastian Andrzej Siewior <sebastian@breakpoint.cc>  Thu, 29 Mar 2018 13:18:00 +0200
 
 openssl (1.0.1t-1+deb8u7) jessie-security; urgency=medium
 
