@@ -1,4 +1,4 @@
-openssl (1.0.1t-1+deb7u3+ore1) wheezy; urgency=low
+openssl (1.0.1t-1+deb7u4+ore1) wheezy; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,15 @@ openssl (1.0.1t-1+deb7u3+ore1) wheezy; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Mon, 13 Nov 2017 20:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sat, 31 Mar 2017 10:00:00 +0900
+
+openssl (1.0.1t-1+deb7u4) wheezy-security; urgency=medium
+
+  * Non-maintainer upload by the LTS Security Team.
+  * CVE-2018-0739: constructed ASN.1 types with a recursive definition
+    could exceed the stack, potentially leading to a denial of service
+
+ -- Antoine Beaupré <anarcat@debian.org>  Fri, 30 Mar 2018 09:43:17 -0400
 
 openssl (1.0.1t-1+deb7u3) wheezy-security; urgency=medium
 
