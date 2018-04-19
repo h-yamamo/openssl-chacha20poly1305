@@ -1,4 +1,4 @@
-openssl (1.0.1f-1ubuntu2.24+ore1) trusty; urgency=low
+openssl (1.0.1f-1ubuntu2.25+ore1) trusty; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,17 @@ openssl (1.0.1f-1ubuntu2.24+ore1) trusty; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Thu, 29 Mar 2018 22:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 20 Apr 2018 00:00:00 +0900
+
+openssl (1.0.1f-1ubuntu2.25) trusty-security; urgency=medium
+
+  * SECURITY UPDATE: Cache timing side channel
+    - debian/patches/CVE-2018-0737.patch: ensure BN_mod_inverse
+      and BN_mod_exp_mont get called with BN_FLG_CONSTTIME flag set
+      in crypto/rsa/rsa_gen.c.
+    - CVE-2018-0737
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Wed, 18 Apr 2018 14:54:20 -0300
 
 openssl (1.0.1f-1ubuntu2.24) trusty-security; urgency=medium
 

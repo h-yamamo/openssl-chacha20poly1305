@@ -139,4 +139,5 @@ CVE-2017-3731-pre.patch
 CVE-2017-3731.patch
 CVE-2017-3735.patch
 CVE-2018-0739.patch
+CVE-2018-0737.patch
 chacha20poly1305.patch

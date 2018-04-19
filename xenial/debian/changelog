@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.11+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.12+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,17 @@ openssl (1.0.2g-1ubuntu4.11+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Thu, 29 Mar 2018 22:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 20 Apr 2018 00:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.12) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: Cache timing side channel
+    - debian/patches/CVE-2018-0737.patch: ensure BN_mod_inverse
+      and BN_mod_exp_mont get called with BN_FLG_CONSTTIME flag set
+      in crypto/rsa/rsa_gen.c.
+    - CVE-2018-0737
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Wed, 18 Apr 2018 15:35:17 -0300
 
 openssl (1.0.2g-1ubuntu4.11) xenial-security; urgency=medium
 
