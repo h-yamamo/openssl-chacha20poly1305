@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.12+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.13+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,32 @@ openssl (1.0.2g-1ubuntu4.12+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Fri, 20 Apr 2018 00:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Thu, 28 Jun 2018 00:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.13) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: ECDSA key extraction side channel
+    - debian/patches/CVE-2018-0495.patch: add blinding to an ECDSA
+      signature in crypto/ecdsa/ecdsatest.c, crypto/ecdsa/ecs_ossl.c.
+    - CVE-2018-0495
+  * SECURITY UPDATE: denial of service via long prime values
+    - debian/patches/CVE-2018-0732.patch: reject excessively large primes
+      in DH key generation in crypto/dh/dh_key.c.
+    - CVE-2018-0732
+  * SECURITY UPDATE: RSA cache timing side channel attack
+    (previous update was incomplete)
+    - debian/patches/CVE-2018-0737-1.patch: replaced variable-time GCD in
+      crypto/rsa/rsa_gen.c.
+    - debian/patches/CVE-2018-0737-2.patch: used ERR set/pop mark in
+      crypto/rsa/rsa_gen.c.
+    - debian/patches/CVE-2018-0737-3.patch: consttime flag changed in
+      crypto/rsa/rsa_gen.c.
+    - debian/patches/CVE-2018-0737-4.patch: ensure BN_mod_inverse and
+      BN_mod_exp_mont both get called with BN_FLG_CONSTTIME flag set in
+      crypto/rsa/rsa_gen.c.
+    - CVE-2018-0737
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 20 Jun 2018 07:38:22 -0400
 
 openssl (1.0.2g-1ubuntu4.12) xenial-security; urgency=medium
 
