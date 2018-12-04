@@ -1,4 +1,4 @@
-openssl (1.0.1t-1+deb8u8+ore1) jessie; urgency=low
+openssl (1.0.1t-1+deb8u10+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,37 @@ openssl (1.0.1t-1+deb8u8+ore1) jessie; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Fri, 30 Mar 2018 20:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Tue, 04 Dec 2018 00:00:00 +0900
+
+openssl (1.0.1t-1+deb8u10) jessie-security; urgency=high
+
+  * Non-maintainer upload by the LTS team.
+  * CVE-2018-0735
+    Samuel Weiser reported a timing vulnerability in the OpenSSL ECDSA
+    signature generation, which might leak information to recover the
+    private key.
+  * CVE-2018-5407
+    Alejandro Cabrera Aldaya, Billy Brumley, Sohaib ul Hassan, Cesar
+    Pereida Garcia and Nicola Tuveri reported a vulnerability to a
+    timing side channel attack, which might be used to recover the
+    private key.
+
+ -- Thorsten Alteholz <debian@alteholz.de>  Wed, 21 Nov 2018 19:33:02 +0100
+
+openssl (1.0.1t-1+deb8u9) jessie-security; urgency=high
+
+  * Non-maintainer upload by the LTS team.
+  * Fix CVE-2018-0737:
+    Alejandro Cabrera Aldaya, Billy Brumley, Cesar Pereida Garcia and Luis
+    Manuel Alvarez Tapia discovered that the OpenSSL RSA Key generation
+    algorithm has been shown to be vulnerable to a cache timing side channel
+    attack. An attacker with sufficient access to mount cache timing attacks
+    during the RSA key generation process could recover the private key.
+  * Fix CVE-2018-0732:
+    DoS by a malicious server that sends a very large prime value to
+    the client during TLS handshake.
+
+ -- Markus Koschany <apo@debian.org>  Sat, 28 Jul 2018 03:44:30 +0200
 
 openssl (1.0.1t-1+deb8u8) jessie-security; urgency=high
 
