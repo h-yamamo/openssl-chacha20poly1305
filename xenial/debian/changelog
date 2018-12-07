@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.13+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.14+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,26 @@ openssl (1.0.2g-1ubuntu4.13+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Thu, 28 Jun 2018 00:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sat, 08 Dec 2018 00:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.14) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: PortSmash side channel attack
+    - debian/patches/CVE-2018-5407.patch: fix timing vulnerability in
+      crypto/bn/bn_lib.c, crypto/ec/ec_mult.c.
+    - CVE-2018-5407
+  * SECURITY UPDATE: timing side channel attack in DSA
+    - debian/patches/CVE-2018-0734-pre1.patch: address a timing side
+      channel in crypto/dsa/dsa_ossl.c.
+    - debian/patches/CVE-2018-0734-1.patch: fix timing vulnerability in
+      crypto/dsa/dsa_ossl.c.
+    - debian/patches/CVE-2018-0734-2.patch: fix mod inverse in
+      crypto/dsa/dsa_ossl.c.
+    - debian/patches/CVE-2018-0734-3.patch: add a constant time flag in
+      crypto/dsa/dsa_ossl.c.
+    - CVE-2018-0734
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Tue, 04 Dec 2018 08:38:18 -0500
 
 openssl (1.0.2g-1ubuntu4.13) xenial-security; urgency=medium
 

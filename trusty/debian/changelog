@@ -1,4 +1,4 @@
-openssl (1.0.1f-1ubuntu2.26+ore1) trusty; urgency=low
+openssl (1.0.1f-1ubuntu2.27+ore1) trusty; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,26 @@ openssl (1.0.1f-1ubuntu2.26+ore1) trusty; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Thu, 28 Jun 2018 00:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sat, 08 Dec 2018 00:00:00 +0900
+
+openssl (1.0.1f-1ubuntu2.27) trusty-security; urgency=medium
+
+  * SECURITY UPDATE: PortSmash side channel attack
+    - debian/patches/CVE-2018-5407.patch: fix timing vulnerability in
+      crypto/bn/bn_lib.c, crypto/ec/ec_mult.c.
+    - CVE-2018-5407
+  * SECURITY UPDATE: timing side channel attack in DSA
+    - debian/patches/CVE-2018-0734-pre1.patch: address a timing side
+      channel in crypto/dsa/dsa_ossl.c.
+    - debian/patches/CVE-2018-0734-1.patch: fix timing vulnerability in
+      crypto/dsa/dsa_ossl.c.
+    - debian/patches/CVE-2018-0734-2.patch: fix mod inverse in
+      crypto/dsa/dsa_ossl.c.
+    - debian/patches/CVE-2018-0734-3.patch: add a constant time flag in
+      crypto/dsa/dsa_ossl.c.
+    - CVE-2018-0734
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Tue, 04 Dec 2018 10:36:19 -0500
 
 openssl (1.0.1f-1ubuntu2.26) trusty-security; urgency=medium
 
