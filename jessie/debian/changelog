@@ -1,4 +1,4 @@
-openssl (1.0.1t-1+deb8u10+ore1) jessie; urgency=low
+openssl (1.0.1t-1+deb8u11+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,29 @@ openssl (1.0.1t-1+deb8u10+ore1) jessie; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Tue, 04 Dec 2018 00:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 15 Mar 2019 00:00:00 +0900
+
+openssl (1.0.1t-1+deb8u11) jessie-security; urgency=high
+
+  * Non-maintainer upload by the LTS team.
+  * Fix CVE-2019-1559:
+    Juraj Somorovsky, Robert Merget and Nimrod Aviram discovered a padding
+    oracle attack in OpenSSL.
+    If an application encounters a fatal protocol error and then calls
+    SSL_shutdown() twice (once to send a close_notify, and once to receive one)
+    then OpenSSL can respond differently to the calling application if a 0 byte
+    record is received with invalid padding compared to if a 0 byte record is
+    received with an invalid MAC. If the application then behaves differently
+    based on that in a way that is detectable to the remote peer, then this
+    amounts to a padding oracle that could be used to decrypt data.
+
+    In order for this to be exploitable "non-stitched" ciphersuites must be in
+    use. Stitched ciphersuites are optimised implementations of certain
+    commonly used ciphersuites. Also the application must call SSL_shutdown()
+    twice even if a protocol error has occurred (applications should not do
+    this but some do anyway). AEAD ciphersuites are not impacted.
+
+ -- Markus Koschany <apo@debian.org>  Fri, 01 Mar 2019 16:25:39 +0100
 
 openssl (1.0.1t-1+deb8u10) jessie-security; urgency=high
 
