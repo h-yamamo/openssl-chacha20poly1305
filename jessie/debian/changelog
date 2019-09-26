@@ -1,4 +1,4 @@
-openssl (1.0.1t-1+deb8u11+ore1) jessie; urgency=low
+openssl (1.0.1t-1+deb8u12+ore1) jessie; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -49,7 +49,35 @@ openssl (1.0.1t-1+deb8u11+ore1) jessie; urgency=low
         crypto/poly1305/poly1305_arm_asm.S
         crypto/poly1305/poly1305_vec.c
 
- -- Ore sama <oresama@hoge.japan>  Fri, 15 Mar 2019 00:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 27 Sep 2019 00:00:00 +0900
+
+openssl (1.0.1t-1+deb8u12) jessie-security; urgency=high
+
+  * Non-maintainer upload by the LTS team.
+  * Fix CVE-2019-1547:
+    Normally in OpenSSL EC groups always have a co-factor present and this is
+    used in side channel resistant code paths. However, in some cases, it is
+    possible to construct a group using explicit parameters (instead of using a
+    named curve). In those cases it is possible that such a group does not have
+    the cofactor present. This can occur even where all the parameters match a
+    known named curve. If such a curve is used then OpenSSL falls back to
+    non-side channel resistant code paths which may result in full key recovery
+    during an ECDSA signature operation. In order to be vulnerable an attacker
+    would have to have the ability to time the creation of a large number of
+    signatures where explicit parameters with no co-factor present are in use
+    by an application using libcrypto. For the avoidance of doubt libssl is not
+    vulnerable because explicit parameters are never used.
+  * Fix CVE-2019-1563:
+    In situations where an attacker receives automated notification of the
+    success or failure of a decryption attempt an attacker, after sending a
+    very large number of messages to be decrypted, can recover a CMS/PKCS7
+    transported encryption key or decrypt any RSA encrypted message that was
+    encrypted with the public RSA key, using a Bleichenbacher padding oracle
+    attack. Applications are not affected if they use a certificate together
+    with the private RSA key to the CMS_decrypt or PKCS7_decrypt functions to
+    select the correct recipient info to decrypt.
+
+ -- Markus Koschany <apo@debian.org>  Wed, 25 Sep 2019 19:47:32 +0200
 
 openssl (1.0.1t-1+deb8u11) jessie-security; urgency=high
 

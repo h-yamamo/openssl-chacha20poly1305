@@ -42,4 +42,6 @@ CVE-2018-0737.patch
 CVE-2018-5407+2018-0735.patch
 CVE-2019-1559_part1.patch
 CVE-2019-1559_part2.patch
+CVE-2019-1547.patch
+CVE-2019-1563.patch
 chacha20poly1305.patch
