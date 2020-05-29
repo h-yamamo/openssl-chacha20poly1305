@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.15+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.16+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,27 @@ openssl (1.0.2g-1ubuntu4.15+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Thu, 28 Feb 2019 00:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Fri, 29 May 2020 00:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.16) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: ECDSA remote timing attack
+    - debian/patches/CVE-2019-1547.patch: for ECC parameters with NULL or
+      zero cofactor, compute it in crypto/ec/ec.h, crypto/ec/ec_err.c,
+      crypto/ec/ec_lib.c.
+    - CVE-2019-1547
+  * SECURITY UPDATE: rsaz_512_sqr overflow bug on x86_64
+    - debian/patches/CVE-2019-1551.patch: fix an overflow bug in
+      rsaz_512_sqr in crypto/bn/asm/rsaz-x86_64.pl.
+    - CVE-2019-1551
+  * SECURITY UPDATE: Padding Oracle issue
+    - debian/patches/CVE-2019-1563.patch: fix a padding oracle in
+      PKCS7_dataDecode and CMS_decrypt_set1_pkey in crypto/cms/cms_env.c,
+      crypto/cms/cms_lcl.h, crypto/cms/cms_smime.c,
+      crypto/pkcs7/pk7_doit.c.
+    - CVE-2019-1563
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 27 May 2020 15:17:49 -0400
 
 openssl (1.0.2g-1ubuntu4.15) xenial-security; urgency=medium
 
