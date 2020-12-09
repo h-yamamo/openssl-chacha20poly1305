@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.17+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.18+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,26 @@ openssl (1.0.2g-1ubuntu4.17+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Thu, 17 Sep 2020 00:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Wed, 09 Dec 2020 00:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.18) xenial-security; urgency=medium
+
+  * SECURITY UPDATE: EDIPARTYNAME NULL pointer de-ref
+    - debian/patches/CVE-2020-1971-1.patch: use explicit tagging for
+      DirectoryString in crypto/x509v3/v3_genn.c.
+    - debian/patches/CVE-2020-1971-2.patch: correctly compare EdiPartyName
+      in crypto/x509v3/v3_genn.c.
+    - debian/patches/CVE-2020-1971-3.patch: check that multi-strings/CHOICE
+      types don't use implicit tagging in crypto/asn1/asn1_err.c,
+      crypto/asn1/tasn_dec.c, crypto/asn1/asn1.h.
+    - debian/patches/CVE-2020-1971-4.patch: complain if we are attempting
+      to encode with an invalid ASN.1 template in crypto/asn1/asn1_err.c,
+      crypto/asn1/tasn_enc.c, crypto/asn1/asn1.h.
+    - debian/patches/CVE-2020-1971-5.patch: add a test for GENERAL_NAME_cmp
+      in crypto/x509v3/v3nametest.c.
+    - CVE-2020-1971
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Wed, 02 Dec 2020 10:43:58 -0500
 
 openssl (1.0.2g-1ubuntu4.17) xenial-security; urgency=medium
 
