@@ -1,4 +1,4 @@
-openssl (1.0.2g-1ubuntu4.19+ore1) xenial; urgency=low
+openssl (1.0.2g-1ubuntu4.20+ore1) xenial; urgency=low
 
   * Non-maintainer release.
   * Support ChaCha20+Poly1305 cipher suites.
@@ -51,7 +51,15 @@ openssl (1.0.2g-1ubuntu4.19+ore1) xenial; urgency=low
         ssl/d1_both.c
         ssl/d1_pkt.c
 
- -- Ore sama <oresama@hoge.japan>  Fri, 19 Feb 2021 00:00:00 +0900
+ -- Ore sama <oresama@hoge.japan>  Sat, 28 Aug 2021 00:00:00 +0900
+
+openssl (1.0.2g-1ubuntu4.20) xenial-security; urgency=medium
+
+  * Enable X509_V_FLAG_TRUSTED_FIRST by default, such that letsencrypt
+    connection with the default chain remains trusted even after the
+    expiry of the redundant CA certificate. LP: #1928989
+
+ -- Dimitri John Ledkov <dimitri.ledkov@canonical.com>  Mon, 28 Jun 2021 14:05:36 +0100
 
 openssl (1.0.2g-1ubuntu4.19) xenial-security; urgency=medium
 
